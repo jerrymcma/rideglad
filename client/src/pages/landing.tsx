@@ -19,8 +19,8 @@ export default function Landing() {
 
           {/* Login Form */}
           <div className="space-y-6">
-            <div className="text-left space-y-2">
-              <Label htmlFor="email" className="text-blue-600 font-medium">
+            <div className="text-center space-y-2">
+              <Label htmlFor="email" className="text-blue-600 font-medium block">
                 Email address
               </Label>
               <Input
@@ -28,13 +28,13 @@ export default function Landing() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-gray-300 rounded px-3 py-2"
+                className="w-64 mx-auto border border-gray-300 rounded px-3 py-1 h-8"
                 data-testid="input-email"
               />
             </div>
 
-            <div className="text-left space-y-2">
-              <Label htmlFor="password" className="text-blue-600 font-medium">
+            <div className="text-center space-y-2">
+              <Label htmlFor="password" className="text-blue-600 font-medium block">
                 Password
               </Label>
               <Input
@@ -42,18 +42,20 @@ export default function Landing() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border border-gray-300 rounded px-3 py-2"
+                className="w-64 mx-auto border border-gray-300 rounded px-3 py-1 h-8"
                 data-testid="input-password"
               />
             </div>
 
-            <Button
-              onClick={() => window.location.href = '/api/login'}
-              className="w-full bg-brand-green text-white py-3 rounded font-semibold hover:bg-green-600"
-              data-testid="button-login"
-            >
-              Log in
-            </Button>
+            <div className="flex justify-center">
+              <Button
+                onClick={() => window.location.href = '/api/login'}
+                className="w-32 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600"
+                data-testid="button-login"
+              >
+                Log in
+              </Button>
+            </div>
           </div>
         </div>
       </div>
