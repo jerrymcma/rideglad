@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import logoImage from "@assets/Take a look at my Canva design!_1754653520248.png";
 
 export default function Landing() {
   const [email, setEmail] = useState("");
@@ -11,10 +12,14 @@ export default function Landing() {
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="flex flex-col h-screen justify-center px-8">
         <div className="text-center space-y-8">
-          {/* Heading */}
-          <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-black">ride</h1>
-            <p className="text-xl text-blue-600">Get there</p>
+          {/* Logo */}
+          <div className="flex justify-center">
+            <img 
+              src={logoImage} 
+              alt="Ride - Get there"
+              className="w-80 h-auto"
+              data-testid="logo-image"
+            />
           </div>
 
           {/* Login Form */}
