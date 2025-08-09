@@ -339,7 +339,7 @@ export default function RiderApp() {
                 </div>
                 
                 {/* Driver Locations */}
-                <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute top-1/3 left-[17%] transform -translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
                   <div className="bg-white rounded-full p-1 border border-white shadow-md">
                     <Car size={16} className="text-blue-600" />
