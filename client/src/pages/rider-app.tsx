@@ -556,7 +556,7 @@ export default function RiderApp() {
       <div className="flex gap-2">
         <Button
           variant="outline"
-          className="flex-1 flex items-center gap-1 text-xs"
+          className="flex-1 flex items-center gap-1 text-xs border-gray-400"
           data-testid="button-message-driver"
         >
           <MessageCircle size={14} />
@@ -564,7 +564,7 @@ export default function RiderApp() {
         </Button>
         <Button
           variant="outline"
-          className="flex-1 flex items-center gap-1 text-xs"
+          className="flex-1 flex items-center gap-1 text-xs border-gray-400"
           data-testid="button-call-driver"
         >
           <Phone size={14} />
