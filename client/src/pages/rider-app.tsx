@@ -272,7 +272,7 @@ export default function RiderApp() {
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="pickup" className="text-blue-600 font-medium text-xl flex items-center gap-2">
+          <Label htmlFor="pickup" className="text-blue-600 font-medium text-lg flex items-center gap-2">
             <MapPin size={16} />
             Pickup Location
           </Label>
@@ -287,7 +287,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="destination" className="text-blue-600 font-medium text-xl flex items-center gap-2">
+          <Label htmlFor="destination" className="text-blue-600 font-medium text-lg flex items-center gap-2">
             <Navigation size={16} />
             Destination
           </Label>
@@ -302,7 +302,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-3">
-          <Label className="text-blue-600 font-medium text-xl flex items-center gap-2">
+          <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
             <Car size={20} />
             Available drivers nearby
           </Label>
@@ -358,7 +358,7 @@ export default function RiderApp() {
 
           {/* Nearby Drivers List */}
           <div className="space-y-2">
-            <Label className="text-blue-600 font-medium text-xl flex items-center gap-2">
+            <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
               <Car size={20} />
               Choose ride
             </Label>
@@ -433,7 +433,7 @@ export default function RiderApp() {
         <Button
           onClick={handleRequestRide}
           disabled={requestRideMutation.isPending}
-          className="w-full bg-brand-green text-white py-3 rounded font-semibold hover:bg-green-600"
+          className="w-full bg-brand-green text-white text-3xl py-3 rounded font-semibold hover:bg-green-600"
           data-testid="button-request-ride"
         >
           {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
