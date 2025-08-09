@@ -64,9 +64,9 @@ export default function SimpleHome() {
           <Card className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="text-center pb-1">
               <div className="flex justify-center mb-1">
-                <Music size={36} className="text-purple-600" />
+                <Music size={36} className="text-blue-600" />
               </div>
-              <CardTitle className="text-lg text-purple-600">While you ride</CardTitle>
+              <CardTitle className="text-lg text-blue-600">While you ride</CardTitle>
             </CardHeader>
             <CardContent className="text-center py-1">
               <p className="text-base text-gray-600 mb-2">Enjoy your trip. ride thanks you!</p>
