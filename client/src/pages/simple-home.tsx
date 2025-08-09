@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, DollarSign } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -81,7 +81,7 @@ export default function SimpleHome() {
                   <SiTiktok size={24} />
                 </a>
                 <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-900 hover:text-green-950">
-                  <DollarSign size={24} />
+                  <BadgeDollarSign size={24} />
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700">
                   <SiInstagram size={24} />
