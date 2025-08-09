@@ -538,7 +538,7 @@ export default function RiderApp() {
                 <span className="text-sm font-medium ml-8">{matchedDriver.vehicle.licensePlate}</span>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600 w-24 flex-shrink-0">Estimated Arrival:</span>
+                <span className="text-sm text-gray-600 w-16 flex-shrink-0">ETA:</span>
                 <div className="flex items-center gap-1 ml-8">
                   <Clock size={14} />
                   <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
