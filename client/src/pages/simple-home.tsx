@@ -72,22 +72,22 @@ export default function SimpleHome() {
               <p className="text-lg text-gray-700 mb-4">ride thanks you!</p>
               <div className="flex justify-center space-x-4">
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700">
-                  <Youtube size={20} />
+                  <Youtube size={28} />
                 </a>
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
-                  <Facebook size={20} />
+                  <Facebook size={28} />
                 </a>
                 <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700">
-                  <SiTiktok size={20} />
+                  <SiTiktok size={28} />
                 </a>
                 <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-700 hover:text-green-800">
-                  <BadgeDollarSign size={20} />
+                  <BadgeDollarSign size={28} />
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700">
-                  <SiInstagram size={20} />
+                  <SiInstagram size={28} />
                 </a>
                 <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-                  <SiGoogle size={20} />
+                  <SiGoogle size={28} />
                 </a>
               </div>
             </CardContent>
