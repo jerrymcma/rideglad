@@ -23,7 +23,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-0">
-                  <MapPin size={36} className="text-brand-green" />
+                  <MapPin size={48} className="text-brand-green" />
                 </div>
                 <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
               </CardHeader>
@@ -37,7 +37,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-0">
-                  <Car size={36} className="text-blue-600" />
+                  <Car size={48} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-xl text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
@@ -51,7 +51,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-0">
-                  <User size={36} className="text-blue-600" />
+                  <User size={48} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
               </CardHeader>
@@ -64,7 +64,7 @@ export default function SimpleHome() {
           <Card className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="text-center pb-1">
               <div className="flex justify-center mb-0">
-                <Music size={36} className="text-blue-600" />
+                <Music size={48} className="text-blue-600" />
               </div>
               <CardTitle className="text-xl text-blue-600">Enjoy your ride</CardTitle>
             </CardHeader>
@@ -72,22 +72,22 @@ export default function SimpleHome() {
               <p className="text-lg text-gray-700 mb-4">ride thanks you!</p>
               <div className="flex justify-center space-x-4">
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700">
-                  <Youtube size={24} />
+                  <Youtube size={20} />
                 </a>
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
-                  <Facebook size={24} />
+                  <Facebook size={20} />
                 </a>
                 <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700">
-                  <SiTiktok size={24} />
+                  <SiTiktok size={20} />
                 </a>
                 <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-900 hover:text-green-950">
-                  <BadgeDollarSign size={24} />
+                  <BadgeDollarSign size={20} />
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700">
-                  <SiInstagram size={24} />
+                  <SiInstagram size={20} />
                 </a>
                 <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-                  <SiGoogle size={24} />
+                  <SiGoogle size={20} />
                 </a>
               </div>
             </CardContent>
