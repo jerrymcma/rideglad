@@ -22,7 +22,7 @@ export default function SimpleHome() {
           <Link href="/rider">
             <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green">
               <CardHeader className="text-center pb-1">
-                <div className="flex justify-center mb-1">
+                <div className="flex justify-center mb-0">
                   <MapPin size={36} className="text-brand-green" />
                 </div>
                 <CardTitle className="text-lg text-brand-green">Book a ride</CardTitle>
@@ -36,7 +36,7 @@ export default function SimpleHome() {
           <Link href="/driver">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
-                <div className="flex justify-center mb-1">
+                <div className="flex justify-center mb-0">
                   <Car size={36} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
@@ -50,7 +50,7 @@ export default function SimpleHome() {
           <Link href="/account">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
-                <div className="flex justify-center mb-1">
+                <div className="flex justify-center mb-0">
                   <User size={36} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-lg text-blue-600">My Account</CardTitle>
@@ -63,7 +63,7 @@ export default function SimpleHome() {
 
           <Card className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="text-center pb-1">
-              <div className="flex justify-center mb-1">
+              <div className="flex justify-center mb-0">
                 <Music size={36} className="text-blue-600" />
               </div>
               <CardTitle className="text-lg text-blue-600">While you ride</CardTitle>
