@@ -606,7 +606,7 @@ export default function RiderApp() {
       </div>
 
       <div className="text-center mt-6">
-        <p className="text-sm text-red-800 font-medium">
+        <p className="text-xs text-red-800 font-medium">
           Remember: safety is at the forefront. Have a safe ride!
         </p>
       </div>
