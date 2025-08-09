@@ -553,6 +553,35 @@ export default function RiderApp() {
         </CardContent>
       </Card>
 
+      <div className="space-y-3">
+        <div className="flex gap-3">
+          <Button
+            variant="outline"
+            className="flex-1 flex items-center gap-2"
+            data-testid="button-message-driver"
+          >
+            <MessageCircle size={16} />
+            Send Message
+          </Button>
+          <Button
+            variant="outline"
+            className="flex-1 flex items-center gap-2"
+            data-testid="button-call-driver"
+          >
+            <Phone size={16} />
+            Call Driver
+          </Button>
+        </div>
+        
+        <Button
+          variant="outline"
+          className="w-full flex items-center gap-2 text-blue-600 border-blue-200 hover:bg-blue-50"
+          data-testid="button-special-assistance"
+        >
+          <Heart size={16} />
+          Request Special Assistance
+        </Button>
+      </div>
     </div>
   );
 
@@ -656,36 +685,6 @@ export default function RiderApp() {
           </CardContent>
         </Card>
       )}
-      
-      <div className="space-y-3">
-        <div className="flex gap-3">
-          <Button
-            variant="outline"
-            className="flex-1 flex items-center gap-2"
-            data-testid="button-message-driver"
-          >
-            <MessageCircle size={16} />
-            Send Message
-          </Button>
-          <Button
-            variant="outline"
-            className="flex-1 flex items-center gap-2"
-            data-testid="button-call-driver"
-          >
-            <Phone size={16} />
-            Call Driver
-          </Button>
-        </div>
-        
-        <Button
-          variant="outline"
-          className="w-full flex items-center gap-2 text-blue-600 border-blue-200 hover:bg-blue-50"
-          data-testid="button-special-assistance"
-        >
-          <Heart size={16} />
-          Request Special Assistance
-        </Button>
-      </div>
     </div>
   );
 
