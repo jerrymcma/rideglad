@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Truck, User, LogOut, MapPin, Youtube, Facebook, Music } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -37,7 +37,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-1">
-                  <Truck size={36} className="text-blue-600" />
+                  <Car size={36} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
