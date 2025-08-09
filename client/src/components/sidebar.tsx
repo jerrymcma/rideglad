@@ -112,6 +112,12 @@ export default function Sidebar({ isOpen, onClose, user }: SidebarProps) {
       label: "Safety",
       path: "/safety",
       testId: "nav-safety"
+    },
+    {
+      icon: LogOut,
+      label: "Sign Out",
+      path: "logout",
+      testId: "nav-logout"
     }
   ];
 
@@ -174,7 +180,7 @@ export default function Sidebar({ isOpen, onClose, user }: SidebarProps) {
               {menuItems.map(item => (
                 <button
                   key={item.path}
-                  onClick={() => handleNavigation(item.path)}
+                  onClick={() => item.path === 'logout' ? handleLogout() : handleNavigation(item.path)}
                   className="w-full flex items-center space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-colors text-left"
                   data-testid={item.testId}
                 >
@@ -213,16 +219,7 @@ export default function Sidebar({ isOpen, onClose, user }: SidebarProps) {
               )}
             </div>
 
-            {/* Logout Button */}
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="w-full mt-8 flex items-center justify-center space-x-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50"
-              data-testid="button-logout"
-            >
-              <LogOut className="h-5 w-5 text-gray-medium" />
-              <span className="font-medium text-gray-700">Sign Out</span>
-            </Button>
+
           </div>
         </div>
       </div>
