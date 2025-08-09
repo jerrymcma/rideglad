@@ -18,76 +18,76 @@ export default function SimpleHome() {
         </div>
 
         {/* Main Actions */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           <Link href="/rider">
             <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green">
-              <CardHeader className="text-center pb-1">
-                <div className="flex justify-center mb-0">
-                  <MapPin size={56} className="text-brand-green" />
+              <CardHeader className="text-center pb-0 pt-3">
+                <div className="flex justify-center mb-1">
+                  <MapPin size={40} className="text-brand-green" />
                 </div>
-                <CardTitle className="text-2xl text-brand-green">Book a ride</CardTitle>
+                <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-5">
-                <p className="text-lg text-gray-700">Find a driver and destination</p>
+              <CardContent className="text-center py-1 pb-3">
+                <p className="text-sm text-gray-700">Find a driver and destination</p>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/driver">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
-              <CardHeader className="text-center pb-1">
-                <div className="flex justify-center mb-0">
-                  <Car size={56} className="text-blue-600" />
+              <CardHeader className="text-center pb-0 pt-3">
+                <div className="flex justify-center mb-1">
+                  <Car size={40} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-2xl text-blue-600">Drive & Earn</CardTitle>
+                <CardTitle className="text-xl text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-5">
-                <p className="text-lg text-gray-700">Start driving and earning money</p>
+              <CardContent className="text-center py-1 pb-3">
+                <p className="text-sm text-gray-700">Start driving and earning money</p>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/account">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
-              <CardHeader className="text-center pb-1">
-                <div className="flex justify-center mb-0">
-                  <User size={56} className="text-blue-600" />
+              <CardHeader className="text-center pb-0 pt-3">
+                <div className="flex justify-center mb-1">
+                  <User size={40} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-2xl text-blue-600">My Account</CardTitle>
+                <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-5">
-                <p className="text-lg text-gray-700">Manage rides, money, and settings</p>
+              <CardContent className="text-center py-1 pb-3">
+                <p className="text-sm text-gray-700">Manage rides, money, and settings</p>
               </CardContent>
             </Card>
           </Link>
 
           <Card className="cursor-pointer hover:shadow-md transition-shadow">
-            <CardHeader className="text-center pb-1">
-              <div className="flex justify-center mb-0">
-                <Music size={56} className="text-blue-600" />
+            <CardHeader className="text-center pb-0 pt-3">
+              <div className="flex justify-center mb-1">
+                <Music size={40} className="text-blue-600" />
               </div>
-              <CardTitle className="text-2xl text-blue-600">Enjoy your ride</CardTitle>
+              <CardTitle className="text-xl text-blue-600">Enjoy your ride</CardTitle>
             </CardHeader>
-            <CardContent className="text-center py-1 pb-5">
-              <p className="text-lg text-gray-700 mb-4">Thanks for riding with us!</p>
-              <div className="flex justify-center space-x-4">
+            <CardContent className="text-center py-1 pb-3">
+              <p className="text-sm text-gray-700 mb-2">Thanks for riding with us!</p>
+              <div className="flex justify-center space-x-3">
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700">
-                  <Youtube size={28} />
+                  <Youtube size={20} />
                 </a>
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
-                  <Facebook size={28} />
+                  <Facebook size={20} />
                 </a>
                 <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700">
-                  <SiTiktok size={28} />
+                  <SiTiktok size={20} />
                 </a>
                 <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-700 hover:text-green-800">
-                  <BadgeDollarSign size={28} />
+                  <BadgeDollarSign size={20} />
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700">
-                  <SiInstagram size={28} />
+                  <SiInstagram size={20} />
                 </a>
                 <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-                  <SiGoogle size={28} />
+                  <SiGoogle size={20} />
                 </a>
               </div>
             </CardContent>
