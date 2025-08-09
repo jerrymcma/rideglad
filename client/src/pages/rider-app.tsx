@@ -604,6 +604,12 @@ export default function RiderApp() {
           Assistance
         </Button>
       </div>
+
+      <div className="text-center mt-6">
+        <p className="text-sm text-red-800 font-medium">
+          Remember: safety is at the forefront. Have a safe ride!
+        </p>
+      </div>
     </div>
   );
 
