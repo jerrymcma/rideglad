@@ -526,19 +526,19 @@ export default function RiderApp() {
             
             <Separator />
             
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div className="flex items-center">
-                <span className="text-sm text-gray-600 w-20">Vehicle:</span>
+                <span className="text-sm text-gray-600 mr-4">Vehicle:</span>
                 <span className="text-sm font-medium">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </span>
               </div>
               <div className="flex items-center">
-                <span className="text-sm text-gray-600 w-20">License:</span>
+                <span className="text-sm text-gray-600 mr-4">License:</span>
                 <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-sm text-gray-600 w-20">ETA:</span>
+                <span className="text-sm text-gray-600 mr-4">ETA:</span>
                 <div className="flex items-center gap-1">
                   <Clock size={14} />
                   <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
@@ -550,15 +550,15 @@ export default function RiderApp() {
       )}
 
       <Card>
-        <CardContent className="p-4 space-y-2">
+        <CardContent className="p-4 space-y-1">
           <div className="flex items-center gap-2">
             <MapPin size={16} className="text-blue-600" />
-            <span className="text-sm text-gray-600 w-20">Pickup:</span>
+            <span className="text-sm text-gray-600 mr-4">Pickup:</span>
             <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
           </div>
           <div className="flex items-center gap-2">
             <Navigation size={16} className="text-brand-green" />
-            <span className="text-sm text-gray-600 w-20">Destination:</span>
+            <span className="text-sm text-gray-600 mr-4">Destination:</span>
             <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
           </div>
         </CardContent>
