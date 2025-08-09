@@ -72,10 +72,10 @@ export default function RiderApp() {
           setCurrentStep('matched');
           break;
         case 'pickup':
-          setCurrentStep('pickup');
+          setCurrentStep('inprogress');
           break;
         case 'in_progress':
-          setCurrentStep('inprogress');
+          setCurrentStep('pickup');
           break;
         case 'completed':
           setCurrentStep('rating');
