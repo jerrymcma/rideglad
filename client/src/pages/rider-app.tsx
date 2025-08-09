@@ -563,19 +563,19 @@ export default function RiderApp() {
 
       <Card>
         <CardContent className="p-4 space-y-2">
-          <div className="flex justify-between">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 w-24 flex-shrink-0">
               <MapPin size={16} className="text-blue-600" />
               <span className="text-sm text-gray-600">Pickup:</span>
             </div>
-            <span className="text-sm font-medium text-right">{bookingForm.pickupAddress}</span>
+            <span className="text-sm font-medium ml-8">{bookingForm.pickupAddress}</span>
           </div>
-          <div className="flex justify-between">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 w-24 flex-shrink-0">
               <Navigation size={16} className="text-brand-green" />
               <span className="text-sm text-gray-600">Destination:</span>
             </div>
-            <span className="text-sm font-medium text-right">{bookingForm.destinationAddress}</span>
+            <span className="text-sm font-medium ml-8">{bookingForm.destinationAddress}</span>
           </div>
         </CardContent>
       </Card>
