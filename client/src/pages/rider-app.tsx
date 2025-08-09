@@ -509,23 +509,25 @@ export default function RiderApp() {
       {matchedDriver && (
         <Card>
           <CardContent className="pb-4 pt-4 space-y-4">
-            <div className="px-1 pr-0">
+            <div>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                   <User size={24} className="text-gray-600" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
-                    <div className="flex items-center gap-1 ml-3">
+                <div>
+                  <div className="flex items-center">
+                    <h3 className="font-semibold mr-16">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                    <div className="flex items-center gap-1">
                       <Trophy size={14} className="text-yellow-500 fill-current" />
                       <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Star size={14} className="text-yellow-500 fill-current" />
-                    <span className="text-sm">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
-                    <div className="flex items-center gap-1 ml-3">
+                  <div className="flex items-center">
+                    <div className="flex items-center gap-1 mr-4">
+                      <Star size={14} className="text-yellow-500 fill-current" />
+                      <span className="text-sm">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
+                    </div>
+                    <div className="flex items-center gap-1">
                       <Award size={14} className="text-blue-500 fill-current" />
                       <span className="text-xs text-blue-600 font-medium">ride certified</span>
                     </div>
