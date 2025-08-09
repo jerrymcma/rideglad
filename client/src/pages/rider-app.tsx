@@ -539,7 +539,7 @@ export default function RiderApp() {
             <div className="space-y-2 px-1 pr-0">
               <div className="flex">
                 <span className="text-sm text-gray-600 w-32">Vehicle:</span>
-                <span className="text-sm font-medium">
+                <span className="text-sm font-medium ml-3">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </span>
               </div>
