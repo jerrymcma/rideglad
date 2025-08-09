@@ -302,7 +302,10 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-3">
-          <Label className="text-blue-600 font-medium text-xl">Available drivers nearby</Label>
+          <Label className="text-blue-600 font-medium text-xl flex items-center gap-2">
+            <Car size={20} />
+            Available drivers nearby
+          </Label>
           
           {/* Real-time Map */}
           <div className="relative">
