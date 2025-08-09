@@ -747,10 +747,6 @@ export default function RiderApp() {
             <h1 className="text-lg font-semibold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
             <p className="text-sm text-gray-600">Ready for your next trip?</p>
           </div>
-          <div className="flex items-center gap-2">
-            <CreditCard size={20} className="text-gray-400" />
-            <span className="text-sm text-gray-600">•••• 1234</span>
-          </div>
         </div>
 
         {/* Progress Indicator */}
