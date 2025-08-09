@@ -27,7 +27,7 @@ export default function SimpleHome() {
                 <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-600">Find a driver and get to your destination</p>
+                <p className="text-gray-600">Find a driver and destination</p>
               </CardContent>
             </Card>
           </Link>
