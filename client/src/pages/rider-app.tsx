@@ -509,7 +509,7 @@ export default function RiderApp() {
       {matchedDriver && (
         <Card>
           <CardContent className="pb-4 pt-4 space-y-4">
-            <div className="px-4 pr-0">
+            <div className="px-1 pr-0">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                   <User size={24} className="text-gray-600" />
@@ -536,7 +536,7 @@ export default function RiderApp() {
             
             <Separator />
             
-            <div className="space-y-2 px-4 pr-0">
+            <div className="space-y-2 px-1 pr-0">
               <div className="flex">
                 <span className="text-sm text-gray-600 w-44">Vehicle:</span>
                 <span className="text-sm font-medium">
