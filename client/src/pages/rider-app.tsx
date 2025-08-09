@@ -556,14 +556,14 @@ export default function RiderApp() {
               <MapPin size={16} className="text-blue-600" />
               <span className="text-sm text-gray-600">Pickup:</span>
             </div>
-            <span className="text-sm font-medium ml-12">{bookingForm.pickupAddress}</span>
+            <span className="text-sm font-medium ml-24">{bookingForm.pickupAddress}</span>
           </div>
           <div className="flex items-center">
             <div className="flex items-center gap-2 w-20 flex-shrink-0">
               <Navigation size={16} className="text-brand-green" />
               <span className="text-sm text-gray-600">Destination:</span>
             </div>
-            <span className="text-sm font-medium ml-12">{bookingForm.destinationAddress}</span>
+            <span className="text-sm font-medium ml-24">{bookingForm.destinationAddress}</span>
           </div>
         </CardContent>
       </Card>
