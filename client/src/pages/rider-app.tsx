@@ -559,15 +559,19 @@ export default function RiderApp() {
 
       <Card>
         <CardContent className="p-4 space-y-2">
-          <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-blue-600" />
-            <span className="text-sm font-medium">Pickup:</span>
-            <span className="text-sm text-gray-600">{bookingForm.pickupAddress}</span>
+          <div className="flex">
+            <div className="flex items-center gap-2 w-44">
+              <MapPin size={16} className="text-blue-600" />
+              <span className="text-sm font-medium">Pickup:</span>
+            </div>
+            <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Navigation size={16} className="text-brand-green" />
-            <span className="text-sm font-medium">Destination:</span>
-            <span className="text-sm text-gray-600">{bookingForm.destinationAddress}</span>
+          <div className="flex">
+            <div className="flex items-center gap-2 w-44">
+              <Navigation size={16} className="text-brand-green" />
+              <span className="text-sm font-medium">Destination:</span>
+            </div>
+            <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
           </div>
         </CardContent>
       </Card>
