@@ -58,6 +58,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Trip routes
+  app.get('/api/trips/active', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const activeTrip = await storage.getActiveTrip(userId);
+      res.json(activeTrip || null);
+    } catch (error) {
+      console.error("Error fetching active trip:", error);
+      res.status(500).json({ message: "Failed to fetch active trip" });
+    }
+  });
+
+  app.post('/api/trips', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const tripData = insertTripSchema.parse({
+        ...req.body,
+        riderId: userId,
+      });
+      
+      const trip = await storage.createTrip(tripData);
+      res.json(trip);
+    } catch (error) {
+      console.error("Error creating trip:", error);
+      res.status(400).json({ message: error instanceof z.ZodError ? error.errors : "Invalid trip data" });
+    }
+  });
+
+  app.post('/api/trips/:tripId/cancel', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { tripId } = req.params;
+      
+      const trip = await storage.cancelTrip(tripId, userId);
+      res.json(trip);
+    } catch (error) {
+      console.error("Error cancelling trip:", error);
+      res.status(500).json({ message: "Failed to cancel trip" });
+    }
+  });
+
+  app.get('/api/trips', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const trips = await storage.getUserTrips(userId);
+      res.json(trips);
+    } catch (error) {
+      console.error("Error fetching trips:", error);
+      res.status(500).json({ message: "Failed to fetch trips" });
+    }
+  });
+
+  // Rating routes
+  app.post('/api/ratings', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const ratingData = insertRatingSchema.parse({
+        ...req.body,
+        fromUserId: userId,
+      });
+      
+      const rating = await storage.createRating(ratingData);
+      res.json(rating);
+    } catch (error) {
+      console.error("Error creating rating:", error);
+      res.status(400).json({ message: error instanceof z.ZodError ? error.errors : "Invalid rating data" });
+    }
+  });
+
   // Vehicle routes
   app.post('/api/vehicles', isAuthenticated, async (req: any, res) => {
     try {

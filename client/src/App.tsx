@@ -6,9 +6,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/useAuth";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
-import Home from "@/pages/home";
+import SimpleHome from "@/pages/simple-home";
 import DriverDashboard from "@/pages/driver-dashboard";
 import TripHistory from "@/pages/trip-history";
+import RiderApp from "@/pages/rider-app";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -27,7 +28,8 @@ function Router() {
         <Route path="/" component={Landing} />
       ) : (
         <>
-          <Route path="/" component={Home} />
+          <Route path="/" component={SimpleHome} />
+          <Route path="/rider" component={RiderApp} />
           <Route path="/driver" component={DriverDashboard} />
           <Route path="/trips" component={TripHistory} />
         </>
