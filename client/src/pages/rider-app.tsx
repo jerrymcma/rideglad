@@ -85,7 +85,7 @@ export default function RiderApp() {
       // Mock coordinates for demo
       const mockCoords = { lat: 40.7128, lng: -74.0060 };
       
-      return await apiRequest('/api/trips', 'POST', {
+      return await apiRequest('POST', '/api/trips', {
         pickupAddress: data.pickupAddress,
         pickupLat: mockCoords.lat,
         pickupLng: mockCoords.lng,
@@ -128,7 +128,7 @@ export default function RiderApp() {
   const cancelRideMutation = useMutation({
     mutationFn: async () => {
       if (!currentTrip) throw new Error('No active trip');
-      return await apiRequest(`/api/trips/${currentTrip.id}/cancel`, 'POST');
+      return await apiRequest('POST', `/api/trips/${currentTrip.id}/cancel`);
     },
     onSuccess: () => {
       setCurrentTrip(null);
@@ -163,7 +163,7 @@ export default function RiderApp() {
   const submitRatingMutation = useMutation({
     mutationFn: async () => {
       if (!currentTrip || !matchedDriver) throw new Error('No trip or driver data');
-      return await apiRequest('/api/ratings', 'POST', {
+      return await apiRequest('POST', '/api/ratings', {
         tripId: currentTrip.id,
         toUserId: matchedDriver.driver.id,
         rating: ratingValue,
