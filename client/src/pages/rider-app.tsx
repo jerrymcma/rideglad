@@ -54,8 +54,17 @@ export default function RiderApp() {
   // Update current step based on active trip
   useEffect(() => {
     if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip) {
-      setCurrentTrip(activeTrip as Trip);
-      switch ((activeTrip as Trip).status) {
+      const trip = activeTrip as Trip;
+      setCurrentTrip(trip);
+      
+      // Update booking form with trip data
+      setBookingForm({
+        pickupAddress: trip.pickupAddress || '',
+        destinationAddress: trip.destinationAddress || '',
+        rideType: trip.rideType || 'driver-1'
+      });
+      
+      switch (trip.status) {
         case 'requested':
           setCurrentStep('searching');
           break;
