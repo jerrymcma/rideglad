@@ -620,19 +620,10 @@ export default function RiderApp() {
         </Button>
       </div>
 
-      <div className="text-center mt-6 space-y-3">
+      <div className="text-center mt-6">
         <p className="text-sm text-red-800 font-medium">
           Remember: safety is foremost. Be a safe rider.
         </p>
-        <Button
-          variant="outline"
-          onClick={() => startNewRideMutation.mutate()}
-          disabled={startNewRideMutation.isPending}
-          className="w-full text-sm text-gray-600 border-gray-300 hover:bg-gray-50"
-          data-testid="button-start-new-ride"
-        >
-          {startNewRideMutation.isPending ? 'Starting...' : 'Start New Ride'}
-        </Button>
       </div>
     </div>
   );
