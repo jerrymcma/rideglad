@@ -762,12 +762,14 @@ export default function RiderApp() {
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="p-6 space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-semibold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
-            <p className="text-sm text-gray-600">Ready for your next trip?</p>
+        {currentStep === 'booking' && (
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-semibold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
+              <p className="text-sm text-gray-600">Ready for your next trip?</p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Progress Indicator */}
         {currentStep !== 'booking' && (
