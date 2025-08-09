@@ -358,7 +358,10 @@ export default function RiderApp() {
 
           {/* Nearby Drivers List */}
           <div className="space-y-2">
-            <Label className="text-blue-600 font-medium text-xl">Choose ride</Label>
+            <Label className="text-blue-600 font-medium text-xl flex items-center gap-2">
+              <Car size={20} />
+              Choose ride
+            </Label>
             {[
               {
                 id: 'driver-1',
