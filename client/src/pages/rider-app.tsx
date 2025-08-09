@@ -535,13 +535,13 @@ export default function RiderApp() {
             <Separator />
             
             <div className="space-y-2">
-              <div className="flex gap-2">
+              <div className="flex">
                 <span className="text-sm text-gray-600 w-44">Vehicle:</span>
                 <span className="text-sm font-medium">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex">
                 <span className="text-sm text-gray-600 w-44">License Plate:</span>
                 <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
               </div>
