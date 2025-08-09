@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy } from "lucide-react";
+import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -524,6 +524,10 @@ export default function RiderApp() {
                 <div className="flex items-center gap-1">
                   <Star size={14} className="text-yellow-500 fill-current" />
                   <span className="text-sm">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
+                  <div className="flex items-center gap-1 ml-2">
+                    <Award size={14} className="text-red-500 fill-current" />
+                    <span className="text-xs text-blue-600 font-medium">ride certified</span>
+                  </div>
                 </div>
               </div>
             </div>
