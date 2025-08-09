@@ -439,7 +439,7 @@ export default function RiderApp() {
         <Button
           onClick={handleRequestRide}
           disabled={requestRideMutation.isPending}
-          className="w-full bg-brand-green text-white text-3xl py-3 rounded font-semibold hover:bg-green-600"
+          className="w-full bg-brand-green text-white text-2xl py-3 rounded font-semibold hover:bg-green-600"
           data-testid="button-request-ride"
         >
           {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
