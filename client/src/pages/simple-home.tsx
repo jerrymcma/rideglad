@@ -25,7 +25,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-0">
                   <MapPin size={56} className="text-brand-green" />
                 </div>
-                <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
+                <CardTitle className="text-2xl text-brand-green">Book a ride</CardTitle>
               </CardHeader>
               <CardContent className="text-center py-1 pb-5">
                 <p className="text-lg text-gray-700">Find a driver and destination</p>
@@ -39,7 +39,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-0">
                   <Car size={56} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-600">Drive & Earn</CardTitle>
+                <CardTitle className="text-2xl text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
               <CardContent className="text-center py-1 pb-5">
                 <p className="text-lg text-gray-700">Start driving and earning money</p>
@@ -53,7 +53,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-0">
                   <User size={56} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
+                <CardTitle className="text-2xl text-blue-600">My Account</CardTitle>
               </CardHeader>
               <CardContent className="text-center py-1 pb-5">
                 <p className="text-lg text-gray-700">Manage rides, money, and settings</p>
@@ -66,7 +66,7 @@ export default function SimpleHome() {
               <div className="flex justify-center mb-0">
                 <Music size={56} className="text-blue-600" />
               </div>
-              <CardTitle className="text-xl text-blue-600">Enjoy your ride</CardTitle>
+              <CardTitle className="text-2xl text-blue-600">Enjoy your ride</CardTitle>
             </CardHeader>
             <CardContent className="text-center py-1 pb-5">
               <p className="text-lg text-gray-700 mb-4">ride thanks you!</p>
