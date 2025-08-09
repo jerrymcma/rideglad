@@ -537,18 +537,18 @@ export default function RiderApp() {
             <Separator />
             
             <div className="space-y-2 px-1 pr-0">
-              <div className="flex">
-                <span className="text-sm text-gray-600 w-32">Vehicle:</span>
-                <span className="text-sm font-medium ml-3">
+              <div className="flex items-center">
+                <span className="text-sm text-gray-600 w-24">Vehicle:</span>
+                <span className="text-sm font-medium">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </span>
               </div>
-              <div className="flex">
-                <span className="text-sm text-gray-600 w-32">License Plate:</span>
+              <div className="flex items-center">
+                <span className="text-sm text-gray-600 w-24">License Plate:</span>
                 <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
               </div>
-              <div className="flex">
-                <span className="text-sm text-gray-600 w-32">Estimated Arrival:</span>
+              <div className="flex items-center">
+                <span className="text-sm text-gray-600 w-24">Estimated Arrival:</span>
                 <div className="flex items-center gap-1">
                   <Clock size={14} />
                   <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
