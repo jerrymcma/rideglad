@@ -332,7 +332,7 @@ export default function RiderApp() {
                 <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
                   <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                    <Car size={15} className="text-blue-600" />
+                    <Car size={16} className="text-blue-600" />
                   </div>
                   <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
                 </div>
@@ -340,7 +340,7 @@ export default function RiderApp() {
                 <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
                   <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                    <Car size={15} className="text-blue-600" />
+                    <Car size={16} className="text-blue-600" />
                   </div>
                   <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
                 </div>
@@ -348,7 +348,7 @@ export default function RiderApp() {
                 <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$24.90</span>
                   <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                    <Car size={15} className="text-blue-600" />
+                    <Car size={16} className="text-blue-600" />
                   </div>
                   <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
                 </div>
