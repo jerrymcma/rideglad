@@ -200,7 +200,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/trips/active', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
-      const activeTrip = await storage.getActiveTrip(userId);
+      let activeTrip = await storage.getActiveTrip(userId);
+      
+      // Check if trip has timed out (older than 2 hours)
+      if (activeTrip) {
+        const now = new Date();
+        const tripAge = now.getTime() - new Date(activeTrip.requestedAt).getTime();
+        const timeoutDuration = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+        
+        if (tripAge > timeoutDuration) {
+          console.log(`Trip ${activeTrip.id} timed out, auto-cancelling`);
+          await storage.updateTripStatus(activeTrip.id, 'cancelled', {
+            cancelReason: 'timeout',
+            completedAt: now
+          });
+          activeTrip = null; // Return null since trip was cancelled
+        }
+      }
+      
       res.json(activeTrip || null);
     } catch (error) {
       console.error("Error fetching active trip:", error);
