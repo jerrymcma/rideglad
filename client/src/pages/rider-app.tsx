@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Navigation, Clock, Star, CreditCard, User, Car } from "lucide-react";
+import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -656,6 +656,25 @@ export default function RiderApp() {
           </CardContent>
         </Card>
       )}
+      
+      <div className="flex gap-3">
+        <Button
+          variant="outline"
+          className="flex-1 flex items-center gap-2"
+          data-testid="button-message-driver"
+        >
+          <MessageCircle size={16} />
+          Send Message
+        </Button>
+        <Button
+          variant="outline"
+          className="flex-1 flex items-center gap-2"
+          data-testid="button-call-driver"
+        >
+          <Phone size={16} />
+          Call Driver
+        </Button>
+      </div>
     </div>
   );
 
