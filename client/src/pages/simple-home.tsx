@@ -69,7 +69,7 @@ export default function SimpleHome() {
               <CardTitle className="text-lg text-purple-600">While you ride</CardTitle>
             </CardHeader>
             <CardContent className="text-center py-2">
-              <p className="text-sm text-gray-600 mb-3">Stay entertained during your trip</p>
+              <p className="text-sm text-gray-600 mb-3">Enjoy your trip. ride thanks you!</p>
               <div className="flex justify-center space-x-4">
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700">
                   <Youtube size={24} />
