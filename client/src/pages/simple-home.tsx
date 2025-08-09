@@ -17,59 +17,59 @@ export default function SimpleHome() {
         </div>
 
         {/* Main Actions */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <Link href="/rider">
             <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green">
-              <CardHeader className="text-center pb-3">
-                <div className="flex justify-center mb-2">
-                  <MapPin size={48} className="text-brand-green" />
+              <CardHeader className="text-center pb-2">
+                <div className="flex justify-center mb-1">
+                  <MapPin size={36} className="text-brand-green" />
                 </div>
-                <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
+                <CardTitle className="text-lg text-brand-green">Book a ride</CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">Find a driver and destination</p>
+              <CardContent className="text-center py-2">
+                <p className="text-sm text-gray-600">Find a driver and destination</p>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/driver">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
-              <CardHeader className="text-center pb-3">
-                <div className="flex justify-center mb-2">
-                  <Car size={48} className="text-blue-600" />
+              <CardHeader className="text-center pb-2">
+                <div className="flex justify-center mb-1">
+                  <Car size={36} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-600">Drive & Earn</CardTitle>
+                <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">Start driving and earning money</p>
+              <CardContent className="text-center py-2">
+                <p className="text-sm text-gray-600">Start driving and earning money</p>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/trips">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
-              <CardHeader className="text-center pb-3">
-                <div className="flex justify-center mb-2">
-                  <History size={48} className="text-gray-600" />
+              <CardHeader className="text-center pb-2">
+                <div className="flex justify-center mb-1">
+                  <History size={36} className="text-gray-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-600">Trip History</CardTitle>
+                <CardTitle className="text-lg text-gray-600">Trip History</CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">View your past trips and rides</p>
+              <CardContent className="text-center py-2">
+                <p className="text-sm text-gray-600">View your past trips and rides</p>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/account">
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
-              <CardHeader className="text-center pb-3">
-                <div className="flex justify-center mb-2">
-                  <User size={48} className="text-blue-600" />
+              <CardHeader className="text-center pb-2">
+                <div className="flex justify-center mb-1">
+                  <User size={36} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
+                <CardTitle className="text-lg text-blue-600">My Account</CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">Manage rides, money, and settings</p>
+              <CardContent className="text-center py-2">
+                <p className="text-sm text-gray-600">Manage rides, money, and settings</p>
               </CardContent>
             </Card>
           </Link>
