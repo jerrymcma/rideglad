@@ -301,7 +301,7 @@ export default function RiderApp() {
           />
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
             <Car size={20} />
             Available drivers nearby
