@@ -597,7 +597,7 @@ export default function RiderApp() {
 
       <div className="text-center mt-6">
         <p className="text-sm text-red-800 font-medium">
-          Remember: safety is foremost. Have a safe ride!
+          Remember: safety is foremost. Be a safe Rider!
         </p>
       </div>
     </div>
