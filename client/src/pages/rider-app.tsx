@@ -553,18 +553,6 @@ export default function RiderApp() {
         </CardContent>
       </Card>
 
-      <div className="flex justify-end">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => cancelRideMutation.mutate()}
-          disabled={cancelRideMutation.isPending}
-          className="text-xs"
-          data-testid="button-cancel-matched"
-        >
-          Cancel Ride
-        </Button>
-      </div>
     </div>
   );
 
