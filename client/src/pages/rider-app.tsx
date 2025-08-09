@@ -504,7 +504,7 @@ export default function RiderApp() {
                 </div>
                 <div>
                   <div className="flex items-center">
-                    <h3 className="font-semibold mr-16">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                    <h3 className="font-semibold mr-14">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
                     <div className="flex items-center gap-1">
                       <Trophy size={14} className="text-yellow-500 fill-current" />
                       <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
