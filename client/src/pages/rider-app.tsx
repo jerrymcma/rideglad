@@ -272,7 +272,7 @@ export default function RiderApp() {
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="pickup" className="text-blue-600 font-medium flex items-center gap-2">
+          <Label htmlFor="pickup" className="text-blue-600 font-medium text-xl flex items-center gap-2">
             <MapPin size={16} />
             Pickup Location
           </Label>
@@ -287,7 +287,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="destination" className="text-blue-600 font-medium flex items-center gap-2">
+          <Label htmlFor="destination" className="text-blue-600 font-medium text-xl flex items-center gap-2">
             <Navigation size={16} />
             Destination
           </Label>
@@ -302,7 +302,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-3">
-          <Label className="text-blue-600 font-medium text-lg text-center block">Available drivers nearby</Label>
+          <Label className="text-blue-600 font-medium text-xl">Available drivers nearby</Label>
           
           {/* Real-time Map */}
           <div className="relative">
@@ -355,7 +355,7 @@ export default function RiderApp() {
 
           {/* Nearby Drivers List */}
           <div className="space-y-2">
-            <Label className="text-blue-600 font-medium text-lg text-center block">Choose ride</Label>
+            <Label className="text-blue-600 font-medium text-xl">Choose ride</Label>
             {[
               {
                 id: 'driver-1',
