@@ -242,7 +242,8 @@ export default function RiderApp() {
     }
   }, [currentStep, bookingForm.rideType]);
 
-  const handleRequestRide = () => {
+  const handleRequestRide = (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (!bookingForm.pickupAddress || !bookingForm.destinationAddress) {
       toast({
         title: "Missing Information",
@@ -270,7 +271,7 @@ export default function RiderApp() {
         <p className="text-gray-600">Where would you like to go?</p>
       </div>
 
-      <div className="space-y-4">
+      <form onSubmit={handleRequestRide} className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="pickup" className="text-blue-600 font-medium text-lg flex items-center gap-2">
             <MapPin size={16} />
@@ -437,6 +438,7 @@ export default function RiderApp() {
         </div>
 
         <Button
+          type="button"
           onClick={handleRequestRide}
           disabled={requestRideMutation.isPending}
           className="w-full bg-brand-green text-white text-xl py-3 rounded font-semibold hover:bg-green-600"
@@ -444,7 +446,7 @@ export default function RiderApp() {
         >
           {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
         </Button>
-      </div>
+      </form>
     </div>
   );
 
