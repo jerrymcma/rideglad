@@ -100,7 +100,7 @@ export default function RiderApp() {
       setCurrentStep('searching');
       refetchTrip();
       toast({
-        title: "Ride Requested",
+        title: "ride Requested",
         description: "We're finding you a driver!",
       });
     },
@@ -266,7 +266,7 @@ export default function RiderApp() {
   const renderBookingStep = () => (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h1 className="text-2xl font-bold text-black">Book a Ride</h1>
+        <h1 className="text-2xl font-bold text-black">Book a ride</h1>
         <p className="text-gray-600">Where would you like to go?</p>
       </div>
 
@@ -302,7 +302,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-3">
-          <Label className="text-blue-600 font-medium">Choose Ride</Label>
+          <Label className="text-blue-600 font-medium">Choose ride</Label>
           
           {/* Real-time Map */}
           <div className="relative">
@@ -427,7 +427,7 @@ export default function RiderApp() {
           className="w-full bg-brand-green text-white py-3 rounded font-semibold hover:bg-green-600"
           data-testid="button-request-ride"
         >
-          {requestRideMutation.isPending ? 'Requesting...' : 'Request Ride'}
+          {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
         </Button>
       </div>
     </div>

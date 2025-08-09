@@ -28,7 +28,7 @@ interface RideType {
 const rideTypes: RideType[] = [
   {
     id: 'economy',
-    name: 'RideShare Economy',
+    name: 'rideShare Economy',
     description: 'Affordable rides for everyday trips',
     icon: '🚗',
     price: '12.50',
@@ -37,7 +37,7 @@ const rideTypes: RideType[] = [
   },
   {
     id: 'comfort',
-    name: 'RideShare Comfort',
+    name: 'rideShare Comfort',
     description: 'More space and newer cars',
     icon: '🚙',
     price: '16.80',
@@ -46,7 +46,7 @@ const rideTypes: RideType[] = [
   },
   {
     id: 'premium',
-    name: 'RideShare Premium',
+    name: 'rideShare Premium',
     description: 'Luxury vehicles with top drivers',
     icon: '💎',
     price: '24.90',
@@ -133,7 +133,7 @@ export default function RideBooking({
                 data-testid="button-book-ride"
               >
                 <Car className="w-5 h-5 mr-2" />
-                Book Ride
+                Book ride
               </Button>
               <Button 
                 variant="outline"

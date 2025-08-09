@@ -16,7 +16,7 @@ export default function Landing() {
           <div className="flex justify-center">
             <img 
               src={logoImage} 
-              alt="Ride - Get there"
+              alt="ride - Get there"
               className="w-80 h-auto"
               data-testid="logo-image"
             />

@@ -24,7 +24,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-2">
                   <MapPin size={48} className="text-brand-green" />
                 </div>
-                <CardTitle className="text-xl text-brand-green">Book a Ride</CardTitle>
+                <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-gray-600">Find a driver and get to your destination</p>
