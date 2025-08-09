@@ -509,25 +509,20 @@ export default function RiderApp() {
       {matchedDriver && (
         <Card>
           <CardContent className="pb-4 pt-4 space-y-4">
-            <div className="px-1 pr-0">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+            <div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                   <User size={24} className="text-gray-600" />
                 </div>
-                <div className="grid grid-cols-2 gap-x-2 w-full">
-                  <div className="col-span-2 mb-1">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Star size={14} className="text-yellow-500 fill-current" />
-                    <span className="text-sm">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
-                  </div>
-                  <div className="flex items-center gap-1 justify-start">
                     <Trophy size={14} className="text-yellow-500 fill-current" />
                     <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
                   </div>
-                  <div></div>
-                  <div className="flex items-center gap-1 justify-start">
+                  <div className="flex items-center gap-2">
+                    <Star size={14} className="text-yellow-500 fill-current" />
+                    <span className="text-sm">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
                     <Award size={14} className="text-blue-500 fill-current" />
                     <span className="text-xs text-blue-600 font-medium">ride certified</span>
                   </div>
