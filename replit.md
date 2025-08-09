@@ -5,6 +5,7 @@ RideShare is a full-stack ride-sharing application built with React, Express, an
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+UI/UX Design: Detail-oriented with specific requirements for spacing, sizing, and alignment. Prefers centered layouts with custom logo integration and precise button/input dimensions.
 
 # System Architecture
 
