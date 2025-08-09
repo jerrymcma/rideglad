@@ -18,7 +18,7 @@ type RideStep = 'booking' | 'searching' | 'matched' | 'pickup' | 'inprogress' | 
 interface BookingForm {
   pickupAddress: string;
   destinationAddress: string;
-  rideType: 'economy' | 'comfort' | 'premium';
+  rideType: string;
 }
 
 interface MatchedDriver {
@@ -41,7 +41,7 @@ export default function RiderApp() {
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
     destinationAddress: '',
-    rideType: 'economy'
+    rideType: 'driver-1'
   });
 
   // Get current active trip
@@ -93,7 +93,7 @@ export default function RiderApp() {
         destinationLat: mockCoords.lat + 0.01,
         destinationLng: mockCoords.lng + 0.01,
         rideType: data.rideType,
-        estimatedPrice: data.rideType === 'economy' ? '12.50' : data.rideType === 'comfort' ? '18.75' : '28.00'
+        estimatedPrice: data.rideType === 'driver-1' ? '12.50' : data.rideType === 'driver-2' ? '16.80' : '24.90'
       });
     },
     onSuccess: () => {
@@ -303,68 +303,116 @@ export default function RiderApp() {
 
         <div className="space-y-3">
           <Label className="text-blue-600 font-medium">Choose Ride</Label>
-          <div className="space-y-3">
+          
+          {/* Real-time Map */}
+          <div className="relative">
+            <div className="w-full h-48 bg-gray-100 rounded-lg border overflow-hidden">
+              {/* Map Background */}
+              <div className="w-full h-full bg-gradient-to-br from-blue-50 to-green-50 relative">
+                {/* Grid lines to simulate map */}
+                <div className="absolute inset-0 opacity-20">
+                  {[...Array(8)].map((_, i) => (
+                    <div key={`h-${i}`} className="absolute border-t border-gray-300" style={{top: `${i * 12.5}%`, width: '100%'}} />
+                  ))}
+                  {[...Array(6)].map((_, i) => (
+                    <div key={`v-${i}`} className="absolute border-l border-gray-300" style={{left: `${i * 16.67}%`, height: '100%'}} />
+                  ))}
+                </div>
+                
+                {/* Your Location */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
+                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
+                </div>
+                
+                {/* Driver Locations */}
+                <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-3 h-3 bg-brand-green rounded-full border border-white shadow-md" />
+                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-medium">John</span>
+                </div>
+                
+                <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
+                  <div className="w-3 h-3 bg-brand-green rounded-full border border-white shadow-md" />
+                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-medium">Sarah</span>
+                </div>
+                
+                <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
+                  <div className="w-3 h-3 bg-brand-green rounded-full border border-white shadow-md" />
+                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-medium">Mike</span>
+                </div>
+              </div>
+              
+              {/* Map Controls */}
+              <div className="absolute top-2 right-2 flex flex-col gap-1">
+                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">+</button>
+                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">-</button>
+              </div>
+            </div>
+          </div>
+
+          {/* Nearby Drivers List */}
+          <div className="space-y-2">
+            <p className="text-sm text-gray-600 font-medium">Available Drivers Nearby</p>
             {[
               {
-                type: 'economy',
+                id: 'driver-1',
                 driverName: 'John Driver',
                 vehicle: '2022 Toyota Camry',
                 rating: 4.8,
                 eta: '3 min',
-                price: '$12.50',
-                description: 'Affordable rides for everyday trips',
-                icon: '🚗'
+                fare: '$12.50',
+                distance: '0.4 mi'
               },
               {
-                type: 'comfort',
+                id: 'driver-2',
                 driverName: 'Sarah Wilson',
                 vehicle: '2023 Honda CR-V',
                 rating: 4.9,
                 eta: '5 min',
-                price: '$16.80',
-                description: 'More space and newer cars',
-                icon: '🚙'
+                fare: '$16.80',
+                distance: '0.7 mi'
               },
               {
-                type: 'premium',
+                id: 'driver-3',
                 driverName: 'Michael Chen',
                 vehicle: '2024 BMW 3 Series',
                 rating: 5.0,
                 eta: '7 min',
-                price: '$24.90',
-                description: 'Luxury vehicles with top drivers',
-                icon: '💎'
+                fare: '$24.90',
+                distance: '1.1 mi'
               }
-            ].map((ride) => (
+            ].map((driver) => (
               <Card 
-                key={ride.type}
+                key={driver.id}
                 className={`cursor-pointer transition-colors ${
-                  bookingForm.rideType === ride.type 
+                  bookingForm.rideType === driver.id 
                     ? 'border-brand-green bg-green-50' 
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                onClick={() => setBookingForm(prev => ({ ...prev, rideType: ride.type }))}
-                data-testid={`card-ridetype-${ride.type}`}
+                onClick={() => setBookingForm(prev => ({ ...prev, rideType: driver.id }))}
+                data-testid={`card-driver-${driver.id}`}
               >
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="text-2xl">{ride.icon}</div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <p className="font-semibold text-gray-900">{ride.driverName}</p>
+                <CardContent className="p-3">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white font-semibold">
+                        {driver.driverName.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900">{driver.driverName}</p>
                           <div className="flex items-center gap-1">
-                            <Star size={14} className="text-yellow-400 fill-current" />
-                            <span className="text-sm font-medium">{ride.rating}</span>
+                            <Star size={12} className="text-yellow-400 fill-current" />
+                            <span className="text-xs font-medium">{driver.rating}</span>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">{ride.vehicle}</p>
-                        <p className="text-xs text-gray-500">{ride.description}</p>
+                        <p className="text-sm text-gray-600">{driver.vehicle}</p>
+                        <p className="text-xs text-gray-500">{driver.distance} • {driver.eta} away</p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">{ride.price}</p>
-                      <p className="text-sm text-gray-600">{ride.eta} away</p>
+                      <p className="font-bold text-lg text-brand-green">{driver.fare}</p>
+                      <p className="text-xs text-gray-500">Estimated</p>
                     </div>
                   </div>
                 </CardContent>
