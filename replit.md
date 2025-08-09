@@ -4,8 +4,9 @@ RideShare is a full-stack ride-sharing application built with React, Express, an
 
 # User Preferences
 
-Preferred communication style: Simple, everyday language.
+Preferred communication style: Simple, everyday language. Appreciates humor and casual interaction.
 UI/UX Design: Detail-oriented with specific requirements for spacing, sizing, and alignment. Prefers centered layouts with custom logo integration and precise button/input dimensions.
+Navigation: Prefers logout functionality integrated into sidebar menu rather than standalone buttons.
 
 # System Architecture
 
@@ -33,11 +34,13 @@ UI/UX Design: Detail-oriented with specific requirements for spacing, sizing, an
 ## Key Features
 - **Dual User Roles**: Users can switch between rider and driver modes
 - **Trip Management**: Full lifecycle from booking to completion with status tracking
-- **Real-time Updates**: Driver matching and trip progress simulation
+- **Real-time Updates**: Driver matching and trip progress simulation with mock driver system
 - **Rating System**: Bidirectional rating system between riders and drivers
 - **Payment Integration**: Payment method management (structure ready for integration)
 - **Vehicle Management**: Drivers can manage multiple vehicles
 - **Location Services**: Mock location services with plans for real GPS integration
+- **Mock Driver System**: John Driver with Toyota Camry available for automatic ride matching
+- **Sidebar Navigation**: Clean menu system with logout functionality integrated at bottom
 
 ## Development Setup
 - **Build System**: Vite for frontend bundling with hot module replacement

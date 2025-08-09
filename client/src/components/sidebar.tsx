@@ -162,7 +162,7 @@ export default function Sidebar({ isOpen, onClose, user }: SidebarProps) {
                 <p className="text-gray-medium" data-testid="text-user-email">
                   {user.email || 'No email'}
                 </p>
-                {user.rating !== undefined && user.rating > 0 && (
+                {user.rating !== undefined && user.rating !== null && user.rating > 0 && (
                   <div className="flex items-center mt-1">
                     <Star className="h-4 w-4 text-status-warning fill-current" />
                     <span className="text-sm ml-1" data-testid="text-user-rating">
