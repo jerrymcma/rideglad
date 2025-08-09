@@ -69,7 +69,7 @@ export default function SimpleHome() {
                 <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-600">Manage your profile and settings</p>
+                <p className="text-gray-600">Manage your rides, money, and settings</p>
               </CardContent>
             </Card>
           </Link>
