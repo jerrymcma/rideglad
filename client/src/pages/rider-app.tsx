@@ -469,15 +469,17 @@ export default function RiderApp() {
           </div>
         </div>
 
-        <Button
-          type="button"
-          onClick={handleRequestRide}
-          disabled={requestRideMutation.isPending}
-          className="w-full bg-brand-green text-white text-xl py-3 rounded font-semibold hover:bg-green-600"
-          data-testid="button-request-ride"
-        >
-          {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
-        </Button>
+        <div className="flex justify-center">
+          <Button
+            type="button"
+            onClick={handleRequestRide}
+            disabled={requestRideMutation.isPending}
+            className="w-48 bg-brand-green text-white text-xl py-3 rounded font-semibold hover:bg-green-600"
+            data-testid="button-request-ride"
+          >
+            {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
+          </Button>
+        </div>
       </form>
     </div>
   );
