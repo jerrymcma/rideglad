@@ -44,7 +44,7 @@ Header Display: "Hello Jerry, Ready for your next trip?" header only shows on bo
 - **Vehicle Management**: Drivers can manage multiple vehicles
 - **Location Services**: Mock location services with plans for real GPS integration
 - **Mock Driver System**: John Driver with Toyota Camry available for automatic ride matching
-- **Driver Communication**: Send message and call driver options on driver found page
+- **Driver Communication**: Send message and call driver options on driver found page, message driver option on arrival page
 - **Special Assistance**: Request special assistance button for passengers needing extra help
 - **Sidebar Navigation**: Clean menu system with logout functionality integrated at bottom
 

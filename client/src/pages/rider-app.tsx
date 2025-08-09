@@ -601,6 +601,15 @@ export default function RiderApp() {
         </Card>
       )}
 
+      <Button
+        variant="outline"
+        className="w-full flex items-center gap-2"
+        data-testid="button-message-driver-pickup"
+      >
+        <MessageCircle size={16} />
+        Send Message
+      </Button>
+
       <div className="text-center space-y-2">
         <p className="text-sm text-gray-600">Look for your driver at the pickup location</p>
         <p className="text-xs text-gray-500">You'll be notified when they arrive</p>
