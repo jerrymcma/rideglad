@@ -537,18 +537,18 @@ export default function RiderApp() {
             <Separator />
             
             <div className="space-y-2 px-1 pr-0">
-              <div className="flex">
-                <span className="text-sm text-gray-600 w-44">Vehicle:</span>
-                <span className="text-sm font-medium">
+              <div className="flex justify-between">
+                <span className="text-sm text-gray-600">Vehicle:</span>
+                <span className="text-sm font-medium text-right">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </span>
               </div>
-              <div className="flex">
-                <span className="text-sm text-gray-600 w-44">License Plate:</span>
-                <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
+              <div className="flex justify-between">
+                <span className="text-sm text-gray-600">License Plate:</span>
+                <span className="text-sm font-medium text-right">{matchedDriver.vehicle.licensePlate}</span>
               </div>
-              <div className="flex">
-                <span className="text-sm text-gray-600 w-44">Estimated Arrival:</span>
+              <div className="flex justify-between">
+                <span className="text-sm text-gray-600">Estimated Arrival:</span>
                 <div className="flex items-center gap-1">
                   <Clock size={14} />
                   <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
@@ -561,19 +561,19 @@ export default function RiderApp() {
 
       <Card>
         <CardContent className="p-4 space-y-2">
-          <div className="flex">
-            <div className="flex items-center gap-2 w-44">
+          <div className="flex justify-between">
+            <div className="flex items-center gap-2">
               <MapPin size={16} className="text-blue-600" />
               <span className="text-sm text-gray-600">Pickup:</span>
             </div>
-            <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
+            <span className="text-sm font-medium text-right">{bookingForm.pickupAddress}</span>
           </div>
-          <div className="flex">
-            <div className="flex items-center gap-2 w-44">
+          <div className="flex justify-between">
+            <div className="flex items-center gap-2">
               <Navigation size={16} className="text-brand-green" />
               <span className="text-sm text-gray-600">Destination:</span>
             </div>
-            <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
+            <span className="text-sm font-medium text-right">{bookingForm.destinationAddress}</span>
           </div>
         </CardContent>
       </Card>
