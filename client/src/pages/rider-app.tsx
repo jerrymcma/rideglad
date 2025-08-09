@@ -459,7 +459,7 @@ export default function RiderApp() {
         <h2 className="text-xl font-bold">Finding Your Driver</h2>
         <p className="text-gray-600">We're matching you with the best available driver...</p>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-4 relative">
         <Card>
           <CardContent className="p-4 space-y-2">
             <div className="flex items-center gap-2">
@@ -474,15 +474,18 @@ export default function RiderApp() {
             </div>
           </CardContent>
         </Card>
-        <Button
-          variant="outline"
-          onClick={() => cancelRideMutation.mutate()}
-          disabled={cancelRideMutation.isPending}
-          className="w-full"
-          data-testid="button-cancel-ride"
-        >
-          Cancel Request
-        </Button>
+        <div className="flex justify-end">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => cancelRideMutation.mutate()}
+            disabled={cancelRideMutation.isPending}
+            className="text-xs px-3 py-1"
+            data-testid="button-cancel-ride"
+          >
+            Cancel Request
+          </Button>
+        </div>
       </div>
     </div>
   );

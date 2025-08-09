@@ -9,6 +9,7 @@ UI/UX Design: Extremely detail-oriented with specific requirements for spacing, 
 Navigation: Prefers logout functionality integrated into sidebar menu rather than standalone buttons.
 Welcome Page Design: Prefers compact buttons with specific spacing requirements, darker fonts for better readability, and integrated social media/earning platform links. Final specifications: 3xl Welcome heading, 2xl Hello greeting, 2xl button headings, 56px main button icons, 28px social media icons, lg description text, and pb-5 button spacing.
 Typography Standards: "Request ride" button uses text-xl font size. Section labels ("Available drivers nearby", "Pickup Location", "Destination") use text-lg. Proper capitalization in toast messages ("Ride requested" not "ride Requested").
+Button Layout: Cancel ride button positioned bottom right and smaller (size="sm", text-xs) for subtle interaction.
 
 # System Architecture
 
