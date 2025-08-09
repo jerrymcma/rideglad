@@ -560,8 +560,8 @@ export default function RiderApp() {
           </div>
           <div className="flex items-center">
             <div className="flex items-center gap-2 w-20 flex-shrink-0">
-              <Navigation size={16} className="text-brand-green" />
               <span className="text-sm text-gray-600">Destination:</span>
+              <Navigation size={16} className="text-brand-green" />
             </div>
             <span className="text-sm font-medium ml-24">{bookingForm.destinationAddress}</span>
           </div>
