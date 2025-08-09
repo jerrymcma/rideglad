@@ -33,7 +33,7 @@ export default function Landing() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-64 mx-auto border border-gray-300 rounded px-3 py-1 h-8"
+                className="w-64 mx-auto border border-gray-300 rounded px-2 py-0.5 h-6"
                 data-testid="input-email"
               />
             </div>
@@ -47,7 +47,7 @@ export default function Landing() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-64 mx-auto border border-gray-300 rounded px-3 py-1 h-8"
+                className="w-64 mx-auto border border-gray-300 rounded px-2 py-0.5 h-6"
                 data-testid="input-password"
               />
             </div>
