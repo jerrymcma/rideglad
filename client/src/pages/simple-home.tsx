@@ -23,7 +23,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-0">
-                  <MapPin size={48} className="text-brand-green" />
+                  <MapPin size={56} className="text-brand-green" />
                 </div>
                 <CardTitle className="text-xl text-brand-green">Book a ride</CardTitle>
               </CardHeader>
@@ -37,7 +37,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-0">
-                  <Car size={48} className="text-blue-600" />
+                  <Car size={56} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-xl text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
@@ -51,7 +51,7 @@ export default function SimpleHome() {
             <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="text-center pb-1">
                 <div className="flex justify-center mb-0">
-                  <User size={48} className="text-blue-600" />
+                  <User size={56} className="text-blue-600" />
                 </div>
                 <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
               </CardHeader>
@@ -64,7 +64,7 @@ export default function SimpleHome() {
           <Card className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="text-center pb-1">
               <div className="flex justify-center mb-0">
-                <Music size={48} className="text-blue-600" />
+                <Music size={56} className="text-blue-600" />
               </div>
               <CardTitle className="text-xl text-blue-600">Enjoy your ride</CardTitle>
             </CardHeader>
