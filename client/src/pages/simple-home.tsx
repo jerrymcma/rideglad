@@ -27,7 +27,7 @@ export default function SimpleHome() {
                 </div>
                 <CardTitle className="text-lg text-brand-green">Book a ride</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-3">
+              <CardContent className="text-center py-1 pb-5">
                 <p className="text-base text-gray-700">Find a driver and destination</p>
               </CardContent>
             </Card>
@@ -41,7 +41,7 @@ export default function SimpleHome() {
                 </div>
                 <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-3">
+              <CardContent className="text-center py-1 pb-5">
                 <p className="text-base text-gray-700">Start driving and earning money</p>
               </CardContent>
             </Card>
@@ -55,7 +55,7 @@ export default function SimpleHome() {
                 </div>
                 <CardTitle className="text-lg text-blue-600">My Account</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-3">
+              <CardContent className="text-center py-1 pb-5">
                 <p className="text-base text-gray-700">Manage rides, money, and settings</p>
               </CardContent>
             </Card>
@@ -68,7 +68,7 @@ export default function SimpleHome() {
               </div>
               <CardTitle className="text-lg text-blue-600">Enjoy your ride</CardTitle>
             </CardHeader>
-            <CardContent className="text-center py-1 pb-3">
+            <CardContent className="text-center py-1 pb-5">
               <p className="text-base text-gray-700 mb-4">ride thanks you!</p>
               <div className="flex justify-center space-x-4">
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700">
