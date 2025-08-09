@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart } from "lucide-react";
+import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -514,7 +514,13 @@ export default function RiderApp() {
                 <User size={24} className="text-gray-600" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                  <div className="flex items-center gap-1">
+                    <Trophy size={14} className="text-yellow-500 fill-current" />
+                    <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
+                  </div>
+                </div>
                 <div className="flex items-center gap-1">
                   <Star size={14} className="text-yellow-500 fill-current" />
                   <span className="text-sm">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
@@ -613,7 +619,13 @@ export default function RiderApp() {
                 <User size={24} className="text-gray-600" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                  <div className="flex items-center gap-1">
+                    <Trophy size={14} className="text-yellow-500 fill-current" />
+                    <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
+                  </div>
+                </div>
                 <p className="text-sm text-gray-600">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </p>
