@@ -59,6 +59,20 @@ export default function SimpleHome() {
               </CardContent>
             </Card>
           </Link>
+
+          <Link href="/account">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <CardHeader className="text-center pb-3">
+                <div className="flex justify-center mb-2">
+                  <User size={48} className="text-blue-600" />
+                </div>
+                <CardTitle className="text-xl text-blue-600">My Account</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-gray-600">Manage your profile and settings</p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         {/* Profile Section */}
