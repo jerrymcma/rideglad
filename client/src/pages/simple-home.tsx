@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CarFront, History, User, LogOut, MapPin } from "lucide-react";
+import { CarFront, User, LogOut, MapPin } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function SimpleHome() {
@@ -42,20 +42,6 @@ export default function SimpleHome() {
               </CardHeader>
               <CardContent className="text-center py-2">
                 <p className="text-sm text-gray-600">Start driving and earning money</p>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link href="/trips">
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
-              <CardHeader className="text-center pb-2">
-                <div className="flex justify-center mb-1">
-                  <History size={36} className="text-gray-600" />
-                </div>
-                <CardTitle className="text-lg text-gray-600">Trip History</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center py-2">
-                <p className="text-sm text-gray-600">View your past trips and rides</p>
               </CardContent>
             </Card>
           </Link>
