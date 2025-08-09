@@ -80,7 +80,7 @@ export default function SimpleHome() {
                 <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700">
                   <SiTiktok size={20} />
                 </a>
-                <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-900 hover:text-green-950">
+                <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-700 hover:text-green-800">
                   <BadgeDollarSign size={20} />
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700">
