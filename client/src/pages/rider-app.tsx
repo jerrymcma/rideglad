@@ -302,7 +302,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-3">
-          <Label className="text-blue-600 font-medium">Choose ride</Label>
+          <Label className="text-blue-600 font-medium">Available drivers nearby</Label>
           
           {/* Real-time Map */}
           <div className="relative">
@@ -355,7 +355,7 @@ export default function RiderApp() {
 
           {/* Nearby Drivers List */}
           <div className="space-y-2">
-            <p className="text-sm text-gray-600 font-medium">Available Drivers Nearby</p>
+            <Label className="text-blue-600 font-medium">Choose ride</Label>
             {[
               {
                 id: 'driver-1',
