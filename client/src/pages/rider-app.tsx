@@ -322,26 +322,26 @@ export default function RiderApp() {
                 {/* Your Location */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
-                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
+                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-red-600">You</span>
                 </div>
                 
                 {/* Driver Locations */}
                 <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
                   <div className="w-3 h-3 bg-brand-green rounded-full border border-white shadow-md" />
-                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-medium">John</span>
+                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
                 </div>
                 
                 <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
                   <div className="w-3 h-3 bg-brand-green rounded-full border border-white shadow-md" />
-                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-medium">Sarah</span>
+                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
                 </div>
                 
                 <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
                   <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$24.90</span>
                   <div className="w-3 h-3 bg-brand-green rounded-full border border-white shadow-md" />
-                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-medium">Mike</span>
+                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
                 </div>
               </div>
               
