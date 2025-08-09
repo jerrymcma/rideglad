@@ -494,7 +494,7 @@ export default function RiderApp() {
     <div className="space-y-6">
       <div className="text-center space-y-2">
         <h2 className="text-xl font-bold text-brand-green">Driver Found!</h2>
-        <p className="text-gray-600">Your driver is on the way</p>
+        <p className="text-lg font-bold text-gray-600">Your driver is on the way</p>
       </div>
 
       {matchedDriver && (
