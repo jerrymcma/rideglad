@@ -537,19 +537,19 @@ export default function RiderApp() {
             <Separator />
             
             <div className="space-y-2 px-1 pr-0">
-              <div className="flex justify-between items-start">
-                <span className="text-sm text-gray-600">Vehicle:</span>
-                <span className="text-sm font-medium text-right min-w-0">
+              <div className="flex">
+                <span className="text-sm text-gray-600 w-32">Vehicle:</span>
+                <span className="text-sm font-medium flex-1 text-right">
                   {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
                 </span>
               </div>
-              <div className="flex justify-between items-start">
-                <span className="text-sm text-gray-600">License Plate:</span>
-                <span className="text-sm font-medium text-right min-w-0">{matchedDriver.vehicle.licensePlate}</span>
+              <div className="flex">
+                <span className="text-sm text-gray-600 w-32">License Plate:</span>
+                <span className="text-sm font-medium flex-1 text-right">{matchedDriver.vehicle.licensePlate}</span>
               </div>
-              <div className="flex justify-between items-start">
-                <span className="text-sm text-gray-600">Estimated Arrival:</span>
-                <div className="flex items-center gap-1 justify-end min-w-0">
+              <div className="flex">
+                <span className="text-sm text-gray-600 w-32">Estimated Arrival:</span>
+                <div className="flex items-center gap-1 flex-1 justify-end">
                   <Clock size={14} />
                   <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
                 </div>
