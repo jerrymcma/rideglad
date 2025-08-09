@@ -237,7 +237,7 @@ export default function RiderApp() {
             model: 'Civic',
             year: 2020,
             color: 'Blue',
-            licensePlate: 'ABC-123',
+            licensePlate: '107',
             vehicleType: bookingForm.rideType,
             createdAt: new Date(),
           },
