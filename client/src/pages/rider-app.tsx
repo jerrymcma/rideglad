@@ -100,7 +100,7 @@ export default function RiderApp() {
       setCurrentStep('searching');
       refetchTrip();
       toast({
-        title: "ride Requested",
+        title: "Ride requested",
         description: "We're finding you a driver!",
       });
     },

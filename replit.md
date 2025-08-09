@@ -4,10 +4,11 @@ rideShare is a full-stack ride-sharing application built with React, Express, an
 
 # User Preferences
 
-Preferred communication style: Simple, everyday language. Appreciates humor and casual interaction. User expresses appreciation for detailed work ("Claude you're the man").
-UI/UX Design: Extremely detail-oriented with specific requirements for spacing, sizing, and alignment. Prefers centered layouts with custom logo integration and precise button/input dimensions. Focuses on mobile-first responsive design with careful attention to font sizes, spacing, and visual hierarchy.
+Preferred communication style: Simple, everyday language. Appreciates humor and casual interaction. User expresses appreciation for detailed work ("Claude you're the man", "You're my main man claude").
+UI/UX Design: Extremely detail-oriented with specific requirements for spacing, sizing, and alignment. Prefers centered layouts with custom logo integration and precise button/input dimensions. Focuses on mobile-first responsive design with careful attention to font sizes, spacing, and visual hierarchy. Requests precise micro-adjustments to spacing and font sizes.
 Navigation: Prefers logout functionality integrated into sidebar menu rather than standalone buttons.
 Welcome Page Design: Prefers compact buttons with specific spacing requirements, darker fonts for better readability, and integrated social media/earning platform links. Final specifications: 3xl Welcome heading, 2xl Hello greeting, 2xl button headings, 56px main button icons, 28px social media icons, lg description text, and pb-5 button spacing.
+Typography Standards: "Request ride" button uses text-xl font size. Section labels ("Available drivers nearby", "Pickup Location", "Destination") use text-lg. Proper capitalization in toast messages ("Ride requested" not "ride Requested").
 
 # System Architecture
 
