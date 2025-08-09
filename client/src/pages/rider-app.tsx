@@ -508,7 +508,7 @@ export default function RiderApp() {
 
       {matchedDriver && (
         <Card>
-          <CardContent className="p-4 pr-1 space-y-4">
+          <CardContent className="p-4 pr-0 space-y-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                 <User size={24} className="text-gray-600" />
