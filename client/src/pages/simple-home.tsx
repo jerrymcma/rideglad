@@ -74,16 +74,6 @@ export default function SimpleHome() {
               <p className="text-sm text-gray-600">{(user as any)?.email}</p>
             </div>
           </div>
-          
-          <Button
-            onClick={() => window.location.href = '/api/logout'}
-            variant="outline"
-            className="w-full flex items-center gap-2"
-            data-testid="button-logout"
-          >
-            <LogOut size={16} />
-            Log Out
-          </Button>
         </div>
       </div>
     </div>
