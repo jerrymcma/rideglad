@@ -206,7 +206,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (activeTrip) {
         const now = new Date();
         const tripAge = now.getTime() - new Date(activeTrip.requestedAt).getTime();
-        const timeoutDuration = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+        const timeoutDuration = 30 * 1000; // 30 seconds in milliseconds
         
         if (tripAge > timeoutDuration) {
           console.log(`Trip ${activeTrip.id} timed out, auto-cancelling`);
