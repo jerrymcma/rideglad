@@ -88,6 +88,29 @@ export default function RiderApp() {
     }
   }, [activeTrip]);
 
+  // Start new ride - cancel existing trip and reset to booking
+  const startNewRideMutation = useMutation({
+    mutationFn: async () => {
+      if (currentTrip) {
+        return await apiRequest('POST', `/api/trips/${currentTrip.id}/cancel`);
+      }
+    },
+    onSuccess: () => {
+      setCurrentTrip(null);
+      setCurrentStep('booking');
+      setBookingForm({
+        pickupAddress: '',
+        destinationAddress: '',
+        rideType: 'driver-1'
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
+      toast({
+        title: "New ride started",
+        description: "Enter your pickup and destination.",
+      });
+    },
+  });
+
   // Request ride mutation
   const requestRideMutation = useMutation({
     mutationFn: async (data: BookingForm) => {
@@ -595,10 +618,19 @@ export default function RiderApp() {
         </Button>
       </div>
 
-      <div className="text-center mt-6">
+      <div className="text-center mt-6 space-y-3">
         <p className="text-sm text-red-800 font-medium">
           Remember: safety is foremost. Be a safe rider.
         </p>
+        <Button
+          variant="outline"
+          onClick={() => startNewRideMutation.mutate()}
+          disabled={startNewRideMutation.isPending}
+          className="w-full text-sm text-gray-600 border-gray-300 hover:bg-gray-50"
+          data-testid="button-start-new-ride"
+        >
+          {startNewRideMutation.isPending ? 'Starting...' : 'Start New Ride'}
+        </Button>
       </div>
     </div>
   );
