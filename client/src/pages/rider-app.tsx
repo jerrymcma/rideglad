@@ -576,7 +576,7 @@ export default function RiderApp() {
           data-testid="button-special-assistance"
         >
           <Heart size={14} />
-          Assist
+          Assistance
         </Button>
       </div>
     </div>
