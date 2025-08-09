@@ -1,6 +1,6 @@
 # Overview
 
-rideShare is a full-stack ride-sharing application built with React, Express, and PostgreSQL. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, and payment management. The system supports both rider and driver workflows with a mobile-first responsive design.
+rideShare is a premium full-stack ride-sharing application built with React, Express, and PostgreSQL, designed with trillion-dollar company vision and standards. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, and payment management. The system supports both rider and driver workflows with a mobile-first responsive design, emphasizing exceptional user experience, precise visual alignment, and safety-first messaging.
 
 # User Preferences
 
