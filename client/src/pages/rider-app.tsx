@@ -302,34 +302,70 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-3">
-          <Label className="text-blue-600 font-medium">Choose Ride Type</Label>
-          <div className="space-y-2">
-            {(['economy', 'comfort', 'premium'] as const).map((type) => (
+          <Label className="text-blue-600 font-medium">Choose Ride</Label>
+          <div className="space-y-3">
+            {[
+              {
+                type: 'economy',
+                driverName: 'John Driver',
+                vehicle: '2022 Toyota Camry',
+                rating: 4.8,
+                eta: '3 min',
+                price: '$12.50',
+                description: 'Affordable rides for everyday trips',
+                icon: '🚗'
+              },
+              {
+                type: 'comfort',
+                driverName: 'Sarah Wilson',
+                vehicle: '2023 Honda CR-V',
+                rating: 4.9,
+                eta: '5 min',
+                price: '$16.80',
+                description: 'More space and newer cars',
+                icon: '🚙'
+              },
+              {
+                type: 'premium',
+                driverName: 'Michael Chen',
+                vehicle: '2024 BMW 3 Series',
+                rating: 5.0,
+                eta: '7 min',
+                price: '$24.90',
+                description: 'Luxury vehicles with top drivers',
+                icon: '💎'
+              }
+            ].map((ride) => (
               <Card 
-                key={type}
+                key={ride.type}
                 className={`cursor-pointer transition-colors ${
-                  bookingForm.rideType === type 
+                  bookingForm.rideType === ride.type 
                     ? 'border-brand-green bg-green-50' 
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                onClick={() => setBookingForm(prev => ({ ...prev, rideType: type }))}
-                data-testid={`card-ridetype-${type}`}
+                onClick={() => setBookingForm(prev => ({ ...prev, rideType: ride.type }))}
+                data-testid={`card-ridetype-${ride.type}`}
               >
-                <CardContent className="p-4 flex justify-between items-center">
-                  <div className="flex items-center gap-3">
-                    <Car size={20} />
-                    <div>
-                      <p className="font-medium capitalize">{type}</p>
-                      <p className="text-sm text-gray-600">
-                        {type === 'economy' && '4 seats • Budget-friendly'}
-                        {type === 'comfort' && '4 seats • More space'}
-                        {type === 'premium' && '4 seats • Luxury vehicle'}
-                      </p>
+                <CardContent className="p-4">
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="text-2xl">{ride.icon}</div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <p className="font-semibold text-gray-900">{ride.driverName}</p>
+                          <div className="flex items-center gap-1">
+                            <Star size={14} className="text-yellow-400 fill-current" />
+                            <span className="text-sm font-medium">{ride.rating}</span>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600 mb-1">{ride.vehicle}</p>
+                        <p className="text-xs text-gray-500">{ride.description}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-bold text-brand-green">{getRideTypePrice(type)}</p>
-                    <p className="text-xs text-gray-500">Estimated</p>
+                    <div className="text-right">
+                      <p className="font-bold text-lg text-brand-green">{ride.price}</p>
+                      <p className="text-sm text-gray-600">{ride.eta} away</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
