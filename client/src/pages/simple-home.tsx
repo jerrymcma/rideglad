@@ -63,17 +63,6 @@ export default function SimpleHome() {
 
         {/* Profile Section */}
         <div className="space-y-4 pt-4 border-t">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-              <User size={24} className="text-gray-600" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-gray-900">
-                {(user as any)?.firstName} {(user as any)?.lastName}
-              </h3>
-              <p className="text-sm text-gray-600">{(user as any)?.email}</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
