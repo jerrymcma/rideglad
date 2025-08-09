@@ -76,9 +76,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const tripData = insertTripSchema.parse({
         ...req.body,
         riderId: userId,
+        status: 'requested',
       });
       
       const trip = await storage.createTrip(tripData);
+      
+      // Auto-assign John Driver after 3 seconds (simulate driver matching)
+      setTimeout(async () => {
+        try {
+          await storage.updateTripStatus(trip.id, 'matched', {
+            driverId: 'mock-driver-john',
+          });
+          console.log(`Trip ${trip.id} automatically matched with John Driver`);
+        } catch (error) {
+          console.error('Error auto-assigning driver:', error);
+        }
+      }, 3000);
+      
       res.json(trip);
     } catch (error) {
       console.error("Error creating trip:", error);
@@ -102,7 +116,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/trips', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
-      const trips = await storage.getTripsByUser ? await storage.getTripsByUser(userId) : [];
+      const trips = await storage.getUserTrips(userId);
       res.json(trips);
     } catch (error) {
       console.error("Error fetching trips:", error);

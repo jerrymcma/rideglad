@@ -53,9 +53,9 @@ export default function RiderApp() {
 
   // Update current step based on active trip
   useEffect(() => {
-    if (activeTrip && activeTrip.status) {
-      setCurrentTrip(activeTrip);
-      switch (activeTrip.status) {
+    if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip) {
+      setCurrentTrip(activeTrip as Trip);
+      switch ((activeTrip as Trip).status) {
         case 'requested':
           setCurrentStep('searching');
           break;
