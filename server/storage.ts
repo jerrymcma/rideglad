@@ -178,6 +178,121 @@ export class DatabaseStorage implements IStorage {
     return [];
   }
 
+  async getDriverById(driverId: string): Promise<(User & { vehicle: Vehicle }) | null> {
+    // First, ensure mock drivers exist in database
+    await this.ensureMockDrivers();
+    
+    const driverWithVehicle = await db
+      .select()
+      .from(users)
+      .leftJoin(vehicles, eq(vehicles.driverId, users.id))
+      .where(eq(users.id, driverId))
+      .limit(1);
+
+    if (driverWithVehicle.length === 0 || !driverWithVehicle[0].vehicles) {
+      return null;
+    }
+
+    return {
+      ...driverWithVehicle[0].users,
+      vehicle: driverWithVehicle[0].vehicles
+    };
+  }
+
+  private async ensureMockDrivers(): Promise<void> {
+    // Check if mock drivers exist
+    const existingDrivers = await db
+      .select()
+      .from(users)
+      .where(eq(users.userType, 'driver'))
+      .limit(3);
+
+    if (existingDrivers.length >= 3) {
+      return; // Mock drivers already exist
+    }
+
+    // Create mock drivers
+    const mockDrivers = [
+      {
+        id: 'mock-driver-1',
+        email: 'john@rideshare.com',
+        firstName: 'John',
+        lastName: 'Driver',
+        userType: 'driver' as const,
+        isDriverActive: true,
+        vehicle: { make: 'Toyota', model: 'Camry', year: 2022, color: 'Blue', licensePlate: '107' }
+      },
+      {
+        id: 'mock-driver-2',
+        email: 'sarah@rideshare.com',
+        firstName: 'Sarah',
+        lastName: 'Wilson',
+        userType: 'driver' as const,
+        isDriverActive: true,
+        vehicle: { make: 'Honda', model: 'CR-V', year: 2023, color: 'White', licensePlate: '208' }
+      },
+      {
+        id: 'mock-driver-3',
+        email: 'michael@rideshare.com',
+        firstName: 'Michael',
+        lastName: 'Chen',
+        userType: 'driver' as const,
+        isDriverActive: true,
+        vehicle: { make: 'BMW', model: '3 Series', year: 2024, color: 'Black', licensePlate: '309' }
+      }
+    ];
+
+    for (const mockDriver of mockDrivers) {
+      try {
+        // Insert or update driver
+        await db
+          .insert(users)
+          .values({
+            id: mockDriver.id,
+            email: mockDriver.email,
+            firstName: mockDriver.firstName,
+            lastName: mockDriver.lastName,
+            userType: mockDriver.userType,
+            isDriverActive: mockDriver.isDriverActive,
+          })
+          .onConflictDoUpdate({
+            target: users.id,
+            set: {
+              userType: mockDriver.userType,
+              isDriverActive: mockDriver.isDriverActive,
+              updatedAt: new Date(),
+            },
+          });
+
+        // Insert or update vehicle
+        await db
+          .insert(vehicles)
+          .values({
+            id: `vehicle-${mockDriver.id}`,
+            driverId: mockDriver.id,
+            make: mockDriver.vehicle.make,
+            model: mockDriver.vehicle.model,
+            year: mockDriver.vehicle.year,
+            color: mockDriver.vehicle.color,
+            licensePlate: mockDriver.vehicle.licensePlate,
+            vehicleType: 'economy',
+          })
+          .onConflictDoUpdate({
+            target: vehicles.id,
+            set: {
+              make: mockDriver.vehicle.make,
+              model: mockDriver.vehicle.model,
+              year: mockDriver.vehicle.year,
+              color: mockDriver.vehicle.color,
+              licensePlate: mockDriver.vehicle.licensePlate,
+            },
+          });
+      } catch (error) {
+        console.error(`Error creating mock driver ${mockDriver.id}:`, error);
+      }
+    }
+  }
+
   async toggleDriverStatus(driverId: string, isActive: boolean): Promise<User> {
     const [user] = await db
       .update(users)

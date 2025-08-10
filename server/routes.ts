@@ -257,19 +257,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Trip not found" });
       }
 
-      // Find available drivers
-      const availableDrivers = await storage.getAvailableDrivers(
-        trip.pickupLat,
-        trip.pickupLng,
-        trip.rideType
-      );
+      // Map ride types to specific drivers
+      const driverMapping = {
+        'driver-1': 'mock-driver-1',
+        'driver-2': 'mock-driver-2', 
+        'driver-3': 'mock-driver-3'
+      };
 
-      if (availableDrivers.length === 0) {
-        return res.status(404).json({ message: "No available drivers" });
+      const driverId = driverMapping[trip.rideType as keyof typeof driverMapping];
+      if (!driverId) {
+        return res.status(404).json({ message: "Invalid driver selection" });
       }
 
-      // Select the first available driver (in real app, use better matching logic)
-      const selectedDriver = availableDrivers[0];
+      // Get the specific selected driver
+      const selectedDriver = await storage.getDriverById(driverId);
+      if (!selectedDriver) {
+        return res.status(404).json({ message: "Selected driver not available" });
+      }
       
       const updatedTrip = await storage.updateTripStatus(req.params.id, 'matched', {
         driverId: selectedDriver.id,
