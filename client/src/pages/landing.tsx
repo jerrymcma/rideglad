@@ -14,12 +14,12 @@ export default function Landing() {
         <div className="text-center space-y-6">
           {/* Logo */}
           <div className="flex justify-center">
-            <div className="text-center" data-testid="logo-text">
-              <div className="text-6xl font-bold text-brand-green mb-2">
-                <span>rid</span><span className="-ml-2">e</span>
-              </div>
-              <div className="text-lg text-gray-600 font-medium">Get there</div>
-            </div>
+            <img 
+              src={logoImage} 
+              alt="ride - Get there"
+              className="w-80 h-auto"
+              data-testid="logo-image"
+            />
           </div>
 
           {/* Login Form */}
