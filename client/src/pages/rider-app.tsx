@@ -248,34 +248,67 @@ export default function RiderApp() {
   useEffect(() => {
     if (currentStep === 'searching') {
       const timer = setTimeout(() => {
-        setMatchedDriver({
-          driver: {
+        // Get selected driver data based on rideType
+        const driverData = {
+          'driver-1': {
             id: 'mock-driver-1',
             firstName: 'John',
             lastName: 'Driver',
             email: 'driver@rideshare.com',
+            vehicle: { make: 'Toyota', model: 'Camry', year: 2022, color: 'Blue', licensePlate: '107' },
+            rating: 4.8,
+            estimatedArrival: 3
+          },
+          'driver-2': {
+            id: 'mock-driver-2',
+            firstName: 'Sarah',
+            lastName: 'Wilson',
+            email: 'sarah@rideshare.com',
+            vehicle: { make: 'Honda', model: 'CR-V', year: 2023, color: 'White', licensePlate: '208' },
+            rating: 4.9,
+            estimatedArrival: 5
+          },
+          'driver-3': {
+            id: 'mock-driver-3',
+            firstName: 'Michael',
+            lastName: 'Chen',
+            email: 'michael@rideshare.com',
+            vehicle: { make: 'BMW', model: '3 Series', year: 2024, color: 'Black', licensePlate: '309' },
+            rating: 5.0,
+            estimatedArrival: 7
+          }
+        };
+
+        const selectedDriver = driverData[bookingForm.rideType as keyof typeof driverData];
+        
+        setMatchedDriver({
+          driver: {
+            id: selectedDriver.id,
+            firstName: selectedDriver.firstName,
+            lastName: selectedDriver.lastName,
+            email: selectedDriver.email,
             profileImageUrl: null,
             phone: '+1234567890',
             userType: 'driver',
-            rating: 4.8,
+            rating: selectedDriver.rating,
             totalRatings: 120,
             isDriverActive: true,
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           vehicle: {
-            id: 'vehicle-1',
-            driverId: 'driver-1',
-            make: 'Honda',
-            model: 'Civic',
-            year: 2020,
-            color: 'Blue',
-            licensePlate: '107',
+            id: `vehicle-${bookingForm.rideType}`,
+            driverId: selectedDriver.id,
+            make: selectedDriver.vehicle.make,
+            model: selectedDriver.vehicle.model,
+            year: selectedDriver.vehicle.year,
+            color: selectedDriver.vehicle.color,
+            licensePlate: selectedDriver.vehicle.licensePlate,
             vehicleType: bookingForm.rideType,
             createdAt: new Date(),
           },
-          estimatedArrival: 5,
-          rating: 4.8,
+          estimatedArrival: selectedDriver.estimatedArrival,
+          rating: selectedDriver.rating,
         });
         setCurrentStep('matched');
       }, 3000);
