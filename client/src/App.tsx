@@ -24,6 +24,7 @@ function Router() {
 
   return (
     <Switch>
+      <Route path="/landing" component={Landing} />
       {!isAuthenticated ? (
         <Route path="/" component={Landing} />
       ) : (
