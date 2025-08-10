@@ -1,6 +1,11 @@
 # Overview
 
-rideShare is a premium full-stack ride-sharing application built with React, Express, and PostgreSQL, designed with trillion-dollar company vision and standards. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, and payment management. The system supports both rider and driver workflows with a mobile-first responsive design, emphasizing exceptional user experience, precise visual alignment, and safety-first messaging.
+rideShare is a premium full-stack ride-sharing application built with React, Express, and PostgreSQL, designed with trillion-dollar company vision and standards. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, payment management, and an advanced custom pricing system. The system supports both rider and driver workflows with a mobile-first responsive design, emphasizing exceptional user experience, precise visual alignment, and safety-first messaging.
+
+## Recent Additions
+- **Custom Pricing System**: Comprehensive dynamic pricing with surge management, promotional codes, tier-based adjustments, and real-time price calculations
+- **Pricing Management Dashboard**: Visual interface for managing pricing plans, calculating trip costs, and validating promotional codes
+- **Database Schema Expansion**: Added pricing_plans, pricing_rules, promo_codes, and user_promo_usage tables for full pricing control
 
 # User Preferences
 
@@ -47,6 +52,12 @@ Header Display: "Hello Jerry, Ready for your next trip?" header only shows on bo
 - **Driver Communication**: Send message and call driver options on driver found page, message driver option on arrival page
 - **Special Assistance**: Request special assistance button for passengers needing extra help
 - **Sidebar Navigation**: Clean menu system with logout functionality integrated at bottom
+- **Custom Pricing System**: Advanced dynamic pricing with multiple tiers (Economy, Comfort, Premium)
+- **Surge Pricing**: Automatic surge multipliers during peak hours (7-9 AM, 5-7 PM) and high-demand periods
+- **Promotional Codes**: Full promo code system with percentage/fixed discounts, usage limits, and user restrictions
+- **Pricing Calculator**: Real-time price calculation with detailed breakdowns showing base fare, distance, time, surge, and discounts
+- **Dynamic Pricing Rules**: Configurable pricing adjustments based on time, location, and market conditions
+- **Price Breakdown Display**: Transparent pricing with itemized costs and adjustment explanations
 
 ## Development Setup
 - **Build System**: Vite for frontend bundling with hot module replacement

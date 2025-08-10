@@ -287,34 +287,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Pricing calculation
+  // Enhanced pricing calculation with custom pricing plans
   app.post('/api/trips/calculate-price', isAuthenticated, async (req: any, res) => {
     try {
-      const { distance, rideType } = req.body;
+      const { distance, rideType, promoCode } = req.body;
+      const userId = req.user.claims.sub;
       
-      // Simple pricing calculation
-      const baseFares = {
-        economy: 2.50,
-        comfort: 3.50,
-        premium: 5.00,
-      };
+      // Ensure pricing plans exist
+      await storage.ensurePricingPlans();
       
-      const perKmRates = {
-        economy: 1.25,
-        comfort: 1.75,
-        premium: 2.50,
-      };
-      
-      const baseFare = baseFares[rideType as keyof typeof baseFares] || baseFares.economy;
-      const perKmRate = perKmRates[rideType as keyof typeof perKmRates] || perKmRates.economy;
-      
-      const estimatedPrice = baseFare + (distance * perKmRate);
       const estimatedDuration = Math.max(distance * 2, 5); // Rough estimate: 2 min per km, minimum 5 min
       
-      res.json({ estimatedPrice: estimatedPrice.toFixed(2), estimatedDuration });
+      const pricing = await storage.calculateTripPrice({
+        distance,
+        duration: estimatedDuration,
+        rideType,
+        pickupTime: new Date(),
+        pickupLat: 40.7128, // Default NYC coordinates
+        pickupLng: -74.0060,
+        promoCode,
+        userId
+      });
+      
+      res.json({
+        estimatedPrice: pricing.finalPrice.toFixed(2),
+        estimatedDuration,
+        breakdown: pricing.breakdown,
+        adjustments: pricing.adjustments
+      });
     } catch (error) {
       console.error("Error calculating price:", error);
       res.status(500).json({ message: "Failed to calculate price" });
+    }
+  });
+
+  // Pricing management endpoints
+  app.get('/api/pricing/plans', isAuthenticated, async (req: any, res) => {
+    try {
+      await storage.ensurePricingPlans();
+      const plans = await storage.getActivePricingPlans();
+      res.json(plans);
+    } catch (error) {
+      console.error("Error fetching pricing plans:", error);
+      res.status(500).json({ message: "Failed to fetch pricing plans" });
+    }
+  });
+
+  app.post('/api/pricing/validate-promo', isAuthenticated, async (req: any, res) => {
+    try {
+      const { code, tripValue } = req.body;
+      const userId = req.user.claims.sub;
+      
+      const validation = await storage.validatePromoCode(code, userId, tripValue);
+      res.json(validation);
+    } catch (error) {
+      console.error("Error validating promo code:", error);
+      res.status(500).json({ message: "Failed to validate promo code" });
     }
   });
 

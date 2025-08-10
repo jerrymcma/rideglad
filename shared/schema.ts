@@ -71,6 +71,7 @@ export const trips = pgTable("trips", {
   finalPrice: decimal("final_price", { precision: 10, scale: 2 }),
   distance: real("distance"), // in kilometers
   duration: integer("duration"), // in minutes
+  cancelReason: text("cancel_reason"),
   requestedAt: timestamp("requested_at").defaultNow(),
   matchedAt: timestamp("matched_at"),
   startedAt: timestamp("started_at"),
@@ -95,6 +96,75 @@ export const paymentMethods = pgTable("payment_methods", {
   brand: varchar("brand"), // 'visa', 'mastercard', etc.
   isDefault: boolean("is_default").default(false),
   createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Custom Pricing Plans
+export const pricingPlans = pgTable("pricing_plans", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name").notNull(),
+  displayName: varchar("display_name").notNull(),
+  description: text("description"),
+  vehicleType: varchar("vehicle_type").notNull(), // 'economy', 'comfort', 'premium', 'luxury'
+  baseFare: decimal("base_fare", { precision: 10, scale: 2 }).notNull(),
+  perKmRate: decimal("per_km_rate", { precision: 10, scale: 2 }).notNull(),
+  perMinuteRate: decimal("per_minute_rate", { precision: 10, scale: 2 }).notNull(),
+  minimumFare: decimal("minimum_fare", { precision: 10, scale: 2 }).notNull(),
+  cancellationFee: decimal("cancellation_fee", { precision: 10, scale: 2 }).default('0'),
+  bookingFee: decimal("booking_fee", { precision: 10, scale: 2 }).default('0'),
+  surgeMultiplier: real("surge_multiplier").default(1.0),
+  isActive: boolean("is_active").default(true),
+  features: jsonb("features").default([]), // Array of feature strings
+  icon: varchar("icon").default("Car"),
+  color: varchar("color").default("#3B82F6"),
+  maxPassengers: integer("max_passengers").default(4),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Dynamic Pricing Rules
+export const pricingRules = pgTable("pricing_rules", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name").notNull(),
+  type: varchar("type").notNull(), // 'surge', 'discount', 'promotion', 'time_based', 'distance_based'
+  conditions: jsonb("conditions").notNull(), // JSON object with conditions
+  adjustmentType: varchar("adjustment_type").notNull(), // 'percentage', 'fixed_amount', 'multiplier'
+  adjustmentValue: real("adjustment_value").notNull(),
+  priority: integer("priority").default(1),
+  isActive: boolean("is_active").default(true),
+  validFrom: timestamp("valid_from"),
+  validTo: timestamp("valid_to"),
+  applicablePlans: varchar("applicable_plans").array(), // Array of plan IDs
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Promotional Codes
+export const promoCodes = pgTable("promo_codes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  code: varchar("code").unique().notNull(),
+  name: varchar("name").notNull(),
+  description: text("description"),
+  discountType: varchar("discount_type").notNull(), // 'percentage', 'fixed_amount'
+  discountValue: real("discount_value").notNull(),
+  maxDiscount: decimal("max_discount", { precision: 10, scale: 2 }),
+  minTripValue: decimal("min_trip_value", { precision: 10, scale: 2 }),
+  usageLimit: integer("usage_limit"),
+  usedCount: integer("used_count").default(0),
+  userLimit: integer("user_limit").default(1), // Max uses per user
+  validFrom: timestamp("valid_from").notNull(),
+  validTo: timestamp("valid_to").notNull(),
+  isActive: boolean("is_active").default(true),
+  applicablePlans: varchar("applicable_plans").array(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// User Promo Usage Tracking
+export const userPromoUsage = pgTable("user_promo_usage", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  promoId: varchar("promo_id").references(() => promoCodes.id),
+  tripId: varchar("trip_id").references(() => trips.id),
+  discountAmount: decimal("discount_amount", { precision: 10, scale: 2 }).notNull(),
+  usedAt: timestamp("used_at").defaultNow(),
 });
 
 // Relations
@@ -157,6 +227,33 @@ export const paymentMethodsRelations = relations(paymentMethods, ({ one }) => ({
   }),
 }));
 
+export const pricingPlansRelations = relations(pricingPlans, ({ many }) => ({
+  // No direct relations needed for pricing plans
+}));
+
+export const pricingRulesRelations = relations(pricingRules, ({ many }) => ({
+  // No direct relations needed for pricing rules
+}));
+
+export const promoCodesRelations = relations(promoCodes, ({ many }) => ({
+  usage: many(userPromoUsage),
+}));
+
+export const userPromoUsageRelations = relations(userPromoUsage, ({ one }) => ({
+  user: one(users, {
+    fields: [userPromoUsage.userId],
+    references: [users.id],
+  }),
+  promo: one(promoCodes, {
+    fields: [userPromoUsage.promoId],
+    references: [promoCodes.id],
+  }),
+  trip: one(trips, {
+    fields: [userPromoUsage.tripId],
+    references: [trips.id],
+  }),
+}));
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -187,6 +284,27 @@ export const insertPaymentMethodSchema = createInsertSchema(paymentMethods).omit
   createdAt: true,
 });
 
+export const insertPricingPlanSchema = createInsertSchema(pricingPlans).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPricingRuleSchema = createInsertSchema(pricingRules).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertPromoCodeSchema = createInsertSchema(promoCodes).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertUserPromoUsageSchema = createInsertSchema(userPromoUsage).omit({
+  id: true,
+  usedAt: true,
+});
+
 // Types
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
@@ -198,3 +316,11 @@ export type InsertRating = z.infer<typeof insertRatingSchema>;
 export type Rating = typeof ratings.$inferSelect;
 export type InsertPaymentMethod = z.infer<typeof insertPaymentMethodSchema>;
 export type PaymentMethod = typeof paymentMethods.$inferSelect;
+export type InsertPricingPlan = z.infer<typeof insertPricingPlanSchema>;
+export type PricingPlan = typeof pricingPlans.$inferSelect;
+export type InsertPricingRule = z.infer<typeof insertPricingRuleSchema>;
+export type PricingRule = typeof pricingRules.$inferSelect;
+export type InsertPromoCode = z.infer<typeof insertPromoCodeSchema>;
+export type PromoCode = typeof promoCodes.$inferSelect;
+export type InsertUserPromoUsage = z.infer<typeof insertUserPromoUsageSchema>;
+export type UserPromoUsage = typeof userPromoUsage.$inferSelect;

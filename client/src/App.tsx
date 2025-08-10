@@ -12,6 +12,7 @@ import SimpleHome from "@/pages/simple-home";
 import DriverDashboard from "@/pages/driver-dashboard";
 import TripHistory from "@/pages/trip-history";
 import RiderApp from "@/pages/rider-app";
+import PricingManagement from "@/pages/pricing-management";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -36,6 +37,7 @@ function Router() {
           <Route path="/home" component={SimpleHome} />
           <Route path="/driver" component={DriverDashboard} />
           <Route path="/trips" component={TripHistory} />
+          <Route path="/pricing" component={PricingManagement} />
         </>
       )}
       <Route path="/landing" component={Landing} />

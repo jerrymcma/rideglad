@@ -52,16 +52,16 @@ export default function SimpleHome() {
 
           {/* Bottom Row */}
           <div className="grid grid-cols-2 gap-3">
-            <Link href="/account">
+            <Link href="/pricing">
               <Card className="cursor-pointer hover:shadow-md transition-shadow h-full">
                 <CardHeader className="text-center pb-0 pt-3">
                   <div className="flex justify-center mb-1">
-                    <User size={32} className="text-blue-600" />
+                    <BadgeDollarSign size={32} className="text-purple-600" />
                   </div>
-                  <CardTitle className="text-lg text-blue-600">My Account</CardTitle>
+                  <CardTitle className="text-lg text-purple-600">Pricing</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center py-1 pb-3">
-                  <p className="text-xs text-gray-700">Manage profile</p>
+                  <p className="text-xs text-gray-700">Custom pricing</p>
                 </CardContent>
               </Card>
             </Link>
