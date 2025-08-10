@@ -10,7 +10,7 @@ export default function Landing() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="flex flex-col h-screen justify-center px-8">
+      <div className="flex flex-col h-screen justify-center px-8 -mt-12">
         <div className="text-center space-y-6">
           {/* Logo */}
           <div className="flex justify-center">
