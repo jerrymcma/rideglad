@@ -1,0 +1,41 @@
+import { useEffect } from 'react';
+import { useLocation } from 'wouter';
+import { useAuth } from './useAuth';
+
+const SESSION_STORAGE_KEY = 'lastAuthenticatedRoute';
+
+export function useSessionRestore() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const [location, setLocation] = useLocation();
+
+  // Save current route when authenticated
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      // Only save routes that are part of the authenticated flow
+      const authenticatedRoutes = ['/', '/rider', '/driver', '/trips', '/home'];
+      if (authenticatedRoutes.includes(location)) {
+        sessionStorage.setItem(SESSION_STORAGE_KEY, location);
+      }
+    }
+  }, [isAuthenticated, isLoading, location]);
+
+  // Restore last route when user logs back in
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      const lastRoute = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (lastRoute && lastRoute !== location) {
+        // Small delay to ensure auth state is fully loaded
+        setTimeout(() => {
+          setLocation(lastRoute);
+        }, 100);
+      }
+    }
+  }, [isAuthenticated, isLoading, setLocation, location]);
+
+  // Clear stored route when user logs out
+  useEffect(() => {
+    if (!isAuthenticated && !isLoading) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    }
+  }, [isAuthenticated, isLoading]);
+}

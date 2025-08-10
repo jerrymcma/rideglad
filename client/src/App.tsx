@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/useAuth";
 import { useActivityTimeout } from "@/hooks/useActivityTimeout";
+import { useSessionRestore } from "@/hooks/useSessionRestore";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import SimpleHome from "@/pages/simple-home";
@@ -15,6 +16,7 @@ import RiderApp from "@/pages/rider-app";
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
   useActivityTimeout(); // Enable 10-minute inactivity timeout
+  useSessionRestore(); // Restore last authenticated route after re-login
 
   if (isLoading) {
     return (
