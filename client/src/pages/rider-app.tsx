@@ -334,152 +334,158 @@ export default function RiderApp() {
           />
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
-            <Car size={20} />
-            Available drivers nearby
-          </Label>
-          
-          {/* Real-time Map */}
-          <div className="relative">
-            <div className="w-full h-48 bg-gray-100 rounded-lg border overflow-hidden">
-              {/* Map Background */}
-              <div className="w-full h-full bg-gradient-to-br from-blue-50 to-green-50 relative">
-                {/* Grid lines to simulate map */}
-                <div className="absolute inset-0 opacity-20">
-                  {[...Array(8)].map((_, i) => (
-                    <div key={`h-${i}`} className="absolute border-t border-gray-300" style={{top: `${i * 12.5}%`, width: '100%'}} />
-                  ))}
-                  {[...Array(6)].map((_, i) => (
-                    <div key={`v-${i}`} className="absolute border-l border-gray-300" style={{left: `${i * 16.67}%`, height: '100%'}} />
-                  ))}
-                </div>
-                
-                {/* Your Location */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
-                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
-                </div>
-                
-                {/* Driver Locations */}
-                <div className="absolute top-1/3 left-[14%] transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
-                  <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                    <Car size={16} className="text-blue-600" />
-                  </div>
-                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
-                </div>
-                
-                <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
-                  <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
-                  <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                    <Car size={16} className="text-blue-600" />
-                  </div>
-                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
-                </div>
-                
-                <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
-                  <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$24.90</span>
-                  <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                    <Car size={16} className="text-blue-600" />
-                  </div>
-                  <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
-                </div>
-              </div>
-              
-              {/* Map Controls */}
-              <div className="absolute top-2 right-2 flex flex-col gap-1">
-                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">+</button>
-                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">-</button>
-              </div>
-            </div>
-          </div>
-
-          {/* Nearby Drivers List */}
+        {/* Show driver selection only when both pickup and destination are entered */}
+        {bookingForm.pickupAddress && bookingForm.destinationAddress && (
           <div className="space-y-2">
             <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
               <Car size={20} />
-              Choose ride
+              Available drivers nearby
             </Label>
-            {[
-              {
-                id: 'driver-1',
-                driverName: 'John Driver',
-                vehicle: '2022 Toyota Camry',
-                rating: 4.8,
-                eta: '3 min',
-                fare: '$12.50',
-                distance: '0.4 mi'
-              },
-              {
-                id: 'driver-2',
-                driverName: 'Sarah Wilson',
-                vehicle: '2023 Honda CR-V',
-                rating: 4.9,
-                eta: '5 min',
-                fare: '$16.80',
-                distance: '0.7 mi'
-              },
-              {
-                id: 'driver-3',
-                driverName: 'Michael Chen',
-                vehicle: '2024 BMW 3 Series',
-                rating: 5.0,
-                eta: '7 min',
-                fare: '$24.90',
-                distance: '1.1 mi'
-              }
-            ].map((driver) => (
-              <Card 
-                key={driver.id}
-                className={`cursor-pointer transition-colors ${
-                  bookingForm.rideType === driver.id 
-                    ? 'border-brand-green bg-green-50' 
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-                onClick={() => setBookingForm(prev => ({ ...prev, rideType: driver.id }))}
-                data-testid={`card-driver-${driver.id}`}
-              >
-                <CardContent className="p-3">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white font-semibold">
-                        {driver.driverName.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900">{driver.driverName}</p>
-                          <div className="flex items-center gap-1">
-                            <Star size={12} className="text-yellow-400 fill-current" />
-                            <span className="text-xs font-medium">{driver.rating}</span>
-                          </div>
-                        </div>
-                        <p className="text-sm text-gray-600">{driver.vehicle}</p>
-                        <p className="text-xs text-gray-500">{driver.distance} • {driver.eta} away</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">{driver.fare}</p>
-                      <p className="text-xs text-gray-500">Estimated</p>
-                    </div>
+            
+            {/* Real-time Map */}
+            <div className="relative">
+              <div className="w-full h-48 bg-gray-100 rounded-lg border overflow-hidden">
+                {/* Map Background */}
+                <div className="w-full h-full bg-gradient-to-br from-blue-50 to-green-50 relative">
+                  {/* Grid lines to simulate map */}
+                  <div className="absolute inset-0 opacity-20">
+                    {[...Array(8)].map((_, i) => (
+                      <div key={`h-${i}`} className="absolute border-t border-gray-300" style={{top: `${i * 12.5}%`, width: '100%'}} />
+                    ))}
+                    {[...Array(6)].map((_, i) => (
+                      <div key={`v-${i}`} className="absolute border-l border-gray-300" style={{left: `${i * 16.67}%`, height: '100%'}} />
+                    ))}
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+                  
+                  {/* Your Location */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
+                    <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
+                  </div>
+                  
+                  {/* Driver Locations */}
+                  <div className="absolute top-1/3 left-[14%] transform -translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
+                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
+                      <Car size={16} className="text-blue-600" />
+                    </div>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
+                  </div>
+                  
+                  <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
+                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
+                      <Car size={16} className="text-blue-600" />
+                    </div>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
+                  </div>
+                  
+                  <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$24.90</span>
+                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
+                      <Car size={16} className="text-blue-600" />
+                    </div>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
+                  </div>
+                </div>
+                
+                {/* Map Controls */}
+                <div className="absolute top-2 right-2 flex flex-col gap-1">
+                  <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">+</button>
+                  <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">-</button>
+                </div>
+              </div>
+            </div>
 
-        <div className="flex justify-center">
-          <Button
-            type="button"
-            onClick={handleRequestRide}
-            disabled={requestRideMutation.isPending}
-            className="w-48 bg-brand-green text-white text-xl py-3 rounded font-semibold hover:bg-green-600"
-            data-testid="button-request-ride"
-          >
-            {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
-          </Button>
-        </div>
+            {/* Nearby Drivers List */}
+            <div className="space-y-2">
+              <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
+                <Car size={20} />
+                Choose ride
+              </Label>
+              {[
+                {
+                  id: 'driver-1',
+                  driverName: 'John Driver',
+                  vehicle: '2022 Toyota Camry',
+                  rating: 4.8,
+                  eta: '3 min',
+                  fare: '$12.50',
+                  distance: '0.4 mi'
+                },
+                {
+                  id: 'driver-2',
+                  driverName: 'Sarah Wilson',
+                  vehicle: '2023 Honda CR-V',
+                  rating: 4.9,
+                  eta: '5 min',
+                  fare: '$16.80',
+                  distance: '0.7 mi'
+                },
+                {
+                  id: 'driver-3',
+                  driverName: 'Michael Chen',
+                  vehicle: '2024 BMW 3 Series',
+                  rating: 5.0,
+                  eta: '7 min',
+                  fare: '$24.90',
+                  distance: '1.1 mi'
+                }
+              ].map((driver) => (
+                <Card 
+                  key={driver.id}
+                  className={`cursor-pointer transition-colors ${
+                    bookingForm.rideType === driver.id 
+                      ? 'border-brand-green bg-green-50' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  onClick={() => setBookingForm(prev => ({ ...prev, rideType: driver.id }))}
+                  data-testid={`card-driver-${driver.id}`}
+                >
+                  <CardContent className="p-3">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white font-semibold">
+                          {driver.driverName.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-gray-900">{driver.driverName}</p>
+                            <div className="flex items-center gap-1">
+                              <Star size={12} className="text-yellow-400 fill-current" />
+                              <span className="text-xs font-medium">{driver.rating}</span>
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600">{driver.vehicle}</p>
+                          <p className="text-xs text-gray-500">{driver.distance} • {driver.eta} away</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-lg text-brand-green">{driver.fare}</p>
+                        <p className="text-xs text-gray-500">Estimated</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Show request button only when both addresses are entered and driver is selected */}
+        {bookingForm.pickupAddress && bookingForm.destinationAddress && bookingForm.rideType && (
+          <div className="flex justify-center">
+            <Button
+              type="button"
+              onClick={handleRequestRide}
+              disabled={requestRideMutation.isPending}
+              className="w-48 bg-brand-green text-white text-xl py-3 rounded font-semibold hover:bg-green-600"
+              data-testid="button-request-ride"
+            >
+              {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
+            </Button>
+          </div>
+        )}
       </form>
     </div>
   );
