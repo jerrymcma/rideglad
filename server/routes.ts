@@ -85,7 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       setTimeout(async () => {
         try {
           await storage.updateTripStatus(trip.id, 'matched', {
-            driverId: 'mock-driver-john',
+            driverId: 'mock-driver-1',
           });
           console.log(`Trip ${trip.id} automatically matched with John Driver`);
         } catch (error) {

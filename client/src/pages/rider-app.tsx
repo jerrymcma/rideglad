@@ -250,10 +250,10 @@ export default function RiderApp() {
       const timer = setTimeout(() => {
         setMatchedDriver({
           driver: {
-            id: 'driver-1',
+            id: 'mock-driver-1',
             firstName: 'John',
-            lastName: 'Doe',
-            email: 'john@example.com',
+            lastName: 'Driver',
+            email: 'driver@rideshare.com',
             profileImageUrl: null,
             phone: '+1234567890',
             userType: 'driver',
