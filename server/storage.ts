@@ -63,11 +63,6 @@ export interface IStorage {
   getPaymentMethodsByUser(userId: string): Promise<PaymentMethod[]>;
   setDefaultPaymentMethod(userId: string, paymentMethodId: string): Promise<void>;
   
-  // Account Credit operations
-  getUserAccountCredit(userId: string): Promise<number>;
-  addAccountCredit(userId: string, amount: number): Promise<User>;
-  deductAccountCredit(userId: string, amount: number): Promise<User>;
-  
   // Pricing Plan operations
   createPricingPlan(plan: InsertPricingPlan): Promise<PricingPlan>;
   getPricingPlans(): Promise<PricingPlan[]>;
@@ -397,35 +392,6 @@ export class DatabaseStorage implements IStorage {
       .where(and(eq(paymentMethods.id, paymentMethodId), eq(paymentMethods.userId, userId)));
   }
 
-  // Account Credit operations
-  async getUserAccountCredit(userId: string): Promise<number> {
-    const [user] = await db.select().from(users).where(eq(users.id, userId));
-    return user ? parseFloat(user.accountCredit || '0') : 0;
-  }
-
-  async addAccountCredit(userId: string, amount: number): Promise<User> {
-    const [user] = await db
-      .update(users)
-      .set({ 
-        accountCredit: sql`${users.accountCredit} + ${amount}`,
-        updatedAt: new Date()
-      })
-      .where(eq(users.id, userId))
-      .returning();
-    return user;
-  }
-
-  async deductAccountCredit(userId: string, amount: number): Promise<User> {
-    const [user] = await db
-      .update(users)
-      .set({ 
-        accountCredit: sql`${users.accountCredit} - ${amount}`,
-        updatedAt: new Date()
-      })
-      .where(eq(users.id, userId))
-      .returning();
-    return user;
-  }
 
   // Pricing Plan operations
   async ensurePricingPlans(): Promise<void> {
@@ -688,7 +654,7 @@ export class DatabaseStorage implements IStorage {
     return usage;
   }
 
-  // Enhanced pricing calculation with account credit
+  // Enhanced pricing calculation
   async calculateTripPrice(params: {
     distance: number;
     duration: number;
@@ -788,19 +754,6 @@ export class DatabaseStorage implements IStorage {
       }
     }
 
-    // Apply account credit
-    let accountCreditUsed = 0;
-    const accountCredit = await this.getUserAccountCredit(params.userId);
-    if (accountCredit > 0) {
-      accountCreditUsed = Math.min(accountCredit, finalPrice);
-      adjustments.push({
-        type: 'credit',
-        amount: -accountCreditUsed,
-        description: 'Account credit applied'
-      });
-      finalPrice -= accountCreditUsed;
-    }
-
     // Ensure final price is not negative
     finalPrice = Math.max(finalPrice, 0);
 
@@ -815,10 +768,7 @@ export class DatabaseStorage implements IStorage {
         surgeFee: surgeMultiplier > 1 ? Math.round((basePrice * (surgeMultiplier - 1)) * 100) / 100 : undefined,
         bookingFee: bookingFee > 0 ? bookingFee : undefined,
         discount: promoDiscount > 0 ? Math.round(promoDiscount * 100) / 100 : undefined,
-        accountCredit: accountCreditUsed > 0 ? Math.round(accountCreditUsed * 100) / 100 : undefined,
-      },
-      accountCredit: Math.round(accountCredit * 100) / 100,
-      creditUsed: Math.round(accountCreditUsed * 100) / 100
+      }
     };
   }
 }

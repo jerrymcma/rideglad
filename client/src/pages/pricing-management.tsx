@@ -53,16 +53,12 @@ interface PriceBreakdown {
 interface PriceCalculation {
   estimatedPrice: string;
   estimatedDuration: number;
-  breakdown: PriceBreakdown & {
-    accountCredit?: number;
-  };
+  breakdown: PriceBreakdown;
   adjustments: Array<{
     type: string;
     amount: number;
     description: string;
   }>;
-  accountCredit: number;
-  creditUsed: number;
 }
 
 export default function PricingManagement() {
@@ -80,10 +76,7 @@ export default function PricingManagement() {
     queryKey: ['/api/pricing/plans'],
   });
 
-  // Fetch account credit
-  const { data: accountCredit = { credit: 0 }, isLoading: creditLoading } = useQuery({
-    queryKey: ['/api/account/credit'],
-  });
+
 
   // Calculate price mutation
   const calculatePriceMutation = useMutation({
@@ -121,24 +114,7 @@ export default function PricingManagement() {
     },
   });
 
-  // Initialize credit mutation
-  const initializeCreditMutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch('/api/account/initialize-credit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      if (!response.ok) throw new Error('Failed to initialize credit');
-      return response.json();
-    },
-    onSuccess: (data) => {
-      toast({
-        title: "Account Credit Applied",
-        description: data.message,
-      });
-      queryClient.invalidateQueries({ queryKey: ['/api/account/credit'] });
-    },
-  });
+
 
   const handleCalculatePrice = () => {
     const distanceNum = parseFloat(distance);
@@ -212,41 +188,6 @@ export default function PricingManagement() {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Advanced dynamic pricing with surge management, promotional codes, and tier-based adjustments
           </p>
-          
-          {/* Account Credit Display */}
-          <div className="max-w-md mx-auto">
-            <Card className="bg-green-50 border-green-200">
-              <CardContent className="pt-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <DollarSign className="w-5 h-5 text-green-600" />
-                    <span className="font-medium text-green-800">Account Credit</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-green-600">
-                      ${accountCredit.credit?.toFixed(2) || '0.00'}
-                    </span>
-                    {accountCredit.credit === 0 && (
-                      <Button
-                        size="sm"
-                        onClick={() => initializeCreditMutation.mutate()}
-                        disabled={initializeCreditMutation.isPending}
-                        className="bg-green-600 hover:bg-green-700"
-                        data-testid="button-apply-credit"
-                      >
-                        Apply $15 Payment
-                      </Button>
-                    )}
-                  </div>
-                </div>
-                {accountCredit.credit > 0 && (
-                  <p className="text-sm text-green-600 mt-2">
-                    Your $15 payment credit will be automatically applied to rides
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Pricing Plans Grid */}
@@ -463,15 +404,7 @@ export default function PricingManagement() {
                         <span>-{formatPrice(calculation.breakdown.discount)}</span>
                       </div>
                     )}
-                    {calculation.creditUsed > 0 && (
-                      <div className="flex justify-between items-center py-2 border-b text-green-600">
-                        <span className="flex items-center gap-1">
-                          <DollarSign className="w-4 h-4" />
-                          Account Credit Applied
-                        </span>
-                        <span>-{formatPrice(calculation.creditUsed)}</span>
-                      </div>
-                    )}
+
                     <div className="flex justify-between items-center py-3 border-t-2 font-bold text-lg">
                       <span>Total Price</span>
                       <span className="text-blue-600">{formatPrice(calculation.estimatedPrice)}</span>
@@ -500,22 +433,6 @@ export default function PricingManagement() {
                             </div>
                           ))}
                         </div>
-                      </div>
-                    )}
-
-                    {/* Account Credit Info */}
-                    {calculation.accountCredit > 0 && (
-                      <div className="p-3 bg-green-50 rounded-lg">
-                        <div className="flex items-center gap-2 text-green-800 text-sm">
-                          <DollarSign className="w-4 h-4" />
-                          <span>Available Credit: ${calculation.accountCredit.toFixed(2)}</span>
-                        </div>
-                        <p className="text-xs text-green-600 mt-1">
-                          {calculation.creditUsed > 0 
-                            ? `Applied $${calculation.creditUsed.toFixed(2)} credit to this trip`
-                            : 'Credit will be applied to future rides'
-                          }
-                        </p>
                       </div>
                     )}
 

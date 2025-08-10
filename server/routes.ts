@@ -346,54 +346,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Account credit endpoints
-  app.get('/api/account/credit', isAuthenticated, async (req: any, res) => {
-    try {
-      const userId = req.user.claims.sub;
-      const credit = await storage.getUserAccountCredit(userId);
-      res.json({ credit });
-    } catch (error) {
-      console.error("Error fetching account credit:", error);
-      res.status(500).json({ message: "Failed to fetch account credit" });
-    }
-  });
-
-  app.post('/api/account/add-credit', isAuthenticated, async (req: any, res) => {
-    try {
-      const { amount } = req.body;
-      const userId = req.user.claims.sub;
-      
-      if (!amount || amount <= 0) {
-        return res.status(400).json({ message: "Invalid credit amount" });
-      }
-      
-      await storage.addAccountCredit(userId, amount);
-      const newCredit = await storage.getUserAccountCredit(userId);
-      res.json({ message: "Credit added successfully", credit: newCredit });
-    } catch (error) {
-      console.error("Error adding account credit:", error);
-      res.status(500).json({ message: "Failed to add account credit" });
-    }
-  });
-
-  // Initialize user credit with $15 (one-time setup)
-  app.post('/api/account/initialize-credit', isAuthenticated, async (req: any, res) => {
-    try {
-      const userId = req.user.claims.sub;
-      const currentCredit = await storage.getUserAccountCredit(userId);
-      
-      if (currentCredit === 0) {
-        await storage.addAccountCredit(userId, 15.00);
-        res.json({ message: "Your $15 payment has been applied to your account", credit: 15.00 });
-      } else {
-        res.json({ message: "Account credit already initialized", credit: currentCredit });
-      }
-    } catch (error) {
-      console.error("Error initializing account credit:", error);
-      res.status(500).json({ message: "Failed to initialize account credit" });
-    }
-  });
-
   // Rating routes
   app.post('/api/ratings', isAuthenticated, async (req: any, res) => {
     try {

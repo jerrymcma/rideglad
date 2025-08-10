@@ -38,7 +38,6 @@ export const users = pgTable("users", {
   rating: real("rating").default(0),
   totalRatings: integer("total_ratings").default(0),
   isDriverActive: boolean("is_driver_active").default(false),
-  accountCredit: decimal("account_credit", { precision: 10, scale: 2 }).default('0.00'),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
