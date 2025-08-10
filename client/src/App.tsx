@@ -24,11 +24,17 @@ function Router() {
 
   return (
     <Switch>
-      <Route path="/" component={Landing} />
-      <Route path="/rider" component={RiderApp} />
-      <Route path="/home" component={SimpleHome} />
-      <Route path="/driver" component={DriverDashboard} />
-      <Route path="/trips" component={TripHistory} />
+      {!isAuthenticated ? (
+        <Route path="/" component={Landing} />
+      ) : (
+        <>
+          <Route path="/" component={RiderApp} />
+          <Route path="/home" component={SimpleHome} />
+          <Route path="/driver" component={DriverDashboard} />
+          <Route path="/trips" component={TripHistory} />
+        </>
+      )}
+      <Route path="/landing" component={Landing} />
       <Route component={NotFound} />
     </Switch>
   );
