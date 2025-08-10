@@ -37,6 +37,7 @@ export default function RiderApp() {
   const [matchedDriver, setMatchedDriver] = useState<MatchedDriver | null>(null);
   const [ratingValue, setRatingValue] = useState(5);
   const [ratingComment, setRatingComment] = useState('');
+  const [showDrivers, setShowDrivers] = useState(false);
   
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
@@ -88,6 +89,13 @@ export default function RiderApp() {
     }
   }, [activeTrip]);
 
+  // Reset showDrivers when addresses change
+  useEffect(() => {
+    if (!bookingForm.pickupAddress || !bookingForm.destinationAddress) {
+      setShowDrivers(false);
+    }
+  }, [bookingForm.pickupAddress, bookingForm.destinationAddress]);
+
   // Start new ride - cancel existing trip and reset to booking
   const startNewRideMutation = useMutation({
     mutationFn: async () => {
@@ -98,6 +106,7 @@ export default function RiderApp() {
     onSuccess: () => {
       setCurrentTrip(null);
       setCurrentStep('booking');
+      setShowDrivers(false);
       setBookingForm({
         pickupAddress: '',
         destinationAddress: '',
@@ -208,6 +217,7 @@ export default function RiderApp() {
       setMatchedDriver(null);
       setRatingValue(5);
       setRatingComment('');
+      setShowDrivers(false);
       toast({
         title: "Rating Submitted",
         description: "Thank you for your feedback!",
@@ -334,8 +344,22 @@ export default function RiderApp() {
           />
         </div>
 
-        {/* Show driver selection only when both pickup and destination are entered */}
-        {bookingForm.pickupAddress && bookingForm.destinationAddress && (
+        {/* Enter button to show drivers when both addresses are filled */}
+        {bookingForm.pickupAddress && bookingForm.destinationAddress && !showDrivers && (
+          <div className="flex justify-center pt-2">
+            <Button
+              type="button"
+              onClick={() => setShowDrivers(true)}
+              className="bg-blue-600 text-white px-8 py-2 rounded-lg font-semibold hover:bg-blue-700"
+              data-testid="button-enter-addresses"
+            >
+              Enter
+            </Button>
+          </div>
+        )}
+
+        {/* Show driver selection only when both pickup and destination are entered and Enter is clicked */}
+        {bookingForm.pickupAddress && bookingForm.destinationAddress && showDrivers && (
           <div className="space-y-2">
             <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
               <Car size={20} />
@@ -472,8 +496,8 @@ export default function RiderApp() {
           </div>
         )}
 
-        {/* Show request button only when both addresses are entered and driver is selected */}
-        {bookingForm.pickupAddress && bookingForm.destinationAddress && bookingForm.rideType && (
+        {/* Show request button only when both addresses are entered, drivers shown, and driver is selected */}
+        {bookingForm.pickupAddress && bookingForm.destinationAddress && showDrivers && bookingForm.rideType && (
           <div className="flex justify-center">
             <Button
               type="button"
