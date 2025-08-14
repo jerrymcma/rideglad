@@ -859,14 +859,14 @@ export default function RiderApp() {
                 
                 return (
                   <div className="absolute top-3 left-3">
-                    <div className="bg-white rounded-full px-3 py-1 border shadow-sm">
+                    <div className="bg-white rounded-full px-4 py-2 border shadow-sm">
                       <div className="flex items-center gap-2">
-                        <Clock size={12} className="text-brand-green" />
-                        <span className="text-xs font-medium text-brand-green">
+                        <Clock size={14} className="text-brand-green" />
+                        <span className="text-sm font-medium text-brand-green">
                           {remainingTime} min
                         </span>
-                        <span className="text-xs text-gray-500">•</span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-sm text-gray-500">•</span>
+                        <span className="text-sm text-gray-500">
                           {currentDistance.toFixed(1)} mi
                         </span>
                       </div>
