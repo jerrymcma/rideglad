@@ -70,7 +70,7 @@ export default function Landing() {
             <div className="flex justify-center">
               <Button
                 onClick={() => window.location.href = '/api/login'}
-                className="w-32 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600"
+                className="w-40 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600"
                 data-testid="button-login"
               >
                 Log in
@@ -81,7 +81,7 @@ export default function Landing() {
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-24 h-8 border border-blue-600 text-blue-600 rounded font-medium hover:bg-blue-50 text-sm"
+                className="w-32 h-8 border border-blue-600 text-blue-600 rounded font-medium hover:bg-blue-50 text-sm"
                 data-testid="button-signup"
               >
                 Sign up
@@ -92,7 +92,7 @@ export default function Landing() {
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-48 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-sm flex items-center justify-center gap-2"
+                className="w-40 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-sm flex items-center justify-center gap-2"
                 data-testid="button-google-login"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
