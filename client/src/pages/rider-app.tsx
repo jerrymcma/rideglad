@@ -513,7 +513,7 @@ export default function RiderApp() {
                               <span className="text-xs font-medium">{driver.rating}</span>
                             </div>
                           </div>
-                          <p className="text-sm text-gray-600">{driver.vehicle}</p>
+                          <p className="text-xs text-gray-600">{driver.vehicle}</p>
                           <p className="text-xs text-gray-500">{driver.distance} • {driver.eta} away</p>
                         </div>
                       </div>
