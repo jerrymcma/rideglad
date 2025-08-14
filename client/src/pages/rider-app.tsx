@@ -714,7 +714,78 @@ export default function RiderApp() {
         </Card>
       )}
 
+      {/* Driver Location Map */}
+      <Card>
+        <CardContent className="p-4">
+          <div className="w-full h-64 bg-gray-100 rounded-lg border overflow-hidden relative">
+            {/* Map Background */}
+            <div className="w-full h-full bg-gradient-to-br from-blue-50 to-green-50 relative">
+              {/* Grid lines to simulate map */}
+              <div className="absolute inset-0 opacity-20">
+                {[...Array(10)].map((_, i) => (
+                  <div key={`h-${i}`} className="absolute border-t border-gray-300" style={{top: `${i * 10}%`, width: '100%'}} />
+                ))}
+                {[...Array(8)].map((_, i) => (
+                  <div key={`v-${i}`} className="absolute border-l border-gray-300" style={{left: `${i * 12.5}%`, height: '100%'}} />
+                ))}
+              </div>
+              
+              {/* Your Location (Rider) */}
+              <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-5 h-5 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
+                <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600 bg-white px-2 py-1 rounded shadow">You</span>
+              </div>
+              
+              {/* Driver Location */}
+              <div className="absolute top-1/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
+                <div className="bg-white rounded-full p-1.5 border-2 border-brand-green shadow-lg">
+                  <Car size={18} className="text-brand-green" />
+                </div>
+                <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-brand-green bg-white px-2 py-1 rounded shadow">
+                  {matchedDriver?.driver.firstName || 'Driver'}
+                </span>
+              </div>
 
+              {/* Route Line */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                <defs>
+                  <pattern id="dash" patternUnits="userSpaceOnUse" width="8" height="2">
+                    <rect width="4" height="2" fill="#22c55e" />
+                    <rect x="4" width="4" height="2" fill="transparent" />
+                  </pattern>
+                </defs>
+                <line 
+                  x1="33.33%" 
+                  y1="50%" 
+                  x2="66.67%" 
+                  y2="33.33%" 
+                  stroke="url(#dash)" 
+                  strokeWidth="2"
+                  strokeDasharray="8,4"
+                />
+              </svg>
+              
+              {/* ETA Badge */}
+              <div className="absolute top-3 left-3">
+                <div className="bg-white rounded-full px-3 py-1 border shadow-sm">
+                  <div className="flex items-center gap-1">
+                    <Clock size={12} className="text-brand-green" />
+                    <span className="text-xs font-medium text-brand-green">
+                      {matchedDriver?.estimatedArrival || 3} min
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map Controls */}
+              <div className="absolute top-3 right-3 flex flex-col gap-1">
+                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50 text-sm">+</button>
+                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50 text-sm">-</button>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="bg-blue-50 border border-blue-200 rounded-lg py-2 px-2 mb-3 mx-16">
         <p className="text-sm text-blue-800 text-center font-medium">Contact your driver</p>
