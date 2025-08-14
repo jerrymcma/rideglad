@@ -13,27 +13,28 @@ export default function Landing() {
       <div className="flex flex-col h-screen justify-center px-8 -mt-12">
         <div className="text-center space-y-6">
           {/* Logo */}
-          <div className="flex justify-center relative">
-            {/* Base logo */}
-            <img 
-              src={logoImage} 
-              alt="ride - Get there"
-              className="w-80 h-auto"
-              data-testid="logo-image"
-              style={{
-                clipPath: 'polygon(0% 0%, 82% 0%, 82% 100%, 0% 100%)'
-              }}
-            />
-            {/* Shifted 'e' section */}
-            <img 
-              src={logoImage} 
-              alt=""
-              className="w-80 h-auto absolute top-0 left-0 pointer-events-none"
-              style={{
-                clipPath: 'polygon(82% 0%, 100% 0%, 100% 100%, 82% 100%)',
-                transform: 'translateX(-8px)'
-              }}
-            />
+          <div className="flex justify-center">
+            <div className="flex items-center">
+              {/* 'rid' part */}
+              <img 
+                src={logoImage} 
+                alt=""
+                className="w-80 h-auto"
+                style={{
+                  clipPath: 'polygon(0% 0%, 78% 0%, 78% 100%, 0% 100%)'
+                }}
+              />
+              {/* 'e' part with negative margin to pull closer */}
+              <img 
+                src={logoImage} 
+                alt="ride - Get there"
+                className="w-80 h-auto -ml-4"
+                data-testid="logo-image"
+                style={{
+                  clipPath: 'polygon(78% 0%, 100% 0%, 100% 100%, 78% 100%)'
+                }}
+              />
+            </div>
           </div>
 
           {/* Login Form */}
