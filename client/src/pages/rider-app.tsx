@@ -885,7 +885,7 @@ export default function RiderApp() {
         </CardContent>
       </Card>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg py-2 px-2 -mb-1 mx-20">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg py-2 px-2 -mb-2 mx-20">
         <p className="text-sm text-blue-800 text-center font-medium">Contact your driver</p>
       </div>
 
