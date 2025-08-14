@@ -536,7 +536,7 @@ export default function RiderApp() {
               type="button"
               onClick={handleRequestRide}
               disabled={requestRideMutation.isPending}
-              className="w-48 bg-brand-green text-white text-lg py-3 rounded font-semibold hover:bg-green-600"
+              className="w-48 bg-brand-green text-white text-base py-3 rounded font-semibold hover:bg-green-600"
               data-testid="button-request-ride"
             >
               {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
