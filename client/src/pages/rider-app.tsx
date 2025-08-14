@@ -718,64 +718,162 @@ export default function RiderApp() {
       <Card>
         <CardContent className="p-4">
           <div className="w-full h-64 bg-gray-100 rounded-lg border overflow-hidden relative">
-            {/* Map Background */}
-            <div className="w-full h-full bg-gradient-to-br from-blue-50 to-green-50 relative">
-              {/* Grid lines to simulate map */}
-              <div className="absolute inset-0 opacity-20">
-                {[...Array(10)].map((_, i) => (
-                  <div key={`h-${i}`} className="absolute border-t border-gray-300" style={{top: `${i * 10}%`, width: '100%'}} />
-                ))}
-                {[...Array(8)].map((_, i) => (
-                  <div key={`v-${i}`} className="absolute border-l border-gray-300" style={{left: `${i * 12.5}%`, height: '100%'}} />
-                ))}
+            {/* Realistic Map Background */}
+            <div className="w-full h-full relative bg-gray-50">
+              {/* Street Network */}
+              <div className="absolute inset-0">
+                {/* Major Streets (Horizontal) */}
+                <div className="absolute w-full h-1 bg-gray-300 top-[25%]" />
+                <div className="absolute w-full h-1 bg-gray-300 top-[45%]" />
+                <div className="absolute w-full h-1 bg-gray-300 top-[65%]" />
+                <div className="absolute w-full h-1 bg-gray-300 top-[85%]" />
+                
+                {/* Major Streets (Vertical) */}
+                <div className="absolute h-full w-1 bg-gray-300 left-[20%]" />
+                <div className="absolute h-full w-1 bg-gray-300 left-[40%]" />
+                <div className="absolute h-full w-1 bg-gray-300 left-[60%]" />
+                <div className="absolute h-full w-1 bg-gray-300 left-[80%]" />
+                
+                {/* Secondary Streets */}
+                <div className="absolute w-full h-px bg-gray-200 top-[15%]" />
+                <div className="absolute w-full h-px bg-gray-200 top-[35%]" />
+                <div className="absolute w-full h-px bg-gray-200 top-[55%]" />
+                <div className="absolute w-full h-px bg-gray-200 top-[75%]" />
+                <div className="absolute w-full h-px bg-gray-200 top-[95%]" />
+                
+                <div className="absolute h-full w-px bg-gray-200 left-[10%]" />
+                <div className="absolute h-full w-px bg-gray-200 left-[30%]" />
+                <div className="absolute h-full w-px bg-gray-200 left-[50%]" />
+                <div className="absolute h-full w-px bg-gray-200 left-[70%]" />
+                <div className="absolute h-full w-px bg-gray-200 left-[90%]" />
+                
+                {/* Block Buildings */}
+                <div className="absolute w-16 h-10 bg-gray-100 border border-gray-200 top-[16%] left-[22%]" />
+                <div className="absolute w-12 h-8 bg-gray-100 border border-gray-200 top-[26%] left-[42%]" />
+                <div className="absolute w-20 h-12 bg-gray-100 border border-gray-200 top-[46%] left-[12%]" />
+                <div className="absolute w-14 h-9 bg-gray-100 border border-gray-200 top-[66%] left-[62%]" />
+                <div className="absolute w-18 h-11 bg-gray-100 border border-gray-200 top-[36%] left-[75%]" />
+                
+                {/* Parks/Green Spaces */}
+                <div className="absolute w-24 h-16 bg-green-100 border border-green-200 rounded-sm top-[56%] left-[25%]" />
+                <div className="absolute w-16 h-12 bg-green-100 border border-green-200 rounded-sm top-[10%] left-[65%]" />
               </div>
+
+              {/* Dynamic Driver Position - moves closer over time */}
+              {(() => {
+                const now = new Date().getTime();
+                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
+                const elapsed = Math.max(0, now - tripStart);
+                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000; // Convert to milliseconds
+                const progress = Math.min(elapsed / totalETA, 0.95); // Cap at 95% to avoid reaching exactly
+                
+                // Start position (far) and end position (near rider)
+                const startX = 85; // Start far right
+                const startY = 20; // Start top
+                const endX = 35;   // End near rider
+                const endY = 48;   // End near rider
+                
+                const currentX = startX - (startX - endX) * progress;
+                const currentY = startY + (endY - startY) * progress;
+                
+                return (
+                  <div 
+                    className="absolute transition-all duration-1000 ease-linear"
+                    style={{
+                      left: `${currentX}%`,
+                      top: `${currentY}%`,
+                      transform: 'translate(-50%, -50%)'
+                    }}
+                  >
+                    <div className="bg-white rounded-full p-1.5 border-2 border-brand-green shadow-lg">
+                      <Car size={18} className="text-brand-green" />
+                    </div>
+                    <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-brand-green bg-white px-2 py-1 rounded shadow">
+                      {matchedDriver?.driver.firstName || 'Driver'}
+                    </span>
+                  </div>
+                );
+              })()}
               
-              {/* Your Location (Rider) */}
-              <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2">
+              {/* Your Location (Rider) - Fixed at pickup address */}
+              <div className="absolute top-[50%] left-[30%] transform -translate-x-1/2 -translate-y-1/2">
                 <div className="w-5 h-5 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
                 <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600 bg-white px-2 py-1 rounded shadow">You</span>
               </div>
-              
-              {/* Driver Location */}
-              <div className="absolute top-1/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
-                <div className="bg-white rounded-full p-1.5 border-2 border-brand-green shadow-lg">
-                  <Car size={18} className="text-brand-green" />
-                </div>
-                <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-brand-green bg-white px-2 py-1 rounded shadow">
-                  {matchedDriver?.driver.firstName || 'Driver'}
-                </span>
-              </div>
 
-              {/* Route Line */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <defs>
-                  <pattern id="dash" patternUnits="userSpaceOnUse" width="8" height="2">
-                    <rect width="4" height="2" fill="#22c55e" />
-                    <rect x="4" width="4" height="2" fill="transparent" />
-                  </pattern>
-                </defs>
-                <line 
-                  x1="33.33%" 
-                  y1="50%" 
-                  x2="66.67%" 
-                  y2="33.33%" 
-                  stroke="url(#dash)" 
-                  strokeWidth="2"
-                  strokeDasharray="8,4"
-                />
-              </svg>
+              {/* Dynamic Route Line */}
+              {(() => {
+                const now = new Date().getTime();
+                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
+                const elapsed = Math.max(0, now - tripStart);
+                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000;
+                const progress = Math.min(elapsed / totalETA, 0.95);
+                
+                const startX = 85;
+                const startY = 20;
+                const endX = 30;
+                const endY = 50;
+                
+                const currentX = startX - (startX - endX) * progress;
+                const currentY = startY + (endY - startY) * progress;
+                
+                return (
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                    <defs>
+                      <pattern id="dash" patternUnits="userSpaceOnUse" width="8" height="2">
+                        <rect width="4" height="2" fill="#22c55e" />
+                        <rect x="4" width="4" height="2" fill="transparent" />
+                      </pattern>
+                    </defs>
+                    <line 
+                      x1={`${currentX}%`}
+                      y1={`${currentY}%`}
+                      x2="30%" 
+                      y2="50%" 
+                      stroke="url(#dash)" 
+                      strokeWidth="2"
+                      strokeDasharray="8,4"
+                    />
+                  </svg>
+                );
+              })()}
               
-              {/* ETA Badge */}
-              <div className="absolute top-3 left-3">
-                <div className="bg-white rounded-full px-3 py-1 border shadow-sm">
-                  <div className="flex items-center gap-1">
-                    <Clock size={12} className="text-brand-green" />
-                    <span className="text-xs font-medium text-brand-green">
-                      {matchedDriver?.estimatedArrival || 3} min
-                    </span>
+              {/* Street Labels */}
+              <div className="absolute top-[23%] left-2 text-xs text-gray-500 bg-white px-1 rounded">21st Ave</div>
+              <div className="absolute top-[43%] left-2 text-xs text-gray-500 bg-white px-1 rounded">Main St</div>
+              <div className="absolute top-[63%] left-2 text-xs text-gray-500 bg-white px-1 rounded">Oak St</div>
+              
+              {/* Distance Badge - Updates in real time */}
+              {(() => {
+                const now = new Date().getTime();
+                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
+                const elapsed = Math.max(0, now - tripStart);
+                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000;
+                const progress = Math.min(elapsed / totalETA, 0.95);
+                
+                // Start distance 1.2 miles, end distance 0.1 miles
+                const startDistance = 1.2;
+                const endDistance = 0.1;
+                const currentDistance = startDistance - (startDistance - endDistance) * progress;
+                const remainingTime = Math.max(1, Math.round((matchedDriver?.estimatedArrival || 3) * (1 - progress)));
+                
+                return (
+                  <div className="absolute top-3 left-3">
+                    <div className="bg-white rounded-full px-3 py-1 border shadow-sm">
+                      <div className="flex items-center gap-2">
+                        <Clock size={12} className="text-brand-green" />
+                        <span className="text-xs font-medium text-brand-green">
+                          {remainingTime} min
+                        </span>
+                        <span className="text-xs text-gray-500">•</span>
+                        <span className="text-xs text-gray-500">
+                          {currentDistance.toFixed(1)} mi
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                );
+              })()}
 
               {/* Map Controls */}
               <div className="absolute top-3 right-3 flex flex-col gap-1">
