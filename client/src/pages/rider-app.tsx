@@ -632,25 +632,25 @@ export default function RiderApp() {
                   <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
                 </div>
               </div>
+              
+              <Separator className="my-2" />
+              
+              <div className="flex items-center gap-2">
+                <MapPin size={16} className="text-blue-600" />
+                <span className="text-sm text-gray-600 mr-2">Pickup:</span>
+                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Navigation size={16} className="text-brand-green" />
+                <span className="text-sm text-gray-600 mr-2">Destination:</span>
+                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
+              </div>
             </div>
           </CardContent>
         </Card>
       )}
 
-      <Card>
-        <CardContent className="p-4 space-y-1">
-          <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-blue-600" />
-            <span className="text-sm text-gray-600 mr-2">Pickup:</span>
-            <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Navigation size={16} className="text-brand-green" />
-            <span className="text-sm text-gray-600 mr-2">Destination:</span>
-            <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
-          </div>
-        </CardContent>
-      </Card>
+
 
       <div className="bg-blue-50 border border-blue-200 rounded-lg py-2 px-2 mb-3 mx-16">
         <p className="text-sm text-blue-800 text-center font-medium">Contact your driver</p>
