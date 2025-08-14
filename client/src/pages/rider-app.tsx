@@ -348,7 +348,7 @@ export default function RiderApp() {
 
       <form onSubmit={handleRequestRide} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="pickup" className="text-blue-600 font-medium text-lg flex items-center gap-2">
+          <Label htmlFor="pickup" className="text-blue-600 font-medium text-base flex items-center gap-2">
             <MapPin size={16} />
             Pickup Location
           </Label>
@@ -363,7 +363,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="destination" className="text-blue-600 font-medium text-lg flex items-center gap-2">
+          <Label htmlFor="destination" className="text-blue-600 font-medium text-base flex items-center gap-2">
             <Navigation size={16} />
             Destination
           </Label>
