@@ -14,17 +14,24 @@ export default function Landing() {
         <div className="text-center space-y-6">
           {/* Logo */}
           <div className="flex justify-center relative">
+            {/* Base logo */}
             <img 
               src={logoImage} 
               alt="ride - Get there"
               className="w-80 h-auto"
               data-testid="logo-image"
-            />
-            {/* Mask to visually bring 'e' closer to 'd' by covering part of the gap */}
-            <div 
-              className="absolute top-0 left-0 w-80 h-auto bg-white pointer-events-none"
               style={{
-                clipPath: 'polygon(78% 15%, 81% 15%, 81% 80%, 78% 80%)',
+                clipPath: 'polygon(0% 0%, 82% 0%, 82% 100%, 0% 100%)'
+              }}
+            />
+            {/* Shifted 'e' section */}
+            <img 
+              src={logoImage} 
+              alt=""
+              className="w-80 h-auto absolute top-0 left-0 pointer-events-none"
+              style={{
+                clipPath: 'polygon(82% 0%, 100% 0%, 100% 100%, 82% 100%)',
+                transform: 'translateX(-8px)'
               }}
             />
           </div>
