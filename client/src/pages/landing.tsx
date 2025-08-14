@@ -92,7 +92,7 @@ export default function Landing() {
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-40 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-sm flex items-center justify-center gap-2"
+                className="w-44 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-sm flex items-center justify-center gap-2"
                 data-testid="button-google-login"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
