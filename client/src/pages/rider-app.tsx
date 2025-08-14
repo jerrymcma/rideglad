@@ -519,7 +519,7 @@ export default function RiderApp() {
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-base text-brand-green">{driver.fare}</p>
-                        <p className="text-xs text-gray-500">Estimated</p>
+                        <p className="text-[10px] text-gray-500">Estimated</p>
                       </div>
                     </div>
                   </CardContent>
