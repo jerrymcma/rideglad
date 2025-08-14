@@ -67,7 +67,7 @@ export default function Landing() {
               />
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-6">
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 className="w-40 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600"
@@ -77,7 +77,7 @@ export default function Landing() {
               </Button>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-3">
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
