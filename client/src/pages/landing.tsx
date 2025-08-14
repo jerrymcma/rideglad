@@ -13,13 +13,19 @@ export default function Landing() {
       <div className="flex flex-col h-screen justify-center px-8 -mt-12">
         <div className="text-center space-y-6">
           {/* Logo */}
-          <div className="flex justify-center">
+          <div className="flex justify-center relative">
             <img 
               src={logoImage} 
               alt="ride - Get there"
               className="w-80 h-auto"
               data-testid="logo-image"
-              style={{ transform: 'scaleX(0.90)' }}
+            />
+            {/* Mask to visually bring 'e' closer to 'd' by covering part of the gap */}
+            <div 
+              className="absolute top-0 left-0 w-80 h-auto bg-white pointer-events-none"
+              style={{
+                clipPath: 'polygon(78% 15%, 81% 15%, 81% 80%, 78% 80%)',
+              }}
             />
           </div>
 
