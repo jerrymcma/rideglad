@@ -509,7 +509,7 @@ export default function RiderApp() {
                           <div className="flex items-center gap-2">
                             <p className="font-semibold text-gray-900 text-sm">{driver.driverName}</p>
                             <div className="flex items-center gap-1">
-                              <Star size={12} className="text-yellow-400 fill-current" />
+                              <Star size={10} className="text-yellow-400 fill-current" />
                               <span className="text-xs font-medium">{driver.rating}</span>
                             </div>
                           </div>
