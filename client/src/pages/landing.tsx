@@ -19,7 +19,7 @@ export default function Landing() {
               alt="ride - Get there"
               className="w-80 h-auto"
               data-testid="logo-image"
-              style={{ transform: 'scaleX(0.92)' }}
+              style={{ transform: 'scaleX(0.90)' }}
             />
           </div>
 
