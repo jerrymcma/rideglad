@@ -507,7 +507,7 @@ export default function RiderApp() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <p className="font-semibold text-gray-900">{driver.driverName}</p>
+                            <p className="font-semibold text-gray-900 text-sm">{driver.driverName}</p>
                             <div className="flex items-center gap-1">
                               <Star size={12} className="text-yellow-400 fill-current" />
                               <span className="text-xs font-medium">{driver.rating}</span>
@@ -518,7 +518,7 @@ export default function RiderApp() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-lg text-brand-green">{driver.fare}</p>
+                        <p className="font-bold text-base text-brand-green">{driver.fare}</p>
                         <p className="text-xs text-gray-500">Estimated</p>
                       </div>
                     </div>
