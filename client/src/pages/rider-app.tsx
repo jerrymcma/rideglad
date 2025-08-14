@@ -641,7 +641,7 @@ export default function RiderApp() {
 
   const renderMatchedStep = () => (
     <div className="space-y-6">
-      <div className="text-center space-y-2 -mt-3">
+      <div className="text-center space-y-2 -mt-4">
         <h2 className="text-2xl font-bold text-brand-green">Driver Found!</h2>
         <p className="text-lg font-bold text-gray-600">Your driver is on the way</p>
       </div>
