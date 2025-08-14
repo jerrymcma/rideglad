@@ -70,7 +70,7 @@ export default function Landing() {
             <div className="flex justify-center mt-6">
               <Button
                 onClick={() => window.location.href = '/api/login'}
-                className="w-40 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600 text-lg"
+                className="w-40 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600 text-xl"
                 data-testid="button-login"
               >
                 Log in
