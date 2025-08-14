@@ -394,7 +394,7 @@ export default function RiderApp() {
         {/* Show driver selection only when Enter button is clicked */}
         {bookingForm.pickupAddress && bookingForm.destinationAddress && showDriverOptions && (
           <div className="space-y-2">
-            <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
+            <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
               <Car size={20} />
               Available drivers nearby
             </Label>
@@ -456,7 +456,7 @@ export default function RiderApp() {
 
             {/* Nearby Drivers List */}
             <div className="space-y-2">
-              <Label className="text-blue-600 font-medium text-lg flex items-center gap-2">
+              <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
                 <Car size={20} />
                 Choose ride
               </Label>
