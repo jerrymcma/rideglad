@@ -88,11 +88,11 @@ export default function Landing() {
               </Button>
             </div>
 
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-3">
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-36 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
+                className="w-36 h-8 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
                 data-testid="button-google-login"
               >
                 <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24">
@@ -105,11 +105,11 @@ export default function Landing() {
               </Button>
             </div>
 
-            <div className="flex justify-center mt-2">
+            <div className="flex justify-center mt-1">
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-36 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
+                className="w-36 h-8 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
                 data-testid="button-apple-login"
               >
                 <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24">
@@ -119,11 +119,11 @@ export default function Landing() {
               </Button>
             </div>
 
-            <div className="flex justify-center mt-2">
+            <div className="flex justify-center mt-1">
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-36 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
+                className="w-36 h-8 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
                 data-testid="button-github-login"
               >
                 <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24">
@@ -133,11 +133,11 @@ export default function Landing() {
               </Button>
             </div>
 
-            <div className="flex justify-center mt-2">
+            <div className="flex justify-center mt-1">
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-36 h-10 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
+                className="w-36 h-8 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 text-xs flex items-center justify-center gap-1 px-2"
                 data-testid="button-facebook-login"
               >
                 <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24">
