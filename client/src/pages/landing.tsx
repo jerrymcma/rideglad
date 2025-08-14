@@ -38,8 +38,8 @@ export default function Landing() {
           </div>
 
           {/* Login Form */}
-          <div className="space-y-6">
-            <div className="text-center space-y-2">
+          <div className="space-y-4">
+            <div className="text-center space-y-1">
               <Label htmlFor="email" className="text-blue-600 font-medium block">
                 Email address
               </Label>
@@ -53,7 +53,7 @@ export default function Landing() {
               />
             </div>
 
-            <div className="text-center space-y-2">
+            <div className="text-center space-y-1">
               <Label htmlFor="password" className="text-blue-600 font-medium block">
                 Password
               </Label>
