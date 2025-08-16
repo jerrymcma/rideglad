@@ -122,10 +122,10 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-1">
                   <Settings size={32} className="text-gray-600" />
                 </div>
-                <CardTitle className="text-lg text-gray-600">Account Settings</CardTitle>
+                <CardTitle className="text-lg text-gray-600">Settings</CardTitle>
               </CardHeader>
               <CardContent className="text-center py-1 pb-3">
-                <p className="text-xs text-gray-700">Manage profile</p>
+                <p className="text-xs text-gray-700">Manage account</p>
               </CardContent>
             </Card>
           </div>
