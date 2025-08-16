@@ -1450,43 +1450,6 @@ export default function RiderApp() {
           </div>
         </CardContent>
       </Card>
-
-      <div className="bg-blue-50 border border-blue-200 rounded-lg py-2 px-2 mb-1 mx-20">
-        <p className="text-sm text-blue-800 text-center font-medium">Contact your driver</p>
-      </div>
-
-      <div className="flex gap-2 -mt-2">
-        <Button
-          variant="outline"
-          className="flex-1 flex items-center gap-1 text-xs text-blue-600 border-blue-200 hover:bg-blue-50"
-          data-testid="button-message-driver"
-        >
-          <MessageCircle size={14} />
-          Message
-        </Button>
-        <Button
-          variant="outline"
-          className="flex-1 flex items-center gap-1 text-xs text-blue-600 border-blue-200 hover:bg-blue-50"
-          data-testid="button-call-driver"
-        >
-          <Phone size={14} />
-          Call
-        </Button>
-        <Button
-          variant="outline"
-          className="flex-1 flex items-center gap-1 text-xs text-blue-600 border-blue-200 hover:bg-blue-50"
-          data-testid="button-special-assistance"
-        >
-          <Heart size={14} />
-          Assistance
-        </Button>
-      </div>
-
-      <div className="text-center mt-6">
-        <p className="text-sm text-red-800 font-medium">
-          Remember: safety is foremost. Be a safe rider.
-        </p>
-      </div>
     </div>
   );
 
