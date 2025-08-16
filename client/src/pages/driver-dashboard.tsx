@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { ArrowLeft, Car, DollarSign, Clock, Star, MapPin } from "lucide-react";
+import { ArrowLeft, Car, DollarSign, Clock, Star, MapPin, Navigation, Phone, MessageCircle, User as UserIcon } from "lucide-react";
 import { useLocation } from "wouter";
 import type { Trip, User } from "@shared/schema";
 
@@ -17,6 +19,33 @@ export default function DriverDashboard() {
   const [, setLocation] = useLocation();
   const [isOnline, setIsOnline] = useState(false);
 
+  // Available ride requests for drivers to accept
+  const { data: availableRides, isLoading: ridesLoading } = useQuery({
+    queryKey: ['/api/drivers/available-rides'],
+    enabled: !!user && user.userType === 'driver' && isOnline,
+    refetchInterval: isOnline ? 5000 : false, // Poll every 5 seconds when online
+    onError: (error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+      }
+    },
+  });
+
+  // Current active trip for the driver
+  const { data: activeTrip } = useQuery({
+    queryKey: ['/api/drivers/active-trip'],
+    enabled: !!user && user.userType === 'driver',
+    refetchInterval: 3000,
+  });
+
+  // Driver's completed trips history
   const { data: driverTrips, isLoading: tripsLoading } = useQuery({
     queryKey: ['/api/trips'],
     enabled: !!user,
@@ -40,6 +69,7 @@ export default function DriverDashboard() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/auth/user'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/drivers/available-rides'] });
       toast({
         title: "Status Updated",
         description: `Driver mode ${isOnline ? 'activated' : 'deactivated'}`,
@@ -60,6 +90,27 @@ export default function DriverDashboard() {
       toast({
         title: "Error",
         description: "Failed to update driver status",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const acceptRideMutation = useMutation({
+    mutationFn: async (tripId: string) => {
+      return await apiRequest('POST', `/api/drivers/accept-ride/${tripId}`, {});
+    },
+    onSuccess: (trip) => {
+      queryClient.invalidateQueries({ queryKey: ['/api/drivers/available-rides'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/drivers/active-trip'] });
+      toast({
+        title: "Ride Accepted!",
+        description: "You have successfully accepted the ride request",
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: "Failed to accept ride. It may have been taken by another driver.",
         variant: "destructive",
       });
     },
@@ -121,6 +172,145 @@ export default function DriverDashboard() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Active Trip */}
+        {activeTrip && (
+          <Card className="border-green-200 bg-green-50">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg text-green-800 flex items-center gap-2">
+                <Navigation size={20} />
+                Current Trip
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex justify-between items-center">
+                <Badge variant="default" className="bg-green-600">
+                  {activeTrip.status.charAt(0).toUpperCase() + activeTrip.status.slice(1)}
+                </Badge>
+                <span className="text-lg font-bold text-green-700">
+                  ${activeTrip.estimatedPrice}
+                </span>
+              </div>
+              
+              <Separator />
+              
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <MapPin size={16} className="text-green-600 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium">Pickup</p>
+                    <p className="text-xs text-gray-600">{activeTrip.pickupAddress}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Navigation size={16} className="text-red-500 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium">Destination</p>
+                    <p className="text-xs text-gray-600">{activeTrip.destinationAddress}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <Button size="sm" className="flex-1">
+                  <Phone size={16} className="mr-1" />
+                  Call Rider
+                </Button>
+                <Button size="sm" variant="outline" className="flex-1">
+                  <MessageCircle size={16} className="mr-1" />
+                  Message
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Available Ride Requests */}
+        {isOnline && !activeTrip && (
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Car size={20} />
+                Available Rides
+                {availableRides && availableRides.length > 0 && (
+                  <Badge variant="secondary">{availableRides.length}</Badge>
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {ridesLoading ? (
+                <div className="text-center py-8">
+                  <div className="text-gray-500">Looking for ride requests...</div>
+                </div>
+              ) : !availableRides || availableRides.length === 0 ? (
+                <div className="text-center py-8">
+                  <Car size={48} className="mx-auto text-gray-300 mb-2" />
+                  <p className="text-gray-500">No ride requests available</p>
+                  <p className="text-xs text-gray-400">New requests will appear here automatically</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {availableRides.map((ride: Trip) => (
+                    <Card key={ride.id} className="border-blue-200">
+                      <CardContent className="p-4 space-y-3">
+                        <div className="flex justify-between items-start">
+                          <div className="flex items-center gap-2">
+                            <UserIcon size={16} className="text-blue-600" />
+                            <span className="font-medium">Ride Request</span>
+                          </div>
+                          <Badge variant="outline" className="text-green-600 border-green-600">
+                            ${ride.estimatedPrice}
+                          </Badge>
+                        </div>
+                        
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-start gap-2">
+                            <MapPin size={14} className="text-green-600 mt-0.5" />
+                            <div>
+                              <p className="font-medium text-green-700">Pickup</p>
+                              <p className="text-gray-600">{ride.pickupAddress}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <Navigation size={14} className="text-red-500 mt-0.5" />
+                            <div>
+                              <p className="font-medium text-red-700">Destination</p>
+                              <p className="text-gray-600">{ride.destinationAddress}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center text-xs text-gray-500">
+                          <span>{ride.distance ? `${(parseFloat(ride.distance.toString()) * 0.621371).toFixed(1)} mi` : 'Distance calculating'}</span>
+                          <span>{new Date(ride.requestedAt!).toLocaleTimeString()}</span>
+                        </div>
+
+                        <Button 
+                          className="w-full bg-green-600 hover:bg-green-700"
+                          onClick={() => acceptRideMutation.mutate(ride.id)}
+                          disabled={acceptRideMutation.isPending}
+                        >
+                          {acceptRideMutation.isPending ? 'Accepting...' : 'Accept Ride'}
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Offline Message */}
+        {!isOnline && (
+          <Card className="border-gray-200">
+            <CardContent className="pt-6 text-center">
+              <Car size={48} className="mx-auto text-gray-300 mb-2" />
+              <p className="text-gray-500 font-medium">You're offline</p>
+              <p className="text-xs text-gray-400">Turn on driver mode to start receiving ride requests</p>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Stats Overview */}
         <div className="grid grid-cols-2 gap-4">

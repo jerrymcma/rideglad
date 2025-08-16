@@ -45,6 +45,7 @@ export interface IStorage {
   createTrip(trip: InsertTrip): Promise<Trip>;
   getTrip(id: string): Promise<Trip | undefined>;
   getTripsByUser(userId: string): Promise<Trip[]>;
+  getUserTrips(userId: string): Promise<Trip[]>;
   getTripsByDriver(driverId: string): Promise<Trip[]>;
   updateTripStatus(id: string, status: string, additionalData?: Partial<Trip>): Promise<Trip>;
   getActiveTrip(userId: string): Promise<Trip | undefined>;
@@ -52,6 +53,8 @@ export interface IStorage {
   
   // Driver operations
   getAvailableDrivers(lat: number, lng: number, rideType: string): Promise<(User & { vehicle: Vehicle })[]>;
+  getAvailableRideRequests(): Promise<Trip[]>;
+  getActiveDriverTrip(driverId: string): Promise<Trip | undefined>;
   toggleDriverStatus(driverId: string, isActive: boolean): Promise<User>;
   
   // Rating operations
@@ -172,6 +175,14 @@ export class DatabaseStorage implements IStorage {
       .orderBy(desc(trips.requestedAt));
   }
 
+  async getUserTrips(userId: string): Promise<Trip[]> {
+    return await db
+      .select()
+      .from(trips)
+      .where(eq(trips.riderId, userId))
+      .orderBy(desc(trips.requestedAt));
+  }
+
   async getTripsByDriver(driverId: string): Promise<Trip[]> {
     return await db
       .select()
@@ -232,6 +243,29 @@ export class DatabaseStorage implements IStorage {
   async getAvailableDrivers(lat: number, lng: number, rideType: string): Promise<(User & { vehicle: Vehicle })[]> {
     // Simplified mock implementation
     return [];
+  }
+
+  async getAvailableRideRequests(): Promise<Trip[]> {
+    return await db
+      .select()
+      .from(trips)
+      .where(eq(trips.status, 'requested'))
+      .orderBy(desc(trips.requestedAt));
+  }
+
+  async getActiveDriverTrip(driverId: string): Promise<Trip | undefined> {
+    const [trip] = await db
+      .select()
+      .from(trips)
+      .where(
+        and(
+          eq(trips.driverId, driverId),
+          sql`${trips.status} IN ('matched', 'pickup', 'in_progress')`
+        )
+      )
+      .orderBy(desc(trips.requestedAt))
+      .limit(1);
+    return trip;
   }
 
   async getDriverById(driverId: string): Promise<(User & { vehicle: Vehicle }) | null> {

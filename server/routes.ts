@@ -116,7 +116,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/trips', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
-      const trips = await storage.getUserTrips(userId);
+      const user = await storage.getUser(userId);
+      
+      let trips;
+      if (user?.userType === 'driver') {
+        trips = await storage.getTripsByDriver(userId);
+      } else {
+        trips = await storage.getUserTrips(userId);
+      }
+      
       res.json(trips);
     } catch (error) {
       console.error("Error fetching trips:", error);
@@ -138,6 +146,72 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error creating rating:", error);
       res.status(400).json({ message: error instanceof z.ZodError ? error.errors : "Invalid rating data" });
+    }
+  });
+
+  // Driver-specific routes
+  app.get('/api/drivers/available-rides', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      
+      if (user?.userType !== 'driver' || !user.isDriverActive) {
+        return res.status(403).json({ message: "Driver not active" });
+      }
+      
+      // Get pending ride requests (status: 'requested')
+      const availableRides = await storage.getAvailableRideRequests();
+      res.json(availableRides);
+    } catch (error) {
+      console.error("Error fetching available rides:", error);
+      res.status(500).json({ message: "Failed to fetch available rides" });
+    }
+  });
+
+  app.post('/api/drivers/accept-ride/:tripId', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { tripId } = req.params;
+      const user = await storage.getUser(userId);
+      
+      if (user?.userType !== 'driver' || !user.isDriverActive) {
+        return res.status(403).json({ message: "Driver not active" });
+      }
+      
+      // Get driver's vehicle
+      const driverVehicles = await storage.getVehiclesByDriver(userId);
+      if (driverVehicles.length === 0) {
+        return res.status(400).json({ message: "Driver has no registered vehicle" });
+      }
+      
+      // Accept the ride
+      const trip = await storage.updateTripStatus(tripId, 'matched', {
+        driverId: userId,
+        vehicleId: driverVehicles[0].id,
+        matchedAt: new Date()
+      });
+      
+      res.json(trip);
+    } catch (error) {
+      console.error("Error accepting ride:", error);
+      res.status(500).json({ message: "Failed to accept ride" });
+    }
+  });
+
+  app.get('/api/drivers/active-trip', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      
+      if (user?.userType !== 'driver') {
+        return res.status(403).json({ message: "Access denied" });
+      }
+      
+      const activeTrip = await storage.getActiveDriverTrip(userId);
+      res.json(activeTrip || null);
+    } catch (error) {
+      console.error("Error fetching active driver trip:", error);
+      res.status(500).json({ message: "Failed to fetch active trip" });
     }
   });
 
