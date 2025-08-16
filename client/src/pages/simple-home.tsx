@@ -27,8 +27,18 @@ export default function SimpleHome() {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Book a ride clicked, navigating to /ride');
-                setLocation('/ride');
+                console.log('Book a ride clicked, current location:', window.location.pathname);
+                console.log('setLocation function:', typeof setLocation);
+                try {
+                  setLocation('/ride');
+                  console.log('setLocation called successfully');
+                } catch (error) {
+                  console.error('Error calling setLocation:', error);
+                }
+                setTimeout(() => {
+                  console.log('After setLocation, pathname:', window.location.pathname);
+                  console.log('After setLocation, href:', window.location.href);
+                }, 100);
               }}
               data-testid="card-book-ride"
             >
