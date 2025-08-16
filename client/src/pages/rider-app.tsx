@@ -1015,6 +1015,29 @@ export default function RiderApp() {
         </CardContent>
       </Card>
 
+      <Card className="mx-5">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+              <User size={24} className="text-gray-600" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold">{matchedDriver?.driver.firstName} {matchedDriver?.driver.lastName}</h3>
+                <div className="flex items-center gap-1">
+                  <Trophy size={14} className="text-yellow-500 fill-current" />
+                  <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600">
+                {matchedDriver?.vehicle.color} {matchedDriver?.vehicle.make} {matchedDriver?.vehicle.model}
+              </p>
+              <p className="text-sm font-medium">{matchedDriver?.vehicle.licensePlate}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {matchedDriver && (
         <Card>
           <CardContent className="p-4">
