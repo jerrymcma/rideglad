@@ -1126,10 +1126,10 @@ export default function RiderApp() {
       </div>
 
       {/* Cancel Ride Button */}
-      <div className="mt-4">
+      <div className="mt-4 flex justify-center">
         <Button
           variant="outline"
-          className="w-full flex items-center gap-2 text-red-600 border-red-200 hover:bg-red-50"
+          className="w-48 flex items-center gap-2 text-red-600 border-red-200 hover:bg-red-50"
           onClick={async () => {
             try {
               await apiRequest('POST', `/api/trips/${currentTrip?.id}/cancel`);
