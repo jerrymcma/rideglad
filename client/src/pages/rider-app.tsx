@@ -30,23 +30,6 @@ interface MatchedDriver {
 
 export default function RiderApp() {
   console.log('RiderApp component is rendering');
-  
-  // Add early return to test basic rendering
-  return (
-    <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="p-6">
-        <h1 className="text-2xl font-bold text-center mb-4">Rider App</h1>
-        <p className="text-center text-gray-600">This is the rider app for booking rides</p>
-        <button 
-          onClick={() => window.history.back()}
-          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-        >
-          Go Back
-        </button>
-      </div>
-    </div>
-  );
-  
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
