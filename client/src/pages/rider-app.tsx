@@ -524,13 +524,39 @@ export default function RiderApp() {
     requestRideMutation.mutate(bookingForm);
   };
 
+  // Calculate real trip price based on pickup and destination
+  const calculateTripDistance = () => {
+    // Simple distance calculation for demo - in real app would use Google Maps API
+    if (!bookingForm.pickupAddress || !bookingForm.destinationAddress) return 5;
+    
+    // Mock calculation based on address length as approximation
+    const pickup = bookingForm.pickupAddress.length;
+    const destination = bookingForm.destinationAddress.length;
+    return Math.max(2, Math.min(15, Math.abs(pickup - destination) / 5 + 3));
+  };
+
   const getRideTypePrice = (type: string) => {
+    const distance = calculateTripDistance();
+    const baseFare = 2.00;
+    const perMileRate = 0.40;
+    
+    let multiplier = 1.0;
     switch (type) {
-      case 'economy': return '$12.50';
-      case 'comfort': return '$18.75';
-      case 'premium': return '$28.00';
-      default: return '$12.50';
+      case 'driver-1': // Economy
+        multiplier = 1.0;
+        break;
+      case 'driver-2': // Comfort
+        multiplier = 1.4;
+        break;
+      case 'driver-3': // Premium  
+        multiplier = 2.0;
+        break;
+      default:
+        multiplier = 1.0;
     }
+    
+    const totalPrice = (baseFare + (distance * perMileRate)) * multiplier;
+    return `$${totalPrice.toFixed(2)}`;
   };
 
   const renderBookingStep = () => (
@@ -597,15 +623,29 @@ export default function RiderApp() {
             <div className="relative">
               <div className="w-full h-48 bg-gray-100 rounded-lg border overflow-hidden">
                 {/* Map Background */}
-                <div className="w-full h-full bg-gradient-to-br from-blue-50 to-green-50 relative">
-                  {/* Grid lines to simulate map */}
-                  <div className="absolute inset-0 opacity-20">
-                    {[...Array(8)].map((_, i) => (
-                      <div key={`h-${i}`} className="absolute border-t border-gray-300" style={{top: `${i * 12.5}%`, width: '100%'}} />
-                    ))}
-                    {[...Array(6)].map((_, i) => (
-                      <div key={`v-${i}`} className="absolute border-l border-gray-300" style={{left: `${i * 16.67}%`, height: '100%'}} />
-                    ))}
+                <div className="w-full h-full bg-gradient-to-br from-emerald-100 via-blue-50 to-green-100 relative">
+                  {/* Realistic Map Elements */}
+                  <div className="absolute inset-0">
+                    {/* Major Streets */}
+                    <div className="absolute top-1/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
+                    <div className="absolute top-2/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
+                    <div className="absolute top-3/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
+                    <div className="absolute top-4/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
+                    
+                    <div className="absolute left-1/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
+                    <div className="absolute left-2/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
+                    <div className="absolute left-3/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
+                    <div className="absolute left-4/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
+                    
+                    {/* Buildings */}
+                    <div className="absolute top-[15%] left-[10%] w-12 h-8 bg-gray-300 opacity-40 rounded-sm"></div>
+                    <div className="absolute top-[45%] left-[25%] w-16 h-12 bg-gray-300 opacity-40 rounded-sm"></div>
+                    <div className="absolute top-[25%] right-[20%] w-14 h-10 bg-gray-300 opacity-40 rounded-sm"></div>
+                    <div className="absolute top-[65%] right-[10%] w-10 h-6 bg-gray-300 opacity-40 rounded-sm"></div>
+                    
+                    {/* Parks/Green Areas */}
+                    <div className="absolute top-[55%] left-[45%] w-20 h-8 bg-green-200 opacity-50 rounded-lg"></div>
+                    <div className="absolute top-[10%] right-[35%] w-8 h-8 bg-green-200 opacity-50 rounded-full"></div>
                   </div>
                   
                   {/* Your Location */}
@@ -616,7 +656,7 @@ export default function RiderApp() {
                   
                   {/* Driver Locations */}
                   <div className="absolute top-1/3 left-[14%] transform -translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-1')}</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
@@ -624,7 +664,7 @@ export default function RiderApp() {
                   </div>
                   
                   <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-2')}</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
@@ -632,7 +672,7 @@ export default function RiderApp() {
                   </div>
                   
                   <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$24.90</span>
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-3')}</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
