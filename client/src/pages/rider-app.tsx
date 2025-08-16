@@ -1329,7 +1329,7 @@ export default function RiderApp() {
       </Card>
 
       {/* Real-time Map */}
-      <Card className="mx-5">
+      <Card className="mx-5 -mt-2">
         <CardContent className="p-4">
           <h3 className="text-base font-semibold mb-3 text-gray-800 text-center">Live Trip Map</h3>
           <div className="w-full h-64 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
