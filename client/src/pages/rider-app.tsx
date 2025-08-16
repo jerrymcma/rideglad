@@ -1165,7 +1165,7 @@ export default function RiderApp() {
                   </div>
                   <div className="flex items-center gap-1">
                     <Award size={16} className="text-blue-500 fill-current" />
-                    <span className="text-xs text-blue-600 font-medium">ride certified</span>
+                    <span className="text-xs text-blue-600 font-medium">ride Certified</span>
                   </div>
                 </div>
               </div>
