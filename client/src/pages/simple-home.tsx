@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
-import blueCarImage from "@assets/generated_images/Blue_car_driving_scene_50b2bdbe.png";
+import carVideo from "@assets/Screen_Recording_20250816_120105_Chrome_1755364515737.mp4";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -135,13 +135,18 @@ export default function SimpleHome() {
         {/* Separation Line */}
         <div className="pt-4 border-t"></div>
 
-        {/* Blue Car Image Section */}
+        {/* Video Section */}
         <div className="pt-4 flex justify-center">
-          <img 
-            src={blueCarImage}
-            alt="Blue car driving scene"
+          <video 
             className="w-1/2 rounded-lg shadow-md"
-          />
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src={carVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         {/* Profile Section */}
