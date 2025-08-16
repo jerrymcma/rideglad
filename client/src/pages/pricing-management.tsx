@@ -198,7 +198,7 @@ export default function PricingManagement() {
             {/* Input Controls */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Distance (km)</label>
+                <label className="text-sm font-medium text-gray-700">Distance (miles)</label>
                 <Input
                   type="number"
                   value={distance}
