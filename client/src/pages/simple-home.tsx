@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -118,34 +118,14 @@ export default function SimpleHome() {
             </Link>
 
             <Card className="cursor-pointer hover:shadow-md transition-shadow h-full">
-              <CardHeader className="text-center pb-0 pt-2">
+              <CardHeader className="text-center pb-0 pt-3">
                 <div className="flex justify-center mb-1">
-                  <Music size={32} className="text-blue-600" />
+                  <Settings size={32} className="text-gray-600" />
                 </div>
-                <CardTitle className="text-lg text-blue-600">Enjoy</CardTitle>
+                <CardTitle className="text-lg text-gray-600">Account Settings</CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-1 pb-2">
-                <p className="text-xs text-gray-700 mb-2">Thanks for riding!</p>
-                <div className="flex justify-center space-x-2">
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700">
-                    <Youtube size={16} />
-                  </a>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
-                    <Facebook size={16} />
-                  </a>
-                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700">
-                    <SiTiktok size={16} />
-                  </a>
-                  <a href="https://swagbucks.com" target="_blank" rel="noopener noreferrer" className="text-green-700 hover:text-green-800">
-                    <BadgeDollarSign size={16} />
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700">
-                    <SiInstagram size={16} />
-                  </a>
-                  <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-                    <SiGoogle size={16} />
-                  </a>
-                </div>
+              <CardContent className="text-center py-1 pb-3">
+                <p className="text-xs text-gray-700">Manage profile</p>
               </CardContent>
             </Card>
           </div>
