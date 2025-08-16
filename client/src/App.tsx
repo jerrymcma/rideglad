@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -16,10 +16,11 @@ import PricingManagement from "@/pages/pricing-management";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
+  const [location] = useLocation();
   useActivityTimeout(); // Enable 10-minute inactivity timeout
   useSessionRestore(); // Restore last authenticated route after re-login
   
-  console.log('Router rendering, isAuthenticated:', isAuthenticated, 'isLoading:', isLoading);
+  console.log('Router rendering, location:', location, 'isAuthenticated:', isAuthenticated, 'isLoading:', isLoading);
 
   if (isLoading) {
     return (
@@ -29,23 +30,25 @@ function Router() {
     );
   }
 
-  return (
-    <Switch>
-      {!isAuthenticated ? (
-        <Route path="/" component={Landing} />
-      ) : (
-        <>
-          <Route path="/ride" component={RiderApp} />
-          <Route path="/driver" component={DriverDashboard} />
-          <Route path="/trips" component={TripHistory} />
-          <Route path="/pricing" component={PricingManagement} />
-          <Route path="/" component={SimpleHome} />
-        </>
-      )}
-      <Route path="/landing" component={Landing} />
-      <Route component={NotFound} />
-    </Switch>
-  );
+  if (!isAuthenticated) {
+    return <Landing />;
+  }
+
+  // Explicit routing logic
+  switch (location) {
+    case '/ride':
+      return <RiderApp />;
+    case '/driver':
+      return <DriverDashboard />;
+    case '/trips':
+      return <TripHistory />;
+    case '/pricing':
+      return <PricingManagement />;
+    case '/landing':
+      return <Landing />;
+    default:
+      return <SimpleHome />;
+  }
 }
 
 function App() {
