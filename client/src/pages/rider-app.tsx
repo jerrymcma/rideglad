@@ -663,7 +663,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">All rides same price</p>
-                        <p className="text-xs text-gray-600">$0.60 per mile + $2.00 base</p>
+                        <p className="text-xs text-gray-600">$0.40 per mile + $2.00 base</p>
                         <div className="flex items-center mt-1">
                           <Clock size={12} className="text-gray-500 mr-1" />
                           <span className="text-xs text-gray-600">3-7 min pickup</span>
