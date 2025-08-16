@@ -1391,7 +1391,7 @@ export default function RiderApp() {
                       <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
                         <Car size={16} className="text-white" />
                       </div>
-                      <div className="absolute -top-9 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
+                      <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
                         You
                       </div>
                     </div>
