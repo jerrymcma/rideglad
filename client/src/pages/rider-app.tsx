@@ -1313,7 +1313,7 @@ export default function RiderApp() {
           
           <Separator />
           
-          <div className="space-y-1 -mt-2">
+          <div className="space-y-1 -mt-3">
             <div className="flex items-center">
               <span className="text-sm text-gray-600 mr-2">Vehicle:</span>
               <span className="text-sm font-medium">
