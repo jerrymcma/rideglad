@@ -132,10 +132,13 @@ export default function SimpleHome() {
           </div>
         </div>
 
+        {/* Separation Line */}
+        <div className="pt-4 border-t"></div>
+
         {/* Video Section */}
-        <div className="pt-4">
+        <div className="pt-4 flex justify-center">
           <video 
-            className="w-full rounded-lg shadow-md"
+            className="w-2/3 rounded-lg shadow-md"
             autoPlay
             loop
             muted
@@ -147,7 +150,7 @@ export default function SimpleHome() {
         </div>
 
         {/* Profile Section */}
-        <div className="space-y-4 pt-4 border-t">
+        <div className="space-y-4 pt-4">
         </div>
       </div>
     </div>
