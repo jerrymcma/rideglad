@@ -932,9 +932,9 @@ export default function RiderApp() {
       </div>
 
       <div className="text-center">
-        <Badge variant="outline" className="text-lg py-2 px-4">
-          <Clock size={16} className="mr-2" />
-          2 minutes away
+        <Badge variant="outline" className="text-lg py-2 px-1">
+          <Clock size={16} className="mr-1" />
+          2 min away
         </Badge>
       </div>
 
