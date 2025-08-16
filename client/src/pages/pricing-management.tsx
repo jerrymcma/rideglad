@@ -180,88 +180,7 @@ export default function PricingManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gray-900">
-            Custom Pricing System
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Advanced dynamic pricing with surge management, promotional codes, and tier-based adjustments
-          </p>
-        </div>
 
-        {/* Pricing Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {pricingPlans.map((plan: PricingPlan) => {
-            const IconComponent = getIconComponent(plan.icon);
-            const isSelected = selectedPlan === plan.name;
-            
-            return (
-              <Card 
-                key={plan.id}
-                className={cn(
-                  "cursor-pointer transition-all duration-200 hover:shadow-lg",
-                  isSelected ? "ring-2 ring-blue-500 shadow-lg" : "hover:shadow-md"
-                )}
-                onClick={() => setSelectedPlan(plan.name)}
-                data-testid={`card-pricing-plan-${plan.name}`}
-              >
-                <CardHeader className="text-center pb-4">
-                  <div className={cn(
-                    "w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-3",
-                    getPlanColor(plan.color)
-                  )}>
-                    <IconComponent className="w-8 h-8" />
-                  </div>
-                  <CardTitle className="text-xl">{plan.displayName}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  {/* Pricing Details */}
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Base Fare:</span>
-                      <span className="font-medium">{formatPrice(plan.baseFare)}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Per Mile:</span>
-                      <span className="font-medium">{formatPrice(plan.perMiRate)}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Per Min:</span>
-                      <span className="font-medium">{formatPrice(plan.perMinuteRate)}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Min Fare:</span>
-                      <span className="font-medium">{formatPrice(plan.minimumFare)}</span>
-                    </div>
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-2">
-                    <h4 className="font-medium text-sm text-gray-700">Features:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {plan.features.slice(0, 3).map((feature, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {feature}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Surge Info */}
-                  {plan.surgeMultiplier > 1 && (
-                    <div className="flex items-center gap-2 text-sm text-orange-600">
-                      <TrendingUp className="w-4 h-4" />
-                      <span>Surge: {plan.surgeMultiplier}x</span>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
 
         {/* Pricing Calculator */}
         <Card className="max-w-4xl mx-auto">
@@ -453,38 +372,7 @@ export default function PricingManagement() {
           </CardContent>
         </Card>
 
-        {/* Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <TrendingUp className="w-12 h-12 text-orange-500 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Dynamic Surge Pricing</h3>
-              <p className="text-sm text-gray-600">
-                Automatic surge pricing during peak hours and high-demand periods
-              </p>
-            </CardContent>
-          </Card>
 
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <Tag className="w-12 h-12 text-green-500 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Promotional Codes</h3>
-              <p className="text-sm text-gray-600">
-                Advanced promo code system with usage limits and validation
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <Star className="w-12 h-12 text-purple-500 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Tier-Based Pricing</h3>
-              <p className="text-sm text-gray-600">
-                Multiple pricing tiers with different features and rates
-              </p>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
   );
