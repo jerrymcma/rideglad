@@ -24,7 +24,10 @@ export default function SimpleHome() {
           <div className="grid grid-cols-2 gap-3">
             <Card 
               className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green h-full"
-              onClick={() => setLocation('/ride')}
+              onClick={() => {
+                console.log('Book a ride clicked, navigating to /ride');
+                setLocation('/ride');
+              }}
               data-testid="card-book-ride"
             >
               <CardHeader className="text-center pb-0 pt-3">
@@ -40,7 +43,10 @@ export default function SimpleHome() {
 
             <Card 
               className="cursor-pointer hover:shadow-md transition-shadow h-full"
-              onClick={() => setLocation('/driver')}
+              onClick={() => {
+                console.log('Drive & Earn clicked, navigating to /driver');
+                setLocation('/driver');
+              }}
               data-testid="card-driver-dashboard"
             >
               <CardHeader className="text-center pb-0 pt-3">
