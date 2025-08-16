@@ -1223,6 +1223,22 @@ export default function RiderApp() {
         Send Message
       </Button>
 
+      {/* Test Map - Visible on pickup step */}
+      <Card>
+        <CardContent className="p-4">
+          <h3 className="text-lg font-semibold mb-3 text-gray-800">Trip Map</h3>
+          <div className="w-full h-48 bg-blue-50 rounded-lg border-2 border-blue-200 relative">
+            <div className="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+              <div className="text-center">
+                <Car size={32} className="text-blue-600 mx-auto mb-2" />
+                <p className="text-blue-600 font-medium">Driver on the way</p>
+                <p className="text-sm text-gray-500">Map will show live tracking</p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="text-center space-y-2">
         <p className="text-sm text-gray-600">Look for your driver at the pickup location</p>
         <p className="text-xs text-gray-500">You'll be notified when they arrive</p>
@@ -1436,6 +1452,11 @@ export default function RiderApp() {
             <div className={`w-2 h-2 rounded-full ${currentStep === 'rating' ? 'bg-brand-green' : 'bg-gray-300'}`}></div>
           </div>
         )}
+
+        {/* Debug Info */}
+        <div className="text-center text-xs text-gray-500 bg-gray-100 p-2 rounded">
+          Current Step: {currentStep} | Trip Status: {currentTrip?.status || 'none'}
+        </div>
 
         {/* Main Content */}
         {currentStep === 'booking' && renderBookingStep()}
