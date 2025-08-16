@@ -355,16 +355,7 @@ export default function PricingManagement() {
                       </div>
                     )}
 
-                    {/* Current Time Info */}
-                    <div className="p-3 bg-blue-50 rounded-lg">
-                      <div className="flex items-center gap-2 text-blue-800 text-sm">
-                        <Calendar className="w-4 h-4" />
-                        <span>Current Time: {new Date().toLocaleTimeString()}</span>
-                      </div>
-                      <p className="text-xs text-blue-600 mt-1">
-                        Peak hours (7-9 AM, 5-7 PM) may include surge pricing
-                      </p>
-                    </div>
+
                   </div>
                 </div>
               </div>
