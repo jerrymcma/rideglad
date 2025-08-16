@@ -6,6 +6,7 @@ import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function SimpleHome() {
+  console.log('SimpleHome component is rendering');
   const { user } = useAuth();
   const [, setLocation] = useLocation();
 

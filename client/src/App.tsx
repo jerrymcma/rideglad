@@ -35,15 +35,11 @@ function Router() {
         <Route path="/" component={Landing} />
       ) : (
         <>
-          <Route path="/" component={SimpleHome} />
-          <Route path="/ride">
-            <RiderApp />
-          </Route>
-          <Route path="/driver">
-            <DriverDashboard />
-          </Route>
+          <Route path="/ride" component={RiderApp} />
+          <Route path="/driver" component={DriverDashboard} />
           <Route path="/trips" component={TripHistory} />
           <Route path="/pricing" component={PricingManagement} />
+          <Route path="/" component={SimpleHome} />
         </>
       )}
       <Route path="/landing" component={Landing} />
