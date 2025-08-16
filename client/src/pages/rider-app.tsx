@@ -723,7 +723,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">John</p>
-                        <p className="text-xs text-gray-600">Toyota Camry</p>
+                        <p className="text-xs text-gray-600">White Toyota Camry</p>
                         <div className="flex items-center mt-1">
                           <Star size={12} className="text-yellow-400 mr-1" />
                           <span className="text-xs text-gray-600">4.8 • 2 min away</span>
@@ -751,7 +751,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">Sarah</p>
-                        <p className="text-xs text-gray-600">Honda Accord</p>
+                        <p className="text-xs text-gray-600">Silver Honda Accord</p>
                         <div className="flex items-center mt-1">
                           <Star size={12} className="text-yellow-400 mr-1" />
                           <span className="text-xs text-gray-600">4.9 • 4 min away</span>
@@ -779,7 +779,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">Mike</p>
-                        <p className="text-xs text-gray-600">BMW 3 Series</p>
+                        <p className="text-xs text-gray-600">Black BMW 3 Series</p>
                         <div className="flex items-center mt-1">
                           <Star size={12} className="text-yellow-400 mr-1" />
                           <span className="text-xs text-gray-600">5.0 • 3 min away</span>
