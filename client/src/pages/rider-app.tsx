@@ -60,6 +60,9 @@ export default function RiderApp() {
       const trip = activeTrip as Trip;
       setCurrentTrip(trip);
       
+      // Reset live map state for all step changes
+      setShowLiveTripMap(false);
+      
       // Update booking form with trip data
       setBookingForm({
         pickupAddress: trip.pickupAddress || '',
@@ -139,7 +142,7 @@ export default function RiderApp() {
           }
           break;
         case 'pickup':
-          setCurrentStep('inprogress');
+          setCurrentStep('pickup');
           // Set matched driver data for pickup step
           if (!matchedDriver) {
             const driverData = {
