@@ -65,6 +65,7 @@ export default function RiderApp() {
         rideType: trip.rideType || 'driver-1'
       });
       
+      console.log('Trip status from DB:', trip.status);
       switch (trip.status) {
         case 'requested':
           setCurrentStep('searching');
@@ -141,8 +142,9 @@ export default function RiderApp() {
           break;
         case 'in_progress':
           setCurrentStep('inprogress');
-          // Ensure matchedDriver data is available for in-progress step
-          if (!matchedDriver) {
+          console.log('Setting matchedDriver for in_progress trip');
+          // Always ensure matchedDriver data is available for in-progress step
+          {
             const driverData = {
               'driver-1': {
                 id: 'mock-driver-1',
@@ -1088,7 +1090,7 @@ export default function RiderApp() {
               </div>
               <div>
                 <div className="flex items-center">
-                  <h3 className="font-semibold mr-14 text-blue-600 leading-tight">{matchedDriver?.driver.firstName} {matchedDriver?.driver.lastName}</h3>
+                  <h3 className="font-semibold mr-14 text-blue-600 leading-tight">{matchedDriver?.driver.firstName || 'John'} {matchedDriver?.driver.lastName || 'Driver'}</h3>
                   <div className="flex items-center gap-1">
                     <Trophy size={14} className="text-yellow-500 fill-current" />
                     <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
@@ -1097,7 +1099,7 @@ export default function RiderApp() {
                 <div className="flex items-center mt-0.5">
                   <div className="flex items-center gap-1 mr-4">
                     <Star size={14} className="text-yellow-500 fill-current" />
-                    <span className="text-sm">{matchedDriver?.rating} ({matchedDriver?.driver.totalRatings} rides)</span>
+                    <span className="text-sm">{matchedDriver?.rating || '4.8'} ({matchedDriver?.driver.totalRatings || '120'} rides)</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Award size={14} className="text-blue-500 fill-current" />
@@ -1114,12 +1116,12 @@ export default function RiderApp() {
             <div className="flex items-center">
               <span className="text-sm text-gray-600 mr-2">Vehicle:</span>
               <span className="text-sm font-medium">
-                {matchedDriver?.vehicle.color} {matchedDriver?.vehicle.make} {matchedDriver?.vehicle.model}
+                {matchedDriver?.vehicle.color || 'Silver'} {matchedDriver?.vehicle.make || 'Toyota'} {matchedDriver?.vehicle.model || 'Camry'}
               </span>
             </div>
             <div className="flex items-center">
               <span className="text-sm text-gray-600 mr-2">License:</span>
-              <span className="text-sm font-medium">{matchedDriver?.vehicle.licensePlate}</span>
+              <span className="text-sm font-medium">{matchedDriver?.vehicle.licensePlate || 'ABC123'}</span>
             </div>
           </div>
         </CardContent>
