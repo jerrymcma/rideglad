@@ -989,8 +989,8 @@ export default function RiderApp() {
       <Card>
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
-            <Badge className="bg-brand-green text-white text-lg py-2 px-1">
-              <Navigation size={16} className="mr-1" />
+            <Badge className="bg-brand-green text-white text-lg py-2 px-4">
+              <Navigation size={16} className="mr-2" />
               In Progress
             </Badge>
           </div>
