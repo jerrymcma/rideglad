@@ -688,31 +688,95 @@ export default function RiderApp() {
               </div>
             </div>
 
-            {/* Single Fare Display */}
+            {/* Driver Selection */}
             <div className="space-y-2">
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
-                <Car size={20} />
-                Standard rate
+                <User size={20} />
+                Choose your driver
               </Label>
-              <Card className="bg-green-50 border-green-200">
+              
+              {/* John - Economy */}
+              <Card 
+                className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-1' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
+                onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-1' }))}
+                data-testid="card-driver-john"
+              >
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center">
-                        <Car size={20} className="text-white" />
+                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                        <User size={20} className="text-white" />
                       </div>
                       <div>
-                        <p className="font-medium text-sm">All rides same price</p>
-                        <p className="text-xs text-gray-600">$0.40 per mile + $2.00 base</p>
+                        <p className="font-medium text-sm">John</p>
+                        <p className="text-xs text-gray-600">Economy • Toyota Camry</p>
                         <div className="flex items-center mt-1">
-                          <Clock size={12} className="text-gray-500 mr-1" />
-                          <span className="text-xs text-gray-600">3-7 min pickup</span>
+                          <Star size={12} className="text-yellow-400 mr-1" />
+                          <span className="text-xs text-gray-600">4.8 • 2 min away</span>
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">~$4.00</p>
-                      <p className="text-xs text-gray-500">Estimated</p>
+                      <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-1')}</p>
+                      <p className="text-xs text-gray-500">Economy</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Sarah - Comfort */}
+              <Card 
+                className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-2' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
+                onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-2' }))}
+                data-testid="card-driver-sarah"
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                        <User size={20} className="text-white" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">Sarah</p>
+                        <p className="text-xs text-gray-600">Comfort • Honda Accord</p>
+                        <div className="flex items-center mt-1">
+                          <Star size={12} className="text-yellow-400 mr-1" />
+                          <span className="text-xs text-gray-600">4.9 • 4 min away</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-2')}</p>
+                      <p className="text-xs text-gray-500">Comfort</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Mike - Premium */}
+              <Card 
+                className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-3' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
+                onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-3' }))}
+                data-testid="card-driver-mike"
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                        <User size={20} className="text-white" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">Mike</p>
+                        <p className="text-xs text-gray-600">Premium • BMW 3 Series</p>
+                        <div className="flex items-center mt-1">
+                          <Star size={12} className="text-yellow-400 mr-1" />
+                          <span className="text-xs text-gray-600">5.0 • 3 min away</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-3')}</p>
+                      <p className="text-xs text-gray-500">Premium</p>
                     </div>
                   </div>
                 </CardContent>
