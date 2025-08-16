@@ -1576,10 +1576,7 @@ export default function RiderApp() {
           </div>
         )}
 
-        {/* Debug Info */}
-        <div className="text-center text-xs text-gray-500 bg-gray-100 p-2 rounded">
-          Current Step: {currentStep} | Trip Status: {currentTrip?.status || 'none'}
-        </div>
+
 
         {/* Main Content */}
         {currentStep === 'booking' && renderBookingStep()}
