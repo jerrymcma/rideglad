@@ -536,12 +536,27 @@ export default function RiderApp() {
   };
 
   const getRideTypePrice = (type: string) => {
-    const distance = calculateTripDistance();
+    const tripDistance = calculateTripDistance();
     const baseFare = 2.00;
     const perMileRate = 0.40;
     
-    // All drivers now use the same base pricing
-    const totalPrice = baseFare + (distance * perMileRate);
+    // Add driver distance premium based on how far driver is from pickup
+    let driverDistancePremium = 0;
+    switch (type) {
+      case 'driver-1': // John - 2 min away (closest)
+        driverDistancePremium = 0; // No premium for closest driver
+        break;
+      case 'driver-2': // Sarah - 4 min away 
+        driverDistancePremium = 0.50; // Small premium for moderate distance
+        break;
+      case 'driver-3': // Mike - 3 min away
+        driverDistancePremium = 0.25; // Small premium for medium distance
+        break;
+      default:
+        driverDistancePremium = 0;
+    }
+    
+    const totalPrice = baseFare + (tripDistance * perMileRate) + driverDistancePremium;
     return `$${totalPrice.toFixed(2)}`;
   };
 
@@ -678,7 +693,7 @@ export default function RiderApp() {
             <div className="space-y-2">
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
                 <User size={20} />
-                Choose your driver
+                Choose your ride
               </Label>
               
               {/* John */}
