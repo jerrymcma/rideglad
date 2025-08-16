@@ -1015,131 +1015,110 @@ export default function RiderApp() {
 
       {/* Real-time Map */}
       <Card className="mx-5">
-        <CardContent className="p-0">
-          <div className="w-full h-64 bg-gray-100 rounded-lg border overflow-hidden relative">
-            {/* Realistic Map Background */}
-            <div className="w-full h-full relative bg-gray-50">
-              {/* Street Network */}
+        <CardContent className="p-4">
+          <h3 className="text-lg font-semibold mb-3 text-gray-800">Live Trip Map</h3>
+          <div className="w-full h-64 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
+            {/* Map Background with Streets */}
+            <div className="w-full h-full relative bg-gradient-to-br from-blue-50 to-blue-100">
+              {/* Street Grid */}
               <div className="absolute inset-0">
-                {/* Major Streets (Horizontal) */}
-                <div className="absolute w-full h-1 bg-gray-300 top-[25%]" />
-                <div className="absolute w-full h-1 bg-gray-300 top-[45%]" />
-                <div className="absolute w-full h-1 bg-gray-300 top-[65%]" />
-                <div className="absolute w-full h-1 bg-gray-300 top-[85%]" />
+                {/* Horizontal Streets */}
+                <div className="absolute w-full h-1 bg-gray-400 top-[20%] opacity-60" />
+                <div className="absolute w-full h-1 bg-gray-400 top-[40%] opacity-60" />
+                <div className="absolute w-full h-1 bg-gray-400 top-[60%] opacity-60" />
+                <div className="absolute w-full h-1 bg-gray-400 top-[80%] opacity-60" />
                 
-                {/* Major Streets (Vertical) */}
-                <div className="absolute h-full w-1 bg-gray-300 left-[20%]" />
-                <div className="absolute h-full w-1 bg-gray-300 left-[40%]" />
-                <div className="absolute h-full w-1 bg-gray-300 left-[60%]" />
-                <div className="absolute h-full w-1 bg-gray-300 left-[80%]" />
-                
-                {/* Secondary Streets */}
-                <div className="absolute w-full h-px bg-gray-200 top-[15%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[35%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[55%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[75%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[95%]" />
-                
-                <div className="absolute h-full w-px bg-gray-200 left-[10%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[30%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[50%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[70%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[90%]" />
+                {/* Vertical Streets */}
+                <div className="absolute h-full w-1 bg-gray-400 left-[25%] opacity-60" />
+                <div className="absolute h-full w-1 bg-gray-400 left-[50%] opacity-60" />
+                <div className="absolute h-full w-1 bg-gray-400 left-[75%] opacity-60" />
               </div>
 
-              {/* Driver Position - Moves in real time */}
+              {/* Pickup Location (Green) */}
+              <div className="absolute left-[20%] top-[70%] transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-5 h-5 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
+                <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
+                  Start
+                </div>
+              </div>
+
+              {/* Destination (Red) */}
+              <div className="absolute left-[80%] top-[30%] transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-5 h-5 bg-red-500 rounded-full border-2 border-white shadow-lg"></div>
+                <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
+                  Finish
+                </div>
+              </div>
+
+              {/* Driver Position (Moving) */}
               {(() => {
                 const now = new Date().getTime();
                 const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
                 const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000;
-                const progress = Math.min(elapsed / totalETA, 0.95);
+                const totalETA = (matchedDriver?.estimatedArrival || 5) * 60 * 1000;
+                const progress = Math.min(elapsed / totalETA, 0.9);
                 
-                // Start position (pickup) to end position (destination)
-                const startX = 15;
-                const startY = 75;
-                const endX = 85;
-                const endY = 25;
+                // Movement from pickup to destination
+                const startX = 20;
+                const startY = 70;
+                const endX = 80;
+                const endY = 30;
                 
                 const currentX = startX + (endX - startX) * progress;
                 const currentY = startY + (endY - startY) * progress;
                 
                 return (
-                  <>
-                    {/* Driver Car Icon */}
-                    <div 
-                      className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000"
-                      style={{ left: `${currentX}%`, top: `${currentY}%` }}
-                    >
-                      <div className="relative">
-                        <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                          <Car size={14} className="text-white" />
-                        </div>
-                        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                          {matchedDriver?.driver.firstName || 'Driver'}
-                        </div>
+                  <div 
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ease-in-out"
+                    style={{ left: `${currentX}%`, top: `${currentY}%` }}
+                  >
+                    <div className="relative">
+                      <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+                        <Car size={16} className="text-white" />
+                      </div>
+                      <div className="absolute -top-9 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
+                        {matchedDriver?.driver.firstName || 'John'}
                       </div>
                     </div>
-
-                    {/* Route Line */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                      <defs>
-                        <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="#2563eb" stopOpacity="0.8" />
-                          <stop offset={`${progress * 100}%`} stopColor="#2563eb" stopOpacity="0.4" />
-                          <stop offset={`${progress * 100}%`} stopColor="#9ca3af" stopOpacity="0.4" />
-                          <stop offset="100%" stopColor="#9ca3af" stopOpacity="0.2" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d={`M ${startX}% ${startY}% Q 50% 40% ${endX}% ${endY}%`}
-                        stroke="url(#routeGradient)"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeDasharray="8,4"
-                      />
-                    </svg>
-                  </>
+                  </div>
                 );
               })()}
 
-              {/* Pickup Location */}
-              <div className="absolute left-[15%] top-[75%] transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                  Pickup
-                </div>
-              </div>
+              {/* Route Path */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                <defs>
+                  <linearGradient id="routePath" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.7" />
+                    <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#6b7280" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M 20% 70% Q 40% 45% 80% 30%"
+                  stroke="url(#routePath)"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeDasharray="10,5"
+                  className="animate-pulse"
+                />
+              </svg>
 
-              {/* Destination */}
-              <div className="absolute left-[85%] top-[25%] transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-lg"></div>
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                  Destination
-                </div>
-              </div>
-
-              {/* Street Labels */}
-              <div className="absolute top-[23%] left-2 text-xs text-gray-500 bg-white px-1 rounded">21st Ave</div>
-              <div className="absolute top-[43%] left-2 text-xs text-gray-500 bg-white px-1 rounded">Main St</div>
-              <div className="absolute top-[63%] left-2 text-xs text-gray-500 bg-white px-1 rounded">Oak St</div>
-
-              {/* ETA Display */}
+              {/* Live ETA Badge */}
               {(() => {
                 const now = new Date().getTime();
                 const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
                 const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000;
-                const progress = Math.min(elapsed / totalETA, 0.95);
-                const remainingTime = Math.max(1, Math.round((matchedDriver?.estimatedArrival || 3) * (1 - progress)));
+                const totalETA = (matchedDriver?.estimatedArrival || 5) * 60 * 1000;
+                const progress = Math.min(elapsed / totalETA, 0.9);
+                const remainingTime = Math.max(1, Math.round((matchedDriver?.estimatedArrival || 5) * (1 - progress)));
                 
                 return (
-                  <div className="absolute top-3 left-3">
-                    <div className="bg-white rounded-full px-3 py-1.5 border shadow-sm">
+                  <div className="absolute top-4 left-4">
+                    <div className="bg-white rounded-lg px-3 py-2 border shadow-md">
                       <div className="flex items-center gap-2">
-                        <Clock size={14} className="text-brand-green" />
-                        <span className="text-sm font-medium text-brand-green">
-                          {remainingTime} min away
+                        <Clock size={16} className="text-green-600" />
+                        <span className="text-sm font-bold text-green-600">
+                          {remainingTime} min
                         </span>
                       </div>
                     </div>
@@ -1147,10 +1126,10 @@ export default function RiderApp() {
                 );
               })()}
 
-              {/* Map Controls */}
-              <div className="absolute top-3 right-3 flex flex-col gap-1">
-                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50 text-sm">+</button>
-                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50 text-sm">-</button>
+              {/* Zoom Controls */}
+              <div className="absolute top-4 right-4 flex flex-col gap-2">
+                <button className="w-9 h-9 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold">+</button>
+                <button className="w-9 h-9 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold">-</button>
               </div>
             </div>
           </div>
