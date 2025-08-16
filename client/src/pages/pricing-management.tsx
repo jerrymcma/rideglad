@@ -294,6 +294,10 @@ export default function PricingManagement() {
                       <span className="text-sm text-gray-600">Distance Charge ($0.40 per mile)</span>
                       <span>{formatPrice(calculation.breakdown.distanceCharge)}</span>
                     </div>
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <span className="text-sm text-gray-600">Promotional Code</span>
+                      <span>-</span>
+                    </div>
 
                     {calculation.breakdown.bookingFee && (
                       <div className="flex justify-between items-center py-2 border-b">
