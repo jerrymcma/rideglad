@@ -1375,14 +1375,6 @@ export default function RiderApp() {
                 <div className="absolute w-6 h-3 bg-gray-250 top-[78%] left-[55%] opacity-30" />
               </div>
 
-              {/* Pickup Location (Green) */}
-              <div className="absolute left-[20%] top-[70%] transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-5 h-5 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
-                <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
-                  Start
-                </div>
-              </div>
-
               {/* Destination (Red) */}
               <div className="absolute left-[80%] top-[30%] transform -translate-x-1/2 -translate-y-1/2">
                 <div className="w-5 h-5 bg-red-500 rounded-full border-2 border-white shadow-lg"></div>
