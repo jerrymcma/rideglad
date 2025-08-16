@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award } from "lucide-react";
+import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -1122,6 +1122,45 @@ export default function RiderApp() {
         >
           <Heart size={14} />
           Assistance
+        </Button>
+      </div>
+
+      {/* Cancel Ride Button */}
+      <div className="mt-4">
+        <Button
+          variant="outline"
+          className="w-full flex items-center gap-2 text-red-600 border-red-200 hover:bg-red-50"
+          onClick={async () => {
+            try {
+              await apiRequest('POST', `/api/trips/${currentTrip?.id}/cancel`);
+              setCurrentStep('booking');
+              setCurrentTrip(null);
+              setMatchedDriver(null);
+              toast({
+                title: "Ride cancelled",
+                description: "Your ride has been cancelled successfully."
+              });
+              queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
+            } catch (error: any) {
+              if (isUnauthorizedError(error)) {
+                toast({
+                  title: "Session expired",
+                  description: "Please log in again.",
+                  variant: "destructive"
+                });
+                return;
+              }
+              toast({
+                title: "Error",
+                description: "Failed to cancel ride. Please try again.",
+                variant: "destructive"
+              });
+            }
+          }}
+          data-testid="button-cancel-ride"
+        >
+          <X size={16} />
+          Cancel Ride
         </Button>
       </div>
 
