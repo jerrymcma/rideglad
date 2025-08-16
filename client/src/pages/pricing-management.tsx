@@ -295,10 +295,7 @@ export default function PricingManagement() {
                       <span className="text-gray-600">Distance Charge</span>
                       <span>{formatPrice(calculation.breakdown.distanceCharge)}</span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b">
-                      <span className="text-gray-600">Time Charge</span>
-                      <span>{formatPrice(calculation.breakdown.timeCharge)}</span>
-                    </div>
+
                     {calculation.breakdown.bookingFee && (
                       <div className="flex justify-between items-center py-2 border-b">
                         <span className="text-gray-600">Booking Fee</span>

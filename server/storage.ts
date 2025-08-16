@@ -639,7 +639,7 @@ export class DatabaseStorage implements IStorage {
     }
 
     // Check usage limits
-    if (promo.usageLimit && promo.usedCount >= promo.usageLimit) {
+    if (promo.usageLimit && (promo.usedCount || 0) >= promo.usageLimit) {
       return { valid: false, reason: "Promo code usage limit exceeded" };
     }
 
@@ -710,10 +710,10 @@ export class DatabaseStorage implements IStorage {
     // Base calculations
     const baseFare = parseFloat(plan.baseFare);
     const distanceCharge = params.distance * parseFloat(plan.perMiRate || '0');
-    const timeCharge = params.duration * parseFloat(plan.perMinuteRate);
-    const bookingFee = parseFloat(plan.bookingFee);
+    const timeCharge = 0; // Time charge removed from formula
+    const bookingFee = parseFloat(plan.bookingFee || '0');
     
-    let basePrice = baseFare + distanceCharge + timeCharge + bookingFee;
+    let basePrice = baseFare + distanceCharge + bookingFee;
     
     // Apply minimum fare
     const minimumFare = parseFloat(plan.minimumFare);
@@ -725,7 +725,7 @@ export class DatabaseStorage implements IStorage {
     let finalPrice = basePrice;
 
     // Apply surge pricing based on time and location
-    let surgeMultiplier = plan.surgeMultiplier;
+    let surgeMultiplier = plan.surgeMultiplier || 1.0;
     const hour = params.pickupTime.getHours();
     
     // Peak hours surge (7-9 AM, 5-7 PM)
