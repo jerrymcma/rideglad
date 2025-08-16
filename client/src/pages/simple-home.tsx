@@ -131,6 +131,20 @@ export default function SimpleHome() {
           </div>
         </div>
 
+        {/* Video Section */}
+        <div className="pt-4">
+          <video 
+            className="w-full rounded-lg shadow-md"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/attached_assets/Screen_Recording_20250816_120105_Chrome_1755364405805.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
         {/* Profile Section */}
         <div className="space-y-4 pt-4 border-t">
         </div>
