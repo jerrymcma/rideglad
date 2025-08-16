@@ -17,8 +17,8 @@ import PricingManagement from "@/pages/pricing-management";
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
   const [location] = useLocation();
-  useActivityTimeout(); // Enable 10-minute inactivity timeout
-  useSessionRestore(); // Restore last authenticated route after re-login
+  // useActivityTimeout(); // Temporarily disabled - might be causing navigation reset
+  // useSessionRestore(); // Temporarily disabled - might be causing navigation reset
   
   console.log('Router rendering, location:', location, 'isAuthenticated:', isAuthenticated, 'isLoading:', isLoading);
 
