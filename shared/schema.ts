@@ -69,6 +69,8 @@ export const trips = pgTable("trips", {
   rideType: varchar("ride_type").notNull().default("economy"),
   estimatedPrice: decimal("estimated_price", { precision: 10, scale: 2 }),
   finalPrice: decimal("final_price", { precision: 10, scale: 2 }),
+  driverEarnings: decimal("driver_earnings", { precision: 10, scale: 2 }),
+  platformFee: decimal("platform_fee", { precision: 10, scale: 2 }),
   distance: real("distance"), // in miles
   duration: integer("duration"), // in minutes
   cancelReason: text("cancel_reason"),

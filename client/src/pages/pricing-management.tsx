@@ -324,6 +324,12 @@ export default function PricingManagement() {
                       <span>Total Price</span>
                       <span className="text-blue-600">{formatPrice(calculation.estimatedPrice)}</span>
                     </div>
+                    
+                    {/* Driver Earnings */}
+                    <div className="flex justify-between items-center py-2 mt-2 bg-green-50 rounded-lg px-3">
+                      <span className="text-sm text-green-700 font-medium">Driver Earnings (90%)</span>
+                      <span className="text-green-600 font-semibold">{formatPrice(calculation.estimatedPrice * 0.9)}</span>
+                    </div>
                   </div>
 
                   {/* Adjustments & Trip Info */}

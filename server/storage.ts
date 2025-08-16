@@ -103,7 +103,6 @@ export interface IStorage {
     breakdown: {
       baseFare: number;
       distanceCharge: number;
-      timeCharge: number;
       surgeFee?: number;
       bookingFee?: number;
       discount?: number;
@@ -205,6 +204,16 @@ export class DatabaseStorage implements IStorage {
       updateData.startedAt = new Date();
     } else if (status === 'completed') {
       updateData.completedAt = new Date();
+      
+      // Calculate driver earnings (90% of final price) and platform fee (10%)
+      if (additionalData?.finalPrice) {
+        const finalPrice = parseFloat(additionalData.finalPrice.toString());
+        const driverEarnings = Math.round(finalPrice * 0.90 * 100) / 100; // 90% to driver
+        const platformFee = Math.round(finalPrice * 0.10 * 100) / 100; // 10% platform fee
+        
+        updateData.driverEarnings = driverEarnings.toString();
+        updateData.platformFee = platformFee.toString();
+      }
     }
 
     const [trip] = await db
