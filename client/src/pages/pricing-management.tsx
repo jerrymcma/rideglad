@@ -28,7 +28,7 @@ interface PricingPlan {
   description: string;
   vehicleType: string;
   baseFare: string;
-  perKmRate: string;
+  perMiRate: string;
   perMinuteRate: string;
   minimumFare: string;
   cancellationFee: string;
@@ -225,8 +225,8 @@ export default function PricingManagement() {
                       <span className="font-medium">{formatPrice(plan.baseFare)}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Per KM:</span>
-                      <span className="font-medium">{formatPrice(plan.perKmRate)}</span>
+                      <span className="text-gray-600">Per Mile:</span>
+                      <span className="font-medium">{formatPrice(plan.perMiRate)}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600">Per Min:</span>

@@ -69,7 +69,7 @@ export const trips = pgTable("trips", {
   rideType: varchar("ride_type").notNull().default("economy"),
   estimatedPrice: decimal("estimated_price", { precision: 10, scale: 2 }),
   finalPrice: decimal("final_price", { precision: 10, scale: 2 }),
-  distance: real("distance"), // in kilometers
+  distance: real("distance"), // in miles
   duration: integer("duration"), // in minutes
   cancelReason: text("cancel_reason"),
   requestedAt: timestamp("requested_at").defaultNow(),
@@ -106,7 +106,7 @@ export const pricingPlans = pgTable("pricing_plans", {
   description: text("description"),
   vehicleType: varchar("vehicle_type").notNull(), // 'economy', 'comfort', 'premium', 'luxury'
   baseFare: decimal("base_fare", { precision: 10, scale: 2 }).notNull(),
-  perKmRate: decimal("per_km_rate", { precision: 10, scale: 2 }).notNull(),
+  perMiRate: decimal("per_mi_rate", { precision: 10, scale: 2 }).notNull(),
   perMinuteRate: decimal("per_minute_rate", { precision: 10, scale: 2 }).notNull(),
   minimumFare: decimal("minimum_fare", { precision: 10, scale: 2 }).notNull(),
   cancellationFee: decimal("cancellation_fee", { precision: 10, scale: 2 }).default('0'),

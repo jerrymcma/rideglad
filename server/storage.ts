@@ -410,7 +410,7 @@ export class DatabaseStorage implements IStorage {
         description: 'Affordable rides for everyday travel',
         vehicleType: 'economy',
         baseFare: '2.50',
-        perKmRate: '1.25',
+        perMiRate: '2.01',
         perMinuteRate: '0.25',
         minimumFare: '5.00',
         cancellationFee: '3.00',
@@ -427,7 +427,7 @@ export class DatabaseStorage implements IStorage {
         description: 'More spacious vehicles with extra comfort',
         vehicleType: 'comfort',
         baseFare: '3.50',
-        perKmRate: '1.75',
+        perMiRate: '2.82',
         perMinuteRate: '0.35',
         minimumFare: '7.00',
         cancellationFee: '4.00',
@@ -444,7 +444,7 @@ export class DatabaseStorage implements IStorage {
         description: 'Luxury vehicles for special occasions',
         vehicleType: 'premium',
         baseFare: '5.00',
-        perKmRate: '2.50',
+        perMiRate: '4.02',
         perMinuteRate: '0.50',
         minimumFare: '12.00',
         cancellationFee: '6.00',
@@ -675,7 +675,7 @@ export class DatabaseStorage implements IStorage {
 
     // Base calculations
     const baseFare = parseFloat(plan.baseFare);
-    const distanceCharge = params.distance * parseFloat(plan.perKmRate);
+    const distanceCharge = params.distance * parseFloat(plan.perMiRate || '0');
     const timeCharge = params.duration * parseFloat(plan.perMinuteRate);
     const bookingFee = parseFloat(plan.bookingFee);
     

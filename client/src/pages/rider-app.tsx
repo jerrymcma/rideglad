@@ -1009,7 +1009,7 @@ export default function RiderApp() {
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Distance remaining:</span>
-              <span className="text-sm font-medium">3.2 km</span>
+              <span className="text-sm font-medium">2.0 mi</span>
             </div>
           </div>
         </CardContent>
@@ -1049,7 +1049,7 @@ export default function RiderApp() {
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Distance:</span>
-              <span className="text-sm">{currentTrip.distance || '3.2'} km</span>
+              <span className="text-sm">{currentTrip.distance ? (parseFloat(currentTrip.distance.toString()) * 0.621371).toFixed(1) : '2.0'} mi</span>
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Duration:</span>
