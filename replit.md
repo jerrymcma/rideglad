@@ -7,6 +7,8 @@ rideShare is a premium full-stack ride-sharing application built with React, Exp
 - **Pricing Management Dashboard**: Visual interface for managing pricing plans, calculating trip costs, and validating promotional codes
 - **Database Schema Expansion**: Added pricing_plans, pricing_rules, promo_codes, and user_promo_usage tables for full pricing control
 - **Miles Conversion**: Updated all distance units from kilometers to miles throughout the application, including pricing calculations, UI displays, and database schema
+- **Simplified Pricing Formula**: Removed time charges completely, now only calculates Base Fare ($2.00) + Distance ($0.40 per mile) for affordable, predictable pricing
+- **Enhanced Price Transparency**: Updated pricing calculator to show "$0.40 per mile" rate directly in the distance charge label
 
 # User Preferences
 
