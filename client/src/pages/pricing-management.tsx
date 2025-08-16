@@ -181,15 +181,16 @@ export default function PricingManagement() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-7xl mx-auto space-y-8">
+      <div className="max-w-7xl mx-auto space-y-6">
         {/* Back Button */}
         <Button 
           variant="outline" 
+          size="sm"
           onClick={() => setLocation('/')}
-          className="flex items-center gap-2"
+          className="flex items-center gap-1 text-sm"
           data-testid="button-back-home"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-3 h-3" />
           Back
         </Button>
 
