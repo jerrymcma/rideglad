@@ -16,8 +16,10 @@ import {
   Tag,
   Zap,
   TrendingUp,
-  Calendar
+  Calendar,
+  ArrowLeft
 } from "lucide-react";
+import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -63,6 +65,7 @@ interface PriceCalculation {
 export default function PricingManagement() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [, setLocation] = useLocation();
   
   // Pricing calculator states
   const [distance, setDistance] = useState("5");
@@ -179,7 +182,16 @@ export default function PricingManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-7xl mx-auto space-y-8">
-
+        {/* Back Button */}
+        <Button 
+          variant="outline" 
+          onClick={() => setLocation('/')}
+          className="flex items-center gap-2"
+          data-testid="button-back-home"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Home
+        </Button>
 
         {/* Pricing Calculator */}
         <Card className="max-w-4xl mx-auto">
