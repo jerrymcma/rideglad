@@ -22,43 +22,47 @@ export default function SimpleHome() {
         <div className="space-y-3">
           {/* Top Row */}
           <div className="grid grid-cols-2 gap-3">
-            <Card 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green h-full"
-              onClick={() => {
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green rounded-lg h-full bg-white"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 console.log('Book a ride clicked, navigating to /ride');
                 setLocation('/ride');
               }}
               data-testid="card-book-ride"
             >
-              <CardHeader className="text-center pb-0 pt-3">
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
                   <MapPin size={32} className="text-brand-green" />
                 </div>
-                <CardTitle className="text-lg text-brand-green">Book a ride</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center py-1 pb-3">
+                <h3 className="text-lg text-brand-green font-semibold">Book a ride</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
                 <p className="text-xs text-gray-700">Find a driver</p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card 
-              className="cursor-pointer hover:shadow-md transition-shadow h-full"
-              onClick={() => {
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border border-gray-200 rounded-lg h-full bg-white"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 console.log('Drive & Earn clicked, navigating to /driver');
                 setLocation('/driver');
               }}
               data-testid="card-driver-dashboard"
             >
-              <CardHeader className="text-center pb-0 pt-3">
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
                   <Car size={32} className="text-blue-600" />
                 </div>
-                <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center py-1 pb-3">
+                <h3 className="text-lg text-blue-600 font-semibold">Drive & Earn</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
                 <p className="text-xs text-gray-700">Start earning</p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
 
           {/* Bottom Row */}
