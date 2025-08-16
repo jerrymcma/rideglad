@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign } from "lucide-react";
@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 export default function SimpleHome() {
   const { user } = useAuth();
+  const [, setLocation] = useLocation();
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
@@ -21,33 +22,37 @@ export default function SimpleHome() {
         <div className="space-y-3">
           {/* Top Row */}
           <div className="grid grid-cols-2 gap-3">
-            <Link href="/ride">
-              <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green h-full">
-                <CardHeader className="text-center pb-0 pt-3">
-                  <div className="flex justify-center mb-1">
-                    <MapPin size={32} className="text-brand-green" />
-                  </div>
-                  <CardTitle className="text-lg text-brand-green">Book a ride</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center py-1 pb-3">
-                  <p className="text-xs text-gray-700">Find a driver</p>
-                </CardContent>
-              </Card>
-            </Link>
+            <Card 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green h-full"
+              onClick={() => setLocation('/ride')}
+              data-testid="card-book-ride"
+            >
+              <CardHeader className="text-center pb-0 pt-3">
+                <div className="flex justify-center mb-1">
+                  <MapPin size={32} className="text-brand-green" />
+                </div>
+                <CardTitle className="text-lg text-brand-green">Book a ride</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center py-1 pb-3">
+                <p className="text-xs text-gray-700">Find a driver</p>
+              </CardContent>
+            </Card>
 
-            <Link href="/driver">
-              <Card className="cursor-pointer hover:shadow-md transition-shadow h-full">
-                <CardHeader className="text-center pb-0 pt-3">
-                  <div className="flex justify-center mb-1">
-                    <Car size={32} className="text-blue-600" />
-                  </div>
-                  <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center py-1 pb-3">
-                  <p className="text-xs text-gray-700">Start earning</p>
-                </CardContent>
-              </Card>
-            </Link>
+            <Card 
+              className="cursor-pointer hover:shadow-md transition-shadow h-full"
+              onClick={() => setLocation('/driver')}
+              data-testid="card-driver-dashboard"
+            >
+              <CardHeader className="text-center pb-0 pt-3">
+                <div className="flex justify-center mb-1">
+                  <Car size={32} className="text-blue-600" />
+                </div>
+                <CardTitle className="text-lg text-blue-600">Drive & Earn</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center py-1 pb-3">
+                <p className="text-xs text-gray-700">Start earning</p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Bottom Row */}
