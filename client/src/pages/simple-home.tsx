@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
-import carVideo from "@assets/Screen_Recording_20250816_120105_Chrome_1755364515737.mp4";
+import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
