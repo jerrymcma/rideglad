@@ -327,7 +327,7 @@ export default function PricingManagement() {
                   </div>
 
                   {/* Adjustments & Trip Info */}
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {calculation.adjustments && calculation.adjustments.length > 0 && (
                       <div>
                         <h4 className="font-medium text-gray-700 mb-2">Pricing Adjustments:</h4>
@@ -345,8 +345,6 @@ export default function PricingManagement() {
                         </div>
                       </div>
                     )}
-
-
                   </div>
                 </div>
               </div>
