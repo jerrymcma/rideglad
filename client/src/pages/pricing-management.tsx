@@ -332,11 +332,6 @@ export default function PricingManagement() {
 
                   {/* Adjustments & Trip Info */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Clock className="w-4 h-4" />
-                      <span>Estimated Duration: {calculation.estimatedDuration} minutes</span>
-                    </div>
-                    
                     {calculation.adjustments && calculation.adjustments.length > 0 && (
                       <div>
                         <h4 className="font-medium text-gray-700 mb-2">Pricing Adjustments:</h4>
@@ -354,6 +349,11 @@ export default function PricingManagement() {
                         </div>
                       </div>
                     )}
+                    
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Clock className="w-4 h-4" />
+                      <span>Estimated Duration: {calculation.estimatedDuration} minutes</span>
+                    </div>
 
 
                   </div>
