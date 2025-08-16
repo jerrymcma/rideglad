@@ -373,17 +373,7 @@ export default function PricingManagement() {
         </Card>
 
         {/* Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <TrendingUp className="w-12 h-12 text-orange-500 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Dynamic Surge Pricing</h3>
-              <p className="text-sm text-gray-600">
-                Automatic surge pricing during peak hours and high-demand periods
-              </p>
-            </CardContent>
-          </Card>
-
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           <Card className="text-center">
             <CardContent className="pt-6">
               <Tag className="w-12 h-12 text-green-500 mx-auto mb-4" />
@@ -393,45 +383,10 @@ export default function PricingManagement() {
               </p>
             </CardContent>
           </Card>
-
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <Star className="w-12 h-12 text-purple-500 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Tier-Based Pricing</h3>
-              <p className="text-sm text-gray-600">
-                Multiple pricing tiers with different features and rates
-              </p>
-            </CardContent>
-          </Card>
         </div>
 
-        {/* Pricing Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Clock className="w-5 h-5" />
-                Peak Hours
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Morning Peak:</span>
-                  <span className="font-medium">7:00 AM - 9:00 AM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Evening Peak:</span>
-                  <span className="font-medium">5:00 PM - 7:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Surge Multiplier:</span>
-                  <span className="font-medium text-orange-600">1.5x - 2.0x</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
+        {/* Service Information */}
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
