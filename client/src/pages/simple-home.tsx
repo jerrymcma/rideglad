@@ -1,4 +1,5 @@
 import { Link, useLocation } from "wouter";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign } from "lucide-react";
@@ -9,6 +10,11 @@ export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
   const { user } = useAuth();
   const [, setLocation] = useLocation();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
