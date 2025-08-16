@@ -1004,11 +1004,11 @@ export default function RiderApp() {
               <span className="text-sm text-gray-600">{bookingForm.destinationAddress}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-gray-600 ml-4">Estimated arrival:</span>
+              <span className="text-sm text-gray-600 ml-5">Estimated arrival:</span>
               <span className="text-sm font-medium">15 minutes</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-gray-600 ml-4">Distance remaining:</span>
+              <span className="text-sm text-gray-600 ml-5">Distance remaining:</span>
               <span className="text-sm font-medium">2.0 mi</span>
             </div>
           </div>
