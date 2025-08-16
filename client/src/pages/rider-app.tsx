@@ -1161,7 +1161,7 @@ export default function RiderApp() {
                 <div className="flex items-center mt-0.5">
                   <div className="flex items-center gap-1 mr-4">
                     <Star size={14} className="text-yellow-500 fill-current" />
-                    <span className="text-xs whitespace-nowrap">{matchedDriver?.rating || '4.8'} ({matchedDriver?.driver.totalRatings || '120'} rides)</span>
+                    <span className="text-sm whitespace-nowrap">{matchedDriver?.rating || '4.8'} ({matchedDriver?.driver.totalRatings || '120'} rides)</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Award size={16} className="text-blue-500 fill-current" />
