@@ -287,11 +287,11 @@ export default function PricingManagement() {
                   {/* Price Details */}
                   <div className="space-y-3">
                     <div className="flex justify-between items-center py-2 border-b">
-                      <span className="text-gray-600">Base Fare</span>
+                      <span className="text-sm text-gray-600">Base Fare</span>
                       <span>{formatPrice(calculation.breakdown.baseFare)}</span>
                     </div>
                     <div className="flex justify-between items-center py-2 border-b">
-                      <span className="text-gray-600">Distance Charge ($0.40 per mile)</span>
+                      <span className="text-sm text-gray-600">Distance Charge ($0.40 per mile)</span>
                       <span>{formatPrice(calculation.breakdown.distanceCharge)}</span>
                     </div>
 
