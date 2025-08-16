@@ -986,7 +986,7 @@ export default function RiderApp() {
         <p className="text-gray-600">Enjoy your ride!</p>
       </div>
 
-      <Card>
+      <Card className="mx-5">
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
             <Badge className="bg-brand-green text-white text-lg py-2 px-4">
