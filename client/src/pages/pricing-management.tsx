@@ -190,7 +190,7 @@ export default function PricingManagement() {
           data-testid="button-back-home"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Home
+          Back
         </Button>
 
         {/* Pricing Calculator */}
