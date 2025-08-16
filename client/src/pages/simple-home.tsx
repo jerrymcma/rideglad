@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
+import carVideo from "@assets/Screen_Recording_20250816_120105_Chrome_1755364515737.mp4";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -140,7 +141,7 @@ export default function SimpleHome() {
             muted
             playsInline
           >
-            <source src="/attached_assets/Screen_Recording_20250816_120105_Chrome_1755364515737.mp4" type="video/mp4" />
+            <source src={carVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
