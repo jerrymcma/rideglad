@@ -50,7 +50,7 @@ export const vehicles = pgTable("vehicles", {
   year: integer("year").notNull(),
   color: varchar("color").notNull(),
   licensePlate: varchar("license_plate").notNull(),
-  vehicleType: varchar("vehicle_type").notNull().default("economy"), // 'economy', 'comfort', 'premium'
+  vehicleType: varchar("vehicle_type").notNull().default("standard"), // standard vehicle type
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -66,7 +66,7 @@ export const trips = pgTable("trips", {
   destinationLat: real("destination_lat").notNull(),
   destinationLng: real("destination_lng").notNull(),
   status: varchar("status").notNull().default("requested"), // 'requested', 'matched', 'pickup', 'in_progress', 'completed', 'cancelled'
-  rideType: varchar("ride_type").notNull().default("economy"),
+  rideType: varchar("ride_type").notNull().default("driver-1"),
   estimatedPrice: decimal("estimated_price", { precision: 10, scale: 2 }),
   finalPrice: decimal("final_price", { precision: 10, scale: 2 }),
   driverEarnings: decimal("driver_earnings", { precision: 10, scale: 2 }),
@@ -106,7 +106,7 @@ export const pricingPlans = pgTable("pricing_plans", {
   name: varchar("name").notNull(),
   displayName: varchar("display_name").notNull(),
   description: text("description"),
-  vehicleType: varchar("vehicle_type").notNull(), // 'economy', 'comfort', 'premium', 'luxury'
+  vehicleType: varchar("vehicle_type").notNull(), // vehicle type for the plan
   baseFare: decimal("base_fare", { precision: 10, scale: 2 }).notNull(),
   perMiRate: decimal("per_mi_rate", { precision: 10, scale: 2 }).notNull(),
   perMinuteRate: decimal("per_minute_rate", { precision: 10, scale: 2 }).notNull(),

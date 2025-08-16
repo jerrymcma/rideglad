@@ -540,22 +540,8 @@ export default function RiderApp() {
     const baseFare = 2.00;
     const perMileRate = 0.40;
     
-    let multiplier = 1.0;
-    switch (type) {
-      case 'driver-1': // Economy
-        multiplier = 1.0;
-        break;
-      case 'driver-2': // Comfort
-        multiplier = 1.4;
-        break;
-      case 'driver-3': // Premium  
-        multiplier = 2.0;
-        break;
-      default:
-        multiplier = 1.0;
-    }
-    
-    const totalPrice = (baseFare + (distance * perMileRate)) * multiplier;
+    // All drivers now use the same base pricing
+    const totalPrice = baseFare + (distance * perMileRate);
     return `$${totalPrice.toFixed(2)}`;
   };
 
@@ -695,7 +681,7 @@ export default function RiderApp() {
                 Choose your driver
               </Label>
               
-              {/* John - Economy */}
+              {/* John */}
               <Card 
                 className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-1' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
                 onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-1' }))}
@@ -709,7 +695,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">John</p>
-                        <p className="text-xs text-gray-600">Economy • Toyota Camry</p>
+                        <p className="text-xs text-gray-600">Toyota Camry</p>
                         <div className="flex items-center mt-1">
                           <Star size={12} className="text-yellow-400 mr-1" />
                           <span className="text-xs text-gray-600">4.8 • 2 min away</span>
@@ -718,13 +704,12 @@ export default function RiderApp() {
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-1')}</p>
-                      <p className="text-xs text-gray-500">Economy</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Sarah - Comfort */}
+              {/* Sarah */}
               <Card 
                 className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-2' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
                 onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-2' }))}
@@ -738,7 +723,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">Sarah</p>
-                        <p className="text-xs text-gray-600">Comfort • Honda Accord</p>
+                        <p className="text-xs text-gray-600">Honda Accord</p>
                         <div className="flex items-center mt-1">
                           <Star size={12} className="text-yellow-400 mr-1" />
                           <span className="text-xs text-gray-600">4.9 • 4 min away</span>
@@ -747,13 +732,12 @@ export default function RiderApp() {
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-2')}</p>
-                      <p className="text-xs text-gray-500">Comfort</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Mike - Premium */}
+              {/* Mike */}
               <Card 
                 className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-3' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
                 onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-3' }))}
@@ -767,7 +751,7 @@ export default function RiderApp() {
                       </div>
                       <div>
                         <p className="font-medium text-sm">Mike</p>
-                        <p className="text-xs text-gray-600">Premium • BMW 3 Series</p>
+                        <p className="text-xs text-gray-600">BMW 3 Series</p>
                         <div className="flex items-center mt-1">
                           <Star size={12} className="text-yellow-400 mr-1" />
                           <span className="text-xs text-gray-600">5.0 • 3 min away</span>
@@ -776,7 +760,6 @@ export default function RiderApp() {
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-3')}</p>
-                      <p className="text-xs text-gray-500">Premium</p>
                     </div>
                   </div>
                 </CardContent>

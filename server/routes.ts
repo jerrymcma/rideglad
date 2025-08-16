@@ -277,7 +277,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let activeTrip = await storage.getActiveTrip(userId);
       
       // Check if trip has timed out (older than 10 minutes)
-      if (activeTrip) {
+      if (activeTrip && activeTrip.requestedAt) {
         const now = new Date();
         const tripAge = now.getTime() - new Date(activeTrip.requestedAt).getTime();
         const timeoutDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
@@ -288,7 +288,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             cancelReason: 'timeout',
             completedAt: now
           });
-          activeTrip = null; // Return null since trip was cancelled
+          activeTrip = undefined; // Return undefined since trip was cancelled
         }
       }
       

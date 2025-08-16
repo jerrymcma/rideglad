@@ -27,31 +27,31 @@ interface RideType {
 
 const rideTypes: RideType[] = [
   {
-    id: 'economy',
-    name: 'rideShare Economy',
-    description: 'Affordable rides for everyday trips',
+    id: 'driver-1',
+    name: 'John',
+    description: 'Toyota Camry',
     icon: '🚗',
-    price: '12.50',
-    eta: '3',
+    price: '4.00',
+    eta: '2',
     multiplier: 1
   },
   {
-    id: 'comfort',
-    name: 'rideShare Comfort',
-    description: 'More space and newer cars',
+    id: 'driver-2',
+    name: 'Sarah',
+    description: 'Honda Accord',
     icon: '🚙',
-    price: '16.80',
-    eta: '5',
-    multiplier: 1.35
+    price: '4.00',
+    eta: '4',
+    multiplier: 1
   },
   {
-    id: 'premium',
-    name: 'rideShare Premium',
-    description: 'Luxury vehicles with top drivers',
-    icon: '💎',
-    price: '24.90',
-    eta: '8',
-    multiplier: 2
+    id: 'driver-3',
+    name: 'Mike',
+    description: 'BMW 3 Series',
+    icon: '🚗',
+    price: '4.00',
+    eta: '3',
+    multiplier: 1
   }
 ];
 

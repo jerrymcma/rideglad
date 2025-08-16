@@ -708,9 +708,9 @@ export class DatabaseStorage implements IStorage {
     promoCode?: string;
     userId: string;
   }) {
-    // Get the pricing plan for the ride type
+    // Get the pricing plan - all drivers use same pricing now
     const plans = await this.getActivePricingPlans();
-    const plan = plans.find(p => p.name === params.rideType) || plans[0]; // fallback to first plan
+    const plan = plans[0]; // use first available plan for all drivers
 
     if (!plan) {
       throw new Error("No pricing plan found");
