@@ -798,7 +798,6 @@ export class DatabaseStorage implements IStorage {
       breakdown: {
         baseFare,
         distanceCharge: Math.round(distanceCharge * 100) / 100,
-        timeCharge: Math.round(timeCharge * 100) / 100,
         surgeFee: surgeMultiplier > 1 ? Math.round((basePrice * (surgeMultiplier - 1)) * 100) / 100 : undefined,
         bookingFee: bookingFee > 0 ? bookingFee : undefined,
         discount: promoDiscount > 0 ? Math.round(promoDiscount * 100) / 100 : undefined,

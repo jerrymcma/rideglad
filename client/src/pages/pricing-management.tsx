@@ -44,7 +44,6 @@ interface PricingPlan {
 interface PriceBreakdown {
   baseFare: number;
   distanceCharge: number;
-  timeCharge: number;
   surgeFee?: number;
   bookingFee?: number;
   discount?: number;
