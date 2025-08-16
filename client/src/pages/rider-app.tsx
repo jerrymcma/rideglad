@@ -38,6 +38,7 @@ export default function RiderApp() {
   const [ratingValue, setRatingValue] = useState(5);
   const [ratingComment, setRatingComment] = useState('');
   const [showDriverOptions, setShowDriverOptions] = useState(false);
+  const [showLiveTripMap, setShowLiveTripMap] = useState(false);
   
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
@@ -1256,7 +1257,10 @@ export default function RiderApp() {
       <Card className="mx-5">
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
-            <Badge className="bg-brand-green text-white text-lg py-2 px-4">
+            <Badge 
+              className="bg-brand-green text-white text-lg py-2 px-4 cursor-pointer hover:bg-green-700 transition-colors"
+              onClick={() => setShowLiveTripMap(true)}
+            >
               <Navigation size={16} className="mr-2" />
               In Progress
             </Badge>
@@ -1328,8 +1332,9 @@ export default function RiderApp() {
         </CardContent>
       </Card>
 
-      {/* Real-time Map */}
-      <Card className="mx-5 -mt-2">
+      {/* Real-time Map - Only show after clicking In Progress */}
+      {showLiveTripMap && (
+        <Card className="mx-5 -mt-2">
         <CardContent className="p-4">
           <h3 className="text-base font-semibold mb-3 text-gray-800 text-center">Live Trip Map</h3>
           <div className="w-full h-44 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
@@ -1467,7 +1472,8 @@ export default function RiderApp() {
             </div>
           </div>
         </CardContent>
-      </Card>
+        </Card>
+      )}
     </div>
   );
 
