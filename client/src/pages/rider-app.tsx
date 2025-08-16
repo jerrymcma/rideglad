@@ -624,29 +624,39 @@ export default function RiderApp() {
             <div className="relative">
               <div className="w-full h-48 bg-gray-100 rounded-lg border overflow-hidden">
                 {/* Map Background */}
-                <div className="w-full h-full bg-gradient-to-br from-emerald-100 via-blue-50 to-green-100 relative">
-                  {/* Realistic Map Elements */}
+                <div className="w-full h-full bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 relative">
+                  {/* Realistic City Map Elements */}
                   <div className="absolute inset-0">
-                    {/* Major Streets */}
-                    <div className="absolute top-1/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
-                    <div className="absolute top-2/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
-                    <div className="absolute top-3/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
-                    <div className="absolute top-4/5 left-0 w-full h-1 bg-gray-400 opacity-60"></div>
+                    {/* Main Highway - Horizontal */}
+                    <div className="absolute top-[40%] left-0 w-full h-2 bg-gray-500 opacity-70"></div>
+                    <div className="absolute top-[40%] left-0 w-full h-0.5 bg-yellow-300 opacity-80"></div>
                     
-                    <div className="absolute left-1/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
-                    <div className="absolute left-2/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
-                    <div className="absolute left-3/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
-                    <div className="absolute left-4/5 top-0 w-1 h-full bg-gray-400 opacity-60"></div>
+                    {/* Main Avenue - Vertical */}
+                    <div className="absolute left-[50%] top-0 w-2 h-full bg-gray-500 opacity-70"></div>
+                    <div className="absolute left-[50%] top-0 w-0.5 h-full bg-yellow-300 opacity-80"></div>
                     
-                    {/* Buildings */}
-                    <div className="absolute top-[15%] left-[10%] w-12 h-8 bg-gray-300 opacity-40 rounded-sm"></div>
-                    <div className="absolute top-[45%] left-[25%] w-16 h-12 bg-gray-300 opacity-40 rounded-sm"></div>
-                    <div className="absolute top-[25%] right-[20%] w-14 h-10 bg-gray-300 opacity-40 rounded-sm"></div>
-                    <div className="absolute top-[65%] right-[10%] w-10 h-6 bg-gray-300 opacity-40 rounded-sm"></div>
+                    {/* Secondary Streets */}
+                    <div className="absolute top-[20%] left-0 w-full h-1 bg-gray-400 opacity-50"></div>
+                    <div className="absolute top-[60%] left-0 w-full h-1 bg-gray-400 opacity-50"></div>
+                    <div className="absolute top-[80%] left-0 w-full h-1 bg-gray-400 opacity-50"></div>
                     
-                    {/* Parks/Green Areas */}
-                    <div className="absolute top-[55%] left-[45%] w-20 h-8 bg-green-200 opacity-50 rounded-lg"></div>
-                    <div className="absolute top-[10%] right-[35%] w-8 h-8 bg-green-200 opacity-50 rounded-full"></div>
+                    <div className="absolute left-[25%] top-0 w-1 h-full bg-gray-400 opacity-50"></div>
+                    <div className="absolute left-[75%] top-0 w-1 h-full bg-gray-400 opacity-50"></div>
+                    
+                    {/* City Blocks - Buildings */}
+                    <div className="absolute top-[5%] left-[5%] w-16 h-12 bg-blue-200 opacity-60 rounded-sm"></div>
+                    <div className="absolute top-[5%] left-[55%] w-20 h-16 bg-blue-200 opacity-60 rounded-sm"></div>
+                    <div className="absolute top-[45%] left-[5%] w-18 h-10 bg-blue-200 opacity-60 rounded-sm"></div>
+                    <div className="absolute top-[45%] left-[55%] w-16 h-14 bg-blue-200 opacity-60 rounded-sm"></div>
+                    <div className="absolute top-[65%] left-[25%] w-14 h-8 bg-blue-200 opacity-60 rounded-sm"></div>
+                    <div className="absolute top-[65%] left-[60%] w-18 h-12 bg-blue-200 opacity-60 rounded-sm"></div>
+                    
+                    {/* Parks and Green Spaces */}
+                    <div className="absolute top-[25%] left-[55%] w-16 h-12 bg-green-300 opacity-60 rounded-lg"></div>
+                    <div className="absolute top-[5%] right-[5%] w-12 h-12 bg-green-300 opacity-60 rounded-full"></div>
+                    
+                    {/* River/Water Feature */}
+                    <div className="absolute bottom-[5%] left-0 w-full h-6 bg-blue-300 opacity-50 rounded-lg"></div>
                   </div>
                   
                   {/* Your Location */}
@@ -656,7 +666,8 @@ export default function RiderApp() {
                   </div>
                   
                   {/* Driver Locations */}
-                  <div className="absolute top-1/3 left-[14%] transform -translate-x-1/2 -translate-y-1/2">
+                  {/* John - Closest (2 min away) */}
+                  <div className="absolute top-1/2 left-[35%] transform -translate-x-1/2 -translate-y-1/2">
                     <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-1')}</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
@@ -664,20 +675,22 @@ export default function RiderApp() {
                     <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
                   </div>
                   
-                  <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-2')}</span>
-                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                      <Car size={16} className="text-blue-600" />
-                    </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
-                  </div>
-                  
-                  <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
+                  {/* Mike - Medium distance (3 min away) */}
+                  <div className="absolute top-[25%] right-[25%] transform translate-x-1/2 -translate-y-1/2">
                     <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-3')}</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
                     <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
+                  </div>
+                  
+                  {/* Sarah - Farthest (4 min away) */}
+                  <div className="absolute top-[85%] left-[10%] transform -translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-2')}</span>
+                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
+                      <Car size={16} className="text-blue-600" />
+                    </div>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
                   </div>
                 </div>
                 
