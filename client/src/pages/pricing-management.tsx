@@ -345,11 +345,6 @@ export default function PricingManagement() {
                         </div>
                       </div>
                     )}
-                    
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Clock className="w-4 h-4" />
-                      <span>Estimated Duration: {calculation.estimatedDuration} minutes</span>
-                    </div>
 
 
                   </div>
