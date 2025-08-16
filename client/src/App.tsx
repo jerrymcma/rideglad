@@ -21,6 +21,11 @@ function Router() {
   useActivityTimeout(); // Enable 10-minute inactivity timeout
   useSessionRestore(); // Restore last authenticated route after re-login
   
+  // Scroll to top on route changes - moved to always run
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
   console.log('Router rendering, location:', location, 'isAuthenticated:', isAuthenticated, 'isLoading:', isLoading);
 
   if (isLoading) {
@@ -34,11 +39,6 @@ function Router() {
   if (!isAuthenticated) {
     return <Landing />;
   }
-
-  // Scroll to top on route changes
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
 
   // Explicit routing logic
   switch (location) {
