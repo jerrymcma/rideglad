@@ -13,11 +13,26 @@ export default function SimpleHome() {
 
   // Scroll to top when component mounts
   useEffect(() => {
-    // Force scroll to top immediately and after a brief delay
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 100);
+    // Multiple approaches to ensure page opens at top
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    // Immediate scroll
+    scrollToTop();
+
+    // Additional scrolls with increasing delays to handle various loading scenarios
+    const timeouts = [0, 50, 100, 200, 500];
+    const clearTimeouts = timeouts.map(delay => 
+      setTimeout(scrollToTop, delay)
+    );
+
+    // Cleanup function
+    return () => {
+      clearTimeouts.forEach(timeout => clearTimeout(timeout));
+    };
   }, []);
 
   return (
