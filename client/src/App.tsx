@@ -18,6 +18,8 @@ function Router() {
   const { isAuthenticated, isLoading } = useAuth();
   useActivityTimeout(); // Enable 10-minute inactivity timeout
   useSessionRestore(); // Restore last authenticated route after re-login
+  
+  console.log('Router rendering, isAuthenticated:', isAuthenticated, 'isLoading:', isLoading);
 
   if (isLoading) {
     return (

@@ -29,6 +29,7 @@ interface MatchedDriver {
 }
 
 export default function RiderApp() {
+  console.log('RiderApp component is rendering');
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
