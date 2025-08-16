@@ -126,7 +126,7 @@ export default function SimpleHome() {
                 <CardTitle className="text-lg text-gray-600">Settings</CardTitle>
               </CardHeader>
               <CardContent className="text-center py-1 pb-3">
-                <p className="text-xs text-gray-700">Manage account</p>
+                <p className="text-xs text-gray-700">Account</p>
               </CardContent>
             </Card>
           </div>
