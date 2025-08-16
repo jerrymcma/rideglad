@@ -33,8 +33,8 @@ function Router() {
         <Route path="/" component={Landing} />
       ) : (
         <>
-          <Route path="/" component={RiderApp} />
-          <Route path="/home" component={SimpleHome} />
+          <Route path="/" component={SimpleHome} />
+          <Route path="/ride" component={RiderApp} />
           <Route path="/driver" component={DriverDashboard} />
           <Route path="/trips" component={TripHistory} />
           <Route path="/pricing" component={PricingManagement} />

@@ -21,7 +21,7 @@ export default function SimpleHome() {
         <div className="space-y-3">
           {/* Top Row */}
           <div className="grid grid-cols-2 gap-3">
-            <Link href="/rider">
+            <Link href="/ride">
               <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green h-full">
                 <CardHeader className="text-center pb-0 pt-3">
                   <div className="flex justify-center mb-1">
