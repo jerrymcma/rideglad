@@ -136,7 +136,7 @@ export default function SimpleHome() {
         <div className="pt-4 border-t"></div>
 
         {/* Video Section */}
-        <div className="pt-4 flex justify-center">
+        <div className="pt-12 flex justify-center">
           <video 
             className="w-2/3 rounded-lg shadow-md"
             autoPlay
