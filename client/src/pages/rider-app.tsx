@@ -590,7 +590,7 @@ export default function RiderApp() {
           <div className="space-y-2">
             <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
               <Car size={20} />
-              Estimated fare
+              Available drivers nearby
             </Label>
             
             {/* Real-time Map */}
@@ -615,21 +615,16 @@ export default function RiderApp() {
                   </div>
                   
                   {/* Driver Locations */}
-                  <div className="absolute top-1/3 left-[20%] transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="absolute top-1/3 left-[14%] transform -translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$12.50</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Driver</span>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
                   </div>
                   
-                  <div className="absolute top-2/3 right-1/4 transform translate-x-1/2 -translate-y-1/2">
-                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                      <Car size={16} className="text-blue-600" />
-                    </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Driver</span>
-                  </div>
-                  
-                  <div className="absolute top-1/4 right-[15%] transform translate-x-1/2 -translate-y-1/2">
+                  <div className="absolute top-2/3 right-1/3 transform translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
@@ -637,10 +632,11 @@ export default function RiderApp() {
                   </div>
                   
                   <div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$24.90</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
                       <Car size={16} className="text-blue-600" />
                     </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Driver</span>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
                   </div>
                 </div>
                 
@@ -652,41 +648,83 @@ export default function RiderApp() {
               </div>
             </div>
 
-            {/* Single Fare Display */}
+            {/* Nearby Drivers List */}
             <div className="space-y-2">
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
                 <Car size={20} />
-                Standard rate
+                Choose ride
               </Label>
-              <Card className="bg-green-50 border-green-200">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center">
-                        <Car size={20} className="text-white" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-sm">All rides same price</p>
-                        <p className="text-xs text-gray-600">Fixed fare for all trips</p>
-                        <div className="flex items-center mt-1">
-                          <Clock size={12} className="text-gray-500 mr-1" />
-                          <span className="text-xs text-gray-600">3-7 min pickup</span>
+              {[
+                {
+                  id: 'driver-1',
+                  driverName: 'John Driver',
+                  vehicle: '2022 Toyota Camry',
+                  rating: 4.8,
+                  eta: '3 min',
+                  fare: '$12.50',
+                  distance: '0.4 mi'
+                },
+                {
+                  id: 'driver-2',
+                  driverName: 'Sarah Wilson',
+                  vehicle: '2023 Honda CR-V',
+                  rating: 4.9,
+                  eta: '5 min',
+                  fare: '$16.80',
+                  distance: '0.7 mi'
+                },
+                {
+                  id: 'driver-3',
+                  driverName: 'Michael Chen',
+                  vehicle: '2024 BMW 3 Series',
+                  rating: 5.0,
+                  eta: '7 min',
+                  fare: '$24.90',
+                  distance: '1.1 mi'
+                }
+              ].map((driver) => (
+                <Card 
+                  key={driver.id}
+                  className={`cursor-pointer transition-colors ${
+                    bookingForm.rideType === driver.id 
+                      ? 'border-brand-green bg-green-50' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  onClick={() => setBookingForm(prev => ({ ...prev, rideType: driver.id }))}
+                  data-testid={`card-driver-${driver.id}`}
+                >
+                  <CardContent className="p-3">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white font-semibold">
+                          {driver.driverName.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-gray-900 text-sm">{driver.driverName}</p>
+                            <div className="flex items-center gap-1">
+                              <Star size={10} className="text-yellow-400 fill-current" />
+                              <span className="text-xs font-medium">{driver.rating}</span>
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-600">{driver.vehicle}</p>
+                          <p className="text-xs text-gray-500">{driver.distance} • {driver.eta} away</p>
                         </div>
                       </div>
+                      <div className="text-right">
+                        <p className="font-bold text-base text-brand-green">{driver.fare}</p>
+                        <p className="text-xs text-gray-500">Estimated</p>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">~$4.00</p>
-                      <p className="text-xs text-gray-500">Estimated</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         )}
 
-        {/* Show request button only when driver options are shown */}
-        {showDriverOptions && (
+        {/* Show request button only when driver options are shown and driver is selected */}
+        {showDriverOptions && bookingForm.rideType && (
           <div className="flex justify-center">
             <Button
               type="button"

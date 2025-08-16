@@ -3,10 +3,10 @@
 rideShare is a premium full-stack ride-sharing application built with React, Express, and PostgreSQL, designed with trillion-dollar company vision and standards. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, payment management, and an advanced custom pricing system. The system supports both rider and driver workflows with a mobile-first responsive design, emphasizing exceptional user experience, precise visual alignment, and safety-first messaging.
 
 ## Recent Additions
-- **Single Flat Fare System**: Simplified from custom pricing tiers to uniform $4 flat rate for all rides, removing complex pricing variations
-- **Unified Pricing Structure**: All rides use same base rate ($2.00), per-mile rate ($1.00), and per-minute rate ($0.15) with $4.00 minimum fare
-- **Simplified UI**: Removed driver selection tiers, replaced with single standard rate display showing "~$4.00" estimated fare
-- **Database Schema**: Retained pricing_plans structure but unified all plans to use identical pricing across Economy/Comfort/Premium tiers
+- **Custom Pricing System**: Comprehensive dynamic pricing with surge management, promotional codes, tier-based adjustments, and real-time price calculations
+- **Pricing Management Dashboard**: Visual interface for managing pricing plans, calculating trip costs, and validating promotional codes
+- **Database Schema Expansion**: Added pricing_plans, pricing_rules, promo_codes, and user_promo_usage tables for full pricing control
+- **Miles Conversion**: Updated all distance units from kilometers to miles throughout the application, including pricing calculations, UI displays, and database schema
 
 # User Preferences
 
