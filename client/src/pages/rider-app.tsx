@@ -1334,19 +1334,45 @@ export default function RiderApp() {
           <h3 className="text-base font-semibold mb-3 text-gray-800 text-center">Live Trip Map</h3>
           <div className="w-full h-64 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
             {/* Map Background with Streets */}
-            <div className="w-full h-full relative bg-gradient-to-br from-blue-50 to-blue-100">
-              {/* Street Grid */}
+            <div className="w-full h-full relative bg-gradient-to-br from-gray-100 to-gray-200">
+              {/* Realistic Street Grid - North American City Pattern */}
               <div className="absolute inset-0">
-                {/* Horizontal Streets */}
-                <div className="absolute w-full h-1 bg-gray-400 top-[20%] opacity-60" />
-                <div className="absolute w-full h-1 bg-gray-400 top-[40%] opacity-60" />
-                <div className="absolute w-full h-1 bg-gray-400 top-[60%] opacity-60" />
-                <div className="absolute w-full h-1 bg-gray-400 top-[80%] opacity-60" />
+                {/* Main Arterial Streets (wider, darker) */}
+                <div className="absolute w-full h-1.5 bg-gray-500 top-[25%] opacity-80" />
+                <div className="absolute w-full h-1.5 bg-gray-500 top-[75%] opacity-80" />
+                <div className="absolute h-full w-1.5 bg-gray-500 left-[20%] opacity-80" />
+                <div className="absolute h-full w-1.5 bg-gray-500 left-[80%] opacity-80" />
                 
-                {/* Vertical Streets */}
-                <div className="absolute h-full w-1 bg-gray-400 left-[25%] opacity-60" />
-                <div className="absolute h-full w-1 bg-gray-400 left-[50%] opacity-60" />
-                <div className="absolute h-full w-1 bg-gray-400 left-[75%] opacity-60" />
+                {/* Secondary Streets */}
+                <div className="absolute w-full h-0.5 bg-gray-400 top-[15%] opacity-70" />
+                <div className="absolute w-full h-0.5 bg-gray-400 top-[35%] opacity-70" />
+                <div className="absolute w-full h-0.5 bg-gray-400 top-[50%] opacity-70" />
+                <div className="absolute w-full h-0.5 bg-gray-400 top-[65%] opacity-70" />
+                <div className="absolute w-full h-0.5 bg-gray-400 top-[85%] opacity-70" />
+                
+                <div className="absolute h-full w-0.5 bg-gray-400 left-[10%] opacity-70" />
+                <div className="absolute h-full w-0.5 bg-gray-400 left-[30%] opacity-70" />
+                <div className="absolute h-full w-0.5 bg-gray-400 left-[50%] opacity-70" />
+                <div className="absolute h-full w-0.5 bg-gray-400 left-[70%] opacity-70" />
+                <div className="absolute h-full w-0.5 bg-gray-400 left-[90%] opacity-70" />
+                
+                {/* Local Residential Streets (thinner) */}
+                <div className="absolute w-full h-px bg-gray-350 top-[42%] opacity-50" />
+                <div className="absolute w-full h-px bg-gray-350 top-[58%] opacity-50" />
+                <div className="absolute h-full w-px bg-gray-350 left-[40%] opacity-50" />
+                <div className="absolute h-full w-px bg-gray-350 left-[60%] opacity-50" />
+                
+                {/* Diagonal Boulevard (adds realism) */}
+                <div className="absolute w-full h-1 bg-gray-450 opacity-60 origin-bottom-left transform rotate-12" style={{top: '10%', left: '-10%', width: '120%'}} />
+                
+                {/* Small Park/Green Space */}
+                <div className="absolute w-8 h-6 bg-green-200 rounded-sm top-[40%] left-[45%] opacity-80" />
+                
+                {/* Building Blocks (subtle background) */}
+                <div className="absolute w-4 h-3 bg-gray-250 top-[28%] left-[15%] opacity-30" />
+                <div className="absolute w-5 h-4 bg-gray-250 top-[52%] left-[25%] opacity-30" />
+                <div className="absolute w-3 h-5 bg-gray-250 top-[68%] left-[75%] opacity-30" />
+                <div className="absolute w-6 h-3 bg-gray-250 top-[78%] left-[55%] opacity-30" />
               </div>
 
               {/* Pickup Location (Green) */}
