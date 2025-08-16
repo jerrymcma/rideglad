@@ -190,7 +190,7 @@ export default function PricingManagement() {
               Price Calculator
             </CardTitle>
             <CardDescription>
-              Calculate trip prices with dynamic pricing, surge rates, and promo codes
+              Calculate trip prices
             </CardDescription>
           </CardHeader>
           
