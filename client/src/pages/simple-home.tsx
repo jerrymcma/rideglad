@@ -13,7 +13,11 @@ export default function SimpleHome() {
 
   // Scroll to top when component mounts
   useEffect(() => {
+    // Force scroll to top immediately and after a brief delay
     window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }, []);
 
   return (
