@@ -140,7 +140,71 @@ export default function RiderApp() {
           setCurrentStep('inprogress');
           break;
         case 'in_progress':
-          setCurrentStep('pickup');
+          setCurrentStep('inprogress');
+          // Ensure matchedDriver data is available for in-progress step
+          if (!matchedDriver) {
+            const driverData = {
+              'driver-1': {
+                id: 'mock-driver-1',
+                firstName: 'John',
+                lastName: 'Driver',
+                email: 'john@rideshare.com',
+                vehicle: { make: 'Toyota', model: 'Camry', year: 2023, color: 'Silver', licensePlate: 'ABC123' },
+                rating: 4.8,
+                estimatedArrival: 3
+              },
+              'driver-2': {
+                id: 'mock-driver-2',
+                firstName: 'Sarah',
+                lastName: 'Wilson',
+                email: 'sarah@rideshare.com',
+                vehicle: { make: 'Honda', model: 'Accord', year: 2023, color: 'Blue', licensePlate: '456' },
+                rating: 4.9,
+                estimatedArrival: 5
+              },
+              'driver-3': {
+                id: 'mock-driver-3',
+                firstName: 'Michael',
+                lastName: 'Chen',
+                email: 'michael@rideshare.com',
+                vehicle: { make: 'BMW', model: '3 Series', year: 2024, color: 'Black', licensePlate: '309' },
+                rating: 5.0,
+                estimatedArrival: 7
+              }
+            };
+
+            const selectedDriver = driverData[trip.rideType as keyof typeof driverData] || driverData['driver-1'];
+            
+            setMatchedDriver({
+              driver: {
+                id: selectedDriver.id,
+                firstName: selectedDriver.firstName,
+                lastName: selectedDriver.lastName,
+                email: selectedDriver.email,
+                profileImageUrl: null,
+                phone: '+1234567890',
+                userType: 'driver',
+                rating: selectedDriver.rating,
+                totalRatings: 120,
+                isDriverActive: true,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+              },
+              vehicle: {
+                id: `vehicle-${trip.rideType}`,
+                driverId: selectedDriver.id,
+                make: selectedDriver.vehicle.make,
+                model: selectedDriver.vehicle.model,
+                year: selectedDriver.vehicle.year,
+                color: selectedDriver.vehicle.color,
+                licensePlate: selectedDriver.vehicle.licensePlate,
+                vehicleType: trip.rideType,
+                createdAt: new Date(),
+              },
+              estimatedArrival: selectedDriver.estimatedArrival,
+              rating: selectedDriver.rating,
+            });
+          }
           break;
         case 'completed':
           setCurrentStep('rating');
@@ -1060,22 +1124,6 @@ export default function RiderApp() {
           </div>
         </CardContent>
       </Card>
-
-      {matchedDriver && (
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-                <User size={20} className="text-gray-600" />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-medium">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h4>
-                <p className="text-sm text-gray-600">{matchedDriver.vehicle.licensePlate}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 
