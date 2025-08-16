@@ -932,9 +932,9 @@ export default function RiderApp() {
       </div>
 
       <div className="text-center">
-        <Badge variant="outline" className="text-lg py-2 px-1">
-          <Clock size={16} className="mr-1" />
-          2 min away
+        <Badge variant="outline" className="text-lg py-2 px-4">
+          <Clock size={16} className="mr-2" />
+          2 minutes away
         </Badge>
       </div>
 
@@ -989,8 +989,8 @@ export default function RiderApp() {
       <Card>
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
-            <Badge className="bg-brand-green text-white text-lg py-2 px-4">
-              <Navigation size={16} className="mr-2" />
+            <Badge className="bg-brand-green text-white text-lg py-2 px-1">
+              <Navigation size={16} className="mr-1" />
               In Progress
             </Badge>
           </div>
