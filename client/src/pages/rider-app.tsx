@@ -1392,7 +1392,7 @@ export default function RiderApp() {
                         <Car size={16} className="text-white" />
                       </div>
                       <div className="absolute -top-9 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
-                        {matchedDriver?.driver.firstName || 'John'}
+                        You
                       </div>
                     </div>
                   </div>
