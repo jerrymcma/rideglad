@@ -156,7 +156,7 @@ export default function SimpleHome() {
               <img 
                 src={rideSideLogoImage} 
                 alt="ride"
-                className="h-5 w-auto opacity-80"
+                className="h-4 w-auto opacity-80"
               />
             </div>
           </div>
