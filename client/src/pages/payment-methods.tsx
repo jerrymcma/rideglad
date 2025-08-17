@@ -12,12 +12,16 @@ import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function PaymentMethods() {
+  console.log('PaymentMethods component is rendering');
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const { isAuthenticated, isLoading: authLoading } = useAuth();
 
+  console.log('PaymentMethods auth state:', { isAuthenticated, authLoading });
+
   // Redirect if not authenticated
   useEffect(() => {
+    console.log('PaymentMethods useEffect triggered:', { isAuthenticated, authLoading });
     if (!authLoading && !isAuthenticated) {
       console.log('PaymentMethods: Not authenticated, redirecting to home');
       setLocation('/');
