@@ -80,7 +80,7 @@ export default function SimpleHome() {
                 <h3 className="text-lg text-brand-green font-semibold">Book a ride</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-lg text-gray-700">Find a driver</p>
+                <p className="text-gray-700 text-[14px]">Find a driver</p>
               </div>
             </div>
 
