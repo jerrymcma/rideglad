@@ -707,7 +707,7 @@ export default function RiderApp() {
 
             {/* Driver Selection */}
             <div className="space-y-2">
-              <Label className="text-blue-600 font-medium text-base flex items-center gap-2">
+              <Label className="text-blue-600 font-medium text-base flex items-center gap-2 py-2">
                 <User size={20} />
                 Choose your ride
               </Label>
