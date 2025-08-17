@@ -150,7 +150,7 @@ export default function SimpleHome() {
               Your browser does not support the video tag.
             </video>
             {/* Logo Overlay */}
-            <div className="absolute inset-0 flex items-start justify-center pt-4">
+            <div className="absolute inset-0 flex items-center justify-end pr-4">
               <img 
                 src={logoImage} 
                 alt="ride - Get there"
