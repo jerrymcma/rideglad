@@ -48,7 +48,7 @@ export default function SimpleHome() {
             <img 
               src={rideLogoImage} 
               alt="ride"
-              className="h-10 w-auto"
+              className="h-10 w-auto mt-1"
             />
           </div>
           <p className="text-xl text-gray-600">Hello, {(user as any)?.firstName || 'User'}</p>
