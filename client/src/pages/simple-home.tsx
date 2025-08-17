@@ -43,7 +43,7 @@ export default function SimpleHome() {
       <div className="p-6 space-y-6 mt-60">
         {/* Header */}
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold text-[#183bab] text-left">Welcome to</h1>
+          <h1 className="text-3xl font-bold text-[#183bab] text-center">Welcome to ride!</h1>
           <p className="text-xl font-bold text-[#464f6b]">Hello, {(user as any)?.firstName || 'User'}</p>
         </div>
 
