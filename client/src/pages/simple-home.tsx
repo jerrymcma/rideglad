@@ -125,7 +125,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-1">
                   <CreditCard size={32} className="text-green-800" />
                 </div>
-                <h3 className="text-lg text-green-800 font-semibold">Payment</h3>
+                <h3 className="text-lg font-semibold text-[#039637]">Payment</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Manage cards</p>
