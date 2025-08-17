@@ -74,6 +74,7 @@ export default {
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
         inter: ["Inter", "sans-serif"],
+        spartan: ["League Spartan", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
