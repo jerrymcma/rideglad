@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,10 +9,20 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import type { PaymentMethod } from "@/../../shared/schema";
 import { useLocation } from "wouter";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function PaymentMethods() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      console.log('PaymentMethods: Not authenticated, redirecting to home');
+      setLocation('/');
+    }
+  }, [isAuthenticated, authLoading, setLocation]);
   const queryClient = useQueryClient();
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
@@ -34,10 +44,24 @@ export default function PaymentMethods() {
   });
 
   // Fetch payment methods
-  const { data: paymentMethods = [], isLoading } = useQuery({
+  const { data: paymentMethods = [], isLoading } = useQuery<PaymentMethod[]>({
     queryKey: ['/api/payment-methods'],
-    enabled: true
+    enabled: isAuthenticated
   });
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-brand-green border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (will redirect via useEffect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   // Add payment method mutation
   const addPaymentMethodMutation = useMutation({
