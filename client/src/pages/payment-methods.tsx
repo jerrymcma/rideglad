@@ -199,7 +199,7 @@ export default function PaymentMethods() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setLocation('/ride')}
+            onClick={() => setLocation('/')}
             className="p-2"
             data-testid="button-back"
           >
@@ -210,7 +210,7 @@ export default function PaymentMethods() {
 
         {/* Existing Payment Methods */}
         <div className="space-y-3 mb-6">
-          {paymentMethods?.map((method: PaymentMethod) => (
+          {(paymentMethods as PaymentMethod[])?.map((method: PaymentMethod) => (
             <Card key={method.id} className="relative">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
@@ -262,7 +262,7 @@ export default function PaymentMethods() {
             </Card>
           ))}
 
-          {(!paymentMethods || paymentMethods.length === 0) && !isAddingCard && (
+          {(!paymentMethods || (paymentMethods as PaymentMethod[]).length === 0) && !isAddingCard && (
             <Card className="border-dashed">
               <CardContent className="p-8 text-center">
                 <CreditCard size={48} className="mx-auto text-gray-400 mb-4" />
@@ -281,7 +281,7 @@ export default function PaymentMethods() {
         </div>
 
         {/* Action Buttons */}
-        {paymentMethods && paymentMethods.length > 0 && !isAddingCard && (
+        {paymentMethods && (paymentMethods as PaymentMethod[]).length > 0 && !isAddingCard && (
           <div className="space-y-3">
             <Button
               onClick={() => setLocation('/payment-history')}
