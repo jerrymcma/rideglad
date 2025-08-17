@@ -154,7 +154,7 @@ export default function SimpleHome() {
               <img 
                 src={logoImage} 
                 alt="ride - Get there"
-                className="w-8 h-auto opacity-90"
+                className="w-12 h-auto opacity-90"
               />
             </div>
           </div>
