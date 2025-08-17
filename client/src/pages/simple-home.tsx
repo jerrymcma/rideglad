@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
@@ -121,17 +121,25 @@ export default function SimpleHome() {
               </Card>
             </Link>
 
-            <Card className="cursor-pointer hover:shadow-md transition-shadow h-full">
-              <CardHeader className="text-center pb-0 pt-3">
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-green-600 rounded-lg h-full bg-white"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setLocation('/payment-methods');
+              }}
+              data-testid="card-payment-methods"
+            >
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <Settings size={32} className="text-gray-600" />
+                  <CreditCard size={32} className="text-green-600" />
                 </div>
-                <CardTitle className="text-lg text-gray-600">Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center py-1 pb-3">
-                <p className="text-xs text-gray-700">Account</p>
-              </CardContent>
-            </Card>
+                <h3 className="text-lg text-green-600 font-semibold">Payment</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-xs text-gray-700">Manage cards</p>
+              </div>
+            </div>
           </div>
         </div>
 

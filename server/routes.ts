@@ -475,7 +475,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch('/api/payment-methods/:id/default', isAuthenticated, async (req: any, res) => {
+  app.delete('/api/payment-methods/:id', isAuthenticated, async (req: any, res) => {
+    try {
+      await storage.deletePaymentMethod(req.params.id);
+      res.json({ message: "Payment method deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting payment method:", error);
+      res.status(500).json({ message: "Failed to delete payment method" });
+    }
+  });
+
+  app.put('/api/payment-methods/:id/default', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       await storage.setDefaultPaymentMethod(userId, req.params.id);
@@ -483,6 +493,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error setting default payment method:", error);
       res.status(500).json({ message: "Failed to set default payment method" });
+    }
+  });
+
+  app.post('/api/process-payment', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { paymentMethodId, tripId, amount } = req.body;
+      
+      const result = await storage.processPayment({
+        paymentMethodId,
+        tripId,
+        amount,
+        userId
+      });
+      
+      res.json(result);
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      res.status(500).json({ message: "Failed to process payment" });
     }
   });
 

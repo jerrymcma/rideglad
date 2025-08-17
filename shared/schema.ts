@@ -96,6 +96,12 @@ export const paymentMethods = pgTable("payment_methods", {
   type: varchar("type").notNull(), // 'card', 'paypal', etc.
   lastFour: varchar("last_four"),
   brand: varchar("brand"), // 'visa', 'mastercard', etc.
+  cardNumber: varchar("card_number"), // encrypted/tokenized
+  expiryMonth: integer("expiry_month"),
+  expiryYear: integer("expiry_year"),
+  cardholderName: varchar("cardholder_name"),
+  billingAddress: jsonb("billing_address"),
+  stripePaymentMethodId: varchar("stripe_payment_method_id"),
   isDefault: boolean("is_default").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -167,6 +173,20 @@ export const userPromoUsage = pgTable("user_promo_usage", {
   tripId: varchar("trip_id").references(() => trips.id),
   discountAmount: decimal("discount_amount", { precision: 10, scale: 2 }).notNull(),
   usedAt: timestamp("used_at").defaultNow(),
+});
+
+// Payments table
+export const payments = pgTable("payments", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tripId: varchar("trip_id").references(() => trips.id),
+  userId: varchar("user_id").references(() => users.id),
+  paymentMethodId: varchar("payment_method_id").references(() => paymentMethods.id),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  status: varchar("status").notNull().default("pending"), // 'pending', 'processing', 'completed', 'failed', 'refunded'
+  stripePaymentIntentId: varchar("stripe_payment_intent_id"),
+  failureReason: text("failure_reason"),
+  processedAt: timestamp("processed_at"),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Relations
@@ -256,6 +276,21 @@ export const userPromoUsageRelations = relations(userPromoUsage, ({ one }) => ({
   }),
 }));
 
+export const paymentsRelations = relations(payments, ({ one }) => ({
+  trip: one(trips, {
+    fields: [payments.tripId],
+    references: [trips.id],
+  }),
+  user: one(users, {
+    fields: [payments.userId],
+    references: [users.id],
+  }),
+  paymentMethod: one(paymentMethods, {
+    fields: [payments.paymentMethodId],
+    references: [paymentMethods.id],
+  }),
+}));
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -302,6 +337,12 @@ export const insertPromoCodeSchema = createInsertSchema(promoCodes).omit({
   createdAt: true,
 });
 
+export const insertPaymentSchema = createInsertSchema(payments).omit({
+  id: true,
+  createdAt: true,
+  processedAt: true,
+});
+
 export const insertUserPromoUsageSchema = createInsertSchema(userPromoUsage).omit({
   id: true,
   usedAt: true,
@@ -326,3 +367,5 @@ export type InsertPromoCode = z.infer<typeof insertPromoCodeSchema>;
 export type PromoCode = typeof promoCodes.$inferSelect;
 export type InsertUserPromoUsage = z.infer<typeof insertUserPromoUsageSchema>;
 export type UserPromoUsage = typeof userPromoUsage.$inferSelect;
+export type InsertPayment = z.infer<typeof insertPaymentSchema>;
+export type Payment = typeof payments.$inferSelect;

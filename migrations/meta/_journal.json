@@ -8,6 +8,13 @@
       "when": 1755360177647,
       "tag": "0000_glorious_silk_fever",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1755456173647,
+      "tag": "0001_add_payment_tables",
+      "breakpoints": true
     }
   ]
 }

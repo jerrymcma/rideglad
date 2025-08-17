@@ -14,6 +14,8 @@ import DriverDashboard from "@/pages/driver-dashboard";
 import TripHistory from "@/pages/trip-history";
 import RiderApp from "@/pages/rider-app";
 import PricingManagement from "@/pages/pricing-management";
+import PaymentMethods from "@/pages/payment-methods";
+import Checkout from "@/pages/checkout";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -50,6 +52,10 @@ function Router() {
       return <TripHistory />;
     case '/pricing':
       return <PricingManagement />;
+    case '/payment-methods':
+      return <PaymentMethods />;
+    case '/checkout':
+      return <Checkout />;
     case '/landing':
       return <Landing />;
     default:

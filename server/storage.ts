@@ -4,6 +4,7 @@ import {
   trips,
   ratings,
   paymentMethods,
+  payments,
   pricingPlans,
   pricingRules,
   promoCodes,
@@ -18,6 +19,8 @@ import {
   type InsertRating,
   type PaymentMethod,
   type InsertPaymentMethod,
+  type Payment,
+  type InsertPayment,
   type PricingPlan,
   type InsertPricingPlan,
   type PricingRule,
@@ -64,7 +67,12 @@ export interface IStorage {
   // Payment operations
   createPaymentMethod(paymentMethod: InsertPaymentMethod): Promise<PaymentMethod>;
   getPaymentMethodsByUser(userId: string): Promise<PaymentMethod[]>;
+  updatePaymentMethod(id: string, paymentMethod: Partial<InsertPaymentMethod>): Promise<PaymentMethod>;
+  deletePaymentMethod(id: string): Promise<void>;
   setDefaultPaymentMethod(userId: string, paymentMethodId: string): Promise<void>;
+  
+  // Payment processing
+  processPayment(payment: { paymentMethodId: string; tripId: string; amount: number; userId: string }): Promise<{ paymentId: string; status: string }>;
   
   // Pricing Plan operations
   createPricingPlan(plan: InsertPricingPlan): Promise<PricingPlan>;
@@ -421,6 +429,19 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(paymentMethods).where(eq(paymentMethods.userId, userId));
   }
 
+  async updatePaymentMethod(id: string, paymentData: Partial<InsertPaymentMethod>): Promise<PaymentMethod> {
+    const [payment] = await db
+      .update(paymentMethods)
+      .set(paymentData)
+      .where(eq(paymentMethods.id, id))
+      .returning();
+    return payment;
+  }
+
+  async deletePaymentMethod(id: string): Promise<void> {
+    await db.delete(paymentMethods).where(eq(paymentMethods.id, id));
+  }
+
   async setDefaultPaymentMethod(userId: string, paymentMethodId: string): Promise<void> {
     // First, remove default from all user's payment methods
     await db
@@ -433,6 +454,28 @@ export class DatabaseStorage implements IStorage {
       .update(paymentMethods)
       .set({ isDefault: true })
       .where(and(eq(paymentMethods.id, paymentMethodId), eq(paymentMethods.userId, userId)));
+  }
+
+  async processPayment(paymentData: { paymentMethodId: string; tripId: string; amount: number; userId: string }): Promise<{ paymentId: string; status: string }> {
+    // Create payment record
+    const [payment] = await db.insert(payments).values({
+      tripId: paymentData.tripId,
+      userId: paymentData.userId,
+      paymentMethodId: paymentData.paymentMethodId,
+      amount: paymentData.amount.toString(),
+      status: 'completed' // For now, simulate successful payment
+    }).returning();
+
+    // Update trip with payment status
+    await db
+      .update(trips)
+      .set({ finalPrice: paymentData.amount.toString() })
+      .where(eq(trips.id, paymentData.tripId));
+
+    return {
+      paymentId: payment.id,
+      status: 'completed'
+    };
   }
 
 
