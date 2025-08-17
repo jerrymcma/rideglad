@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
 import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jpg";
 import rideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755413475958.jpg";
+import rideSideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755414233355.jpg";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -138,7 +139,7 @@ export default function SimpleHome() {
         <div className="pt-4 border-t"></div>
 
         {/* Video Section */}
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center gap-4">
           <div className="w-1/2">
             <video 
               className="w-full rounded-lg shadow-md"
@@ -150,6 +151,13 @@ export default function SimpleHome() {
               <source src={carVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+          </div>
+          <div className="flex-shrink-0">
+            <img 
+              src={rideSideLogoImage} 
+              alt="ride"
+              className="h-16 w-auto"
+            />
           </div>
         </div>
 
