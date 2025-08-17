@@ -113,7 +113,7 @@ export default function SimpleHome() {
           {/* Bottom Row */}
           <div className="grid grid-cols-2 gap-3">
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-green-800 rounded-lg h-full bg-white"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#039637] rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
