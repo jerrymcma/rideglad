@@ -467,8 +467,8 @@ export class DatabaseStorage implements IStorage {
         createdAt: payments.createdAt,
         processedAt: payments.processedAt,
         // Trip details
-        tripPickupLocation: trips.pickupLocation,
-        tripDestination: trips.destination,
+        tripPickupLocation: trips.pickupAddress,
+        tripDestination: trips.destinationAddress,
         tripDistance: trips.distance,
         tripDuration: trips.duration,
         tripRequestedAt: trips.requestedAt,

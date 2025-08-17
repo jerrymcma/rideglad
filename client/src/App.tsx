@@ -16,6 +16,7 @@ import RiderApp from "@/pages/rider-app";
 import PricingManagement from "@/pages/pricing-management";
 import PaymentMethods from "@/pages/payment-methods";
 import Checkout from "@/pages/checkout";
+import PaymentHistory from "@/pages/payment-history";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -56,6 +57,8 @@ function Router() {
       return <PaymentMethods />;
     case '/checkout':
       return <Checkout />;
+    case '/payment-history':
+      return <PaymentHistory />;
     case '/landing':
       return <Landing />;
     default:

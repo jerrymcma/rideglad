@@ -31,7 +31,7 @@ interface PaymentHistoryItem {
 export default function PaymentHistory() {
   const [, setLocation] = useLocation();
 
-  const { data: payments = [], isLoading } = useQuery({
+  const { data: payments = [], isLoading } = useQuery<PaymentHistoryItem[]>({
     queryKey: ['/api/payment-history'],
     enabled: true
   });

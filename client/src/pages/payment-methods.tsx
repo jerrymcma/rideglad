@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { CreditCard, Plus, Trash2, Check, ArrowLeft } from "lucide-react";
+import { CreditCard, Plus, Trash2, Check, ArrowLeft, Receipt } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import type { PaymentMethod } from "@/../../shared/schema";
@@ -256,17 +256,28 @@ export default function PaymentMethods() {
           )}
         </div>
 
-        {/* Add New Card Button */}
+        {/* Action Buttons */}
         {paymentMethods && paymentMethods.length > 0 && !isAddingCard && (
-          <Button
-            onClick={() => setIsAddingCard(true)}
-            variant="outline"
-            className="w-full border-dashed border-2 h-12 text-blue-600 hover:bg-blue-50"
-            data-testid="button-add-card"
-          >
-            <Plus size={20} className="mr-2" />
-            Add New Card
-          </Button>
+          <div className="space-y-3">
+            <Button
+              onClick={() => setLocation('/payment-history')}
+              variant="outline"
+              className="w-full h-12 text-green-600 hover:bg-green-50 border-green-600"
+              data-testid="button-payment-history"
+            >
+              <Receipt size={20} className="mr-2" />
+              View Payment History
+            </Button>
+            <Button
+              onClick={() => setIsAddingCard(true)}
+              variant="outline"
+              className="w-full border-dashed border-2 h-12 text-blue-600 hover:bg-blue-50"
+              data-testid="button-add-card"
+            >
+              <Plus size={20} className="mr-2" />
+              Add New Card
+            </Button>
+          </div>
         )}
 
         {/* Add Card Form */}
