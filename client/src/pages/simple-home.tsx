@@ -128,7 +128,7 @@ export default function SimpleHome() {
                 <h3 className="text-lg text-green-600 font-semibold">Payment</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-lg text-gray-700">Manage cards</p>
+                <p className="text-gray-700 text-[14px]">Manage cards</p>
               </div>
             </div>
 
