@@ -45,7 +45,7 @@ export default function SimpleHome() {
       <div className="p-6 space-y-6 mt-60">
         {/* Header */}
         <div className="text-center space-y-1">
-          <h1 className="text-3xl text-center font-extrabold text-[#2a5aeb]" style={{ fontFamily: 'League Spartan, sans-serif' }}>Welcome to ride!</h1>
+          <h1 className="text-center font-extrabold text-[#2a5aeb] text-[32px]" style={{ fontFamily: 'League Spartan, sans-serif' }}>Welcome to ride!</h1>
           <p className="text-2xl font-bold text-[#464f6b]">Hello, {(user as any)?.firstName || 'User'}</p>
         </div>
 
