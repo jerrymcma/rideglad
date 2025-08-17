@@ -81,7 +81,7 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border border-gray-200 rounded-lg h-full bg-white"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-blue-600 rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
