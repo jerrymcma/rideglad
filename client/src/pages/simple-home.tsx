@@ -140,7 +140,7 @@ export default function SimpleHome() {
                   </div>
                   <CardTitle className="text-lg text-purple-600">Pricing</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center py-1 pb-3">
+                <CardContent className="text-center py-1 pb-3 text-[14px]">
                   <p className="text-gray-700 text-[14px]">Calculator</p>
                 </CardContent>
               </Card>
