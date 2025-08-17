@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import logoImage from "@assets/Take a look at my Canva design!_1754653520248.png";
+import logoImage from "@assets/Screenshot_20250817_012527_Canva_1755412057946.jpg";
 
 export default function Landing() {
   const [email, setEmail] = useState("");
@@ -14,27 +14,12 @@ export default function Landing() {
         <div className="text-center space-y-4">
           {/* Logo */}
           <div className="flex justify-center">
-            <div className="flex items-center">
-              {/* 'rid' part */}
-              <img 
-                src={logoImage} 
-                alt=""
-                className="w-80 h-auto"
-                style={{
-                  clipPath: 'polygon(0% 0%, 78% 0%, 78% 100%, 0% 100%)'
-                }}
-              />
-              {/* 'e' part with negative margin to pull closer */}
-              <img 
-                src={logoImage} 
-                alt="ride - Get there"
-                className="w-80 h-auto -ml-4"
-                data-testid="logo-image"
-                style={{
-                  clipPath: 'polygon(78% 0%, 100% 0%, 100% 100%, 78% 100%)'
-                }}
-              />
-            </div>
+            <img 
+              src={logoImage} 
+              alt="ride - Get there"
+              className="w-80 h-auto"
+              data-testid="logo-image"
+            />
           </div>
 
           {/* Login Form */}
