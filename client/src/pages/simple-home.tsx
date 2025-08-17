@@ -6,6 +6,7 @@ import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, S
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
+import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jpg";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -137,16 +138,26 @@ export default function SimpleHome() {
 
         {/* Video Section */}
         <div className="flex justify-center">
-          <video 
-            className="w-1/2 rounded-lg shadow-md"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src={carVideo} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <div className="relative w-1/2">
+            <video 
+              className="w-full rounded-lg shadow-md"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src={carVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Logo Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img 
+                src={logoImage} 
+                alt="ride - Get there"
+                className="w-24 h-auto opacity-80"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Profile Section */}
