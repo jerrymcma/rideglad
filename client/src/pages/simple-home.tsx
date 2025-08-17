@@ -7,6 +7,7 @@ import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
 import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jpg";
+import rideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755413475958.jpg";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -42,7 +43,14 @@ export default function SimpleHome() {
       <div className="p-6 space-y-6 mt-60">
         {/* Header */}
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold text-[#2f5eeb] text-left">     Welcome to </h1>
+          <div className="flex items-center justify-start gap-2">
+            <h1 className="text-3xl font-bold text-[#2f5eeb]">Welcome to</h1>
+            <img 
+              src={rideLogoImage} 
+              alt="ride"
+              className="h-8 w-auto"
+            />
+          </div>
           <p className="text-xl text-gray-600">Hello, {(user as any)?.firstName || 'User'}</p>
         </div>
 
