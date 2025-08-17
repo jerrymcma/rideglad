@@ -136,7 +136,7 @@ export default function SimpleHome() {
               <Card className="cursor-pointer hover:shadow-md transition-shadow h-full">
                 <CardHeader className="text-center pb-0 pt-3">
                   <div className="flex justify-center mb-1">
-                    <BadgeDollarSign size={32} className="text-purple-600" />
+                    <BadgeDollarSign size={32} className="text-[#2004de]" />
                   </div>
                   <CardTitle className="text-lg text-[#2004de]">Pricing</CardTitle>
                 </CardHeader>
