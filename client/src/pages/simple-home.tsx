@@ -44,7 +44,7 @@ export default function SimpleHome() {
         {/* Header */}
         <div className="text-center space-y-1">
           <div className="flex items-center justify-start gap-2">
-            <h1 className="text-3xl font-bold text-[#183bab]">Welcome to</h1>
+            <h1 className="text-3xl font-bold text-[#183bab]">      Welcome to</h1>
             <img 
               src={rideLogoImage} 
               alt="ride"
