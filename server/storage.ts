@@ -456,6 +456,56 @@ export class DatabaseStorage implements IStorage {
       .where(and(eq(paymentMethods.id, paymentMethodId), eq(paymentMethods.userId, userId)));
   }
 
+  async getPaymentHistory(userId: string): Promise<any[]> {
+    const result = await db
+      .select({
+        id: payments.id,
+        tripId: payments.tripId,
+        paymentMethodId: payments.paymentMethodId,
+        amount: payments.amount,
+        status: payments.status,
+        createdAt: payments.createdAt,
+        processedAt: payments.processedAt,
+        // Trip details
+        tripPickupLocation: trips.pickupLocation,
+        tripDestination: trips.destination,
+        tripDistance: trips.distance,
+        tripDuration: trips.duration,
+        tripRequestedAt: trips.requestedAt,
+        // Payment method details
+        paymentMethodBrand: paymentMethods.brand,
+        paymentMethodLastFour: paymentMethods.lastFour,
+        paymentMethodType: paymentMethods.type,
+      })
+      .from(payments)
+      .leftJoin(trips, eq(payments.tripId, trips.id))
+      .leftJoin(paymentMethods, eq(payments.paymentMethodId, paymentMethods.id))
+      .where(eq(payments.userId, userId))
+      .orderBy(desc(payments.createdAt));
+
+    return result.map(row => ({
+      id: row.id,
+      tripId: row.tripId,
+      paymentMethodId: row.paymentMethodId,
+      amount: row.amount,
+      status: row.status,
+      createdAt: row.createdAt,
+      processedAt: row.processedAt,
+      trip: row.tripPickupLocation ? {
+        pickupLocation: row.tripPickupLocation,
+        destination: row.tripDestination,
+        distance: row.tripDistance,
+        duration: row.tripDuration,
+        requestedAt: row.tripRequestedAt,
+      } : null,
+      paymentMethod: row.paymentMethodBrand ? {
+        brand: row.paymentMethodBrand,
+        lastFour: row.paymentMethodLastFour,
+        type: row.paymentMethodType,
+      } : null,
+    }));
+  }
+
   async processPayment(paymentData: { paymentMethodId: string; tripId: string; amount: number; userId: string }): Promise<{ paymentId: string; status: string }> {
     // Create payment record
     const [payment] = await db.insert(payments).values({
