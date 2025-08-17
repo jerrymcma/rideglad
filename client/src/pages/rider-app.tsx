@@ -1126,7 +1126,7 @@ export default function RiderApp() {
       </div>
 
       {/* Cancel Ride Button */}
-      <div className="mt-2 flex justify-center">
+      <div className="mt-1 flex justify-center">
         <Button
           variant="outline"
           className="w-28 flex items-center gap-2 text-gray-600 border-gray-200 hover:bg-gray-50 text-[13px]"
