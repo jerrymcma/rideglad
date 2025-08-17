@@ -139,8 +139,8 @@ export default function SimpleHome() {
         <div className="pt-4 border-t"></div>
 
         {/* Video Section */}
-        <div className="flex justify-center items-center gap-4">
-          <div className="w-1/2">
+        <div className="flex justify-center">
+          <div className="relative w-1/2">
             <video 
               className="w-full rounded-lg shadow-md"
               autoPlay
@@ -151,13 +151,14 @@ export default function SimpleHome() {
               <source src={carVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          </div>
-          <div className="flex-shrink-0">
-            <img 
-              src={rideSideLogoImage} 
-              alt="ride"
-              className="h-16 w-auto"
-            />
+            {/* Side Logo Overlay */}
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+              <img 
+                src={rideSideLogoImage} 
+                alt="ride"
+                className="h-8 w-auto opacity-80"
+              />
+            </div>
           </div>
         </div>
 
