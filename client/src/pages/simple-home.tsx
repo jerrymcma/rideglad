@@ -138,7 +138,7 @@ export default function SimpleHome() {
                   <div className="flex justify-center mb-1">
                     <BadgeDollarSign size={32} className="text-purple-600" />
                   </div>
-                  <CardTitle className="text-lg text-purple-600">Pricing</CardTitle>
+                  <CardTitle className="text-lg text-[#2004de]">Pricing</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center py-1 pb-3 text-[14px]">
                   <p className="text-gray-700 text-[14px]">Calculator</p>
