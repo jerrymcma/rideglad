@@ -19,11 +19,13 @@ export default function PaymentMethods() {
 
   console.log('PaymentMethods auth state:', { isAuthenticated, authLoading });
 
-  // Redirect if not authenticated
+  // Redirect if not authenticated - but with additional safety check
   useEffect(() => {
     console.log('PaymentMethods useEffect triggered:', { isAuthenticated, authLoading });
-    if (!authLoading && !isAuthenticated) {
-      console.log('PaymentMethods: Not authenticated, redirecting to home');
+    // Only redirect if we're absolutely sure the user is not authenticated
+    // and we're not in a loading state
+    if (!authLoading && isAuthenticated === false) {
+      console.log('PaymentMethods: Definitely not authenticated, redirecting to home');
       setLocation('/');
     }
   }, [isAuthenticated, authLoading, setLocation]);
