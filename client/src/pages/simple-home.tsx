@@ -132,19 +132,26 @@ export default function SimpleHome() {
               </div>
             </div>
 
-            <Link href="/pricing">
-              <Card className="cursor-pointer hover:shadow-md transition-shadow h-full">
-                <CardHeader className="text-center pb-0 pt-3">
-                  <div className="flex justify-center mb-1">
-                    <BadgeDollarSign size={32} className="text-[#2004de]" />
-                  </div>
-                  <CardTitle className="text-lg text-[#2004de]">Pricing</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center py-1 pb-3 text-[14px]">
-                  <p className="text-gray-700 text-[14px]">Calculator</p>
-                </CardContent>
-              </Card>
-            </Link>
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-gray-400 rounded-lg h-full bg-white"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // TODO: Navigate to settings page when created
+                console.log('Settings clicked');
+              }}
+              data-testid="card-settings"
+            >
+              <div className="text-center pb-0 pt-3 px-6">
+                <div className="flex justify-center mb-1">
+                  <Settings size={32} className="text-gray-600" />
+                </div>
+                <h3 className="text-lg text-gray-600 font-semibold">Settings</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-gray-700 text-[14px]">Preferences</p>
+              </div>
+            </div>
           </div>
         </div>
 
