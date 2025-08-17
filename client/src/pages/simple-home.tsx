@@ -80,7 +80,7 @@ export default function SimpleHome() {
                 <h3 className="text-lg text-brand-green font-semibold">Book a ride</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-xs text-gray-700">Find a driver</p>
+                <p className="text-lg text-gray-700">Find a driver</p>
               </div>
             </div>
 
@@ -105,7 +105,7 @@ export default function SimpleHome() {
                 <h3 className="text-lg text-blue-600 font-semibold">Drive & Earn</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-xs text-gray-700">Start earning</p>
+                <p className="text-lg text-gray-700">Start earning</p>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function SimpleHome() {
                 <h3 className="text-lg text-green-600 font-semibold">Payment</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-xs text-gray-700">Manage cards</p>
+                <p className="text-lg text-gray-700">Manage cards</p>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export default function SimpleHome() {
                   <CardTitle className="text-lg text-purple-600">Pricing</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center py-1 pb-3">
-                  <p className="text-xs text-gray-700">Calculator</p>
+                  <p className="text-lg text-gray-700">Calculator</p>
                 </CardContent>
               </Card>
             </Link>
