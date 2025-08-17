@@ -57,6 +57,7 @@ export default function PaymentMethods() {
 
   // Show loading while checking authentication
   if (authLoading) {
+    console.log('PaymentMethods: Still loading auth, showing spinner');
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-brand-green border-t-transparent rounded-full animate-spin"></div>
@@ -66,8 +67,11 @@ export default function PaymentMethods() {
 
   // Don't render if not authenticated (will redirect via useEffect)
   if (!isAuthenticated) {
+    console.log('PaymentMethods: Not authenticated, returning null');
     return null;
   }
+
+  console.log('PaymentMethods: About to render main component');
 
   // Add payment method mutation
   const addPaymentMethodMutation = useMutation({

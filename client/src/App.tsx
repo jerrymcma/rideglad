@@ -14,7 +14,7 @@ import DriverDashboard from "@/pages/driver-dashboard";
 import TripHistory from "@/pages/trip-history";
 import RiderApp from "@/pages/rider-app";
 import PricingManagement from "@/pages/pricing-management";
-import PaymentMethods from "@/pages/payment-methods";
+import PaymentMethodsSimple from "@/pages/payment-methods-simple";
 import Checkout from "@/pages/checkout";
 import PaymentHistory from "@/pages/payment-history";
 
@@ -54,7 +54,7 @@ function Router() {
     case '/pricing':
       return <PricingManagement />;
     case '/payment-methods':
-      return <PaymentMethods />;
+      return <PaymentMethodsSimple />;
     case '/checkout':
       return <Checkout />;
     case '/payment-history':
