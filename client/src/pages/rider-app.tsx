@@ -1098,7 +1098,7 @@ export default function RiderApp() {
         <p className="text-sm text-blue-800 text-center font-medium">Contact your driver</p>
       </div>
 
-      <div className="flex gap-2 -mt-5">
+      <div className="flex gap-2 -mt-8">
         <Button
           variant="outline"
           className="flex-1 flex items-center gap-1 text-xs text-blue-600 border-blue-200 hover:bg-blue-50"
