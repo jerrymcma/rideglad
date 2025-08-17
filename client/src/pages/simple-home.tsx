@@ -139,7 +139,7 @@ export default function SimpleHome() {
 
         {/* Video Section */}
         <div className="flex justify-center">
-          <div className="relative w-1/2">
+          <div className="w-1/2">
             <video 
               className="w-full rounded-lg shadow-md"
               autoPlay
@@ -150,14 +150,6 @@ export default function SimpleHome() {
               <source src={carVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            {/* Logo Overlay */}
-            <div className="absolute inset-0 flex items-start justify-center pt-6">
-              <img 
-                src={logoImage} 
-                alt="ride - Get there"
-                className="w-16 h-auto opacity-90"
-              />
-            </div>
           </div>
         </div>
 
