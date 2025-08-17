@@ -117,7 +117,18 @@ export default function SimpleHome() {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                setLocation('/payment-methods');
+                console.log('Payment button clicked, navigating to /payment-methods');
+                console.log('setLocation function:', typeof setLocation);
+                try {
+                  setLocation('/payment-methods');
+                  console.log('setLocation called successfully');
+                } catch (error) {
+                  console.error('Error calling setLocation:', error);
+                }
+                setTimeout(() => {
+                  console.log('After setLocation, pathname:', window.location.pathname);
+                  console.log('After setLocation, href:', window.location.href);
+                }, 100);
               }}
               data-testid="card-payment-methods"
             >
