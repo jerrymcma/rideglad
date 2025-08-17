@@ -870,7 +870,7 @@ export default function RiderApp() {
                     </div>
                   </div>
                   <div className="flex items-center mt-0.5">
-                    <div className="flex items-center gap-1 mr-4">
+                    <div className="flex items-center gap-1 mr-2">
                       <Star size={14} className="text-yellow-500 fill-current" />
                       <span className="text-[13px] font-semibold">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
                     </div>
