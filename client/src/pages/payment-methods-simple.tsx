@@ -37,7 +37,7 @@ export default function PaymentMethodsSimple() {
             >
               <ArrowLeft size={20} className="text-gray-700" />
             </Button>
-            <h1 className="text-xl font-semibold text-gray-900">Payment Methods</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Wallet</h1>
           </div>
         </div>
 
@@ -53,7 +53,7 @@ export default function PaymentMethodsSimple() {
                 <Plus size={20} className="text-white" />
               </div>
               <div>
-                <h3 className="font-semibold text-blue-900">Add Payment Method</h3>
+                <h3 className="font-semibold text-blue-900">Add Card</h3>
                 <p className="text-sm text-blue-700">Credit or debit card</p>
               </div>
             </div>

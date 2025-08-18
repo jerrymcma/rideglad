@@ -81,7 +81,7 @@ export default function AddPaymentMethod() {
             >
               <ArrowLeft size={20} className="text-gray-700" />
             </Button>
-            <h1 className="text-xl font-semibold text-gray-900">Add Payment Method</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Add Card</h1>
           </div>
         </div>
 
@@ -216,7 +216,7 @@ export default function AddPaymentMethod() {
             disabled={loading || !formData.cardNumber || !formData.expiry || !formData.cvc || !formData.name}
             data-testid="button-add-card"
           >
-            {loading ? "Adding Card..." : "Add Payment Method"}
+            {loading ? "Adding Card..." : "Add Card"}
           </Button>
         </form>
       </div>
