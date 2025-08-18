@@ -157,7 +157,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-blue-600" />
                 </div>
-                <h3 className="text-blue-600 font-semibold text-[15px]">Advanced GPS</h3>
+                <h3 className="text-blue-600 text-[15px] font-bold">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Navigation</p>
