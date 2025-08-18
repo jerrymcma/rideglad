@@ -1270,6 +1270,17 @@ export default function RiderApp() {
           Cancel Ride
         </Button>
       </div>
+      
+      {/* Temporary simulation button to advance to next step */}
+      <div className="mt-2 flex justify-center">
+        <Button
+          className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
+          onClick={() => setCurrentStep('pickup')}
+          data-testid="button-simulate-pickup"
+        >
+          Driver Arriving → Next Step
+        </Button>
+      </div>
 
       <div className="text-center mt-6">
         <p className="text-sm text-red-800 font-medium">
