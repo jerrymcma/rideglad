@@ -244,7 +244,7 @@ export default function DriverDashboard() {
               ) : !availableRides || availableRides.length === 0 ? (
                 <div className="text-center py-8">
                   <Car size={48} className="mx-auto text-gray-300 mb-2" />
-                  <p className="text-[#16181c]">No ride requests available</p>
+                  <p className="text-[#16181c] text-[15px]">No ride requests available</p>
                   <p className="text-[#272d2e] text-[15px]">(New requests will appear here) </p>
                 </div>
               ) : (
