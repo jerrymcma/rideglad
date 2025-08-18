@@ -1662,7 +1662,7 @@ export default function RiderApp() {
               </button>
             ))}
           </div>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-[#282d38]">
             {ratingValue === 5 && 'Excellent!'}
             {ratingValue === 4 && 'Good'}
             {ratingValue === 3 && 'Average'}
