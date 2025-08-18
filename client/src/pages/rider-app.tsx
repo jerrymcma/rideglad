@@ -1616,7 +1616,7 @@ export default function RiderApp() {
       <div className="text-center space-y-4">
         <h2 className="font-bold text-brand-green text-[26px]">Trip Completed!</h2>
         <div className="bg-gray-100 border border-gray-200 rounded-lg p-4 space-y-2 mx-4">
-          <p className="text-blue-800 font-semibold">Thank you for choosing ride.</p>
+          <p className="font-semibold text-[#214bd1]">Thank you for choosing ride.</p>
           <p className="text-blue-700 text-sm">We look forward to serving you soon.</p>
         </div>
       </div>
