@@ -345,7 +345,7 @@ export default function DriverDashboard() {
                 <Star className="h-5 w-5 text-status-warning" />
                 <span className="text-sm font-medium">Rating</span>
               </div>
-              <p className="font-bold text-brand-dark text-[19px]" data-testid="text-rating">
+              <p className="font-bold text-brand-dark text-center text-[16px]" data-testid="text-rating">
                 {avgRating.toFixed(1)}
               </p>
             </CardContent>
