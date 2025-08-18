@@ -96,11 +96,7 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-0">
-                  <img 
-                    src={driveIconImage} 
-                    alt="Drive & Earn"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <Car size={48} className="text-blue-600" />
                 </div>
                 <h3 className="text-blue-600 text-lg font-semibold -mt-1">Drive & Earn</h3>
               </div>
