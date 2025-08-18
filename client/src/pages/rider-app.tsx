@@ -130,8 +130,7 @@ export default function RiderApp() {
   // Update current step based on active trip  
   useEffect(() => {
     console.log('useEffect running - activeTrip:', activeTrip as Trip | null, 'isManualSimulation:', isManualSimulation);
-    // COMPLETELY DISABLE automatic step updates for now
-    return;
+    
     if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip && !isManualSimulation) {
       console.log('Setting step based on trip status:', (activeTrip as Trip).status);
       const trip = activeTrip as Trip;
@@ -453,27 +452,32 @@ export default function RiderApp() {
   // Cancel ride mutation  
   const cancelRideMutation = useMutation({
     mutationFn: async () => {
-      const tripToCancel = activeTrip || currentTrip;
-      if (!tripToCancel) throw new Error('No active trip');
+      const tripToCancel = (activeTrip as Trip) || currentTrip;
+      if (!tripToCancel?.id) throw new Error('No active trip');
       return await apiRequest('POST', `/api/trips/${tripToCancel.id}/cancel`);
     },
     onSuccess: () => {
+      // Clear all trip-related state immediately
       setCurrentTrip(null);
-      setCurrentStep('booking');
       setMatchedDriver(null);
       setShowDriverOptions(false);
-      // Clear the booking form to start fresh
+      setCurrentStep('booking');
+      
+      // Clear the booking form completely
       setBookingForm({
         pickupAddress: '',
         destinationAddress: '',
         rideType: 'driver-1'
       });
+      
+      // Force clear the query cache completely
+      queryClient.removeQueries({ queryKey: ['/api/trips/active'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/trips'] });
+      
       toast({
         title: "Ride Cancelled",
         description: "Your ride has been cancelled.",
       });
-      queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/trips'] });
     },
     onError: (error) => {
       if (isUnauthorizedError(error)) {
