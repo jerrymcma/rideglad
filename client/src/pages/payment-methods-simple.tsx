@@ -27,7 +27,7 @@ export default function PaymentMethodsSimple() {
             >
               <ArrowLeft size={20} className="text-gray-700" />
             </Button>
-            <h1 className="text-xl font-semibold text-gray-900">Wallet</h1>
+            <h1 className="font-semibold text-center text-[#21bf6f] text-[25px]">                Wallet</h1>
           </div>
         </div>
 
