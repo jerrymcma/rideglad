@@ -37,7 +37,6 @@ export default function RiderApp() {
   const [currentTrip, setCurrentTrip] = useState<Trip | null>(null);
   const [matchedDriver, setMatchedDriver] = useState<MatchedDriver | null>(null);
   const [ratingValue, setRatingValue] = useState(5);
-  const [ratingComment, setRatingComment] = useState('');
   const [showDriverOptions, setShowDriverOptions] = useState(false);
   const [showLiveTripMap, setShowLiveTripMap] = useState(false);
   
@@ -420,7 +419,6 @@ export default function RiderApp() {
         tripId: currentTrip.id,
         toUserId: matchedDriver.driver.id,
         rating: ratingValue,
-        comment: ratingComment,
       });
     },
     onSuccess: () => {
@@ -428,7 +426,6 @@ export default function RiderApp() {
       setCurrentTrip(null);
       setMatchedDriver(null);
       setRatingValue(5);
-      setRatingComment('');
       setShowDriverOptions(false);
       toast({
         title: "Rating Submitted",
@@ -1545,19 +1542,16 @@ export default function RiderApp() {
           </p>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="comment" className="text-blue-600 font-medium">
-            Comment (Optional)
-          </Label>
-          <textarea
-            id="comment"
-            value={ratingComment}
-            onChange={(e) => setRatingComment(e.target.value)}
-            placeholder="Share your experience..."
-            className="w-full p-3 border border-gray-300 rounded-md resize-none"
-            rows={3}
-            data-testid="textarea-comment"
-          />
+        {/* Add Comment Button */}
+        <div className="flex justify-center">
+          <button
+            type="button"
+            onClick={() => console.log('Navigate to comment page')}
+            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1 transition-colors"
+            data-testid="button-add-comment"
+          >
+            + Add a comment about your trip
+          </button>
         </div>
 
         <div className="space-y-2">

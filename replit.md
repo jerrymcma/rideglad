@@ -21,6 +21,7 @@ rideShare is a premium full-stack ride-sharing application built with React, Exp
 - **Driver Earnings System**: Implemented 90% driver earnings split with automatic calculation during trip completion, stored in database but displayed only in driver app
 - **Uniform Pricing Model**: Completely removed Economy/Comfort/Premium tiers - all drivers now use the same base pricing structure for simplicity and affordability
 - **Driver-Based Selection**: Updated ride booking to show individual drivers (John, Sarah, Mike) instead of service tiers, with same pricing for all
+- **Comment UX Improvement**: Replaced inline comment textarea with elegant "Add a comment" button for cleaner rating interface and separate comment page navigation
 
 # User Preferences
 
