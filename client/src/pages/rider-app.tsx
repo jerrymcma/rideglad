@@ -922,7 +922,7 @@ export default function RiderApp() {
               type="button"
               onClick={handleRequestRide}
               disabled={requestRideMutation.isPending}
-              className="w-48 bg-brand-green text-white text-[18px] py-3 rounded font-semibold hover:bg-green-600"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 w-48 bg-brand-green text-white py-3 rounded font-semibold hover:bg-green-600 text-[18px]"
               data-testid="button-request-ride"
             >
               {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
@@ -1295,7 +1295,7 @@ export default function RiderApp() {
           className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 text-sm"
           onClick={() => {
             setIsManualSimulation(true);
-            setCurrentStep('completed');
+            setCurrentStep('rating');
           }}
         >
           → Trip Complete

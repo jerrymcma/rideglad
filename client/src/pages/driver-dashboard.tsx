@@ -151,15 +151,14 @@ export default function DriverDashboard() {
         <h1 className="text-xl font-semibold">Driver Dashboard</h1>
         <div className="w-10"></div>
       </div>
-
       <div className="p-6 space-y-6">
         {/* Driver Status */}
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-brand-dark">Driver Mode</h2>
-                <p className="text-sm text-gray-medium">
+                <h2 className="text-brand-dark font-bold text-[19px]">Driver Mode</h2>
+                <p className="text-[15px] text-[#101919]">
                   {isOnline ? 'You are online and available' : 'You are offline'}
                 </p>
               </div>
