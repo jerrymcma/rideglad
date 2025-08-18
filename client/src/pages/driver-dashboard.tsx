@@ -331,7 +331,7 @@ export default function DriverDashboard() {
                 <Car className="h-5 w-5 text-brand-green" />
                 <span className="text-sm font-medium">Total Trips</span>
               </div>
-              <p className="text-2xl font-bold text-brand-dark" data-testid="text-trips">
+              <p className="font-bold text-brand-dark text-[19px]" data-testid="text-trips">
                 {totalTrips}
               </p>
             </CardContent>
