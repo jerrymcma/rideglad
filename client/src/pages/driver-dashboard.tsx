@@ -228,7 +228,7 @@ export default function DriverDashboard() {
         {isOnline && !activeTrip && (
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="tracking-tight text-lg flex items-center gap-2 font-semibold text-[#1860de]">
+              <CardTitle className="tracking-tight text-lg flex items-center gap-2 text-[#1860de] font-bold">
                 <Car size={20} />
                 Available Rides
                 {availableRides && availableRides.length > 0 && (
