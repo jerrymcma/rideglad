@@ -1312,13 +1312,13 @@ export default function RiderApp() {
   const renderPickupStep = () => (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-blue-600">Driver Arriving</h2>
+        <h2 className="text-2xl font-bold text-blue-600">Driver Arriving</h2>
         <p className="text-gray-600">Your driver is almost here!</p>
       </div>
 
       <div className="text-center">
-        <Badge variant="outline" className="text-sm py-1 px-3">
-          <Clock size={12} className="mr-1" />
+        <Badge variant="outline" className="text-base py-2 px-4">
+          <Clock size={14} className="mr-2" />
           2 minutes away
         </Badge>
       </div>
@@ -1365,13 +1365,13 @@ export default function RiderApp() {
       </Card>
 
       <div className="text-center space-y-2">
-        <p className="text-sm text-gray-600">Look for your driver at the pickup location</p>
-        <p className="text-xs text-gray-500">You'll be notified when they arrive</p>
+        <p className="text-base text-gray-800 font-medium">Look for your driver at the pickup location</p>
+        <p className="text-sm text-gray-700">You'll be notified when they arrive</p>
       </div>
 
       <Button
         variant="outline"
-        className="w-full flex items-center gap-2"
+        className="w-3/4 mx-auto flex items-center gap-2 border-gray-400"
         data-testid="button-message-driver-pickup"
       >
         <MessageCircle size={16} />
