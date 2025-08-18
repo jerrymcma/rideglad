@@ -47,12 +47,65 @@ export default function RiderApp() {
   const [driverLocation, setDriverLocation] = useState<any>(null);
   const [currentSpeed, setCurrentSpeed] = useState(25);
   const [navigationSteps, setNavigationSteps] = useState<any[]>([]);
+  const [showPickupSuggestions, setShowPickupSuggestions] = useState(false);
+  const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
+  const [pickupSuggestions, setPickupSuggestions] = useState<string[]>([]);
+  const [destinationSuggestions, setDestinationSuggestions] = useState<string[]>([]);
   
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
     destinationAddress: '',
     rideType: 'driver-1'
   });
+
+  // Common location suggestions
+  const commonLocations = [
+    "123 Main Street, San Francisco, CA",
+    "456 Market Street, San Francisco, CA", 
+    "789 Union Square, San Francisco, CA",
+    "321 Mission Bay Blvd, San Francisco, CA",
+    "654 Valencia Street, San Francisco, CA",
+    "987 Castro Street, San Francisco, CA",
+    "147 Lombard Street, San Francisco, CA",
+    "258 Chinatown, San Francisco, CA",
+    "369 Fisherman's Wharf, San Francisco, CA",
+    "741 Golden Gate Park, San Francisco, CA",
+    "852 Nob Hill, San Francisco, CA",
+    "963 SOMA District, San Francisco, CA",
+    "159 Financial District, San Francisco, CA",
+    "357 Hayes Valley, San Francisco, CA",
+    "468 Pacific Heights, San Francisco, CA"
+  ];
+
+  const filterSuggestions = (input: string) => {
+    if (!input.trim()) return [];
+    return commonLocations.filter(location => 
+      location.toLowerCase().includes(input.toLowerCase())
+    ).slice(0, 5);
+  };
+
+  const handlePickupChange = (value: string) => {
+    setBookingForm(prev => ({ ...prev, pickupAddress: value }));
+    const suggestions = filterSuggestions(value);
+    setPickupSuggestions(suggestions);
+    setShowPickupSuggestions(value.length > 0 && suggestions.length > 0);
+  };
+
+  const handleDestinationChange = (value: string) => {
+    setBookingForm(prev => ({ ...prev, destinationAddress: value }));
+    const suggestions = filterSuggestions(value);
+    setDestinationSuggestions(suggestions);
+    setShowDestinationSuggestions(value.length > 0 && suggestions.length > 0);
+  };
+
+  const selectSuggestion = (field: keyof BookingForm, suggestion: string) => {
+    setBookingForm(prev => ({ ...prev, [field]: suggestion }));
+    if (field === 'pickupAddress') {
+      setShowPickupSuggestions(false);
+    } else if (field === 'destinationAddress') {
+      setShowDestinationSuggestions(false);
+    }
+  };
 
   // Get current active trip
   const { data: activeTrip, refetch: refetchTrip } = useQuery({
@@ -591,7 +644,7 @@ export default function RiderApp() {
       </div>
 
       <form onSubmit={handleRequestRide} className="space-y-4">
-        <div className="space-y-2">
+        <div className="space-y-2 relative">
           <Label htmlFor="pickup" className="text-blue-600 font-medium text-base flex items-center gap-2">
             <MapPin size={16} />
             Pickup Location
@@ -599,14 +652,31 @@ export default function RiderApp() {
           <Input
             id="pickup"
             value={bookingForm.pickupAddress}
-            onChange={(e) => setBookingForm(prev => ({ ...prev, pickupAddress: e.target.value }))}
+            onChange={(e) => handlePickupChange(e.target.value)}
             placeholder="Enter pickup address"
             className="border border-gray-300 rounded"
             data-testid="input-pickup"
           />
+          {showPickupSuggestions && (
+            <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-b-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+              {pickupSuggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                  onClick={() => selectSuggestion('pickupAddress', suggestion)}
+                  data-testid={`suggestion-pickup-${index}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <MapPin size={14} className="text-gray-400" />
+                    <span className="text-sm">{suggestion}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 relative">
           <Label htmlFor="destination" className="text-blue-600 font-medium text-base flex items-center gap-2">
             <Navigation size={16} />
             Destination
@@ -614,11 +684,28 @@ export default function RiderApp() {
           <Input
             id="destination"
             value={bookingForm.destinationAddress}
-            onChange={(e) => setBookingForm(prev => ({ ...prev, destinationAddress: e.target.value }))}
+            onChange={(e) => handleDestinationChange(e.target.value)}
             placeholder="Enter destination address"
             className="border border-gray-300 rounded"
             data-testid="input-destination"
           />
+          {showDestinationSuggestions && (
+            <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-b-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+              {destinationSuggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                  onClick={() => selectSuggestion('destinationAddress', suggestion)}
+                  data-testid={`suggestion-destination-${index}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Navigation size={14} className="text-gray-400" />
+                    <span className="text-sm">{suggestion}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Enter button to show driver options when both addresses are filled */}
