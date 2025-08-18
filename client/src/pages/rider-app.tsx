@@ -99,13 +99,6 @@ export default function RiderApp() {
     rideType: ''
   });
 
-  // Update default rideType when active drivers load
-  useEffect(() => {
-    if (activeDrivers && activeDrivers.length > 0 && !bookingForm.rideType) {
-      setBookingForm(prev => ({ ...prev, rideType: activeDrivers[0].id }));
-    }
-  }, [activeDrivers, bookingForm.rideType]);
-
   // Common location suggestions
   const commonLocations = [
     "123 Main Street, San Francisco, CA",
@@ -174,6 +167,13 @@ export default function RiderApp() {
     queryKey: ['/api/drivers/active'],
     refetchInterval: 10000, // Refresh every 10 seconds to show current active drivers
   });
+
+  // Update default rideType when active drivers load
+  useEffect(() => {
+    if (activeDrivers && activeDrivers.length > 0 && !bookingForm.rideType) {
+      setBookingForm(prev => ({ ...prev, rideType: activeDrivers[0].id }));
+    }
+  }, [activeDrivers, bookingForm.rideType]);
 
   // Update current step based on active trip  
   useEffect(() => {
