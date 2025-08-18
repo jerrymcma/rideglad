@@ -1,148 +1,18 @@
-import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-// import RealTimeMap from "@/components/ui/real-time-map";
-// import TurnByTurnNavigation from "@/components/ui/turn-by-turn-navigation";
-// import GPSTracker from "@/components/ui/gps-tracker";
 import { 
   MapPin, 
   Navigation, 
   Satellite, 
-  Route, 
-  Map,
   ArrowLeft,
   Zap,
   Clock,
-  Signal
+  Signal,
+  Map
 } from "lucide-react";
 
-interface NavigationStep {
-  id: string;
-  instruction: string;
-  maneuver: 'turn-left' | 'turn-right' | 'straight' | 'u-turn' | 'exit' | 'merge' | 'arrival';
-  distance: number;
-  duration: number;
-  streetName: string;
-  nextStreetName?: string;
-}
-
-interface LocationData {
-  latitude: number;
-  longitude: number;
-  accuracy: number;
-  speed?: number;
-  heading?: number;
-  timestamp: number;
-}
-
 export default function AdvancedNavigation() {
-  const [userLocation, setUserLocation] = useState<LocationData | null>(null);
-  const [driverLocation, setDriverLocation] = useState<any>(null);
-  const [currentSpeed, setCurrentSpeed] = useState(28);
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [isNavigationActive, setIsNavigationActive] = useState(false);
-
-  // Mock navigation steps for demonstration
-  const navigationSteps: NavigationStep[] = [
-    {
-      id: '1',
-      instruction: 'Head northeast on Main Street',
-      maneuver: 'straight',
-      distance: 350,
-      duration: 45,
-      streetName: 'Main Street',
-      nextStreetName: 'Oak Avenue'
-    },
-    {
-      id: '2', 
-      instruction: 'Turn right onto Oak Avenue',
-      maneuver: 'turn-right',
-      distance: 200,
-      duration: 30,
-      streetName: 'Oak Avenue',
-      nextStreetName: 'Highway 101'
-    },
-    {
-      id: '3',
-      instruction: 'Merge onto Highway 101 North',
-      maneuver: 'merge',
-      distance: 1200,
-      duration: 90,
-      streetName: 'Highway 101 North',
-      nextStreetName: 'Downtown Exit'
-    },
-    {
-      id: '4',
-      instruction: 'Take exit 15 toward Downtown',
-      maneuver: 'exit',
-      distance: 150,
-      duration: 20,
-      streetName: 'Downtown Exit'
-    },
-    {
-      id: '5',
-      instruction: 'You have arrived at your destination',
-      maneuver: 'arrival',
-      distance: 0,
-      duration: 0,
-      streetName: 'Destination'
-    }
-  ];
-
-  // Mock driver location for real-time tracking
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDriverLocation({
-        latitude: 37.7749 + (Math.random() - 0.5) * 0.01,
-        longitude: -122.4194 + (Math.random() - 0.5) * 0.01,
-        accuracy: Math.random() * 10 + 5,
-        speed: Math.random() * 20 + 20,
-        heading: Math.random() * 360,
-        timestamp: Date.now(),
-        driverId: 'demo-driver',
-        status: 'en_route' as const
-      });
-      
-      // Update speed simulation
-      setCurrentSpeed(Math.random() * 15 + 20);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Simulate step progression
-  useEffect(() => {
-    if (isNavigationActive && currentStepIndex < navigationSteps.length - 1) {
-      const timer = setTimeout(() => {
-        setCurrentStepIndex(prev => prev + 1);
-      }, 8000); // Progress every 8 seconds
-
-      return () => clearTimeout(timer);
-    }
-  }, [isNavigationActive, currentStepIndex]);
-
-  const totalDistance = navigationSteps.reduce((sum, step) => sum + step.distance, 0);
-  const totalDuration = navigationSteps.reduce((sum, step) => sum + step.duration, 0);
-
-  const handleLocationUpdate = (location: LocationData) => {
-    setUserLocation(location);
-  };
-
-  const handleDriverContact = (type: 'call' | 'message') => {
-    console.log(`Contacting driver via ${type}`);
-  };
-
-  const startNavigation = () => {
-    setIsNavigationActive(true);
-    setCurrentStepIndex(0);
-  };
-
-  const stopNavigation = () => {
-    setIsNavigationActive(false);
-    setCurrentStepIndex(0);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
@@ -157,10 +27,10 @@ export default function AdvancedNavigation() {
             Trillion-Dollar Tech
           </Badge>
         </div>
-        <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy and professional navigation features - unique innovation in rideshare technology</p>
+        <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy - unique innovation in rideshare technology</p>
       </div>
 
-      {/* Simple demonstration section while components load */}
+      {/* Demo Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
@@ -233,7 +103,6 @@ export default function AdvancedNavigation() {
         </Card>
       </div>
 
-      
       {/* Technology Info */}
       <Card className="mt-6">
         <CardHeader>
