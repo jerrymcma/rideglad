@@ -157,7 +157,7 @@ export default function DriverDashboard() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-bold text-[19px] text-[#0963e8]">Driver Mode</h2>
+                <h2 className="font-bold text-[#0963e8] text-[18px]">Driver Mode</h2>
                 <p className="text-[#101919] text-[15px] font-medium">
                   {isOnline ? 'You are online and available' : 'You are offline'}
                 </p>
