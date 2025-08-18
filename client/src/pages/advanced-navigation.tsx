@@ -25,14 +25,13 @@ export default function AdvancedNavigation() {
         </div>
         <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy - unique innovation in rideshare technology</p>
       </div>
-
       {/* Demo Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Map size={28} className="text-green-600" />
-              <span className="text-green-600">Real-Time Map (Demo)</span>
+              <span className="text-[#276de5]">Real-Time Map (Demo)</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -98,7 +97,6 @@ export default function AdvancedNavigation() {
           </CardContent>
         </Card>
       </div>
-
       {/* Technology Info */}
       <Card className="mt-6">
         <CardHeader>
