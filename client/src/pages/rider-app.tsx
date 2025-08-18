@@ -5,6 +5,17 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award, X, Satellite, Route, Map, ArrowLeft } from "lucide-react";
 import RealTimeMap from "@/components/ui/real-time-map";
 import TurnByTurnNavigation from "@/components/ui/turn-by-turn-navigation";
@@ -1288,43 +1299,64 @@ export default function RiderApp() {
         </Button>
       </div>
 
-      {/* Cancel Ride Button */}
+      {/* Cancel Ride Button with Confirmation */}
       <div className="mt-1 flex justify-center">
-        <Button
-          variant="outline"
-          className="w-28 flex items-center gap-2 text-gray-600 border-gray-200 hover:bg-gray-50 text-[13px]"
-          onClick={async () => {
-            try {
-              await apiRequest('POST', `/api/trips/${currentTrip?.id}/cancel`);
-              setCurrentStep('booking');
-              setCurrentTrip(null);
-              setMatchedDriver(null);
-              toast({
-                title: "Ride cancelled",
-                description: "Your ride has been cancelled successfully."
-              });
-              queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
-            } catch (error: any) {
-              if (isUnauthorizedError(error)) {
-                toast({
-                  title: "Session expired",
-                  description: "Please log in again.",
-                  variant: "destructive"
-                });
-                return;
-              }
-              toast({
-                title: "Error",
-                description: "Failed to cancel ride. Please try again.",
-                variant: "destructive"
-              });
-            }
-          }}
-          data-testid="button-cancel-ride"
-        >
-          <X size={16} />
-          Cancel Ride
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant="outline"
+              className="w-28 flex items-center gap-2 text-gray-600 border-gray-200 hover:bg-gray-50 text-[13px]"
+              data-testid="button-cancel-ride"
+            >
+              <X size={16} />
+              Cancel Ride
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Cancel your ride?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to cancel this ride? This action cannot be undone and your driver may have already started heading to your location.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Keep ride</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={async () => {
+                  try {
+                    await apiRequest('POST', `/api/trips/${currentTrip?.id}/cancel`);
+                    setCurrentStep('booking');
+                    setCurrentTrip(null);
+                    setMatchedDriver(null);
+                    toast({
+                      title: "Ride cancelled",
+                      description: "Your ride has been cancelled successfully."
+                    });
+                    queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
+                  } catch (error: any) {
+                    if (isUnauthorizedError(error)) {
+                      toast({
+                        title: "Session expired",
+                        description: "Please log in again.",
+                        variant: "destructive"
+                      });
+                      return;
+                    }
+                    toast({
+                      title: "Error",
+                      description: "Failed to cancel ride. Please try again.",
+                      variant: "destructive"
+                    });
+                  }
+                }}
+                className="bg-red-600 hover:bg-red-700"
+                data-testid="button-confirm-cancel"
+              >
+                Yes, cancel ride
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
       
       {/* Simulation controls */}
