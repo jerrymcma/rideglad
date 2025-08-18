@@ -317,7 +317,7 @@ export default function DriverDashboard() {
             <CardContent className="pt-6">
               <div className="flex items-center space-x-2 mb-2">
                 <DollarSign className="h-5 w-5 text-brand-green" />
-                <span className="text-sm font-medium">Total Earnings</span>
+                <span className="text-sm font-bold">Total Earnings</span>
               </div>
               <p className="font-bold text-brand-dark text-[19px]" data-testid="text-earnings">
                 ${totalEarnings.toFixed(2)}
