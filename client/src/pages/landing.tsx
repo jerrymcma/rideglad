@@ -10,9 +10,7 @@ export default function Landing() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      {/* Five lines of spacing */}
-      <div className="h-20"></div>
-      <div className="flex flex-col h-screen justify-center px-8 -mt-56">
+      <div className="flex flex-col min-h-screen justify-center px-8 pt-24 pb-8">
         <div className="text-center space-y-4">
           {/* Logo */}
           <div className="flex justify-center">
