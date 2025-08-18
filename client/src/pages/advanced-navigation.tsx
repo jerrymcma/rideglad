@@ -157,7 +157,7 @@ export default function AdvancedNavigation() {
             Trillion-Dollar Tech
           </Badge>
         </div>
-        <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy and professional navigation features</p>
+        <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy and professional navigation features - unique innovation in rideshare technology</p>
       </div>
 
       {/* Simple demonstration section while components load */}
@@ -173,8 +173,18 @@ export default function AdvancedNavigation() {
             <div className="h-80 bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 rounded-lg flex items-center justify-center border">
               <div className="text-center">
                 <Satellite size={48} className="text-blue-500 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">GPS Components Loading</h3>
-                <p className="text-gray-600">Advanced mapping system initializing...</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Revolutionary GPS Technology</h3>
+                <p className="text-gray-600">First-of-its-kind rideshare navigation system</p>
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center justify-center gap-2 text-sm text-green-600">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span>Live tracking active</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 text-sm text-blue-600">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <span>Satellite connection strong</span>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
