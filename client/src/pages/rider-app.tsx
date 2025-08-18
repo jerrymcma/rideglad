@@ -33,6 +33,8 @@ interface MatchedDriver {
 
 export default function RiderApp() {
   console.log('RiderApp component is rendering');
+  console.log('Current step:', currentStep);
+  console.log('Is manual simulation:', isManualSimulation);
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -1277,9 +1279,11 @@ export default function RiderApp() {
         <Button
           className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
           onClick={() => {
+            console.log('Button clicked - setting manual simulation');
             setIsManualSimulation(true);
             setCurrentStep('pickup');
             setCurrentTrip(prev => prev ? {...prev, status: 'pickup'} : null);
+            console.log('Current step should now be pickup');
           }}
           data-testid="button-simulate-pickup"
         >
