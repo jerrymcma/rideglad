@@ -64,7 +64,6 @@ function Router() {
     case '/payment-history':
       return <PaymentHistory />;
     case '/advanced-navigation':
-      console.log('Rendering AdvancedNavigation component');
       return <AdvancedNavigation />;
     case '/landing':
       return <Landing />;

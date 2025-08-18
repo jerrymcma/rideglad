@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 
 export default function AdvancedNavigation() {
-  console.log('AdvancedNavigation component is rendering');
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
