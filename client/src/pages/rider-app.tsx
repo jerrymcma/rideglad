@@ -647,7 +647,7 @@ export default function RiderApp() {
   const renderBookingStep = () => (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h1 className="font-bold text-[#285aeb] text-[32px]">Book a ride</h1>
+        <h1 className="text-[#285aeb] text-[32px] font-black">Book a ride</h1>
         <p className="text-gray-600 mt-[2px] mb-[2px]">Where would you like to go</p>
       </div>
 
