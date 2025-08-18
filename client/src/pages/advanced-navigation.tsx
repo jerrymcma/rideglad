@@ -17,11 +17,11 @@ export default function AdvancedNavigation() {
     <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
       <div className="mb-6">
-        <div className="flex items-center mb-2">
-          <Button variant="ghost" size="sm" onClick={() => window.history.back()} className="mr-3">
+        <div className="flex items-center justify-center mb-2">
+          <Button variant="ghost" size="sm" onClick={() => window.history.back()} className="absolute left-0">
             <ArrowLeft size={20} />
           </Button>
-          <h1 className="text-2xl font-bold text-gray-900">Advanced GPS Navigation</h1>
+          <h1 className="text-xl font-bold text-blue-600">Advanced GPS Navigation</h1>
         </div>
         <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy - unique innovation in rideshare technology</p>
       </div>
