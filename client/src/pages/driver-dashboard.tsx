@@ -148,7 +148,7 @@ export default function DriverDashboard() {
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h1 className="font-extrabold text-[24px] text-[#0aab94]">Driver Dashboard</h1>
+        <h1 className="font-extrabold text-[#0aab94] text-[25px]">Driver Dashboard</h1>
         <div className="w-10"></div>
       </div>
       <div className="p-6 space-y-6">
