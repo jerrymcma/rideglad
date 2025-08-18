@@ -125,9 +125,11 @@ export default function RiderApp() {
     select: (trips: Trip[]) => trips.find(trip => trip.status === 'completed'),
   });
 
-  // Update current step based on active trip
+  // Update current step based on active trip  
   useEffect(() => {
     console.log('useEffect running - activeTrip:', activeTrip, 'isManualSimulation:', isManualSimulation);
+    // COMPLETELY DISABLE automatic step updates for now
+    return;
     if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip && !isManualSimulation) {
       console.log('Setting step based on trip status:', activeTrip.status);
       const trip = activeTrip as Trip;
@@ -1278,20 +1280,22 @@ export default function RiderApp() {
       </div>
       
       {/* Temporary simulation button to advance to next step */}
-      <div className="mt-2 flex justify-center">
-        <Button
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
-          onClick={() => {
-            console.log('Button clicked - setting manual simulation');
+      <div className="mt-4 flex justify-center">
+        <button
+          className="bg-red-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-red-700 border-4 border-red-800"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('RED BUTTON CLICKED!!!');
+            alert('Button was clicked!');
             setIsManualSimulation(true);
             setCurrentStep('pickup');
-            setCurrentTrip(prev => prev ? {...prev, status: 'pickup'} : null);
-            console.log('Current step should now be pickup');
+            console.log('Step changed to pickup');
           }}
-          data-testid="button-simulate-pickup"
+          style={{ zIndex: 9999, position: 'relative' }}
         >
-          Driver Arriving → Next Step
-        </Button>
+          🚨 ADVANCE TO PICKUP 🚨
+        </button>
       </div>
 
       <div className="text-center mt-6">
