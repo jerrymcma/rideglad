@@ -357,7 +357,7 @@ export default function DriverDashboard() {
                 <Clock className="h-5 w-5 text-brand-green" />
                 <span className="text-sm font-medium">Online Time</span>
               </div>
-              <p className="text-2xl font-bold text-brand-dark">
+              <p className="font-bold text-brand-dark text-[19px]">
                 0h 0m
               </p>
             </CardContent>
