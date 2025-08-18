@@ -32,9 +32,6 @@ interface MatchedDriver {
 }
 
 export default function RiderApp() {
-  console.log('RiderApp component is rendering');
-  console.log('Current step:', currentStep);
-  console.log('Is manual simulation:', isManualSimulation);
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -54,6 +51,10 @@ export default function RiderApp() {
   const [pickupSuggestions, setPickupSuggestions] = useState<string[]>([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState<string[]>([]);
   const [isManualSimulation, setIsManualSimulation] = useState(false);
+
+  console.log('RiderApp component is rendering');
+  console.log('Current step:', currentStep);
+  console.log('Is manual simulation:', isManualSimulation);
   
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
