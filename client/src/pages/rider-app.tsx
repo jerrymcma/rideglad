@@ -1718,7 +1718,7 @@ export default function RiderApp() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-[19px] font-bold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
-              <p className="text-gray-600 text-[15px]">Ready for your next trip?</p>
+              <p className="text-gray-600 text-[15px]">Ready for your next trip</p>
             </div>
           </div>
         )}
