@@ -1588,7 +1588,6 @@ export default function RiderApp() {
           <p className="text-blue-800 font-semibold">Thank you for choosing Ride!</p>
           <p className="text-blue-700 text-sm">We appreciate your trust in us and look forward to serving you again soon.</p>
         </div>
-        <p className="text-gray-600">How was your ride?</p>
       </div>
 
       {currentTrip && (
