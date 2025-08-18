@@ -5,6 +5,19 @@ import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertTripSchema, insertVehicleSchema, insertRatingSchema, insertPaymentMethodSchema } from "@shared/schema";
 import { z } from "zod";
 
+// Stripe setup - will be initialized when keys are provided
+let stripe: any = null;
+try {
+  if (process.env.STRIPE_SECRET_KEY) {
+    const Stripe = require('stripe');
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2023-10-16',
+    });
+  }
+} catch (error) {
+  console.log('Stripe not initialized - API keys not provided');
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   await setupAuth(app);
@@ -523,6 +536,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching payment history:", error);
       res.status(500).json({ message: "Failed to fetch payment history" });
+    }
+  });
+
+  // Wallet endpoints - Stripe integration ready
+  app.post('/api/wallet/add-card', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { cardNumber, expiryMonth, expiryYear, cvc, name, zipCode } = req.body;
+
+      if (!stripe) {
+        // Fallback for demo purposes - store card info securely
+        const last4 = cardNumber.slice(-4);
+        const cardType = cardNumber.startsWith('4') ? 'VISA' : 'MASTERCARD';
+        
+        const paymentMethod = await storage.createPaymentMethod({
+          userId,
+          type: 'card',
+          lastFour: last4,
+          brand: cardType,
+          expiryMonth: parseInt(expiryMonth),
+          expiryYear: parseInt(expiryYear),
+          cardholderName: name,
+          isDefault: false
+        });
+
+        return res.json(paymentMethod);
+      }
+
+      // Full Stripe integration when keys are available
+      const paymentMethod = await stripe.paymentMethods.create({
+        type: 'card',
+        card: {
+          number: cardNumber.replace(/\s/g, ''),
+          exp_month: expiryMonth,
+          exp_year: expiryYear,
+          cvc: cvc,
+        },
+        billing_details: {
+          name: name,
+          address: {
+            postal_code: zipCode,
+          },
+        },
+      });
+
+      const savedMethod = await storage.createPaymentMethod({
+        userId,
+        type: 'card',
+        lastFour: paymentMethod.card.last4,
+        brand: paymentMethod.card.brand.toUpperCase(),
+        expiryMonth: paymentMethod.card.exp_month,
+        expiryYear: paymentMethod.card.exp_year,
+        cardholderName: name,
+        stripePaymentMethodId: paymentMethod.id,
+        isDefault: false
+      });
+
+      res.json(savedMethod);
+    } catch (error) {
+      console.error("Error adding card:", error);
+      res.status(500).json({ message: "Failed to add card" });
     }
   });
 

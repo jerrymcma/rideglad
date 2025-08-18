@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function AddPaymentMethod() {
   const [, setLocation] = useLocation();
@@ -23,12 +24,20 @@ export default function AddPaymentMethod() {
     setLoading(true);
 
     try {
-      // TODO: Integrate with Stripe when keys are available
-      // This will create a payment method with Stripe
+      const [expMonth, expYear] = formData.expiry.split('/');
+      
+      await apiRequest('POST', '/api/wallet/add-card', {
+        cardNumber: formData.cardNumber.replace(/\s/g, ''),
+        expiryMonth: expMonth,
+        expiryYear: `20${expYear}`,
+        cvc: formData.cvc,
+        name: formData.name,
+        zipCode: formData.zipCode
+      });
       
       toast({
-        title: "Payment Method Added",
-        description: "Your card has been added successfully.",
+        title: "Card Added Successfully",
+        description: "Your payment method has been added to your wallet.",
       });
       
       setLocation('/payment-methods');

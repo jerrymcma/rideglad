@@ -38,6 +38,7 @@ export const users = pgTable("users", {
   rating: real("rating").default(0),
   totalRatings: integer("total_ratings").default(0),
   isDriverActive: boolean("is_driver_active").default(false),
+  stripeCustomerId: varchar("stripe_customer_id"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
