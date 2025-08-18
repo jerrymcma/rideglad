@@ -1279,23 +1279,26 @@ export default function RiderApp() {
         </Button>
       </div>
       
-      {/* Temporary simulation button to advance to next step */}
-      <div className="mt-4 flex justify-center">
-        <button
-          className="bg-red-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-red-700 border-4 border-red-800"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('RED BUTTON CLICKED!!!');
-            alert('Button was clicked!');
+      {/* Simulation controls */}
+      <div className="mt-3 flex justify-center gap-2">
+        <Button
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 text-sm"
+          onClick={() => {
             setIsManualSimulation(true);
-            setCurrentStep('pickup');
-            console.log('Step changed to pickup');
+            setCurrentStep('inprogress');
           }}
-          style={{ zIndex: 9999, position: 'relative' }}
         >
-          🚨 ADVANCE TO PICKUP 🚨
-        </button>
+          → Trip Started
+        </Button>
+        <Button
+          className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 text-sm"
+          onClick={() => {
+            setIsManualSimulation(true);
+            setCurrentStep('completed');
+          }}
+        >
+          → Trip Complete
+        </Button>
       </div>
 
       <div className="text-center mt-6">
