@@ -42,7 +42,7 @@ export default function SimpleHome() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="p-6 space-y-6 mt-60">
+      <div className="p-6 space-y-6 mt-60 text-[15px]">
         {/* Header */}
         <div className="text-center space-y-1">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[31px]">Welcome to ride!</h1>
@@ -148,16 +148,16 @@ export default function SimpleHome() {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Advanced Navigation clicked, navigating to /advanced-navigation');
+                console.log('Advanced GPS clicked, navigating to /advanced-navigation');
                 setLocation('/advanced-navigation');
               }}
-              data-testid="card-advanced-navigation"
+              data-testid="card-advanced-gps"
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-blue-600" />
                 </div>
-                <h3 className="text-lg text-blue-600 font-semibold">Advanced GPS</h3>
+                <h3 className="text-blue-600 font-semibold text-[15px]">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Navigation</p>
