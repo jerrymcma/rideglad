@@ -77,7 +77,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-1">
                   <MapPin size={32} className="text-brand-green" />
                 </div>
-                <h3 className="text-lg text-brand-green font-semibold">Book a ride</h3>
+                <h3 className="text-brand-green font-semibold text-[16px]">Book a ride</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Get there.</p>
