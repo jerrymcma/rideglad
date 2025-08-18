@@ -102,7 +102,7 @@ export default function SimpleHome() {
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 </div>
-                <h3 className="text-blue-600 font-semibold -mt-1 text-[18px]">Drive + Earn</h3>
+                <h3 className="text-blue-600 font-semibold -mt-1 text-[16px]">Drive + Earn</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Make money</p>
