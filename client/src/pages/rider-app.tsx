@@ -1275,7 +1275,11 @@ export default function RiderApp() {
       <div className="mt-2 flex justify-center">
         <Button
           className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
-          onClick={() => setCurrentStep('pickup')}
+          onClick={() => {
+            setCurrentStep('pickup');
+            // Force a mock trip update to avoid being overridden
+            setCurrentTrip(prev => prev ? {...prev, status: 'pickup'} : null);
+          }}
           data-testid="button-simulate-pickup"
         >
           Driver Arriving → Next Step
