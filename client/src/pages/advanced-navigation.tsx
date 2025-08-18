@@ -31,14 +31,14 @@ export default function AdvancedNavigation() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Map size={20} className="text-blue-600" />
-              Real-Time Map (Demo)
+              <Map size={28} className="text-green-600" />
+              <span className="text-green-600">Real-Time Map (Demo)</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-80 bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 rounded-lg flex items-center justify-center border">
               <div className="text-center">
-                <Satellite size={48} className="text-blue-500 mx-auto mb-4" />
+                <Satellite size={72} className="text-blue-500 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Revolutionary GPS Technology</h3>
                 <p className="text-gray-600">First-of-its-kind rideshare navigation system</p>
                 <div className="mt-4 space-y-2">
