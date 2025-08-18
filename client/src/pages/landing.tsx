@@ -25,7 +25,7 @@ export default function Landing() {
           {/* Login Form */}
           <div className="space-y-4">
             <div className="text-center space-y-1">
-              <Label htmlFor="email" className="text-blue-600 font-medium block">
+              <Label htmlFor="email" className="text-blue-600 block font-semibold">
                 Email address
               </Label>
               <Input
@@ -39,7 +39,7 @@ export default function Landing() {
             </div>
 
             <div className="text-center space-y-1">
-              <Label htmlFor="password" className="text-blue-600 font-medium block">
+              <Label htmlFor="password" className="text-blue-600 block font-semibold">
                 Password
               </Label>
               <Input
