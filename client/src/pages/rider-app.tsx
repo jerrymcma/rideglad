@@ -652,7 +652,7 @@ export default function RiderApp() {
     <div className="space-y-6">
       <div className="text-center space-y-2">
         <h1 className="text-[#285aeb] font-black text-[30px]">Book a ride</h1>
-        <p className="text-gray-600 mt-[2px] mb-[2px]">Where would you like to go</p>
+        <p className="text-gray-600 mt-[2px] mb-[2px]">Where would you like to go?</p>
       </div>
 
       <form onSubmit={handleRequestRide} className="space-y-4">
