@@ -56,6 +56,7 @@ export interface IStorage {
   
   // Driver operations
   getAvailableDrivers(lat: number, lng: number, rideType: string): Promise<(User & { vehicle: Vehicle })[]>;
+  getActiveDrivers(): Promise<User[]>;
   getAvailableRideRequests(): Promise<Trip[]>;
   getActiveDriverTrip(driverId: string): Promise<Trip | undefined>;
   toggleDriverStatus(driverId: string, isActive: boolean): Promise<User>;
@@ -398,6 +399,24 @@ export class DatabaseStorage implements IStorage {
         console.error(`Error creating mock driver ${mockDriver.id}:`, error);
       }
     }
+  }
+
+  async getActiveDrivers(): Promise<User[]> {
+    // Ensure mock drivers exist first
+    await this.ensureMockDrivers();
+    
+    // Get all active drivers (both real users and mock drivers)
+    const activeDrivers = await db
+      .select()
+      .from(users)
+      .where(
+        and(
+          eq(users.userType, 'driver'),
+          eq(users.isDriverActive, true)
+        )
+      );
+    
+    return activeDrivers;
   }
 
   async toggleDriverStatus(driverId: string, isActive: boolean): Promise<User> {

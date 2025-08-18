@@ -60,6 +60,18 @@ export default function RiderApp() {
             setDriverLocation(message.location);
           }
           break;
+        case 'driver_availability_changed':
+          // Refresh active drivers list when driver comes online/offline
+          queryClient.invalidateQueries({ queryKey: ['/api/drivers/active'] });
+          if (currentStep === 'booking') {
+            toast({
+              title: message.isActive ? "New driver available!" : "Driver went offline",
+              description: message.isActive 
+                ? `${message.driver?.firstName || 'A driver'} is now available in your area` 
+                : `${message.driver?.firstName || 'A driver'} went offline`,
+            });
+          }
+          break;
       }
     }
   });
@@ -84,8 +96,15 @@ export default function RiderApp() {
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
     destinationAddress: '',
-    rideType: 'driver-1'
+    rideType: ''
   });
+
+  // Update default rideType when active drivers load
+  useEffect(() => {
+    if (activeDrivers && activeDrivers.length > 0 && !bookingForm.rideType) {
+      setBookingForm(prev => ({ ...prev, rideType: activeDrivers[0].id }));
+    }
+  }, [activeDrivers, bookingForm.rideType]);
 
   // Common location suggestions
   const commonLocations = [
@@ -148,6 +167,12 @@ export default function RiderApp() {
     queryKey: ['/api/trips'],
     enabled: !!user && currentStep === 'rating',
     select: (trips: Trip[]) => trips.find(trip => trip.status === 'completed'),
+  });
+
+  // Get active drivers for ride selection
+  const { data: activeDrivers } = useQuery({
+    queryKey: ['/api/drivers/active'],
+    refetchInterval: 10000, // Refresh every 10 seconds to show current active drivers
   });
 
   // Update current step based on active trip  
@@ -838,33 +863,35 @@ export default function RiderApp() {
                     <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
                   </div>
                   
-                  {/* Driver Locations */}
-                  {/* John - Closest (2 min away) */}
-                  <div className="absolute top-1/2 left-[35%] transform -translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-1')}</span>
-                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                      <Car size={16} className="text-blue-600" />
-                    </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">John</span>
-                  </div>
-                  
-                  {/* Mike - Medium distance (3 min away) */}
-                  <div className="absolute top-[25%] right-[25%] transform translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-3')}</span>
-                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                      <Car size={16} className="text-blue-600" />
-                    </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Mike</span>
-                  </div>
-                  
-                  {/* Sarah - Farthest (4 min away) */}
-                  <div className="absolute top-[85%] left-[10%] transform -translate-x-1/2 -translate-y-1/2">
-                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">{getRideTypePrice('driver-2')}</span>
-                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                      <Car size={16} className="text-blue-600" />
-                    </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">Sarah</span>
-                  </div>
+                  {/* Driver Locations - Show Active Drivers */}
+                  {activeDrivers && activeDrivers.slice(0, 3).map((driver, index) => {
+                    const positions = [
+                      { top: '50%', left: '35%', transform: 'translate(-50%, -50%)' },
+                      { top: '25%', right: '25%', transform: 'translate(50%, -50%)' },
+                      { top: '85%', left: '10%', transform: 'translate(-50%, -50%)' }
+                    ];
+                    const position = positions[index] || positions[0];
+                    const estimatedTime = Math.floor(Math.random() * 5) + 2;
+                    
+                    return (
+                      <div
+                        key={driver.id}
+                        className="absolute"
+                        style={{
+                          top: position.top,
+                          left: position.left,
+                          right: position.right,
+                          transform: position.transform
+                        }}
+                      >
+                        <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
+                        <div className="bg-white rounded-full p-1 border border-white shadow-md">
+                          <Car size={16} className="text-blue-600" />
+                        </div>
+                        <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">{driver.firstName}</span>
+                      </div>
+                    );
+                  })}
                 </div>
                 
                 {/* Map Controls */}
@@ -879,92 +906,58 @@ export default function RiderApp() {
             <div className="space-y-2">
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2 py-2">
                 <User size={20} />
-                Choose your ride
+                Choose your ride {activeDrivers && activeDrivers.length > 0 && (
+                  <Badge variant="secondary" className="ml-2">{activeDrivers.length} online</Badge>
+                )}
               </Label>
               
-              {/* John */}
-              <Card 
-                className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-1' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
-                onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-1' }))}
-                data-testid="card-driver-john"
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                        <User size={20} className="text-white" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-sm">John</p>
-                        <p className="text-xs text-gray-600">White Toyota Camry</p>
-                        <div className="flex items-center mt-1">
-                          <Star size={12} className="text-yellow-400 mr-1" />
-                          <span className="text-xs text-gray-600">4.8 • 2 min away</span>
+              {/* Show active drivers */}
+              {activeDrivers && activeDrivers.length > 0 ? (
+                activeDrivers.map((driver: UserType, index: number) => (
+                  <Card 
+                    key={driver.id}
+                    className={`cursor-pointer transition-all ${bookingForm.rideType === driver.id ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
+                    onClick={() => setBookingForm(prev => ({ ...prev, rideType: driver.id }))}
+                    data-testid={`card-driver-${driver.id}`}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            index % 3 === 0 ? 'bg-blue-600' : 
+                            index % 3 === 1 ? 'bg-purple-600' : 'bg-gray-800'
+                          }`}>
+                            <User size={20} className="text-white" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-1">
+                              <p className="font-medium text-sm">{driver.firstName}</p>
+                              {driver.id === user?.id && (
+                                <Badge variant="secondary" className="text-xs">You</Badge>
+                              )}
+                            </div>
+                            <p className="text-xs text-gray-600">Available Driver</p>
+                            <div className="flex items-center mt-1">
+                              <Star size={12} className="text-yellow-400 mr-1" />
+                              <span className="text-xs text-gray-600">5.0 • {Math.floor(Math.random() * 5) + 2} min away</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-lg text-brand-green">$16.80</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-1')}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Sarah */}
-              <Card 
-                className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-2' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
-                onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-2' }))}
-                data-testid="card-driver-sarah"
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
-                        <User size={20} className="text-white" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-sm">Sarah</p>
-                        <p className="text-xs text-gray-600">Silver Honda Accord</p>
-                        <div className="flex items-center mt-1">
-                          <Star size={12} className="text-yellow-400 mr-1" />
-                          <span className="text-xs text-gray-600">4.9 • 4 min away</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-2')}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Mike */}
-              <Card 
-                className={`cursor-pointer transition-all ${bookingForm.rideType === 'driver-3' ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
-                onClick={() => setBookingForm(prev => ({ ...prev, rideType: 'driver-3' }))}
-                data-testid="card-driver-mike"
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
-                        <User size={20} className="text-white" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-sm">Mike</p>
-                        <p className="text-xs text-gray-600">Black BMW 3 Series</p>
-                        <div className="flex items-center mt-1">
-                          <Star size={12} className="text-yellow-400 mr-1" />
-                          <span className="text-xs text-gray-600">5.0 • 3 min away</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-lg text-brand-green">{getRideTypePrice('driver-3')}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                ))
+              ) : (
+                <Card className="bg-gray-50 border-gray-200">
+                  <CardContent className="p-4 text-center">
+                    <p className="text-gray-500">No drivers currently online</p>
+                    <p className="text-xs text-gray-400 mt-1">Please try again in a few moments</p>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
           </div>

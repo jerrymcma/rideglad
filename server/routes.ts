@@ -64,6 +64,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { isActive } = req.body;
       
       const updatedUser = await storage.toggleDriverStatus(userId, isActive);
+      
+      // Notify all riders about driver availability changes
+      const connectedRiders = req.app.get('connectedRiders');
+      if (connectedRiders) {
+        connectedRiders.forEach((ws: any) => {
+          if (ws.readyState === 1) { // WebSocket.OPEN
+            ws.send(JSON.stringify({
+              type: 'driver_availability_changed',
+              driverId: userId,
+              isActive: isActive,
+              driver: updatedUser
+            }));
+          }
+        });
+      }
+      
       res.json(updatedUser);
     } catch (error) {
       console.error("Error toggling driver status:", error);
@@ -183,6 +199,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error creating rating:", error);
       res.status(400).json({ message: error instanceof z.ZodError ? error.errors : "Invalid rating data" });
+    }
+  });
+
+  // Get active/online drivers for riders to see
+  app.get('/api/drivers/active', async (req, res) => {
+    try {
+      const activeDrivers = await storage.getActiveDrivers();
+      res.json(activeDrivers);
+    } catch (error) {
+      console.error("Error fetching active drivers:", error);
+      res.status(500).json({ message: "Failed to fetch active drivers" });
     }
   });
 
