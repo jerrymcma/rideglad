@@ -245,7 +245,7 @@ export default function DriverDashboard() {
                 <div className="text-center py-8">
                   <Car size={48} className="mx-auto text-gray-300 mb-2" />
                   <p className="text-gray-500">No ride requests available</p>
-                  <p className="text-xs text-gray-400">New requests will appear here automatically</p>
+                  <p className="text-[14px] text-[#272d2e]">New requests will appear here automatically</p>
                 </div>
               ) : (
                 <div className="space-y-3">
