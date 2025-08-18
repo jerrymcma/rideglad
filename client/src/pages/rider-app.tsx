@@ -15,6 +15,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { useLocation } from "wouter";
+import { useWebSocket } from "@/hooks/useWebSocket";
 import type { Trip, Vehicle, User as UserType } from "@shared/schema";
 
 type RideStep = 'booking' | 'searching' | 'matched' | 'pickup' | 'inprogress' | 'completed' | 'rating';
@@ -40,6 +41,28 @@ export default function RiderApp() {
   const [currentStep, setCurrentStep] = useState<RideStep>('booking');
   const [currentTrip, setCurrentTrip] = useState<Trip | null>(null);
   const [matchedDriver, setMatchedDriver] = useState<MatchedDriver | null>(null);
+  
+  // WebSocket connection for real-time driver updates
+  const { isConnected } = useWebSocket({
+    onMessage: (message) => {
+      switch (message.type) {
+        case 'driver_matched':
+          toast({
+            title: "Driver Found!",
+            description: "Your driver is on the way",
+          });
+          // Refresh active trip to get updated status
+          queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
+          break;
+        case 'driver_location':
+          // Update driver location on map
+          if (message.location) {
+            setDriverLocation(message.location);
+          }
+          break;
+      }
+    }
+  });
   const [ratingValue, setRatingValue] = useState(5);
   const [showDriverOptions, setShowDriverOptions] = useState(false);
   const [showLiveTripMap, setShowLiveTripMap] = useState(false);

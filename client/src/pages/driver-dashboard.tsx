@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
+import { useWebSocket } from "@/hooks/useWebSocket";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { ArrowLeft, Car, DollarSign, Clock, Star, MapPin, Navigation, Phone, MessageCircle, User as UserIcon } from "lucide-react";
@@ -18,6 +19,33 @@ export default function DriverDashboard() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [isOnline, setIsOnline] = useState(false);
+  const [realTimeRides, setRealTimeRides] = useState<Trip[]>([]);
+
+  // WebSocket connection for real-time notifications
+  const { isConnected, sendLocationUpdate } = useWebSocket({
+    onMessage: (message) => {
+      switch (message.type) {
+        case 'ride_request':
+          // Add new ride request to real-time list
+          setRealTimeRides(prev => {
+            const exists = prev.find(ride => ride.id === message.trip.id);
+            if (!exists) {
+              toast({
+                title: "New Ride Request!",
+                description: `From ${message.trip.pickupAddress} to ${message.trip.destinationAddress}`,
+              });
+              return [...prev, message.trip];
+            }
+            return prev;
+          });
+          break;
+        case 'driver_matched':
+          // Remove accepted ride from list
+          setRealTimeRides(prev => prev.filter(ride => ride.id !== message.tripId));
+          break;
+      }
+    }
+  });
 
   // Available ride requests for drivers to accept
   const { data: availableRides, isLoading: ridesLoading } = useQuery({
@@ -231,8 +259,10 @@ export default function DriverDashboard() {
               <CardTitle className="tracking-tight text-lg flex items-center gap-2 text-[#1860de] font-bold">
                 <Car size={20} />
                 Available Rides
-                {availableRides && availableRides.length > 0 && (
-                  <Badge variant="secondary">{availableRides.length}</Badge>
+                {((availableRides && availableRides.length > 0) || realTimeRides.length > 0) && (
+                  <Badge variant="secondary">
+                    {(availableRides?.length || 0) + realTimeRides.length}
+                  </Badge>
                 )}
               </CardTitle>
             </CardHeader>
@@ -241,15 +271,64 @@ export default function DriverDashboard() {
                 <div className="text-center py-8">
                   <div className="text-gray-500">Looking for ride requests...</div>
                 </div>
-              ) : !availableRides || availableRides.length === 0 ? (
+              ) : (!availableRides || availableRides.length === 0) && realTimeRides.length === 0 ? (
                 <div className="text-center py-8">
                   <Car size={48} className="mx-auto text-gray-300 mb-2" />
                   <p className="text-[#16181c] text-[15px]">No ride requests available</p>
-                  <p className="text-[#272d2e] text-[14px]">(New requests will appear here) </p>
+                  <p className="text-[#272d2e] text-[14px]">{isConnected ? '(Connected - Real-time updates active)' : '(Connecting...)'} </p>
                 </div>
               ) : (
                 <div className="space-y-3">
-                  {availableRides.map((ride: Trip) => (
+                  {/* Real-time rides first (most recent) */}
+                  {realTimeRides.map((ride: Trip) => (
+                    <Card key={`realtime-${ride.id}`} className="border-green-200 bg-green-50">
+                      <CardContent className="p-4 space-y-3">
+                        <div className="flex justify-between items-start">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <UserIcon size={16} className="text-green-600" />
+                            <span className="font-medium">New Ride Request!</span>
+                          </div>
+                          <Badge variant="outline" className="text-green-600 border-green-600">
+                            ${ride.estimatedPrice}
+                          </Badge>
+                        </div>
+                        
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-start gap-2">
+                            <MapPin size={14} className="text-green-600 mt-0.5" />
+                            <div>
+                              <p className="font-medium text-green-700">Pickup</p>
+                              <p className="text-gray-600">{ride.pickupAddress}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <Navigation size={14} className="text-red-500 mt-0.5" />
+                            <div>
+                              <p className="font-medium text-red-700">Destination</p>
+                              <p className="text-gray-600">{ride.destinationAddress}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center text-xs text-gray-500">
+                          <span>{ride.distance ? `${(parseFloat(ride.distance.toString()) * 0.621371).toFixed(1)} mi` : 'Distance calculating'}</span>
+                          <span className="text-green-600 font-medium">Just now</span>
+                        </div>
+
+                        <Button 
+                          className="w-full bg-green-600 hover:bg-green-700"
+                          onClick={() => acceptRideMutation.mutate(ride.id)}
+                          disabled={acceptRideMutation.isPending}
+                        >
+                          {acceptRideMutation.isPending ? 'Accepting...' : 'Accept Ride'}
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                  
+                  {/* API-fetched rides */}
+                  {availableRides && availableRides.map((ride: Trip) => (
                     <Card key={ride.id} className="border-blue-200">
                       <CardContent className="p-4 space-y-3">
                         <div className="flex justify-between items-start">

@@ -94,6 +94,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const trip = await storage.createTrip(tripData);
       
+      // Broadcast new ride request to all connected drivers
+      const connectedDrivers = req.app.get('connectedDrivers');
+      if (connectedDrivers) {
+        connectedDrivers.forEach((driverWs: any) => {
+          driverWs.send(JSON.stringify({
+            type: 'ride_request',
+            trip: trip
+          }));
+        });
+      }
+      
       // Auto-assign John Driver after 3 seconds (simulate driver matching)
       setTimeout(async () => {
         try {
@@ -101,6 +112,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
             driverId: 'mock-driver-1',
           });
           console.log(`Trip ${trip.id} automatically matched with John Driver`);
+          
+          // Notify rider that driver was found
+          const connectedRiders = req.app.get('connectedRiders');
+          if (connectedRiders) {
+            const riderWs = connectedRiders.get(userId);
+            if (riderWs) {
+              riderWs.send(JSON.stringify({
+                type: 'driver_matched',
+                tripId: trip.id,
+                driverId: 'mock-driver-1'
+              }));
+            }
+          }
         } catch (error) {
           console.error('Error auto-assigning driver:', error);
         }
