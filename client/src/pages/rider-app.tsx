@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award, X, Satellite, Route, Map } from "lucide-react";
+import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award, X, Satellite, Route, Map, ArrowLeft } from "lucide-react";
 import RealTimeMap from "@/components/ui/real-time-map";
 import TurnByTurnNavigation from "@/components/ui/turn-by-turn-navigation";
 import GPSTracker from "@/components/ui/gps-tracker";
@@ -14,6 +14,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
+import { useLocation } from "wouter";
 import type { Trip, Vehicle, User as UserType } from "@shared/schema";
 
 type RideStep = 'booking' | 'searching' | 'matched' | 'pickup' | 'inprogress' | 'completed' | 'rating';
@@ -35,6 +36,7 @@ export default function RiderApp() {
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [location, setLocation] = useLocation();
   const [currentStep, setCurrentStep] = useState<RideStep>('booking');
   const [currentTrip, setCurrentTrip] = useState<Trip | null>(null);
   const [matchedDriver, setMatchedDriver] = useState<MatchedDriver | null>(null);
@@ -457,6 +459,14 @@ export default function RiderApp() {
     onSuccess: () => {
       setCurrentTrip(null);
       setCurrentStep('booking');
+      setMatchedDriver(null);
+      setShowDriverOptions(false);
+      // Clear the booking form to start fresh
+      setBookingForm({
+        pickupAddress: '',
+        destinationAddress: '',
+        rideType: 'driver-1'
+      });
       toast({
         title: "Ride Cancelled",
         description: "Your ride has been cancelled.",
@@ -650,6 +660,18 @@ export default function RiderApp() {
 
   const renderBookingStep = () => (
     <div className="space-y-6">
+      {/* Back button */}
+      <div className="flex items-center">
+        <Button
+          onClick={() => setLocation('/')}
+          variant="ghost"
+          className="p-2 hover:bg-gray-100 rounded-full"
+          data-testid="button-back"
+        >
+          <ArrowLeft size={20} className="text-gray-600" />
+        </Button>
+      </div>
+      
       <div className="text-center space-y-2">
         <h1 className="text-[#285aeb] font-black text-[30px]">Book a ride</h1>
         <p className="text-gray-600 mt-[2px] mb-[2px]">Where would you like to go?</p>
