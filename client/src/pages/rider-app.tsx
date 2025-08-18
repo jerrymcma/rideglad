@@ -5,7 +5,10 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award, X } from "lucide-react";
+import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, Phone, Heart, Trophy, Award, X, Satellite, Route, Map } from "lucide-react";
+import RealTimeMap from "@/components/ui/real-time-map";
+import TurnByTurnNavigation from "@/components/ui/turn-by-turn-navigation";
+import GPSTracker from "@/components/ui/gps-tracker";
 import { useAuth } from "@/hooks/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -39,6 +42,11 @@ export default function RiderApp() {
   const [ratingValue, setRatingValue] = useState(5);
   const [showDriverOptions, setShowDriverOptions] = useState(false);
   const [showLiveTripMap, setShowLiveTripMap] = useState(false);
+  const [showGPSTracker, setShowGPSTracker] = useState(false);
+  const [userLocation, setUserLocation] = useState<any>(null);
+  const [driverLocation, setDriverLocation] = useState<any>(null);
+  const [currentSpeed, setCurrentSpeed] = useState(25);
+  const [navigationSteps, setNavigationSteps] = useState<any[]>([]);
   
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',

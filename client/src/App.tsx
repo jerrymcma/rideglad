@@ -18,6 +18,7 @@ import PaymentMethodsSimple from "@/pages/payment-methods-simple";
 import AddPaymentMethod from "@/pages/add-payment-method";
 import Checkout from "@/pages/checkout";
 import PaymentHistory from "@/pages/payment-history";
+import AdvancedNavigation from "@/pages/advanced-navigation";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -62,6 +63,8 @@ function Router() {
       return <Checkout />;
     case '/payment-history':
       return <PaymentHistory />;
+    case '/advanced-navigation':
+      return <AdvancedNavigation />;
     case '/landing':
       return <Landing />;
     default:

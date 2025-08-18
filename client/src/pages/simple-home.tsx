@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard, Satellite } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
@@ -144,23 +144,23 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-gray-400 rounded-lg h-full bg-white"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-blue-600 rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                // TODO: Navigate to settings page when created
-                console.log('Settings clicked');
+                console.log('Advanced Navigation clicked, navigating to /advanced-navigation');
+                setLocation('/advanced-navigation');
               }}
-              data-testid="card-settings"
+              data-testid="card-advanced-navigation"
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <Settings size={32} className="text-gray-600" />
+                  <Satellite size={32} className="text-blue-600" />
                 </div>
-                <h3 className="text-lg text-gray-600 font-semibold">Settings</h3>
+                <h3 className="text-lg text-blue-600 font-semibold">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Preferences</p>
+                <p className="text-gray-700 text-[14px]">Real-time navigation</p>
               </div>
             </div>
           </div>
