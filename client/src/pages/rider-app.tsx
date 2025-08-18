@@ -1286,6 +1286,7 @@ export default function RiderApp() {
           onClick={() => {
             setIsManualSimulation(true);
             setCurrentStep('inprogress');
+            setCurrentTrip(prev => prev ? {...prev, status: 'inprogress'} : null);
           }}
         >
           → Trip Started
