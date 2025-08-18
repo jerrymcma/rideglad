@@ -127,7 +127,9 @@ export default function RiderApp() {
 
   // Update current step based on active trip
   useEffect(() => {
+    console.log('useEffect running - activeTrip:', activeTrip, 'isManualSimulation:', isManualSimulation);
     if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip && !isManualSimulation) {
+      console.log('Setting step based on trip status:', activeTrip.status);
       const trip = activeTrip as Trip;
       setCurrentTrip(trip);
       
