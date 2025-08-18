@@ -51,6 +51,7 @@ export default function RiderApp() {
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
   const [pickupSuggestions, setPickupSuggestions] = useState<string[]>([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState<string[]>([]);
+  const [isManualSimulation, setIsManualSimulation] = useState(false);
   
   const [bookingForm, setBookingForm] = useState<BookingForm>({
     pickupAddress: '',
@@ -123,7 +124,7 @@ export default function RiderApp() {
 
   // Update current step based on active trip
   useEffect(() => {
-    if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip) {
+    if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip && !isManualSimulation) {
       const trip = activeTrip as Trip;
       setCurrentTrip(trip);
       
@@ -1276,8 +1277,8 @@ export default function RiderApp() {
         <Button
           className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
           onClick={() => {
+            setIsManualSimulation(true);
             setCurrentStep('pickup');
-            // Force a mock trip update to avoid being overridden
             setCurrentTrip(prev => prev ? {...prev, status: 'pickup'} : null);
           }}
           data-testid="button-simulate-pickup"
