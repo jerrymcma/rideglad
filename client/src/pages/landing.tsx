@@ -66,7 +66,7 @@ export default function Landing() {
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-36 h-10 border border-blue-600 text-blue-600 rounded font-medium hover:bg-blue-50 text-base"
+                className="w-36 h-10 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 text-base font-semibold"
                 data-testid="button-signup"
               >
                 Sign up
