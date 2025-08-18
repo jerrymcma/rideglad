@@ -25,7 +25,7 @@ export default function Landing() {
           {/* Login Form */}
           <div className="space-y-4">
             <div className="text-center space-y-1">
-              <Label htmlFor="email" className="text-blue-600 block font-semibold">
+              <Label htmlFor="email" className="text-blue-600 block font-medium">
                 Email address
               </Label>
               <Input
