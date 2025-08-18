@@ -158,7 +158,7 @@ export default function DriverDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-brand-dark font-bold text-[19px]">Driver Mode</h2>
-                <p className="text-[#101919] font-semibold text-[15px]">
+                <p className="text-[#101919] text-[15px] font-medium">
                   {isOnline ? 'You are online and available' : 'You are offline'}
                 </p>
               </div>
