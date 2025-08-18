@@ -450,11 +450,12 @@ export default function RiderApp() {
     },
   });
 
-  // Cancel ride mutation
+  // Cancel ride mutation  
   const cancelRideMutation = useMutation({
     mutationFn: async () => {
-      if (!currentTrip) throw new Error('No active trip');
-      return await apiRequest('POST', `/api/trips/${currentTrip.id}/cancel`);
+      const tripToCancel = activeTrip || currentTrip;
+      if (!tripToCancel) throw new Error('No active trip');
+      return await apiRequest('POST', `/api/trips/${tripToCancel.id}/cancel`);
     },
     onSuccess: () => {
       setCurrentTrip(null);
@@ -471,6 +472,7 @@ export default function RiderApp() {
         title: "Ride Cancelled",
         description: "Your ride has been cancelled.",
       });
+      queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
       queryClient.invalidateQueries({ queryKey: ['/api/trips'] });
     },
     onError: (error) => {
