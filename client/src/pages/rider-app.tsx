@@ -1642,7 +1642,7 @@ export default function RiderApp() {
 
       <div className="space-y-4">
         <div className="text-center space-y-3">
-          <Label className="text-blue-600 font-medium">Rate Your Driver</Label>
+          <Label className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-600 text-[15px] font-bold">Rate Your Driver</Label>
           <div className="flex justify-center gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
