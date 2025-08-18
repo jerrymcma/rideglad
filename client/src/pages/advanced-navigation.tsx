@@ -22,10 +22,9 @@ export default function AdvancedNavigation() {
             <ArrowLeft size={20} />
           </Button>
           <h1 className="text-2xl font-bold text-gray-900">Advanced GPS Navigation</h1>
-          <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-            <Satellite size={14} className="mr-1" />
-            Trillion-Dollar Tech
-          </Badge>
+          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+            <Satellite size={20} className="text-blue-600" />
+          </div>
         </div>
         <p className="text-gray-600">Real-time GPS tracking with sub-10 meter accuracy - unique innovation in rideshare technology</p>
       </div>
