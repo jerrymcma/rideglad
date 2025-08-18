@@ -1184,11 +1184,11 @@ export default function RiderApp() {
                     <div className="bg-white rounded-full px-3 py-1.5 border shadow-sm">
                       <div className="flex items-center gap-2">
                         <Clock size={14} className="text-brand-green" />
-                        <span className="text-sm font-medium text-brand-green">
+                        <span className="text-sm text-brand-green font-bold">
                           {remainingTime} min
                         </span>
                         <span className="text-sm text-gray-500">•</span>
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500 font-bold">
                           {currentDistance.toFixed(1)} mi
                         </span>
                       </div>

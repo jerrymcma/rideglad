@@ -137,53 +137,119 @@ export default function RealTimeMap({
       {/* Map Container */}
       <div ref={mapContainerRef} className="w-full h-full relative bg-gradient-to-br from-blue-50 via-gray-50 to-green-50">
         
-        {/* Advanced Street Network */}
+        {/* Detailed Street Network with Names */}
         <div className="absolute inset-0">
-          {/* Major Highways */}
-          <div className="absolute w-full h-2 bg-gray-600 top-[30%] opacity-90 shadow-sm"></div>
-          <div className="absolute w-full h-2 bg-gray-600 top-[70%] opacity-90 shadow-sm"></div>
-          <div className="absolute h-full w-2 bg-gray-600 left-[25%] opacity-90 shadow-sm"></div>
-          <div className="absolute h-full w-2 bg-gray-600 left-[75%] opacity-90 shadow-sm"></div>
+          {/* Major Highways with Names */}
+          <div className="absolute w-full h-3 bg-gray-700 top-[28%] opacity-90 shadow-lg"></div>
+          <div className="absolute top-[26%] left-[5%] bg-white border border-gray-400 px-2 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm">I-80 WEST</div>
           
-          {/* Secondary Roads */}
-          <div className="absolute w-full h-1 bg-gray-400 top-[15%] opacity-80"></div>
-          <div className="absolute w-full h-1 bg-gray-400 top-[45%] opacity-80"></div>
-          <div className="absolute w-full h-1 bg-gray-400 top-[55%] opacity-80"></div>
-          <div className="absolute w-full h-1 bg-gray-400 top-[85%] opacity-80"></div>
+          <div className="absolute w-full h-3 bg-gray-700 top-[68%] opacity-90 shadow-lg"></div>
+          <div className="absolute top-[66%] left-[5%] bg-white border border-gray-400 px-2 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm">US-101 NORTH</div>
           
-          <div className="absolute h-full w-1 bg-gray-400 left-[10%] opacity-80"></div>
-          <div className="absolute h-full w-1 bg-gray-400 left-[40%] opacity-80"></div>
-          <div className="absolute h-full w-1 bg-gray-400 left-[60%] opacity-80"></div>
-          <div className="absolute h-full w-1 bg-gray-400 left-[90%] opacity-80"></div>
+          <div className="absolute h-full w-3 bg-gray-700 left-[23%] opacity-90 shadow-lg"></div>
+          <div className="absolute top-[5%] left-[21%] bg-white border border-gray-400 px-1 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm rotate-90 origin-center">I-280</div>
           
-          {/* Local Streets */}
-          <div className="absolute w-full h-px bg-gray-300 top-[35%] opacity-60"></div>
-          <div className="absolute w-full h-px bg-gray-300 top-[65%] opacity-60"></div>
-          <div className="absolute h-full w-px bg-gray-300 left-[33%] opacity-60"></div>
-          <div className="absolute h-full w-px bg-gray-300 left-[67%] opacity-60"></div>
+          <div className="absolute h-full w-3 bg-gray-700 left-[73%] opacity-90 shadow-lg"></div>
+          <div className="absolute top-[5%] left-[71%] bg-white border border-gray-400 px-1 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm rotate-90 origin-center">CA-1</div>
           
-          {/* Traffic Overlay */}
+          {/* Major Streets with Names */}
+          <div className="absolute w-full h-1.5 bg-gray-500 top-[15%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[13.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">Mission St</div>
+          
+          <div className="absolute w-full h-1.5 bg-gray-500 top-[45%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[43.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">Market St</div>
+          
+          <div className="absolute w-full h-1.5 bg-gray-500 top-[55%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[53.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">Geary Blvd</div>
+          
+          <div className="absolute w-full h-1.5 bg-gray-500 top-[85%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[83.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">19th Ave</div>
+          
+          <div className="absolute h-full w-1.5 bg-gray-500 left-[10%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[8%] left-[8.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Van Ness</div>
+          
+          <div className="absolute h-full w-1.5 bg-gray-500 left-[40%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[8%] left-[38.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Powell St</div>
+          
+          <div className="absolute h-full w-1.5 bg-gray-500 left-[60%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[8%] left-[58.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Grant Ave</div>
+          
+          <div className="absolute h-full w-1.5 bg-gray-500 left-[90%] opacity-85 shadow-sm"></div>
+          <div className="absolute top-[8%] left-[88.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Embarcadero</div>
+          
+          {/* Local Streets with Names */}
+          <div className="absolute w-full h-0.5 bg-gray-400 top-[35%] opacity-70"></div>
+          <div className="absolute top-[34%] left-[1%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600">Hayes St</div>
+          
+          <div className="absolute w-full h-0.5 bg-gray-400 top-[65%] opacity-70"></div>
+          <div className="absolute top-[64%] left-[1%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600">Irving St</div>
+          
+          <div className="absolute h-full w-0.5 bg-gray-400 left-[33%] opacity-70"></div>
+          <div className="absolute top-[2%] left-[32%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600 rotate-90 origin-center">Fillmore</div>
+          
+          <div className="absolute h-full w-0.5 bg-gray-400 left-[67%] opacity-70"></div>
+          <div className="absolute top-[2%] left-[66%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600 rotate-90 origin-center">Stockton</div>
+          
+          {/* Traffic Overlay with Street Context */}
           {showTraffic && (
             <>
-              <div className={`absolute w-full h-1 top-[30%] left-0 ${
+              <div className={`absolute w-full h-1 top-[28.5%] left-0 ${
                 trafficLevel === 'high' ? 'bg-red-500' : 
                 trafficLevel === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
-              } opacity-70`}></div>
-              <div className={`absolute w-full h-1 top-[45%] left-0 ${
+              } opacity-80`}></div>
+              <div className={`absolute w-full h-1 top-[45.5%] left-0 ${
                 trafficLevel === 'high' ? 'bg-red-500' : 
                 trafficLevel === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
-              } opacity-70`}></div>
+              } opacity-80`}></div>
             </>
           )}
           
-          {/* Buildings and Landmarks */}
-          <div className="absolute w-16 h-12 bg-blue-200 border border-blue-300 top-[20%] left-[15%] rounded-sm opacity-70"></div>
-          <div className="absolute w-20 h-16 bg-blue-200 border border-blue-300 top-[50%] left-[80%] rounded-sm opacity-70"></div>
-          <div className="absolute w-14 h-10 bg-blue-200 border border-blue-300 top-[75%] left-[30%] rounded-sm opacity-70"></div>
+          {/* Major Landmarks and Buildings */}
+          <div className="absolute w-20 h-16 bg-red-100 border border-red-300 top-[18%] left-[12%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[16%] left-[13%] text-[6px] font-bold text-red-700">City Hall</div>
           
-          {/* Parks */}
-          <div className="absolute w-24 h-18 bg-green-200 border border-green-300 top-[40%] left-[45%] rounded-lg opacity-80"></div>
-          <div className="absolute w-16 h-12 bg-green-200 border border-green-300 top-[10%] left-[70%] rounded-full opacity-80"></div>
+          <div className="absolute w-24 h-20 bg-blue-100 border border-blue-300 top-[48%] left-[78%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[46%] left-[79%] text-[6px] font-bold text-blue-700">Ferry Building</div>
+          
+          <div className="absolute w-16 h-12 bg-purple-100 border border-purple-300 top-[72%] left-[28%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[70%] left-[29%] text-[6px] font-bold text-purple-700">UCSF</div>
+          
+          <div className="absolute w-18 h-14 bg-orange-100 border border-orange-300 top-[25%] left-[65%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[23%] left-[66%] text-[6px] font-bold text-orange-700">Chinatown</div>
+          
+          <div className="absolute w-22 h-18 bg-yellow-100 border border-yellow-300 top-[40%] left-[35%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[38%] left-[36%] text-[6px] font-bold text-yellow-700">Union Square</div>
+          
+          {/* Shopping Centers */}
+          <div className="absolute w-16 h-10 bg-pink-100 border border-pink-300 top-[55%] left-[50%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[53%] left-[51%] text-[6px] font-bold text-pink-700">Westfield Mall</div>
+          
+          <div className="absolute w-14 h-8 bg-indigo-100 border border-indigo-300 top-[80%] left-[75%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[78%] left-[76%] text-[6px] font-bold text-indigo-700">Best Buy</div>
+          
+          {/* Parks and Recreation */}
+          <div className="absolute w-28 h-22 bg-green-200 border border-green-400 top-[38%] left-[42%] rounded-lg opacity-85 shadow-sm"></div>
+          <div className="absolute top-[36%] left-[44%] text-[7px] font-bold text-green-800">Golden Gate Park</div>
+          
+          <div className="absolute w-18 h-14 bg-green-200 border border-green-400 top-[8%] left-[68%] rounded-full opacity-85 shadow-sm"></div>
+          <div className="absolute top-[6%] left-[70%] text-[6px] font-bold text-green-800">Washington Square</div>
+          
+          <div className="absolute w-16 h-12 bg-green-200 border border-green-400 top-[75%] left-[15%] rounded-lg opacity-85 shadow-sm"></div>
+          <div className="absolute top-[73%] left-[16%] text-[6px] font-bold text-green-800">Dolores Park</div>
+          
+          {/* Transportation Hubs */}
+          <div className="absolute w-12 h-8 bg-gray-200 border border-gray-400 top-[32%] left-[8%] rounded opacity-80 shadow-sm"></div>
+          <div className="absolute top-[30%] left-[9%] text-[6px] font-bold text-gray-700">BART</div>
+          
+          <div className="absolute w-10 h-6 bg-blue-200 border border-blue-400 top-[60%] left-[85%] rounded opacity-80 shadow-sm"></div>
+          <div className="absolute top-[58%] left-[86%] text-[6px] font-bold text-blue-700">Pier 39</div>
+          
+          {/* Restaurant Districts */}
+          <div className="absolute w-14 h-10 bg-yellow-200 border border-yellow-400 top-[50%] left-[20%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[48%] left-[21%] text-[6px] font-bold text-yellow-800">Little Italy</div>
+          
+          <div className="absolute w-12 h-8 bg-red-200 border border-red-400 top-[20%] left-[45%] rounded-sm opacity-80 shadow-sm"></div>
+          <div className="absolute top-[18%] left-[46%] text-[6px] font-bold text-red-800">North Beach</div>
         </div>
 
         {/* User Location */}
