@@ -127,11 +127,11 @@ export default function RiderApp() {
 
   // Update current step based on active trip  
   useEffect(() => {
-    console.log('useEffect running - activeTrip:', activeTrip, 'isManualSimulation:', isManualSimulation);
+    console.log('useEffect running - activeTrip:', activeTrip as Trip | null, 'isManualSimulation:', isManualSimulation);
     // COMPLETELY DISABLE automatic step updates for now
     return;
     if (activeTrip && typeof activeTrip === 'object' && 'status' in activeTrip && !isManualSimulation) {
-      console.log('Setting step based on trip status:', activeTrip.status);
+      console.log('Setting step based on trip status:', (activeTrip as Trip).status);
       const trip = activeTrip as Trip;
       setCurrentTrip(trip);
       
@@ -197,6 +197,7 @@ export default function RiderApp() {
                 rating: selectedDriver.rating,
                 totalRatings: 120,
                 isDriverActive: true,
+                stripeCustomerId: null,
                 createdAt: new Date(),
                 updatedAt: new Date(),
               },
@@ -264,6 +265,7 @@ export default function RiderApp() {
                 rating: selectedDriver.rating,
                 totalRatings: 120,
                 isDriverActive: true,
+                stripeCustomerId: null,
                 createdAt: new Date(),
                 updatedAt: new Date(),
               },
@@ -331,6 +333,7 @@ export default function RiderApp() {
                 rating: selectedDriver.rating,
                 totalRatings: 120,
                 isDriverActive: true,
+                stripeCustomerId: null,
                 createdAt: new Date(),
                 updatedAt: new Date(),
               },
@@ -360,7 +363,7 @@ export default function RiderApp() {
     } else {
       // Check if we should be in rating state (recently completed trip)
       // This happens when active trip API returns null but we just completed a trip
-      if (currentStep === 'inprogress' || (currentTrip && currentTrip.status === 'completed')) {
+      if (currentStep === 'inprogress' || (currentTrip?.status === 'completed')) {
         setCurrentStep('rating');
       } else if (currentStep !== 'rating' && currentStep !== 'completed') {
         // Only reset to booking if we're not in rating or completed state
@@ -571,6 +574,7 @@ export default function RiderApp() {
             rating: selectedDriver.rating,
             totalRatings: 120,
             isDriverActive: true,
+            stripeCustomerId: null,
             createdAt: new Date(),
             updatedAt: new Date(),
           },
