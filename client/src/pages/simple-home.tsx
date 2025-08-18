@@ -133,7 +133,7 @@ export default function SimpleHome() {
               data-testid="card-payment-methods"
             >
               <div className="text-center pb-0 pt-3 px-6">
-                <div className="flex justify-center mb-1">
+                <div className="flex justify-center mb-1 text-[#0da668]">
                   <CreditCard size={32} className="text-green-800" />
                 </div>
                 <h3 className="font-semibold text-[16px] text-[#0ba342]">Wallet</h3>
