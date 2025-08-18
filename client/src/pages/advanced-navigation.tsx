@@ -22,7 +22,7 @@ export default function AdvancedNavigation() {
             <ArrowLeft size={20} />
           </Button>
           <h1 className="text-2xl font-bold text-gray-900">Advanced GPS Navigation</h1>
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center ml-1">
+          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center -ml-2">
             <Satellite size={24} className="text-blue-600" />
           </div>
         </div>
