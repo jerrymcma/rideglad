@@ -17,12 +17,12 @@ export default function AdvancedNavigation() {
     <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
       <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <Button variant="ghost" size="sm" onClick={() => window.history.back()}>
+        <div className="flex items-center mb-2">
+          <Button variant="ghost" size="sm" onClick={() => window.history.back()} className="mr-3">
             <ArrowLeft size={20} />
           </Button>
           <h1 className="text-2xl font-bold text-gray-900">Advanced GPS Navigation</h1>
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center ml-2">
+          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center ml-1">
             <Satellite size={24} className="text-blue-600" />
           </div>
         </div>
