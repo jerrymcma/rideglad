@@ -239,7 +239,7 @@ export class DatabaseStorage implements IStorage {
       .where(
         and(
           eq(trips.riderId, userId),
-          sql`${trips.status} IN ('requested', 'matched', 'pickup', 'in_progress')`
+          sql`${trips.status} IN ('requested', 'matched', 'pickup', 'in_progress', 'rating_pending')`
         )
       )
       .orderBy(desc(trips.requestedAt))

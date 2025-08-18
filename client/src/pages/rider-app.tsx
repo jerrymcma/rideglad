@@ -51,7 +51,14 @@ export default function RiderApp() {
   const { data: activeTrip, refetch: refetchTrip } = useQuery({
     queryKey: ['/api/trips/active'],
     enabled: !!user,
-    refetchInterval: currentStep !== 'booking' && currentStep !== 'completed' ? 3000 : false,
+    refetchInterval: currentStep !== 'booking' && currentStep !== 'completed' && currentStep !== 'rating' ? 3000 : false,
+  });
+
+  // Get last completed trip for rating
+  const { data: lastCompletedTrip } = useQuery({
+    queryKey: ['/api/trips'],
+    enabled: !!user && currentStep === 'rating',
+    select: (trips: Trip[]) => trips.find(trip => trip.status === 'completed'),
   });
 
   // Update current step based on active trip
@@ -276,13 +283,21 @@ export default function RiderApp() {
           }
           break;
         case 'completed':
+        case 'rating_pending':
           setCurrentStep('rating');
           break;
         default:
           setCurrentStep('booking');
       }
-    } else if (currentStep !== 'rating') {
-      setCurrentStep('booking');
+    } else {
+      // Check if we should be in rating state (recently completed trip)
+      // This happens when active trip API returns null but we just completed a trip
+      if (currentStep === 'inprogress' || (currentTrip && currentTrip.status === 'completed')) {
+        setCurrentStep('rating');
+      } else if (currentStep !== 'rating' && currentStep !== 'completed') {
+        // Only reset to booking if we're not in rating or completed state
+        setCurrentStep('booking');
+      }
     }
   }, [activeTrip]);
 
