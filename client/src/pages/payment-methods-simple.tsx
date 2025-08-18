@@ -45,7 +45,7 @@ export default function PaymentMethodsSimple() {
           {/* Add Payment Method Button */}
           <div 
             className="flex items-center justify-between p-4 bg-blue-50 border-2 border-dashed border-blue-200 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
-            onClick={() => console.log('Add payment method')}
+            onClick={() => setLocation('/add-payment-method')}
             data-testid="button-add-payment"
           >
             <div className="flex items-center gap-3">

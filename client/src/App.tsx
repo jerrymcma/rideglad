@@ -15,6 +15,7 @@ import TripHistory from "@/pages/trip-history";
 import RiderApp from "@/pages/rider-app";
 import PricingManagement from "@/pages/pricing-management";
 import PaymentMethodsSimple from "@/pages/payment-methods-simple";
+import AddPaymentMethod from "@/pages/add-payment-method";
 import Checkout from "@/pages/checkout";
 import PaymentHistory from "@/pages/payment-history";
 
@@ -55,6 +56,8 @@ function Router() {
       return <PricingManagement />;
     case '/payment-methods':
       return <PaymentMethodsSimple />;
+    case '/add-payment-method':
+      return <AddPaymentMethod />;
     case '/checkout':
       return <Checkout />;
     case '/payment-history':
