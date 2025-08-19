@@ -42,7 +42,7 @@ export default function SimpleHome() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="p-6 space-y-6 mt-60 text-[15px]">
+      <div className="p-6 space-y-6 mt-8 text-[15px]">
         {/* Header */}
         <div className="text-center space-y-1">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
