@@ -785,10 +785,10 @@ export default function RiderApp() {
         <Button
           onClick={() => setLocation('/')}
           variant="ghost"
-          className="p-2 hover:bg-gray-100 rounded-full"
+          className="p-3 hover:bg-gray-100 rounded-full"
           data-testid="button-back"
         >
-          <ArrowLeft size={20} className="text-gray-600" />
+          <ArrowLeft size={24} className="text-gray-600" />
         </Button>
       </div>
       
