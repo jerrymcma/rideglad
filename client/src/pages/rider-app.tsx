@@ -1435,6 +1435,25 @@ export default function RiderApp() {
 
   const renderPickupStep = () => (
     <div className="space-y-6">
+      {/* Back button */}
+      <div className="flex items-center">
+        <Button
+          onClick={() => {
+            if (currentTrip) {
+              // Cancel the trip and go back to booking
+              cancelTripMutation.mutate(currentTrip.id);
+            } else {
+              setLocation('/');
+            }
+          }}
+          variant="ghost"
+          className="p-3 hover:bg-gray-100 rounded-full"
+          data-testid="button-back-pickup"
+        >
+          <ArrowLeft size={24} className="text-gray-600" />
+        </Button>
+      </div>
+      
       <div className="text-center space-y-2">
         <h2 className="text-2xl font-bold text-blue-600">Driver Arriving</h2>
         <p className="text-gray-600">Your driver is almost here!</p>
