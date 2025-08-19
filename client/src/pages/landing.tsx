@@ -11,7 +11,7 @@ export default function Landing() {
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="flex flex-col min-h-screen justify-center px-8 py-8">
-        <div className="text-center space-y-8">
+        <div className="text-center space-y-10">
           {/* Logo */}
           <div className="flex justify-center">
             <img 
