@@ -23,8 +23,7 @@ export default function AdvancedNavigation() {
           </Button>
           <h1 className="text-2xl font-bold text-blue-600">Advanced GPS Navigation</h1>
         </div>
-        <p className="text-[#272d33]">Real time GPS tracking 
-        under 10 meter accuracy - unique innovation in rideshare technology</p>
+        <p className="text-[#272d33] text-center">     Real-time GPS tracking - 10m accuracy - innovative rideshare technology</p>
       </div>
       {/* Demo Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
