@@ -21,7 +21,7 @@ export default function AdvancedNavigation() {
           <Button variant="ghost" size="sm" onClick={() => window.history.back()} className="absolute left-0">
             <ArrowLeft size={20} />
           </Button>
-          <h1 className="text-2xl font-bold text-blue-600">Advanced GPS Navigation</h1>
+          <h1 className="font-bold text-blue-600 text-[25px]">Advanced GPS Navigation</h1>
         </div>
         <p className="text-[#272d33] text-center">     Real-time GPS tracking - 10m accuracy - innovative rideshare technology</p>
       </div>
