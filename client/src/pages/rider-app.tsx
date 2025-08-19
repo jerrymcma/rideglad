@@ -780,18 +780,6 @@ export default function RiderApp() {
 
   const renderBookingStep = () => (
     <div className="space-y-6">
-      {/* Back button */}
-      <div className="flex items-center">
-        <Button
-          onClick={() => setLocation('/')}
-          variant="ghost"
-          className="p-3 hover:bg-gray-100 rounded-full"
-          data-testid="button-back"
-        >
-          <ArrowLeft size={24} className="text-gray-600" />
-        </Button>
-      </div>
-      
       <div className="text-center space-y-2">
         <h1 className="text-[#285aeb] font-black text-[30px]">Book a ride</h1>
         <p className="text-gray-600 mt-[2px] mb-[2px]">Where would you like to go?</p>
@@ -1850,10 +1838,24 @@ export default function RiderApp() {
       <div className="p-6 space-y-6">
         {/* Header */}
         {currentStep === 'booking' && (
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-[19px] font-bold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
-              <p className="text-gray-600 text-[15px] mt-[2px] mb-[2px]">Ready for your next trip</p>
+          <div className="space-y-4">
+            {/* Back button */}
+            <div className="flex items-center">
+              <Button
+                onClick={() => setLocation('/')}
+                variant="ghost"
+                className="p-3 hover:bg-gray-100 rounded-full"
+                data-testid="button-back"
+              >
+                <ArrowLeft size={24} className="text-gray-600" />
+              </Button>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-[19px] font-bold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
+                <p className="text-gray-600 text-[15px] mt-[2px] mb-[2px]">Ready for your next trip</p>
+              </div>
             </div>
           </div>
         )}
