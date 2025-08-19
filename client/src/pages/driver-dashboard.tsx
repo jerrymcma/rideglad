@@ -165,8 +165,8 @@ export default function DriverDashboard() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b border-gray-100">
+      {/* Back Button */}
+      <div className="p-6 pb-2">
         <Button
           onClick={() => setLocation('/')}
           variant="ghost"
@@ -176,8 +176,11 @@ export default function DriverDashboard() {
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h1 className="font-extrabold text-[#0aab94] text-[25px]">Driver Dashboard</h1>
-        <div className="w-10"></div>
+      </div>
+      
+      {/* Header */}
+      <div className="px-6 pb-6 border-b border-gray-100">
+        <h1 className="font-extrabold text-[#0aab94] text-[25px] text-center">Driver Dashboard</h1>
       </div>
       <div className="p-6 space-y-6">
         {/* Driver Status */}
