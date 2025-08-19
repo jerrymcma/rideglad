@@ -97,10 +97,9 @@ export default function SimpleHome() {
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-0">
                   <img 
-                    src={`${driveIconImage}?v=${Date.now()}`}
+                    src={driveIconImage}
                     alt="Drive & Earn"
-                    className="w-4 h-4 object-contain"
-                    style={{ width: '16px', height: '16px', maxWidth: '16px', maxHeight: '16px' }}
+                    className="w-7 h-7 object-contain"
                   />
                 </div>
                 <h3 className="text-blue-600 -mt-1 text-[16px] font-semibold">Drive + Earn</h3>
