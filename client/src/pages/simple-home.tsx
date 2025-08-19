@@ -9,7 +9,7 @@ import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514
 import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jpg";
 import rideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755413475958.jpg";
 import rideSideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755414233355.jpg";
-import driveIconImage from "@assets/Screenshot_20250817_151959_Canva_1755465710669.jpg";
+import driveIconImage from "@assets/Screenshot_20250818_213338_Canva_1755570832658.jpg";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -99,7 +99,7 @@ export default function SimpleHome() {
                   <img 
                     src={driveIconImage} 
                     alt="Drive & Earn"
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-14 h-14 object-contain"
                   />
                 </div>
                 <h3 className="text-blue-600 -mt-1 text-[16px] font-semibold">Drive + Earn</h3>
