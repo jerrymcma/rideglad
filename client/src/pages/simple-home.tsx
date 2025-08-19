@@ -7,7 +7,7 @@ import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
 import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jpg";
-import rideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755413475958.jpg";
+import rideLogoImage from "@assets/Screenshot_20250818_223935_Canva_1755574798589.jpg";
 import rideSideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755414233355.jpg";
 import driveIconImage from "@assets/Screenshot_20250818_213338_Canva_1755570832658.jpg";
 
