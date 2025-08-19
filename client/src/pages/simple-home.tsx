@@ -171,7 +171,7 @@ export default function SimpleHome() {
 
         {/* Video Section */}
         <div className="flex justify-center">
-          <div className="relative w-1/2">
+          <div className="relative w-1/3">
             <video 
               className="w-full rounded-lg shadow-md"
               autoPlay
