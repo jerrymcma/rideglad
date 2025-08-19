@@ -99,7 +99,7 @@ export default function SimpleHome() {
                   <img 
                     src={driveIconImage}
                     alt="Drive & Earn"
-                    className="w-9 h-9 object-contain"
+                    className="w-10 h-10 object-contain"
                   />
                 </div>
                 <h3 className="text-blue-600 -mt-1 text-[16px] font-semibold">Drive + Earn</h3>
