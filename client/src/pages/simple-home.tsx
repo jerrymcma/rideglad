@@ -183,7 +183,7 @@ export default function SimpleHome() {
               Your browser does not support the video tag.
             </video>
             {/* Side Logo Overlay */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-6">
+            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-3">
               <img 
                 src={rideSideLogoImage} 
                 alt="ride"
