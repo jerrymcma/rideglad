@@ -134,7 +134,7 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1 text-[#02140f]">
-                  <CreditCard size={32} className="text-green-800" />
+                  <CreditCard size={32} className="text-[#1ea858]" />
                 </div>
                 <h3 className="font-semibold text-[16px] text-[#1ea858]">Wallet</h3>
               </div>
