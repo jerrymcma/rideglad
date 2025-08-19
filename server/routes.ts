@@ -121,13 +121,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Auto-assign John Driver after 3 seconds (simulate driver matching)
+      // Auto-assign selected driver after 3 seconds (simulate driver matching)
       setTimeout(async () => {
         try {
+          // Use the selected driver from rideType
+          const selectedDriverId = trip.rideType;
           await storage.updateTripStatus(trip.id, 'matched', {
-            driverId: 'mock-driver-1',
+            driverId: selectedDriverId,
           });
-          console.log(`Trip ${trip.id} automatically matched with John Driver`);
+          console.log(`Trip ${trip.id} automatically matched with selected driver ${selectedDriverId}`);
           
           // Notify rider that driver was found
           const connectedRiders = req.app.get('connectedRiders');
@@ -137,7 +139,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               riderWs.send(JSON.stringify({
                 type: 'driver_matched',
                 tripId: trip.id,
-                driverId: 'mock-driver-1'
+                driverId: selectedDriverId
               }));
             }
           }
@@ -210,6 +212,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching active drivers:", error);
       res.status(500).json({ message: "Failed to fetch active drivers" });
+    }
+  });
+
+  // Get user by ID
+  app.get('/api/users/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await storage.getUser(id);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
+  // Get vehicles by driver ID
+  app.get('/api/vehicles/driver/:driverId', async (req, res) => {
+    try {
+      const { driverId } = req.params;
+      const vehicles = await storage.getVehiclesByDriver(driverId);
+      res.json(vehicles);
+    } catch (error) {
+      console.error("Error fetching vehicles:", error);
+      res.status(500).json({ message: "Failed to fetch vehicles" });
     }
   });
 
@@ -395,14 +424,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Trip not found" });
       }
 
-      // Map ride types to specific drivers
-      const driverMapping = {
-        'driver-1': 'mock-driver-1',
-        'driver-2': 'mock-driver-2', 
-        'driver-3': 'mock-driver-3'
-      };
-
-      const driverId = driverMapping[trip.rideType as keyof typeof driverMapping];
+      // Use the rideType directly as the driver ID (since we now use actual driver IDs)
+      const driverId = trip.rideType;
       if (!driverId) {
         return res.status(404).json({ message: "Invalid driver selection" });
       }

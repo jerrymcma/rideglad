@@ -164,6 +164,10 @@ export class DatabaseStorage implements IStorage {
     await db.delete(vehicles).where(eq(vehicles.id, id));
   }
 
+  async getVehiclesByDriver(driverId: string): Promise<VehicleData[]> {
+    return db.select().from(vehicles).where(eq(vehicles.driverId, driverId));
+  }
+
   // Trip operations
   async createTrip(tripData: InsertTrip): Promise<Trip> {
     const [trip] = await db.insert(trips).values(tripData).returning();

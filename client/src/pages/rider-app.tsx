@@ -213,68 +213,123 @@ export default function RiderApp() {
           setCurrentStep('matched');
           // Set matched driver data if not already set
           if (!matchedDriver) {
-            const driverData = {
-              'driver-1': {
-                id: 'mock-driver-1',
-                firstName: 'John',
-                lastName: 'Driver',
-                email: 'driver@rideshare.com',
-                vehicle: { make: 'Toyota', model: 'Camry', year: 2022, color: 'Blue', licensePlate: '107' },
-                rating: 4.8,
-                estimatedArrival: 3
-              },
-              'driver-2': {
-                id: 'mock-driver-2',
-                firstName: 'Sarah',
-                lastName: 'Wilson',
-                email: 'sarah@rideshare.com',
-                vehicle: { make: 'Honda', model: 'CR-V', year: 2023, color: 'White', licensePlate: '208' },
-                rating: 4.9,
-                estimatedArrival: 5
-              },
-              'driver-3': {
-                id: 'mock-driver-3',
-                firstName: 'Michael',
-                lastName: 'Chen',
-                email: 'michael@rideshare.com',
-                vehicle: { make: 'BMW', model: '3 Series', year: 2024, color: 'Black', licensePlate: '309' },
-                rating: 5.0,
-                estimatedArrival: 7
+            // Fetch actual driver data from database
+            const fetchDriverData = async () => {
+              try {
+                if (trip.driverId) {
+                  const driverResponse = await fetch(`/api/users/${trip.driverId}`);
+                  const vehicleResponse = await fetch(`/api/vehicles/driver/${trip.driverId}`);
+                  
+                  if (driverResponse.ok && vehicleResponse.ok) {
+                    const driverData = await driverResponse.json();
+                    const vehicleData = await vehicleResponse.json();
+                    const vehicle = vehicleData[0]; // Get first vehicle
+                    
+                    if (driverData && vehicle) {
+                      setMatchedDriver({
+                        driver: {
+                          id: driverData.id,
+                          firstName: driverData.firstName,
+                          lastName: driverData.lastName,
+                          email: driverData.email,
+                          profileImageUrl: driverData.profileImageUrl,
+                          phone: driverData.phone || '+1234567890',
+                          userType: 'driver',
+                          rating: driverData.rating || 4.8,
+                          totalRatings: driverData.totalRatings || 120,
+                          isDriverActive: true,
+                          stripeCustomerId: driverData.stripeCustomerId,
+                          createdAt: new Date(driverData.createdAt),
+                          updatedAt: new Date(driverData.updatedAt),
+                        },
+                        vehicle: {
+                          id: vehicle.id,
+                          driverId: vehicle.driverId,
+                          make: vehicle.make,
+                          model: vehicle.model,
+                          year: vehicle.year,
+                          color: vehicle.color,
+                          licensePlate: vehicle.licensePlate,
+                          vehicleType: vehicle.vehicleType,
+                          createdAt: new Date(vehicle.createdAt),
+                        },
+                        estimatedArrival: Math.floor(Math.random() * 5) + 3,
+                        rating: driverData.rating || 4.8,
+                      });
+                      return;
+                    }
+                  }
+                }
+              } catch (error) {
+                console.error('Error fetching driver data:', error);
               }
-            };
+              
+              // Fallback to mock data mapping for mock drivers
+              const driverData = {
+                'mock-driver-1': {
+                  id: 'mock-driver-1',
+                  firstName: 'John',
+                  lastName: 'Driver',
+                  email: 'driver@rideshare.com',
+                  vehicle: { make: 'Toyota', model: 'Camry', year: 2022, color: 'Blue', licensePlate: '107' },
+                  rating: 4.8,
+                  estimatedArrival: 3
+                },
+                'mock-driver-2': {
+                  id: 'mock-driver-2',
+                  firstName: 'Sarah',
+                  lastName: 'Wilson',
+                  email: 'sarah@rideshare.com',
+                  vehicle: { make: 'Honda', model: 'CR-V', year: 2023, color: 'White', licensePlate: '208' },
+                  rating: 4.9,
+                  estimatedArrival: 5
+                },
+                'mock-driver-3': {
+                  id: 'mock-driver-3',
+                  firstName: 'Michael',
+                  lastName: 'Chen',
+                  email: 'michael@rideshare.com',
+                  vehicle: { make: 'BMW', model: '3 Series', year: 2024, color: 'Black', licensePlate: '309' },
+                  rating: 5.0,
+                  estimatedArrival: 7
+                }
+              };
 
-            const selectedDriver = driverData[trip.rideType as keyof typeof driverData] || driverData['driver-1'];
-            
-            setMatchedDriver({
-              driver: {
-                id: selectedDriver.id,
-                firstName: selectedDriver.firstName,
-                lastName: selectedDriver.lastName,
-                email: selectedDriver.email,
-                profileImageUrl: null,
-                phone: '+1234567890',
-                userType: 'driver',
+              const selectedDriver = driverData[trip.driverId as keyof typeof driverData] || driverData['mock-driver-1'];
+              
+              setMatchedDriver({
+                driver: {
+                  id: selectedDriver.id,
+                  firstName: selectedDriver.firstName,
+                  lastName: selectedDriver.lastName,
+                  email: selectedDriver.email,
+                  profileImageUrl: null,
+                  phone: '+1234567890',
+                  userType: 'driver',
+                  rating: selectedDriver.rating,
+                  totalRatings: 120,
+                  isDriverActive: true,
+                  stripeCustomerId: null,
+                  createdAt: new Date(),
+                  updatedAt: new Date(),
+                },
+                vehicle: {
+                  id: `vehicle-${selectedDriver.id}`,
+                  driverId: selectedDriver.id,
+                  make: selectedDriver.vehicle.make,
+                  model: selectedDriver.vehicle.model,
+                  year: selectedDriver.vehicle.year,
+                  color: selectedDriver.vehicle.color,
+                  licensePlate: selectedDriver.vehicle.licensePlate,
+                  vehicleType: 'standard',
+                  createdAt: new Date(),
+                },
+                estimatedArrival: selectedDriver.estimatedArrival,
                 rating: selectedDriver.rating,
-                totalRatings: 120,
-                isDriverActive: true,
-                stripeCustomerId: null,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-              },
-              vehicle: {
-                id: `vehicle-${trip.rideType}`,
-                driverId: selectedDriver.id,
-                make: selectedDriver.vehicle.make,
-                model: selectedDriver.vehicle.model,
-                year: selectedDriver.vehicle.year,
-                color: selectedDriver.vehicle.color,
-                licensePlate: selectedDriver.vehicle.licensePlate,
-                vehicleType: trip.rideType,
-                createdAt: new Date(),
-              },
-              estimatedArrival: selectedDriver.estimatedArrival,
-              rating: selectedDriver.rating,
-            });
+              });
+            };
+            
+            fetchDriverData();
           }
           break;
         case 'pickup':
