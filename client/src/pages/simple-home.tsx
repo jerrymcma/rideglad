@@ -50,8 +50,7 @@ export default function SimpleHome() {
             className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
             data-testid="button-back"
           >
-            <ArrowLeft size={24} className="mr-2" />
-            <span className="text-[16px]">Back</span>
+            <ArrowLeft size={24} />
           </button>
         </div>
         
