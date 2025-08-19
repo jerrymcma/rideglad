@@ -155,7 +155,7 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <Satellite size={32} className="text-blue-600" />
+                  <Satellite size={36} className="text-blue-600" />
                 </div>
                 <h3 className="text-blue-600 text-[15px] font-semibold">Advanced GPS</h3>
               </div>
