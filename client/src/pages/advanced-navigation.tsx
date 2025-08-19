@@ -69,7 +69,7 @@ export default function AdvancedNavigation() {
                   <Signal size={16} className="text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Sub-10m GPS Accuracy</div>
+                  <div className="font-semibold text-gray-900">10m GPS Accuracy</div>
                   <div className="text-sm text-green-600">Professional grade tracking</div>
                 </div>
               </div>
