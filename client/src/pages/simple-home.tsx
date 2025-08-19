@@ -171,7 +171,7 @@ export default function SimpleHome() {
 
         {/* Video Section */}
         <div className="flex justify-center">
-          <div className="relative w-1/3">
+          <div className="relative w-2/5">
             <video 
               className="w-full rounded-lg shadow-md"
               autoPlay
@@ -187,7 +187,7 @@ export default function SimpleHome() {
               <img 
                 src={rideSideLogoImage} 
                 alt="ride"
-                className="h-3 w-auto opacity-80"
+                className="h-4 w-auto opacity-80"
               />
             </div>
           </div>
