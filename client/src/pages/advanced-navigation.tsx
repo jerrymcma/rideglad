@@ -70,7 +70,7 @@ export default function AdvancedNavigation() {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">10m GPS Accuracy</div>
-                  <div className="text-sm text-green-600">Professional grade tracking</div>
+                  <div className="text-sm text-green-600">State of the art tracking</div>
                 </div>
               </div>
               
