@@ -80,7 +80,7 @@ export default function AdvancedNavigation() {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Live Updates</div>
-                  <div className="text-sm text-blue-600">2 sec refresh rate</div>
+                  <div className="text-sm text-blue-600">2-sec refresh rate</div>
                 </div>
               </div>
               
