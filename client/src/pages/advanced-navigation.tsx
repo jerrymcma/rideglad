@@ -39,7 +39,7 @@ export default function AdvancedNavigation() {
               <div className="text-center">
                 <Satellite size={72} className="text-blue-500 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Revolutionary GPS Technology</h3>
-                <p className="text-gray-600">The ride app is designed with the newest and best rideshare navigation system in the world today. All the latest cutting edge GPS technologies are integrated into this state of the art rideshare system.</p>
+                <p className="text-gray-600">The ride app is designed with the newest and best rideshare navigation systems in the world today. All the latest cutting edge GPS technologies are integrated into this state of the art rideshare system.</p>
                 <div className="mt-4 space-y-2">
                   <div className="flex items-center justify-center gap-2 text-sm text-green-600">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
