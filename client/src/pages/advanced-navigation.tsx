@@ -79,7 +79,7 @@ export default function AdvancedNavigation() {
                   <Zap size={16} className="text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Real-time Updates</div>
+                  <div className="font-semibold text-gray-900">Live Updates</div>
                   <div className="text-sm text-blue-600">2-second refresh rate</div>
                 </div>
               </div>
