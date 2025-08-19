@@ -46,7 +46,10 @@ export default function SimpleHome() {
         {/* Back Button */}
         <div className="flex justify-start mb-4">
           <Button
-            onClick={() => setLocation('/')}
+            onClick={() => {
+              console.log('Back button clicked - logging out');
+              window.location.href = '/api/logout';
+            }}
             variant="ghost"
             className="p-3 hover:bg-gray-100 rounded-full"
             data-testid="button-back"
