@@ -170,11 +170,10 @@ export default function DriverDashboard() {
         <Button
           onClick={() => setLocation('/')}
           variant="ghost"
-          size="icon"
-          className="rounded-full"
+          className="p-3 hover:bg-gray-100 rounded-full"
           data-testid="button-back"
         >
-          <ArrowLeft className="h-5 w-5" />
+          <ArrowLeft size={24} className="text-gray-600" />
         </Button>
       </div>
       

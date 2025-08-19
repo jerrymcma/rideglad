@@ -45,13 +45,14 @@ export default function SimpleHome() {
       <div className="p-6 space-y-6 mt-8 text-[15px]">
         {/* Back Button */}
         <div className="flex justify-start mb-4">
-          <button
+          <Button
             onClick={() => setLocation('/')}
-            className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+            variant="ghost"
+            className="p-3 hover:bg-gray-100 rounded-full"
             data-testid="button-back"
           >
-            <ArrowLeft size={24} />
-          </button>
+            <ArrowLeft size={24} className="text-gray-600" />
+          </Button>
         </div>
         
         {/* Header */}
