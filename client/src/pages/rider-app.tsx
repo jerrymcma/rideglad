@@ -950,7 +950,7 @@ export default function RiderApp() {
                             <p className="text-xs text-gray-600">Available Driver</p>
                             <div className="flex items-center mt-1">
                               <Star size={12} className="text-yellow-400 mr-1" />
-                              <span className="text-xs text-gray-600">5.0 • {Math.floor(Math.random() * 5) + 2} min away</span>
+                              <span className="text-xs text-gray-600">{driver.rating || '4.9'} • {(Math.random() * 3 + 1.5).toFixed(1)} mi away</span>
                             </div>
                           </div>
                         </div>
