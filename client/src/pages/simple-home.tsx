@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard, Satellite } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard, Satellite, ArrowLeft } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
@@ -43,6 +43,18 @@ export default function SimpleHome() {
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="p-6 space-y-6 mt-8 text-[15px]">
+        {/* Back Button */}
+        <div className="flex justify-start mb-4">
+          <button
+            onClick={() => window.history.back()}
+            className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+            data-testid="button-back"
+          >
+            <ArrowLeft size={24} className="mr-2" />
+            <span className="text-[16px]">Back</span>
+          </button>
+        </div>
+        
         {/* Header */}
         <div className="text-center space-y-1">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
