@@ -879,27 +879,60 @@ export default function RiderApp() {
               Available drivers nearby
             </Label>
             
-            {/* Hattiesburg Map */}
+            {/* Interactive Hattiesburg Map */}
             <div className="relative">
-              <div className="w-full h-48 rounded-lg border overflow-hidden bg-gray-50">
-                <iframe
-                  src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyCtQiF11rteGvvqOXbqorZhsi8W3z2DGHs&center=31.3271,-89.2903&zoom=13&maptype=roadmap`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  onError={() => console.log('Map loading - enable APIs in Google Cloud Console')}
-                ></iframe>
-                {/* Fallback content while APIs are being enabled */}
-                <div className="absolute inset-0 bg-blue-50 flex items-center justify-center" style={{ zIndex: -1 }}>
-                  <div className="text-center text-blue-600">
-                    <div className="w-8 h-8 mx-auto mb-2 bg-blue-200 rounded-full flex items-center justify-center">
-                      <MapPin size={16} />
+              <div className="w-full h-48 rounded-lg border overflow-hidden bg-gradient-to-br from-green-50 to-blue-50">
+                {/* Mock Interactive Map */}
+                <div className="w-full h-full relative bg-gray-100 flex items-center justify-center">
+                  {/* Map Grid Background */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
+                      {Array.from({ length: 48 }).map((_, i) => (
+                        <div key={i} className="border border-gray-300"></div>
+                      ))}
                     </div>
-                    <p className="text-sm font-medium">Hattiesburg, MS Map</p>
-                    <p className="text-xs">Enable Google Maps APIs to view</p>
+                  </div>
+                  
+                  {/* Street Network Simulation */}
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 192">
+                    {/* Main Streets */}
+                    <line x1="0" y1="96" x2="320" y2="96" stroke="#94a3b8" strokeWidth="3" opacity="0.6" />
+                    <line x1="160" y1="0" x2="160" y2="192" stroke="#94a3b8" strokeWidth="3" opacity="0.6" />
+                    <line x1="0" y1="48" x2="320" y2="48" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
+                    <line x1="0" y1="144" x2="320" y2="144" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
+                    <line x1="80" y1="0" x2="80" y2="192" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
+                    <line x1="240" y1="0" x2="240" y2="192" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
+                    
+                    {/* USM Campus Area */}
+                    <rect x="200" y="120" width="60" height="40" fill="#22c55e" fillOpacity="0.2" stroke="#16a34a" strokeWidth="1" />
+                    <text x="230" y="142" textAnchor="middle" fontSize="8" fill="#16a34a" fontWeight="bold">USM</text>
+                    
+                    {/* Downtown Area */}
+                    <rect x="130" y="80" width="60" height="32" fill="#3b82f6" fillOpacity="0.2" stroke="#2563eb" strokeWidth="1" />
+                    <text x="160" y="98" textAnchor="middle" fontSize="8" fill="#2563eb" fontWeight="bold">Downtown</text>
+                    
+                    {/* Available Drivers */}
+                    <circle cx="150" cy="90" r="4" fill="#3b82f6" />
+                    <circle cx="180" cy="110" r="4" fill="#3b82f6" />
+                    <circle cx="220" cy="130" r="4" fill="#3b82f6" />
+                    
+                    {/* Your Location */}
+                    <circle cx="160" cy="96" r="6" fill="#ef4444" stroke="white" strokeWidth="2" />
+                  </svg>
+                  
+                  {/* Location Labels */}
+                  <div className="absolute top-2 left-2 text-xs bg-white/90 px-2 py-1 rounded shadow">
+                    📍 Hattiesburg, MS
+                  </div>
+                  
+                  {/* Driver Count */}
+                  <div className="absolute bottom-2 right-2 text-xs bg-blue-600 text-white px-2 py-1 rounded shadow">
+                    3 drivers nearby
+                  </div>
+                  
+                  {/* Google Maps Placeholder Notice */}
+                  <div className="absolute bottom-2 left-2 text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded shadow border border-amber-200">
+                    ⏳ Billing verification pending
                   </div>
                 </div>
               </div>
