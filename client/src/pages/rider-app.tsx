@@ -883,7 +883,7 @@ export default function RiderApp() {
             <div className="relative">
               <div className="w-full h-48 rounded-lg border overflow-hidden">
                 <iframe
-                  src={`https://www.google.com/maps/embed/v1/view?key=RIDE_API_KEY&center=31.3271,-89.2903&zoom=13&maptype=roadmap`}
+                  src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyCtQiF11rteGvvqOXbqorZhsi8W3z2DGHs&center=31.3271,-89.2903&zoom=13&maptype=roadmap`}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
