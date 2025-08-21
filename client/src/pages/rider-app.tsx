@@ -112,21 +112,21 @@ export default function RiderApp() {
 
   // Common location suggestions
   const commonLocations = [
-    "123 Main Street, San Francisco, CA",
-    "456 Market Street, San Francisco, CA", 
-    "789 Union Square, San Francisco, CA",
-    "321 Mission Bay Blvd, San Francisco, CA",
-    "654 Valencia Street, San Francisco, CA",
-    "987 Castro Street, San Francisco, CA",
-    "147 Lombard Street, San Francisco, CA",
-    "258 Chinatown, San Francisco, CA",
-    "369 Fisherman's Wharf, San Francisco, CA",
-    "741 Golden Gate Park, San Francisco, CA",
-    "852 Nob Hill, San Francisco, CA",
-    "963 SOMA District, San Francisco, CA",
-    "159 Financial District, San Francisco, CA",
-    "357 Hayes Valley, San Francisco, CA",
-    "468 Pacific Heights, San Francisco, CA"
+    "University of Southern Mississippi, 118 College Dr, Hattiesburg, MS",
+    "Downtown Hattiesburg, 200 Forrest St, Hattiesburg, MS",
+    "Turtle Creek Mall, 1000 Turtle Creek Dr, Hattiesburg, MS",
+    "Forrest General Hospital, 6051 US-49, Hattiesburg, MS",
+    "Hattiesburg-Laurel Regional Airport, 50 Terminal Dr, Moselle, MS",
+    "Walmart Supercenter, 6072 US-49, Hattiesburg, MS",
+    "Walmart Supercenter, 4600 Lincoln Rd Ext, Hattiesburg, MS",
+    "Hattiesburg Station, 308 Newman St, Hattiesburg, MS",
+    "Westland Plaza, 1000 Westland Plaza, Hattiesburg, MS",
+    "Methodist Rehabilitation Center, 1350 Broad St, Hattiesburg, MS",
+    "Oak Grove High School, 6000 School Rd, Hattiesburg, MS",
+    "Hattiesburg High School, 701 Hutchinson Ave, Hattiesburg, MS",
+    "Southern Pines Golf Club, 2603 Lincoln Rd, Hattiesburg, MS",
+    "Paul B. Johnson State Park, 319 Geiger Lake Rd, Hattiesburg, MS",
+    "Hattiesburg Zoo, 107 S 17th Ave, Hattiesburg, MS"
   ];
 
   const filterSuggestions = (input: string) => {
@@ -522,15 +522,15 @@ export default function RiderApp() {
   const requestRideMutation = useMutation({
     mutationFn: async (data: BookingForm) => {
       // Mock coordinates for demo
-      const mockCoords = { lat: 40.7128, lng: -74.0060 };
+      const hattiesburgCoords = { lat: 31.3271, lng: -89.2903 };
       
       return await apiRequest('POST', '/api/trips', {
         pickupAddress: data.pickupAddress,
-        pickupLat: mockCoords.lat,
-        pickupLng: mockCoords.lng,
+        pickupLat: hattiesburgCoords.lat,
+        pickupLng: hattiesburgCoords.lng,
         destinationAddress: data.destinationAddress,
-        destinationLat: mockCoords.lat + 0.01,
-        destinationLng: mockCoords.lng + 0.01,
+        destinationLat: hattiesburgCoords.lat + 0.01,
+        destinationLng: hattiesburgCoords.lng + 0.01,
         rideType: data.rideType,
         estimatedPrice: data.rideType === 'driver-1' ? '12.50' : data.rideType === 'driver-2' ? '16.80' : '24.90'
       });
@@ -744,13 +744,20 @@ export default function RiderApp() {
 
   // Calculate real trip price based on pickup and destination
   const calculateTripDistance = () => {
-    // Simple distance calculation for demo - in real app would use Google Maps API
     if (!bookingForm.pickupAddress || !bookingForm.destinationAddress) return 5;
     
-    // Mock calculation based on address length as approximation
-    const pickup = bookingForm.pickupAddress.length;
-    const destination = bookingForm.destinationAddress.length;
-    return Math.max(2, Math.min(15, Math.abs(pickup - destination) / 5 + 3));
+    // For now, estimate distance based on Hattiesburg area
+    // Different locations within Hattiesburg area have approximate distances
+    const isUSMTrip = bookingForm.pickupAddress.includes('University') || bookingForm.destinationAddress.includes('University');
+    const isAirportTrip = bookingForm.pickupAddress.includes('Airport') || bookingForm.destinationAddress.includes('Airport');
+    const isMallTrip = bookingForm.pickupAddress.includes('Mall') || bookingForm.destinationAddress.includes('Mall');
+    
+    if (isAirportTrip) return 8; // Airport is ~8 miles from downtown
+    if (isUSMTrip && isMallTrip) return 6; // USM to Mall is ~6 miles
+    if (isUSMTrip) return 4; // USM to downtown is ~4 miles
+    
+    // Default city trips within Hattiesburg
+    return Math.max(2, Math.min(12, Math.random() * 8 + 2));
   };
 
   const getRideTypePrice = (type: string) => {
