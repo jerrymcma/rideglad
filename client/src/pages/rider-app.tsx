@@ -879,88 +879,54 @@ export default function RiderApp() {
               Available drivers nearby
             </Label>
             
-            {/* Real-time Map */}
+            {/* Real Google Map */}
             <div className="relative">
-              <div className="w-full h-48 bg-gray-100 rounded-lg border overflow-hidden">
-                {/* Map Background */}
-                <div className="w-full h-full bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 relative">
-                  {/* Realistic City Map Elements */}
-                  <div className="absolute inset-0">
-                    {/* Main Highway - Horizontal */}
-                    <div className="absolute top-[40%] left-0 w-full h-2 bg-gray-500 opacity-70"></div>
-                    <div className="absolute top-[40%] left-0 w-full h-0.5 bg-yellow-300 opacity-80"></div>
-                    
-                    {/* Main Avenue - Vertical */}
-                    <div className="absolute left-[50%] top-0 w-2 h-full bg-gray-500 opacity-70"></div>
-                    <div className="absolute left-[50%] top-0 w-0.5 h-full bg-yellow-300 opacity-80"></div>
-                    
-                    {/* Secondary Streets */}
-                    <div className="absolute top-[20%] left-0 w-full h-1 bg-gray-400 opacity-50"></div>
-                    <div className="absolute top-[60%] left-0 w-full h-1 bg-gray-400 opacity-50"></div>
-                    <div className="absolute top-[80%] left-0 w-full h-1 bg-gray-400 opacity-50"></div>
-                    
-                    <div className="absolute left-[25%] top-0 w-1 h-full bg-gray-400 opacity-50"></div>
-                    <div className="absolute left-[75%] top-0 w-1 h-full bg-gray-400 opacity-50"></div>
-                    
-                    {/* City Blocks - Buildings */}
-                    <div className="absolute top-[5%] left-[5%] w-16 h-12 bg-blue-200 opacity-60 rounded-sm"></div>
-                    <div className="absolute top-[5%] left-[55%] w-20 h-16 bg-blue-200 opacity-60 rounded-sm"></div>
-                    <div className="absolute top-[45%] left-[5%] w-18 h-10 bg-blue-200 opacity-60 rounded-sm"></div>
-                    <div className="absolute top-[45%] left-[55%] w-16 h-14 bg-blue-200 opacity-60 rounded-sm"></div>
-                    <div className="absolute top-[65%] left-[25%] w-14 h-8 bg-blue-200 opacity-60 rounded-sm"></div>
-                    <div className="absolute top-[65%] left-[60%] w-18 h-12 bg-blue-200 opacity-60 rounded-sm"></div>
-                    
-                    {/* Parks and Green Spaces */}
-                    <div className="absolute top-[25%] left-[55%] w-16 h-12 bg-green-300 opacity-60 rounded-lg"></div>
-                    <div className="absolute top-[5%] right-[5%] w-12 h-12 bg-green-300 opacity-60 rounded-full"></div>
-                    
-                    {/* River/Water Feature */}
-                    <div className="absolute bottom-[5%] left-0 w-full h-6 bg-blue-300 opacity-50 rounded-lg"></div>
-                  </div>
-                  
-                  {/* Your Location */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
-                    <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
-                  </div>
-                  
-                  {/* Driver Locations - Show Active Drivers */}
-                  {activeDrivers && activeDrivers.slice(0, 3).map((driver, index) => {
-                    const positions = [
-                      { top: '50%', left: '35%', transform: 'translate(-50%, -50%)' },
-                      { top: '25%', right: '25%', transform: 'translate(50%, -50%)' },
-                      { top: '85%', left: '10%', transform: 'translate(-50%, -50%)' }
-                    ];
-                    const position = positions[index] || positions[0];
-                    const estimatedTime = Math.floor(Math.random() * 5) + 2;
-                    
-                    return (
-                      <div
-                        key={driver.id}
-                        className="absolute"
-                        style={{
-                          top: position.top,
-                          left: position.left,
-                          right: position.right,
-                          transform: position.transform
-                        }}
-                      >
-                        <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
-                        <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                          <Car size={16} className="text-blue-600" />
-                        </div>
-                        <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">{driver.firstName}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-                
-                {/* Map Controls */}
-                <div className="absolute top-2 right-2 flex flex-col gap-1">
-                  <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">+</button>
-                  <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50">-</button>
-                </div>
+              <div className="w-full h-48 rounded-lg border overflow-hidden">
+                <iframe
+                  src={`https://www.google.com/maps/embed/v1/view?key=RIDE_API_KEY&center=31.3271,-89.2903&zoom=13&maptype=roadmap`}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
+              
+              {/* Your Location Overlay */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
+                <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
+              </div>
+              
+              {/* Driver Locations Overlay */}
+              {activeDrivers && activeDrivers.slice(0, 3).map((driver, index) => {
+                const positions = [
+                  { top: '50%', left: '35%', transform: 'translate(-50%, -50%)' },
+                  { top: '25%', right: '25%', transform: 'translate(50%, -50%)' },
+                  { top: '85%', left: '10%', transform: 'translate(-50%, -50%)' }
+                ];
+                const position = positions[index] || positions[0];
+                
+                return (
+                  <div
+                    key={driver.id}
+                    className="absolute"
+                    style={{
+                      top: position.top,
+                      left: position.left,
+                      right: position.right,
+                      transform: position.transform
+                    }}
+                  >
+                    <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
+                    <div className="bg-white rounded-full p-1 border border-white shadow-md">
+                      <Car size={16} className="text-blue-600" />
+                    </div>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">{driver.firstName}</span>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Driver Selection */}
