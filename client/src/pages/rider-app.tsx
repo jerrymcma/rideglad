@@ -879,9 +879,9 @@ export default function RiderApp() {
               Available drivers nearby
             </Label>
             
-            {/* Real Google Map */}
+            {/* Hattiesburg Map */}
             <div className="relative">
-              <div className="w-full h-48 rounded-lg border overflow-hidden">
+              <div className="w-full h-48 rounded-lg border overflow-hidden bg-gray-50">
                 <iframe
                   src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyCtQiF11rteGvvqOXbqorZhsi8W3z2DGHs&center=31.3271,-89.2903&zoom=13&maptype=roadmap`}
                   width="100%"
@@ -890,7 +890,18 @@ export default function RiderApp() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  onError={() => console.log('Map loading - enable APIs in Google Cloud Console')}
                 ></iframe>
+                {/* Fallback content while APIs are being enabled */}
+                <div className="absolute inset-0 bg-blue-50 flex items-center justify-center" style={{ zIndex: -1 }}>
+                  <div className="text-center text-blue-600">
+                    <div className="w-8 h-8 mx-auto mb-2 bg-blue-200 rounded-full flex items-center justify-center">
+                      <MapPin size={16} />
+                    </div>
+                    <p className="text-sm font-medium">Hattiesburg, MS Map</p>
+                    <p className="text-xs">Enable Google Maps APIs to view</p>
+                  </div>
+                </div>
               </div>
               
               {/* Your Location Overlay */}
