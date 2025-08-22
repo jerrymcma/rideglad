@@ -179,7 +179,7 @@ export default function DriverDashboard() {
               <div>
                 <h2 className="font-bold text-blue-600 text-[18px] mb-2">Driver Mode</h2>
                 <p className={`text-[15px] font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
-                  {isOnline ? 'You are online and available for rides' : 'Tap the button below to go online'}
+                  {isOnline ? 'You are online and available for rides' : 'You are offline'}
                 </p>
               </div>
               
@@ -201,7 +201,7 @@ export default function DriverDashboard() {
               </div>
               
               <p className={`text-sm font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
-                {isOnline ? 'ONLINE' : 'TAP TO GO ONLINE'}
+                {isOnline ? 'ONLINE' : 'TAP TO START EARNING'}
               </p>
             </div>
           </CardContent>
