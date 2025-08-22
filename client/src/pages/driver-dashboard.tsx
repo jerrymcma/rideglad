@@ -435,6 +435,9 @@ export default function DriverDashboard() {
           <Button variant="outline" className="w-full" data-testid="button-earnings">
             Earnings Details
           </Button>
+          <Button variant="outline" className="w-full" data-testid="button-vehicle-settings">
+            Vehicle Settings
+          </Button>
           <Button 
             onClick={() => setLocation('/trips')} 
             variant="outline" 
@@ -442,9 +445,6 @@ export default function DriverDashboard() {
             data-testid="button-trip-history"
           >
             View Past Rides
-          </Button>
-          <Button variant="outline" className="w-full" data-testid="button-vehicle-settings">
-            Vehicle Settings
           </Button>
 
           {/* Back Button - positioned below vehicle settings */}
