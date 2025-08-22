@@ -41,25 +41,10 @@ export default function SimpleHome() {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="p-6 text-[15px]">
-        {/* Back Button - positioned at top */}
-        <div className="flex justify-start mb-1">
-          <Button
-            onClick={() => {
-              console.log('Back button clicked - logging out');
-              window.location.href = '/api/logout';
-            }}
-            variant="ghost"
-            className="p-3 hover:bg-gray-100 rounded-full"
-            data-testid="button-back"
-          >
-            <ArrowLeft size={24} className="text-gray-600" />
-          </Button>
-        </div>
-        
-        {/* Header - just below back arrow */}
-        <div className="text-center space-y-1 mb-6">
+    <div className="max-w-sm mx-auto bg-white min-h-screen relative">
+      <div className="p-6 text-[15px] pb-20">
+        {/* Header - positioned at very top */}
+        <div className="text-center space-y-1 mb-6 pt-2">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
           <p className="font-bold text-[#464f6b] text-[22px]">Hello, {(user as any)?.firstName || 'User'}</p>
         </div>
@@ -211,6 +196,21 @@ export default function SimpleHome() {
         {/* Profile Section */}
         <div className="space-y-4 pt-4">
         </div>
+      </div>
+      
+      {/* Back Button - positioned at bottom */}
+      <div className="absolute bottom-6 left-6">
+        <Button
+          onClick={() => {
+            console.log('Back button clicked - logging out');
+            window.location.href = '/api/logout';
+          }}
+          variant="ghost"
+          className="p-3 hover:bg-gray-100 rounded-full"
+          data-testid="button-back"
+        >
+          <ArrowLeft size={24} className="text-gray-600" />
+        </Button>
       </div>
     </div>
   );
