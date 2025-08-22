@@ -430,56 +430,16 @@ export default function DriverDashboard() {
           </CardContent>
         </Card>
 
-        {/* Recent Trips */}
-        <Card>
-          <CardContent className="pt-6">
-            <h3 className="text-lg font-semibold mb-4">Recent Trips</h3>
-            {tripsLoading ? (
-              <div className="space-y-3">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="animate-pulse">
-                    <div className="h-16 bg-gray-200 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            ) : completedTrips.length === 0 ? (
-              <div className="text-center py-8 text-gray-medium">
-                <Car className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                <p>No trips completed yet</p>
-                <p className="text-sm">Turn on driver mode to start earning</p>
-              </div>
-            ) : (
-              <div className="space-y-3" data-testid="list-recent-trips">
-                {completedTrips.slice(0, 5).map(trip => (
-                  <div key={trip.id} className="flex items-center space-x-4 p-3 border border-gray-200 rounded-xl">
-                    <div className="w-10 h-10 bg-gray-light rounded-full flex items-center justify-center">
-                      <MapPin className="h-5 w-5 text-gray-medium" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm truncate" data-testid={`text-destination-${trip.id}`}>
-                        {trip.destinationAddress}
-                      </p>
-                      <p className="text-xs text-gray-medium">
-                        {new Date(trip.completedAt || '').toLocaleDateString()}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-semibold text-brand-green" data-testid={`text-price-${trip.id}`}>
-                        ${trip.finalPrice}
-                      </p>
-                      <p className="text-xs text-gray-medium">
-                        {trip.distance?.toFixed(1)}km
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
         {/* Quick Actions */}
         <div className="space-y-3">
+          <Button 
+            onClick={() => setLocation('/trips')} 
+            variant="outline" 
+            className="w-full"
+            data-testid="button-recent-trips"
+          >
+            Recent Trips
+          </Button>
           <Button 
             onClick={() => setLocation('/trips')} 
             variant="outline" 
