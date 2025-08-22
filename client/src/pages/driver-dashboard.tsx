@@ -170,10 +170,10 @@ export default function DriverDashboard() {
 
       
       {/* Header */}
-      <div className="px-6 pt-6 pb-6 border-b border-gray-100">
+      <div className="px-6 pt-6 pb-4 border-b border-gray-100">
         <h1 className="font-extrabold text-blue-600 text-[25px] text-center">Driver Dashboard</h1>
       </div>
-      <div className="p-6 space-y-6">
+      <div className="px-6 pt-4 pb-6 space-y-6">
         {/* Driver Status */}
         <Card className={`transition-all duration-300 ${!isOnline ? 'border-blue-200 bg-blue-50' : 'border-green-200 bg-green-50'}`}>
           <CardContent className="pt-6">
