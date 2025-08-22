@@ -199,7 +199,7 @@ export default function SimpleHome() {
       </div>
       
       {/* Back Button - positioned level with animation car */}
-      <div className="absolute bottom-16 left-6">
+      <div className="absolute bottom-20 left-6">
         <Button
           onClick={() => {
             console.log('Back button clicked - logging out');
