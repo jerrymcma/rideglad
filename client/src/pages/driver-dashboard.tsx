@@ -173,35 +173,35 @@ export default function DriverDashboard() {
       </div>
       <div className="p-6 space-y-6">
         {/* Driver Status */}
-        <Card className={`transition-all duration-300 ${!isOnline ? 'border-red-200 bg-red-50' : 'border-green-200 bg-green-50'}`}>
+        <Card className={`transition-all duration-300 ${!isOnline ? 'border-blue-200 bg-blue-50' : 'border-green-200 bg-green-50'}`}>
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
               <div>
                 <h2 className="font-bold text-blue-600 text-[18px] mb-2">Driver Mode</h2>
-                <p className={`text-[15px] font-medium ${isOnline ? 'text-green-700' : 'text-red-700'}`}>
-                  {isOnline ? 'You are online and available for rides' : 'Tap below to go online and start earning'}
+                <p className={`text-[15px] font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
+                  {isOnline ? 'You are online and available for rides' : 'Tap the button below to go online'}
                 </p>
               </div>
               
               {/* Custom Driver Mode Toggle Button */}
               <div 
-                className={`relative mx-auto w-24 h-24 rounded-full cursor-pointer transition-all duration-300 flex items-center justify-center ${
+                className={`relative mx-auto w-20 h-20 rounded-full cursor-pointer transition-all duration-500 flex items-center justify-center shadow-md ${
                   isOnline 
-                    ? 'bg-green-500 hover:bg-green-600 shadow-lg' 
-                    : 'bg-red-500 hover:bg-red-600 shadow-lg animate-pulse'
+                    ? 'bg-green-500 hover:bg-green-600' 
+                    : 'bg-blue-500 hover:bg-blue-600'
                 }`}
                 onClick={handleToggleOnline}
                 data-testid="button-driver-mode-toggle"
               >
                 {toggleStatusMutation.isPending ? (
-                  <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
-                  <Car size={32} className="text-white" />
+                  <Car size={28} className="text-white" />
                 )}
               </div>
               
-              <p className={`text-sm font-medium ${isOnline ? 'text-green-700' : 'text-red-700'}`}>
-                {isOnline ? 'ONLINE' : 'OFFLINE - TAP TO GO ONLINE'}
+              <p className={`text-sm font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
+                {isOnline ? 'ONLINE' : 'TAP TO GO ONLINE'}
               </p>
             </div>
           </CardContent>
