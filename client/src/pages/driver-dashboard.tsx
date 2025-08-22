@@ -279,7 +279,6 @@ export default function DriverDashboard() {
         {isOnline && !activeTrip && (
           <Card>
             <CardHeader className="pb-3">
-              <p className="text-blue-700 font-medium text-[17px] text-center mb-3">Ride Requests</p>
               <CardTitle className="tracking-tight text-lg flex items-center gap-2 text-[#1860de] font-bold">
                 <Car size={20} />
                 Available Rides
@@ -407,6 +406,7 @@ export default function DriverDashboard() {
         {!isOnline && (
           <Card className="border-gray-200">
             <CardContent className="pt-6 text-center">
+              <p className="text-blue-700 font-medium text-[17px] mb-3">Ride Requests</p>
               <Car size={48} className="mx-auto text-gray-300 mb-2" />
               <p className="text-gray-500 font-medium">You're offline</p>
               <p className="text-xs text-gray-400">Turn on driver mode to receive ride requests</p>
