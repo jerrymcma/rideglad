@@ -280,7 +280,7 @@ export default function DriverDashboard() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="tracking-tight text-lg text-center text-gray-500 font-bold">
-                Available Rides
+                Available rides
                 {((availableRides && availableRides.length > 0) || realTimeRides.length > 0) && (
                   <Badge variant="secondary">
                     {(availableRides?.length || 0) + realTimeRides.length}
