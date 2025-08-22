@@ -441,7 +441,7 @@ export default function DriverDashboard() {
             className="w-full"
             data-testid="button-trip-history"
           >
-            View All Trips
+            View Past Rides
           </Button>
           <Button variant="outline" className="w-full" data-testid="button-vehicle-settings">
             Vehicle Settings
