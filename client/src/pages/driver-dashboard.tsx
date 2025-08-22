@@ -165,17 +165,7 @@ export default function DriverDashboard() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      {/* Back Button */}
-      <div className="p-6 pb-2">
-        <Button
-          onClick={() => setLocation('/')}
-          variant="ghost"
-          className="p-3 hover:bg-gray-100 rounded-full"
-          data-testid="button-back"
-        >
-          <ArrowLeft size={24} className="text-gray-600" />
-        </Button>
-      </div>
+
       
       {/* Header */}
       <div className="px-6 pb-6 border-b border-gray-100">
@@ -510,6 +500,18 @@ export default function DriverDashboard() {
             Vehicle Settings
           </Button>
         </div>
+      </div>
+
+      {/* Back Button - positioned at bottom */}
+      <div className="p-6 pt-2">
+        <Button
+          onClick={() => setLocation('/')}
+          variant="ghost"
+          className="p-3 hover:bg-gray-100 rounded-full"
+          data-testid="button-back"
+        >
+          <ArrowLeft size={24} className="text-gray-600" />
+        </Button>
       </div>
     </div>
   );
