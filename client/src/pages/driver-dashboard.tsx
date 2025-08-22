@@ -499,19 +499,19 @@ export default function DriverDashboard() {
           <Button variant="outline" className="w-full" data-testid="button-vehicle-settings">
             Vehicle Settings
           </Button>
-        </div>
-      </div>
 
-      {/* Back Button - positioned at bottom */}
-      <div className="p-6 pt-2">
-        <Button
-          onClick={() => setLocation('/')}
-          variant="ghost"
-          className="p-3 hover:bg-gray-100 rounded-full"
-          data-testid="button-back"
-        >
-          <ArrowLeft size={24} className="text-gray-600" />
-        </Button>
+          {/* Back Button - positioned below vehicle settings */}
+          <div className="pt-4">
+            <Button
+              onClick={() => setLocation('/')}
+              variant="ghost"
+              className="p-3 hover:bg-gray-100 rounded-full"
+              data-testid="button-back"
+            >
+              <ArrowLeft size={24} className="text-gray-600" />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
