@@ -181,7 +181,7 @@ export default function RiderApp() {
 
   // Update default rideType when active drivers load
   useEffect(() => {
-    if (activeDrivers && activeDrivers.length > 0 && !bookingForm.rideType) {
+    if (activeDrivers && Array.isArray(activeDrivers) && activeDrivers.length > 0 && !bookingForm.rideType) {
       setBookingForm(prev => ({ ...prev, rideType: activeDrivers[0].id }));
     }
   }, [activeDrivers, bookingForm.rideType]);
@@ -944,7 +944,7 @@ export default function RiderApp() {
               </div>
               
               {/* Driver Locations Overlay */}
-              {activeDrivers && activeDrivers.slice(0, 3).map((driver, index) => {
+              {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.slice(0, 3).map((driver, index) => {
                 const positions = [
                   { top: '50%', left: '35%', transform: 'translate(-50%, -50%)' },
                   { top: '25%', right: '25%', transform: 'translate(50%, -50%)' },
@@ -977,13 +977,13 @@ export default function RiderApp() {
             <div className="space-y-2">
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2 py-2">
                 <User size={20} />
-                Choose your ride {activeDrivers && activeDrivers.length > 0 && (
+                Choose your ride {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.length > 0 && (
                   <Badge variant="secondary" className="ml-2">{activeDrivers.length} online</Badge>
                 )}
               </Label>
               
               {/* Show active drivers */}
-              {activeDrivers && activeDrivers.length > 0 ? (
+              {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.length > 0 ? (
                 activeDrivers.map((driver: UserType, index: number) => (
                   <Card 
                     key={driver.id}
@@ -1458,7 +1458,7 @@ export default function RiderApp() {
           onClick={() => {
             if (currentTrip) {
               // Cancel the trip and go back to booking
-              cancelTripMutation.mutate(currentTrip.id);
+              cancelRideMutation.mutate(currentTrip.id);
             } else {
               setLocation('/');
             }
