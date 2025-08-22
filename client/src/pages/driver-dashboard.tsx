@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { ArrowLeft, Car, DollarSign, Clock, Star, MapPin, Navigation, Phone, MessageCircle, User as UserIcon } from "lucide-react";
+import { ArrowLeft, Car, DollarSign, Clock, Star, MapPin, Navigation, Phone, MessageCircle, User as UserIcon, Heart } from "lucide-react";
 import { useLocation } from "wouter";
 import type { Trip, User } from "@shared/schema";
 
@@ -187,21 +187,33 @@ export default function DriverDashboard() {
               
               {/* Custom Driver Mode Toggle Button */}
               <div 
-                className={`relative mx-auto cursor-pointer transition-all duration-500 shadow-md ${
+                className={`relative mx-auto cursor-pointer transition-all duration-500 ${
                   isOnline 
-                    ? 'heart-shape heart-shape-bg-green heart-shape-bg-green-hover' 
-                    : 'heart-shape heart-shape-bg-blue heart-shape-bg-blue-hover subtle-pulse'
+                    ? '' 
+                    : 'subtle-pulse'
                 }`}
                 onClick={handleToggleOnline}
                 data-testid="button-driver-mode-toggle"
               >
-                <div className="heart-content">
-                  {toggleStatusMutation.isPending ? (
-                    <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                  ) : (
-                    <Car size={36} className="text-white" />
-                  )}
-                </div>
+                {toggleStatusMutation.isPending ? (
+                  <div className="w-20 h-20 flex items-center justify-center">
+                    <div className="w-6 h-6 border-3 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <Heart 
+                      size={80} 
+                      className={`${
+                        isOnline 
+                          ? 'text-green-500 fill-green-500 hover:text-green-600 hover:fill-green-600' 
+                          : 'text-blue-500 fill-blue-500 hover:text-blue-600 hover:fill-blue-600'
+                      } transition-colors duration-500 drop-shadow-md`}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Car size={28} className="text-white" />
+                    </div>
+                  </div>
+                )}
               </div>
               
               <p className={`text-sm font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
