@@ -198,8 +198,8 @@ export default function SimpleHome() {
         </div>
       </div>
       
-      {/* Back Button - positioned at bottom left */}
-      <div className="absolute bottom-6 left-6">
+      {/* Back Button - positioned even with animation bottom, all the way left */}
+      <div className="absolute bottom-20 left-2">
         <Button
           onClick={() => {
             console.log('Back button clicked - logging out');
