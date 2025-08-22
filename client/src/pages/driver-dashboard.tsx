@@ -439,14 +439,6 @@ export default function DriverDashboard() {
             onClick={() => setLocation('/trips')} 
             variant="outline" 
             className="w-full"
-            data-testid="button-recent-trips"
-          >
-            Recent Trips
-          </Button>
-          <Button 
-            onClick={() => setLocation('/trips')} 
-            variant="outline" 
-            className="w-full"
             data-testid="button-trip-history"
           >
             View All Trips
