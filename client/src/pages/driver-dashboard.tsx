@@ -196,7 +196,7 @@ export default function DriverDashboard() {
                 {toggleStatusMutation.isPending ? (
                   <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
-                  <Car size={28} className="text-white" />
+                  <Car size={36} className="text-white" />
                 )}
               </div>
               
