@@ -447,16 +447,16 @@ export default function DriverDashboard() {
 
         {/* Quick Actions */}
         <div className="space-y-3">
-          <Button variant="outline" className="w-full" data-testid="button-earnings">
+          <Button variant="outline" className="w-full font-bold" data-testid="button-earnings">
             Earnings Details
           </Button>
-          <Button variant="outline" className="w-full" data-testid="button-vehicle-settings">
+          <Button variant="outline" className="w-full font-bold" data-testid="button-vehicle-settings">
             Vehicle Settings
           </Button>
           <Button 
             onClick={() => setLocation('/trips')} 
             variant="outline" 
-            className="w-full"
+            className="w-full font-bold"
             data-testid="button-trip-history"
           >
             View Past Rides
