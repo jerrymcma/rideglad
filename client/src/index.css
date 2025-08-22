@@ -54,13 +54,41 @@
 
 /* Subtle pulse animation for driver mode button */
 @keyframes subtle-pulse {
-  0%, 100% { 
+  0% { 
     opacity: 1;
     transform: scale(1);
   }
+  12.5% { 
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  25% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  37.5% { 
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
   50% { 
-    opacity: 0.75;
-    transform: scale(1.05);
+    opacity: 1;
+    transform: scale(1);
+  }
+  62.5% { 
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  75% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  87.5% { 
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
