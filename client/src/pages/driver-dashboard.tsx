@@ -173,21 +173,36 @@ export default function DriverDashboard() {
       </div>
       <div className="p-6 space-y-6">
         {/* Driver Status */}
-        <Card>
+        <Card className={`transition-all duration-300 ${!isOnline ? 'border-red-200 bg-red-50' : 'border-green-200 bg-green-50'}`}>
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
+            <div className="text-center space-y-4">
               <div>
-                <h2 className="font-bold text-[#0963e8] text-[18px]">Driver Mode</h2>
-                <p className="text-[#101919] text-[15px] font-medium">
-                  {isOnline ? 'You are online and available' : 'You are offline'}
+                <h2 className="font-bold text-blue-600 text-[18px] mb-2">Driver Mode</h2>
+                <p className={`text-[15px] font-medium ${isOnline ? 'text-green-700' : 'text-red-700'}`}>
+                  {isOnline ? 'You are online and available for rides' : 'Tap below to go online and start earning'}
                 </p>
               </div>
-              <Switch
-                checked={isOnline}
-                onCheckedChange={handleToggleOnline}
-                disabled={toggleStatusMutation.isPending}
-                data-testid="switch-driver-status"
-              />
+              
+              {/* Custom Driver Mode Toggle Button */}
+              <div 
+                className={`relative mx-auto w-24 h-24 rounded-full cursor-pointer transition-all duration-300 flex items-center justify-center ${
+                  isOnline 
+                    ? 'bg-green-500 hover:bg-green-600 shadow-lg' 
+                    : 'bg-red-500 hover:bg-red-600 shadow-lg animate-pulse'
+                }`}
+                onClick={handleToggleOnline}
+                data-testid="button-driver-mode-toggle"
+              >
+                {toggleStatusMutation.isPending ? (
+                  <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <Car size={32} className="text-white" />
+                )}
+              </div>
+              
+              <p className={`text-sm font-medium ${isOnline ? 'text-green-700' : 'text-red-700'}`}>
+                {isOnline ? 'ONLINE' : 'OFFLINE - TAP TO GO ONLINE'}
+              </p>
             </div>
           </CardContent>
         </Card>
