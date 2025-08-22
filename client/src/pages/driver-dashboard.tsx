@@ -179,7 +179,7 @@ export default function DriverDashboard() {
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
               <div>
-                <h2 className="font-bold text-blue-600 text-[18px] mb-2">Driver Mode</h2>
+                <h2 className="font-bold text-blue-600 text-[19px] mb-2">Driver Mode</h2>
                 <p className={`text-[15px] font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
                   {isOnline ? 'You are available for rides' : <span className="font-bold">You are offline</span>}
                 </p>
