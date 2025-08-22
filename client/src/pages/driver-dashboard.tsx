@@ -187,11 +187,7 @@ export default function DriverDashboard() {
               
               {/* Custom Driver Mode Toggle Button */}
               <div 
-                className={`relative mx-auto cursor-pointer transition-all duration-500 flex items-center justify-center ${
-                  isOnline 
-                    ? '' 
-                    : 'subtle-pulse'
-                }`}
+                className={`relative mx-auto cursor-pointer transition-all duration-500 flex items-center justify-center subtle-pulse`}
                 onClick={handleToggleOnline}
                 data-testid="button-driver-mode-toggle"
               >
