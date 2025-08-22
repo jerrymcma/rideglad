@@ -432,6 +432,9 @@ export default function DriverDashboard() {
 
         {/* Quick Actions */}
         <div className="space-y-3">
+          <Button variant="outline" className="w-full" data-testid="button-earnings">
+            Earnings Details
+          </Button>
           <Button 
             onClick={() => setLocation('/trips')} 
             variant="outline" 
@@ -447,9 +450,6 @@ export default function DriverDashboard() {
             data-testid="button-trip-history"
           >
             View All Trips
-          </Button>
-          <Button variant="outline" className="w-full" data-testid="button-earnings">
-            Earnings Details
           </Button>
           <Button variant="outline" className="w-full" data-testid="button-vehicle-settings">
             Vehicle Settings
