@@ -139,7 +139,7 @@ export default function SimpleHome() {
                 <h3 className="font-semibold text-[16px] text-[#1ea858]">Wallet</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Count money</p>
+                <p className="text-gray-700 text-[14px]">Manage payments</p>
               </div>
             </div>
 
