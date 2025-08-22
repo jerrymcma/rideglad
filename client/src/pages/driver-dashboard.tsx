@@ -187,19 +187,21 @@ export default function DriverDashboard() {
               
               {/* Custom Driver Mode Toggle Button */}
               <div 
-                className={`relative mx-auto w-20 h-20 rounded-full cursor-pointer transition-all duration-500 flex items-center justify-center shadow-md ${
+                className={`relative mx-auto cursor-pointer transition-all duration-500 shadow-md ${
                   isOnline 
-                    ? 'bg-green-500 hover:bg-green-600' 
-                    : 'bg-blue-500 hover:bg-blue-600 subtle-pulse'
+                    ? 'heart-shape heart-shape-bg-green heart-shape-bg-green-hover' 
+                    : 'heart-shape heart-shape-bg-blue heart-shape-bg-blue-hover subtle-pulse'
                 }`}
                 onClick={handleToggleOnline}
                 data-testid="button-driver-mode-toggle"
               >
-                {toggleStatusMutation.isPending ? (
-                  <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                ) : (
-                  <Car size={36} className="text-white" />
-                )}
+                <div className="heart-content">
+                  {toggleStatusMutation.isPending ? (
+                    <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <Car size={36} className="text-white" />
+                  )}
+                </div>
               </div>
               
               <p className={`text-sm font-medium ${isOnline ? 'text-green-700' : 'text-blue-700'}`}>
