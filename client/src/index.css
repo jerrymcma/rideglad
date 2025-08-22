@@ -59,13 +59,13 @@
     transform: scale(1);
   }
   50% { 
-    opacity: 0.85;
-    transform: scale(1.02);
+    opacity: 0.75;
+    transform: scale(1.05);
   }
 }
 
 .subtle-pulse {
-  animation: subtle-pulse 3s ease-in-out infinite;
+  animation: subtle-pulse 2s ease-in-out infinite;
 }
 
 .dark {
