@@ -210,7 +210,7 @@ export default function DriverDashboard() {
                       } transition-colors duration-500 drop-shadow-md`}
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Car size={28} className="text-white" />
+                      <Car size={28} className="text-white transform translate-y-1" />
                     </div>
                   </div>
                 )}
