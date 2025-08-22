@@ -42,9 +42,9 @@ export default function SimpleHome() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="p-6 space-y-6 mt-8 text-[15px]">
-        {/* Back Button */}
-        <div className="flex justify-start mb-4">
+      <div className="p-6 text-[15px]">
+        {/* Back Button - positioned at top */}
+        <div className="flex justify-start mb-1">
           <Button
             onClick={() => {
               console.log('Back button clicked - logging out');
@@ -58,8 +58,8 @@ export default function SimpleHome() {
           </Button>
         </div>
         
-        {/* Header */}
-        <div className="text-center space-y-1">
+        {/* Header - just below back arrow */}
+        <div className="text-center space-y-1 mb-6">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
           <p className="font-bold text-[#464f6b] text-[22px]">Hello, {(user as any)?.firstName || 'User'}</p>
         </div>
