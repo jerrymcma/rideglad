@@ -279,7 +279,7 @@ export default function DriverDashboard() {
         {isOnline && !activeTrip && (
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="tracking-tight text-lg text-center text-[#1860de] font-bold">
+              <CardTitle className="tracking-tight text-lg text-center text-gray-500 font-bold">
                 Available Rides
                 {((availableRides && availableRides.length > 0) || realTimeRides.length > 0) && (
                   <Badge variant="secondary">
