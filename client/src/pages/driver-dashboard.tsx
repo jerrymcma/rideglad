@@ -188,7 +188,7 @@ export default function DriverDashboard() {
                 className={`relative mx-auto w-20 h-20 rounded-full cursor-pointer transition-all duration-500 flex items-center justify-center shadow-md ${
                   isOnline 
                     ? 'bg-green-500 hover:bg-green-600' 
-                    : 'bg-blue-500 hover:bg-blue-600 animate-pulse'
+                    : 'bg-blue-500 hover:bg-blue-600 subtle-pulse'
                 }`}
                 onClick={handleToggleOnline}
                 data-testid="button-driver-mode-toggle"

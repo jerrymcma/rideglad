@@ -52,6 +52,22 @@
   --status-danger: hsl(0 72.22% 50.59%);
 }
 
+/* Subtle pulse animation for driver mode button */
+@keyframes subtle-pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+.subtle-pulse {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+
 .dark {
   --background: hsl(0 0% 0%);
   --foreground: hsl(0 0% 100%);
