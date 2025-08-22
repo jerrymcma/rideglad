@@ -407,7 +407,7 @@ export default function DriverDashboard() {
             <CardContent className="pt-6 text-center">
               <p className="text-gray-500 font-bold text-[17px] mb-3">Ride Requests</p>
               <Car size={48} className="mx-auto text-gray-300 mb-2" />
-              <p className="text-gray-500 font-medium">You're offline</p>
+              <p className="text-gray-500 font-bold text-[15px]">You're offline</p>
               <p className="text-sm text-gray-400">Turn on driver mode to receive ride requests</p>
             </CardContent>
           </Card>
