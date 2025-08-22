@@ -294,7 +294,7 @@ export default function DriverDashboard() {
                   <div className="text-gray-500">Looking for ride requests...</div>
                 </div>
               ) : (!availableRides || availableRides.length === 0) && realTimeRides.length === 0 ? (
-                <div className="text-center py-8">
+                <div className="text-center py-4">
                   <Car size={48} className="mx-auto text-gray-300 mb-2" />
                   <p className="text-[#16181c] text-[15px]">No ride requests available</p>
                   <p className="text-[#272d2e] text-[14px]">{isConnected ? '(Connected - Real-time updates active)' : '(Connecting...)'} </p>
