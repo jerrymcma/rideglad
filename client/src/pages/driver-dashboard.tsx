@@ -187,7 +187,7 @@ export default function DriverDashboard() {
               
               {/* Custom Driver Mode Toggle Button */}
               <div 
-                className={`relative mx-auto cursor-pointer transition-all duration-500 ${
+                className={`relative mx-auto cursor-pointer transition-all duration-500 flex items-center justify-center ${
                   isOnline 
                     ? '' 
                     : 'subtle-pulse'
@@ -196,13 +196,13 @@ export default function DriverDashboard() {
                 data-testid="button-driver-mode-toggle"
               >
                 {toggleStatusMutation.isPending ? (
-                  <div className="w-20 h-20 flex items-center justify-center">
+                  <div className="w-16 h-16 flex items-center justify-center">
                     <div className="w-6 h-6 border-3 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  <div className="relative">
+                  <div className="relative flex items-center justify-center">
                     <Heart 
-                      size={80} 
+                      size={64} 
                       className={`${
                         isOnline 
                           ? 'text-green-500 fill-green-500 hover:text-green-600 hover:fill-green-600' 
@@ -210,7 +210,7 @@ export default function DriverDashboard() {
                       } transition-colors duration-500 drop-shadow-md`}
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Car size={28} className="text-white" />
+                      <Car size={24} className="text-white" />
                     </div>
                   </div>
                 )}
