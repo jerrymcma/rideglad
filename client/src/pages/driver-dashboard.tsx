@@ -383,57 +383,52 @@ export default function DriverDashboard() {
         )}
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2 mb-2">
-                <DollarSign className="h-5 w-5 text-brand-green" />
-                <span className="text-sm ml-[0px] mr-[0px] font-medium">Total Earnings</span>
+        <Card>
+          <CardContent className="pt-6">
+            <h3 className="text-lg font-semibold mb-4 text-center">Driver Stats</h3>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <DollarSign className="h-5 w-5 text-brand-green" />
+                  <span className="text-sm font-medium">Total Earnings</span>
+                </div>
+                <p className="font-bold text-brand-dark text-[16px]" data-testid="text-earnings">
+                  ${totalEarnings.toFixed(2)}
+                </p>
               </div>
-              <p className="font-bold text-brand-dark text-[16px] text-center" data-testid="text-earnings">
-                ${totalEarnings.toFixed(2)}
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2 mb-2">
-                <Car className="h-5 w-5 text-brand-green" />
-                <span className="text-sm font-medium">Total Trips</span>
+              
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <Car className="h-5 w-5 text-brand-green" />
+                  <span className="text-sm font-medium">Total Trips</span>
+                </div>
+                <p className="font-bold text-brand-dark text-[16px]" data-testid="text-trips">
+                  {totalTrips}
+                </p>
               </div>
-              <p className="font-bold text-brand-dark text-center text-[16px]" data-testid="text-trips">
-                {totalTrips}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2 mb-2">
-                <Star className="h-5 w-5 text-status-warning" />
-                <span className="text-sm font-medium">Rating</span>
+              
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <Star className="h-5 w-5 text-status-warning" />
+                  <span className="text-sm font-medium">Rating</span>
+                </div>
+                <p className="font-bold text-brand-dark text-[16px]" data-testid="text-rating">
+                  {avgRating.toFixed(1)}
+                </p>
               </div>
-              <p className="font-bold text-brand-dark text-center text-[16px]" data-testid="text-rating">
-                {avgRating.toFixed(1)}
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2 mb-2">
-                <Clock className="h-5 w-5 text-brand-green" />
-                <span className="text-sm font-medium">Online Time</span>
+              
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <Clock className="h-5 w-5 text-brand-green" />
+                  <span className="text-sm font-medium">Online Time</span>
+                </div>
+                <p className="font-bold text-brand-dark text-[16px]">
+                  0h 0m
+                </p>
               </div>
-              <p className="font-bold text-brand-dark text-center text-[16px]">
-                0h 0m
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Recent Trips */}
         <Card>
