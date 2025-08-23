@@ -199,14 +199,9 @@ export default function RealTimeMap({
     setMap(mapInstance);
   }, [isLoaded, mapStyle, showTraffic]);
 
-  // Simulate traffic level updates
+  // Set traffic level to low by default (no random simulation)
   useEffect(() => {
-    const interval = setInterval(() => {
-      const levels: Array<'low' | 'medium' | 'high'> = ['low', 'medium', 'high'];
-      setTrafficLevel(levels[Math.floor(Math.random() * levels.length)]);
-    }, 10000);
-
-    return () => clearInterval(interval);
+    setTrafficLevel('low');
   }, []);
 
   // Update user location marker
@@ -404,16 +399,6 @@ export default function RealTimeMap({
         )}
       </div>
 
-      {/* Traffic Alert */}
-      {trafficLevel === 'high' && (
-        <div className="absolute top-4 left-4 bg-red-100 border border-red-300 rounded-lg p-3 shadow-md">
-          <div className="flex items-center gap-2">
-            <AlertTriangle size={16} className="text-red-600" />
-            <span className="text-sm font-medium text-red-800">Heavy Traffic</span>
-          </div>
-          <div className="text-xs text-red-700 mt-1">ETA may be delayed</div>
-        </div>
-      )}
     </div>
   );
 }
