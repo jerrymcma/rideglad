@@ -1572,9 +1572,9 @@ export default function RiderApp() {
               <span className="text-sm text-gray-800 ml-6">Estimated arrival:</span>
               <span className="text-sm font-bold ml-4">15 min</span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex">
               <span className="text-sm text-gray-800 ml-6">Distance remaining:</span>
-              <span className="text-sm font-bold mr-6">2.0 mi</span>
+              <span className="text-sm font-bold ml-4">2.0 mi</span>
             </div>
           </div>
         </CardContent>
