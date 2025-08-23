@@ -634,6 +634,8 @@ export default function RiderApp() {
         description: "Thank you for your feedback!",
       });
       queryClient.invalidateQueries({ queryKey: ['/api/trips'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/drivers/active-trip'] });
     },
     onError: (error) => {
       if (isUnauthorizedError(error)) {

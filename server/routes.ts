@@ -197,6 +197,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
       
       const rating = await storage.createRating(ratingData);
+      
+      // Mark the trip as completed when rating is submitted
+      if (ratingData.tripId) {
+        // Get the trip to get the estimated price for final price calculation
+        const trip = await storage.getTrip(ratingData.tripId);
+        await storage.updateTripStatus(ratingData.tripId, 'completed', {
+          finalPrice: trip?.estimatedPrice
+        });
+      }
+      
       res.json(rating);
     } catch (error) {
       console.error("Error creating rating:", error);
@@ -517,6 +527,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
       
       const rating = await storage.createRating(ratingData);
+      
+      // Mark the trip as completed when rating is submitted
+      if (ratingData.tripId) {
+        // Get the trip to get the estimated price for final price calculation
+        const trip = await storage.getTrip(ratingData.tripId);
+        await storage.updateTripStatus(ratingData.tripId, 'completed', {
+          finalPrice: trip?.estimatedPrice
+        });
+      }
+      
       res.json(rating);
     } catch (error) {
       console.error("Error creating rating:", error);
