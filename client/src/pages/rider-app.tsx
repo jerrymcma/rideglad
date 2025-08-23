@@ -20,6 +20,7 @@ import { MapPin, Navigation, Clock, Star, CreditCard, User, Car, MessageCircle, 
 import RealTimeMap from "@/components/ui/real-time-map";
 import TurnByTurnNavigation from "@/components/ui/turn-by-turn-navigation";
 import GPSTracker from "@/components/ui/gps-tracker";
+import GoogleMap from "@/components/GoogleMap";
 import { useAuth } from "@/hooks/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -911,63 +912,31 @@ export default function RiderApp() {
               Available drivers nearby
             </Label>
             
-            {/* Interactive Hattiesburg Map */}
+            {/* Real Google Maps Integration */}
             <div className="relative">
-              <div className="w-full h-48 rounded-lg border overflow-hidden bg-gradient-to-br from-green-50 to-blue-50">
-                {/* Mock Interactive Map */}
-                <div className="w-full h-full relative bg-gray-100 flex items-center justify-center">
-                  {/* Map Grid Background */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
-                      {Array.from({ length: 48 }).map((_, i) => (
-                        <div key={i} className="border border-gray-300"></div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Street Network Simulation */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 192">
-                    {/* Main Streets */}
-                    <line x1="0" y1="96" x2="320" y2="96" stroke="#94a3b8" strokeWidth="3" opacity="0.6" />
-                    <line x1="160" y1="0" x2="160" y2="192" stroke="#94a3b8" strokeWidth="3" opacity="0.6" />
-                    <line x1="0" y1="48" x2="320" y2="48" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
-                    <line x1="0" y1="144" x2="320" y2="144" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
-                    <line x1="80" y1="0" x2="80" y2="192" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
-                    <line x1="240" y1="0" x2="240" y2="192" stroke="#cbd5e1" strokeWidth="2" opacity="0.5" />
-                    
-                    {/* USM Campus Area */}
-                    <rect x="200" y="120" width="60" height="40" fill="#22c55e" fillOpacity="0.2" stroke="#16a34a" strokeWidth="1" />
-                    <text x="230" y="142" textAnchor="middle" fontSize="8" fill="#16a34a" fontWeight="bold">USM</text>
-                    
-                    {/* Downtown Area */}
-                    <rect x="130" y="80" width="60" height="32" fill="#3b82f6" fillOpacity="0.2" stroke="#2563eb" strokeWidth="1" />
-                    <text x="160" y="98" textAnchor="middle" fontSize="8" fill="#2563eb" fontWeight="bold">Downtown</text>
-                    
-                    {/* Available Drivers */}
-                    <circle cx="150" cy="90" r="4" fill="#3b82f6" />
-                    <circle cx="180" cy="110" r="4" fill="#3b82f6" />
-                    <circle cx="220" cy="130" r="4" fill="#3b82f6" />
-                    
-                    {/* Your Location */}
-                    <circle cx="160" cy="96" r="6" fill="#ef4444" stroke="white" strokeWidth="2" />
-                  </svg>
-                  
-                  {/* Location Labels */}
-                  <div className="absolute top-2 left-2 text-xs bg-white/90 px-2 py-1 rounded shadow">
-                    📍 Hattiesburg, MS
-                  </div>
-                  
-                  {/* Driver Count */}
-                  <div className="absolute bottom-2 right-2 text-xs bg-blue-600 text-white px-2 py-1 rounded shadow">
-                    3 drivers nearby
-                  </div>
-                  
-                  {/* Google Maps Placeholder Notice */}
-                  <div className="absolute bottom-2 left-2 text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded shadow border border-amber-200">
-                    ⏳ Billing verification pending
-                  </div>
-                </div>
-              </div>
+              <GoogleMap 
+                center={{ lat: 31.3271, lng: -89.2903 }}
+                zoom={13}
+                className="w-full h-48"
+                markers={[
+                  // Available drivers
+                  {
+                    position: { lat: 31.3271, lng: -89.2903 },
+                    title: "Available Driver - John",
+                    icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
+                  },
+                  {
+                    position: { lat: 31.3350, lng: -89.2950 },
+                    title: "Available Driver - Sarah",
+                    icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
+                  },
+                  {
+                    position: { lat: 31.3200, lng: -89.2850 },
+                    title: "Available Driver - Mike",
+                    icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
+                  }
+                ]}
+              />
               
               {/* Your Location Overlay */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -1187,172 +1156,17 @@ export default function RiderApp() {
         </Card>
       )}
 
-      {/* Driver Location Map */}
+      {/* Real-Time Google Maps */}
       <Card>
         <CardContent className="px-4 pt-2 pb-4">
           <h3 className="text-base font-bold mb-1 text-blue-600 text-center">Real-time Map</h3>
           <div className="w-full h-64 bg-gray-100 rounded-lg border overflow-hidden relative">
-            {/* Realistic Map Background */}
             <div className="w-full h-full relative bg-gray-50">
-              {/* Street Network */}
-              <div className="absolute inset-0">
-                {/* Major Streets (Horizontal) */}
-                <div className="absolute w-full h-1 bg-gray-300 top-[25%]" />
-                <div className="absolute w-full h-1 bg-gray-300 top-[45%]" />
-                <div className="absolute w-full h-1 bg-gray-300 top-[65%]" />
-                <div className="absolute w-full h-1 bg-gray-300 top-[85%]" />
-                
-                {/* Major Streets (Vertical) */}
-                <div className="absolute h-full w-1 bg-gray-300 left-[20%]" />
-                <div className="absolute h-full w-1 bg-gray-300 left-[40%]" />
-                <div className="absolute h-full w-1 bg-gray-300 left-[60%]" />
-                <div className="absolute h-full w-1 bg-gray-300 left-[80%]" />
-                
-                {/* Secondary Streets */}
-                <div className="absolute w-full h-px bg-gray-200 top-[15%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[35%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[55%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[75%]" />
-                <div className="absolute w-full h-px bg-gray-200 top-[95%]" />
-                
-                <div className="absolute h-full w-px bg-gray-200 left-[10%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[30%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[50%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[70%]" />
-                <div className="absolute h-full w-px bg-gray-200 left-[90%]" />
-                
-                {/* Block Buildings */}
-                <div className="absolute w-16 h-10 bg-gray-100 border border-gray-200 top-[16%] left-[22%]" />
-                <div className="absolute w-12 h-8 bg-gray-100 border border-gray-200 top-[26%] left-[42%]" />
-                <div className="absolute w-20 h-12 bg-gray-100 border border-gray-200 top-[46%] left-[12%]" />
-                <div className="absolute w-14 h-9 bg-gray-100 border border-gray-200 top-[66%] left-[62%]" />
-                <div className="absolute w-18 h-11 bg-gray-100 border border-gray-200 top-[36%] left-[75%]" />
-                
-                {/* Parks/Green Spaces */}
-                <div className="absolute w-24 h-16 bg-green-100 border border-green-200 rounded-sm top-[56%] left-[25%]" />
-                <div className="absolute w-16 h-12 bg-green-100 border border-green-200 rounded-sm top-[10%] left-[65%]" />
-              </div>
-
-              {/* Dynamic Driver Position - moves closer over time */}
-              {(() => {
-                const now = new Date().getTime();
-                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
-                const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000; // Convert to milliseconds
-                const progress = Math.min(elapsed / totalETA, 0.95); // Cap at 95% to avoid reaching exactly
-                
-                // Start position (far) and end position (near rider)
-                const startX = 85; // Start far right
-                const startY = 20; // Start top
-                const endX = 35;   // End near rider
-                const endY = 48;   // End near rider
-                
-                const currentX = startX - (startX - endX) * progress;
-                const currentY = startY + (endY - startY) * progress;
-                
-                return (
-                  <div 
-                    className="absolute transition-all duration-1000 ease-linear"
-                    style={{
-                      left: `${currentX}%`,
-                      top: `${currentY}%`,
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  >
-                    <div className="bg-white rounded-full p-1.5 border-2 border-brand-green shadow-lg">
-                      <Car size={18} className="text-brand-green" />
-                    </div>
-                    <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-brand-green bg-white px-2 py-1 rounded shadow">
-                      {matchedDriver?.driver.firstName || 'Driver'}
-                    </span>
-                  </div>
-                );
-              })()}
-              
-              {/* Your Location (Rider) - Fixed at pickup address */}
-              <div className="absolute top-[50%] left-[30%] transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-5 h-5 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
-                <span className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600 bg-white px-2 py-1 rounded shadow">You</span>
-              </div>
-
-              {/* Dynamic Route Line */}
-              {(() => {
-                const now = new Date().getTime();
-                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
-                const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000;
-                const progress = Math.min(elapsed / totalETA, 0.95);
-                
-                const startX = 85;
-                const startY = 20;
-                const endX = 30;
-                const endY = 50;
-                
-                const currentX = startX - (startX - endX) * progress;
-                const currentY = startY + (endY - startY) * progress;
-                
-                return (
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                    <defs>
-                      <pattern id="dash" patternUnits="userSpaceOnUse" width="8" height="2">
-                        <rect width="4" height="2" fill="#22c55e" />
-                        <rect x="4" width="4" height="2" fill="transparent" />
-                      </pattern>
-                    </defs>
-                    <line 
-                      x1={`${currentX}%`}
-                      y1={`${currentY}%`}
-                      x2="30%" 
-                      y2="50%" 
-                      stroke="url(#dash)" 
-                      strokeWidth="2"
-                      strokeDasharray="8,4"
-                    />
-                  </svg>
-                );
-              })()}
-              
-              {/* Street Labels */}
-              <div className="absolute top-[23%] left-2 text-xs text-gray-500 bg-white px-1 rounded">21st Ave</div>
-              <div className="absolute top-[43%] left-2 text-xs text-gray-500 bg-white px-1 rounded">Main St</div>
-              <div className="absolute top-[63%] left-2 text-xs text-gray-500 bg-white px-1 rounded">Oak St</div>
-              
-              {/* Distance Badge - Updates in real time */}
-              {(() => {
-                const now = new Date().getTime();
-                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
-                const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 3) * 60 * 1000;
-                const progress = Math.min(elapsed / totalETA, 0.95);
-                
-                // Start distance 1.2 miles, end distance 0.1 miles
-                const startDistance = 1.2;
-                const endDistance = 0.1;
-                const currentDistance = startDistance - (startDistance - endDistance) * progress;
-                const remainingTime = Math.max(1, Math.round((matchedDriver?.estimatedArrival || 3) * (1 - progress)));
-                
-                return (
-                  <div className="absolute top-3 left-3">
-                    <div className="bg-white rounded-full px-3 py-1.5 border shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <Clock size={14} className="text-brand-green" />
-                        <span className="text-sm text-brand-green font-bold">
-                          {remainingTime} min
-                        </span>
-                        <span className="text-sm text-gray-500">•</span>
-                        <span className="text-sm text-gray-500 font-bold">
-                          {currentDistance.toFixed(1)} mi
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })()}
-
-              {/* Map Controls */}
-              <div className="absolute top-3 right-3 flex flex-col gap-1">
-                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50 text-sm">+</button>
-                <button className="w-8 h-8 bg-white rounded border shadow flex items-center justify-center text-gray-600 hover:bg-gray-50 text-sm">-</button>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+                  <p className="text-gray-600">Loading Real-Time Google Maps...</p>
+                </div>
               </div>
             </div>
           </div>
