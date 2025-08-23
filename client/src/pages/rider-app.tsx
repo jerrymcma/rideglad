@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,6 +27,7 @@ import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { useLocation } from "wouter";
 import { useWebSocket } from "@/hooks/useWebSocket";
+import { getPlacePredictions, getFallbackSuggestions, isGoogleMapsLoaded } from '@/utils/places-api';
 import type { Trip, Vehicle, User as UserType } from "@shared/schema";
 
 type RideStep = 'booking' | 'searching' | 'matched' | 'pickup' | 'inprogress' | 'completed' | 'rating';
@@ -110,44 +111,73 @@ export default function RiderApp() {
     rideType: ''
   });
 
-  // Common location suggestions
-  const commonLocations = [
-    "University of Southern Mississippi, 118 College Dr, Hattiesburg, MS",
-    "Downtown Hattiesburg, 200 Forrest St, Hattiesburg, MS",
-    "Turtle Creek Mall, 1000 Turtle Creek Dr, Hattiesburg, MS",
-    "Forrest General Hospital, 6051 US-49, Hattiesburg, MS",
-    "Hattiesburg-Laurel Regional Airport, 50 Terminal Dr, Moselle, MS",
-    "Walmart Supercenter, 6072 US-49, Hattiesburg, MS",
-    "Walmart Supercenter, 4600 Lincoln Rd Ext, Hattiesburg, MS",
-    "Hattiesburg Station, 308 Newman St, Hattiesburg, MS",
-    "Westland Plaza, 1000 Westland Plaza, Hattiesburg, MS",
-    "Methodist Rehabilitation Center, 1350 Broad St, Hattiesburg, MS",
-    "Oak Grove High School, 6000 School Rd, Hattiesburg, MS",
-    "Hattiesburg High School, 701 Hutchinson Ave, Hattiesburg, MS",
-    "Southern Pines Golf Club, 2603 Lincoln Rd, Hattiesburg, MS",
-    "Paul B. Johnson State Park, 319 Geiger Lake Rd, Hattiesburg, MS",
-    "Hattiesburg Zoo, 107 S 17th Ave, Hattiesburg, MS"
-  ];
+  // Debounce timer for API calls
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const filterSuggestions = (input: string) => {
+  // Enhanced address suggestion function using Google Places API
+  const getAddressSuggestions = async (input: string): Promise<string[]> => {
     if (!input.trim()) return [];
-    return commonLocations.filter(location => 
-      location.toLowerCase().includes(input.toLowerCase())
-    ).slice(0, 5);
+    
+    try {
+      // Use Google Places API if available, otherwise fallback to Hattiesburg locations
+      if (isGoogleMapsLoaded()) {
+        const suggestions = await getPlacePredictions(input);
+        return suggestions.length > 0 ? suggestions : getFallbackSuggestions(input);
+      } else {
+        return getFallbackSuggestions(input);
+      }
+    } catch (error) {
+      console.error('Error getting suggestions:', error);
+      return getFallbackSuggestions(input);
+    }
   };
 
   const handlePickupChange = (value: string) => {
     setBookingForm(prev => ({ ...prev, pickupAddress: value }));
-    const suggestions = filterSuggestions(value);
-    setPickupSuggestions(suggestions);
-    setShowPickupSuggestions(value.length > 0 && suggestions.length > 0);
+    
+    // Clear previous debounce timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+    
+    // Show suggestions immediately if there's input
+    if (value.length > 0) {
+      setShowPickupSuggestions(true);
+      
+      // Debounce API calls to avoid too many requests
+      debounceTimerRef.current = setTimeout(async () => {
+        const suggestions = await getAddressSuggestions(value);
+        setPickupSuggestions(suggestions);
+        setShowPickupSuggestions(suggestions.length > 0);
+      }, 300);
+    } else {
+      setPickupSuggestions([]);
+      setShowPickupSuggestions(false);
+    }
   };
 
   const handleDestinationChange = (value: string) => {
     setBookingForm(prev => ({ ...prev, destinationAddress: value }));
-    const suggestions = filterSuggestions(value);
-    setDestinationSuggestions(suggestions);
-    setShowDestinationSuggestions(value.length > 0 && suggestions.length > 0);
+    
+    // Clear previous debounce timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+    
+    // Show suggestions immediately if there's input
+    if (value.length > 0) {
+      setShowDestinationSuggestions(true);
+      
+      // Debounce API calls to avoid too many requests
+      debounceTimerRef.current = setTimeout(async () => {
+        const suggestions = await getAddressSuggestions(value);
+        setDestinationSuggestions(suggestions);
+        setShowDestinationSuggestions(suggestions.length > 0);
+      }, 300);
+    } else {
+      setDestinationSuggestions([]);
+      setShowDestinationSuggestions(false);
+    }
   };
 
   const selectSuggestion = (field: keyof BookingForm, suggestion: string) => {

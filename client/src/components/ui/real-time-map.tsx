@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from './button';
 import { MapPin, Navigation, Clock, Zap, AlertTriangle, Phone, MessageCircle } from 'lucide-react';
+import { HATTIESBURG_CENTER } from '@/utils/hattiesburg-locations';
+
+// Google Maps type declarations are handled by @types/google.maps
 
 // Define interfaces for type safety
 interface LocationData {
@@ -46,6 +49,13 @@ export default function RealTimeMap({
   const [estimatedArrival, setEstimatedArrival] = useState<number | null>(null);
   const [trafficLevel, setTrafficLevel] = useState<'low' | 'medium' | 'high'>('low');
   const watchIdRef = useRef<number | null>(null);
+  const [map, setMap] = useState<any>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const userMarkerRef = useRef<any>(null);
+  const driverMarkerRef = useRef<any>(null);
+  const destinationMarkerRef = useRef<any>(null);
+  const directionsServiceRef = useRef<any>(null);
+  const directionsRendererRef = useRef<any>(null);
 
   // High-accuracy GPS tracking
   const startLocationTracking = useCallback(() => {
@@ -122,6 +132,73 @@ export default function RealTimeMap({
     return R * c;
   };
 
+  // Load Google Maps script
+  useEffect(() => {
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) {
+      console.warn('Google Maps API key not found');
+      return;
+    }
+
+    // Check if Google Maps is already loaded
+    if ((window as any).google && (window as any).google.maps) {
+      setIsLoaded(true);
+      return;
+    }
+
+    // Load Google Maps script
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setIsLoaded(true);
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup if needed
+    };
+  }, []);
+
+  // Initialize map when loaded
+  useEffect(() => {
+    if (!isLoaded || !mapContainerRef.current || map) return;
+
+    const mapInstance = new (window as any).google.maps.Map(mapContainerRef.current, {
+      center: { lat: HATTIESBURG_CENTER.lat, lng: HATTIESBURG_CENTER.lng },
+      zoom: 13,
+      styles: mapStyle === 'satellite' ? [] : [
+        {
+          featureType: "poi.business",
+          elementType: "labels",
+          stylers: [{ visibility: "off" }]
+        }
+      ],
+      mapTypeId: mapStyle === 'satellite' ? 'satellite' : 'roadmap'
+    });
+
+    // Initialize directions service and renderer
+    const directionsService = new (window as any).google.maps.DirectionsService();
+    const directionsRenderer = new (window as any).google.maps.DirectionsRenderer({
+      suppressMarkers: false,
+      polylineOptions: {
+        strokeColor: '#3B82F6',
+        strokeWeight: 4
+      }
+    });
+
+    directionsRenderer.setMap(mapInstance);
+    directionsServiceRef.current = directionsService;
+    directionsRendererRef.current = directionsRenderer;
+
+    // Add traffic layer if enabled
+    if (showTraffic) {
+      const trafficLayer = new (window as any).google.maps.TrafficLayer();
+      trafficLayer.setMap(mapInstance);
+    }
+
+    setMap(mapInstance);
+  }, [isLoaded, mapStyle, showTraffic]);
+
   // Simulate traffic level updates
   useEffect(() => {
     const interval = setInterval(() => {
@@ -132,214 +209,135 @@ export default function RealTimeMap({
     return () => clearInterval(interval);
   }, []);
 
+  // Update user location marker
+  useEffect(() => {
+    if (!map || !userLocation) return;
+
+    if (userMarkerRef.current) {
+      userMarkerRef.current.setMap(null);
+    }
+
+    const marker = new (window as any).google.maps.Marker({
+      position: { lat: userLocation.latitude, lng: userLocation.longitude },
+      map,
+      title: 'Your Location',
+      icon: {
+        path: (window as any).google.maps.SymbolPath.CIRCLE,
+        scale: 8,
+        fillColor: '#3B82F6',
+        fillOpacity: 1,
+        strokeWeight: 3,
+        strokeColor: '#FFFFFF'
+      }
+    });
+
+    userMarkerRef.current = marker;
+    map.setCenter({ lat: userLocation.latitude, lng: userLocation.longitude });
+  }, [map, userLocation]);
+
+  // Update driver location marker
+  useEffect(() => {
+    if (!map || !driverLocation) return;
+
+    if (driverMarkerRef.current) {
+      driverMarkerRef.current.setMap(null);
+    }
+
+    const marker = new (window as any).google.maps.Marker({
+      position: { lat: driverLocation.latitude, lng: driverLocation.longitude },
+      map,
+      title: 'Driver Location',
+      icon: {
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M13,20L11,20V18L13,18M19,10V12A2,2 0 0,1 17,14H15V22H9V14H7A2,2 0 0,1 5,12V10A2,2 0 0,1 7,8H17A2,2 0 0,1 19,10Z"/%3E%3C/svg%3E',
+        scaledSize: new (window as any).google.maps.Size(32, 32)
+      }
+    });
+
+    driverMarkerRef.current = marker;
+  }, [map, driverLocation]);
+
+  // Update destination marker
+  useEffect(() => {
+    if (!map || !destination) return;
+
+    if (destinationMarkerRef.current) {
+      destinationMarkerRef.current.setMap(null);
+    }
+
+    const marker = new (window as any).google.maps.Marker({
+      position: { lat: destination.latitude, lng: destination.longitude },
+      map,
+      title: 'Destination',
+      icon: {
+        path: (window as any).google.maps.SymbolPath.CIRCLE,
+        scale: 8,
+        fillColor: '#EF4444',
+        fillOpacity: 1,
+        strokeWeight: 3,
+        strokeColor: '#FFFFFF'
+      }
+    });
+
+    destinationMarkerRef.current = marker;
+  }, [map, destination]);
+
+  // Update route when locations change
+  useEffect(() => {
+    if (!map || !showRoute || !userLocation || !destination || !directionsServiceRef.current || !directionsRendererRef.current) {
+      return;
+    }
+
+    const request = {
+      origin: { lat: userLocation.latitude, lng: userLocation.longitude },
+      destination: { lat: destination.latitude, lng: destination.longitude },
+      travelMode: (window as any).google.maps.TravelMode.DRIVING
+    };
+
+    directionsServiceRef.current.route(request, (result: any, status: any) => {
+      if (status === 'OK' && directionsRendererRef.current) {
+        directionsRendererRef.current.setDirections(result);
+      }
+    });
+  }, [map, showRoute, userLocation, destination]);
+
   return (
     <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
       {/* Map Container */}
-      <div ref={mapContainerRef} className="w-full h-full relative bg-gradient-to-br from-blue-50 via-gray-50 to-green-50">
-        
-        {/* Detailed Street Network with Names */}
-        <div className="absolute inset-0">
-          {/* Major Highways with Names */}
-          <div className="absolute w-full h-3 bg-gray-700 top-[28%] opacity-90 shadow-lg"></div>
-          <div className="absolute top-[26%] left-[5%] bg-white border border-gray-400 px-2 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm">I-80 WEST</div>
-          
-          <div className="absolute w-full h-3 bg-gray-700 top-[68%] opacity-90 shadow-lg"></div>
-          <div className="absolute top-[66%] left-[5%] bg-white border border-gray-400 px-2 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm">US-101 NORTH</div>
-          
-          <div className="absolute h-full w-3 bg-gray-700 left-[23%] opacity-90 shadow-lg"></div>
-          <div className="absolute top-[5%] left-[21%] bg-white border border-gray-400 px-1 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm rotate-90 origin-center">I-280</div>
-          
-          <div className="absolute h-full w-3 bg-gray-700 left-[73%] opacity-90 shadow-lg"></div>
-          <div className="absolute top-[5%] left-[71%] bg-white border border-gray-400 px-1 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm rotate-90 origin-center">CA-1</div>
-          
-          {/* Major Streets with Names */}
-          <div className="absolute w-full h-1.5 bg-gray-500 top-[15%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[13.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">Mission St</div>
-          
-          <div className="absolute w-full h-1.5 bg-gray-500 top-[45%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[43.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">Market St</div>
-          
-          <div className="absolute w-full h-1.5 bg-gray-500 top-[55%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[53.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">Geary Blvd</div>
-          
-          <div className="absolute w-full h-1.5 bg-gray-500 top-[85%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[83.5%] left-[2%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700">19th Ave</div>
-          
-          <div className="absolute h-full w-1.5 bg-gray-500 left-[10%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[8%] left-[8.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Van Ness</div>
-          
-          <div className="absolute h-full w-1.5 bg-gray-500 left-[40%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[8%] left-[38.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Powell St</div>
-          
-          <div className="absolute h-full w-1.5 bg-gray-500 left-[60%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[8%] left-[58.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Grant Ave</div>
-          
-          <div className="absolute h-full w-1.5 bg-gray-500 left-[90%] opacity-85 shadow-sm"></div>
-          <div className="absolute top-[8%] left-[88.5%] bg-yellow-100 border border-yellow-400 px-1 py-0.5 rounded text-[7px] font-semibold text-gray-700 rotate-90 origin-center">Embarcadero</div>
-          
-          {/* Local Streets with Names */}
-          <div className="absolute w-full h-0.5 bg-gray-400 top-[35%] opacity-70"></div>
-          <div className="absolute top-[34%] left-[1%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600">Hayes St</div>
-          
-          <div className="absolute w-full h-0.5 bg-gray-400 top-[65%] opacity-70"></div>
-          <div className="absolute top-[64%] left-[1%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600">Irving St</div>
-          
-          <div className="absolute h-full w-0.5 bg-gray-400 left-[33%] opacity-70"></div>
-          <div className="absolute top-[2%] left-[32%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600 rotate-90 origin-center">Fillmore</div>
-          
-          <div className="absolute h-full w-0.5 bg-gray-400 left-[67%] opacity-70"></div>
-          <div className="absolute top-[2%] left-[66%] bg-blue-50 border border-blue-200 px-1 rounded text-[6px] text-gray-600 rotate-90 origin-center">Stockton</div>
-          
-          {/* Traffic Overlay with Street Context */}
-          {showTraffic && (
-            <>
-              <div className={`absolute w-full h-1 top-[28.5%] left-0 ${
-                trafficLevel === 'high' ? 'bg-red-500' : 
-                trafficLevel === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
-              } opacity-80`}></div>
-              <div className={`absolute w-full h-1 top-[45.5%] left-0 ${
-                trafficLevel === 'high' ? 'bg-red-500' : 
-                trafficLevel === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
-              } opacity-80`}></div>
-            </>
-          )}
-          
-          {/* Major Landmarks and Buildings */}
-          <div className="absolute w-20 h-16 bg-red-100 border border-red-300 top-[18%] left-[12%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[16%] left-[13%] text-[6px] font-bold text-red-700">City Hall</div>
-          
-          <div className="absolute w-24 h-20 bg-blue-100 border border-blue-300 top-[48%] left-[78%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[46%] left-[79%] text-[6px] font-bold text-blue-700">Ferry Building</div>
-          
-          <div className="absolute w-16 h-12 bg-purple-100 border border-purple-300 top-[72%] left-[28%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[70%] left-[29%] text-[6px] font-bold text-purple-700">UCSF</div>
-          
-          <div className="absolute w-18 h-14 bg-orange-100 border border-orange-300 top-[25%] left-[65%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[23%] left-[66%] text-[6px] font-bold text-orange-700">Chinatown</div>
-          
-          <div className="absolute w-22 h-18 bg-yellow-100 border border-yellow-300 top-[40%] left-[35%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[38%] left-[36%] text-[6px] font-bold text-yellow-700">Union Square</div>
-          
-          {/* Shopping Centers */}
-          <div className="absolute w-16 h-10 bg-pink-100 border border-pink-300 top-[55%] left-[50%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[53%] left-[51%] text-[6px] font-bold text-pink-700">Westfield Mall</div>
-          
-          <div className="absolute w-14 h-8 bg-indigo-100 border border-indigo-300 top-[80%] left-[75%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[78%] left-[76%] text-[6px] font-bold text-indigo-700">Best Buy</div>
-          
-          {/* Parks and Recreation */}
-          <div className="absolute w-28 h-22 bg-green-200 border border-green-400 top-[38%] left-[42%] rounded-lg opacity-85 shadow-sm"></div>
-          <div className="absolute top-[36%] left-[44%] text-[7px] font-bold text-green-800">Golden Gate Park</div>
-          
-          <div className="absolute w-18 h-14 bg-green-200 border border-green-400 top-[8%] left-[68%] rounded-full opacity-85 shadow-sm"></div>
-          <div className="absolute top-[6%] left-[70%] text-[6px] font-bold text-green-800">Washington Square</div>
-          
-          <div className="absolute w-16 h-12 bg-green-200 border border-green-400 top-[75%] left-[15%] rounded-lg opacity-85 shadow-sm"></div>
-          <div className="absolute top-[73%] left-[16%] text-[6px] font-bold text-green-800">Dolores Park</div>
-          
-          {/* Transportation Hubs */}
-          <div className="absolute w-12 h-8 bg-gray-200 border border-gray-400 top-[32%] left-[8%] rounded opacity-80 shadow-sm"></div>
-          <div className="absolute top-[30%] left-[9%] text-[6px] font-bold text-gray-700">BART</div>
-          
-          <div className="absolute w-10 h-6 bg-blue-200 border border-blue-400 top-[60%] left-[85%] rounded opacity-80 shadow-sm"></div>
-          <div className="absolute top-[58%] left-[86%] text-[6px] font-bold text-blue-700">Pier 39</div>
-          
-          {/* Restaurant Districts */}
-          <div className="absolute w-14 h-10 bg-yellow-200 border border-yellow-400 top-[50%] left-[20%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[48%] left-[21%] text-[6px] font-bold text-yellow-800">Little Italy</div>
-          
-          <div className="absolute w-12 h-8 bg-red-200 border border-red-400 top-[20%] left-[45%] rounded-sm opacity-80 shadow-sm"></div>
-          <div className="absolute top-[18%] left-[46%] text-[6px] font-bold text-red-800">North Beach</div>
-        </div>
-
-        {/* User Location */}
-        {userLocation && (
-          <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="relative">
-              <div className="w-6 h-6 bg-blue-600 rounded-full border-3 border-white shadow-lg animate-pulse"></div>
-              <div className="absolute -inset-2 border-2 border-blue-300 rounded-full animate-ping opacity-30"></div>
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md font-medium whitespace-nowrap">
-                You
-              </div>
+      <div ref={mapContainerRef} className="w-full h-full relative">
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading Google Maps...</p>
             </div>
           </div>
         )}
-
-        {/* Driver Location */}
-        {driverLocation && (
-          <div className="absolute top-[25%] right-[20%] transform -translate-x-1/2 -translate-y-1/2">
-            <div className="relative">
-              <div className={`w-8 h-8 rounded-full border-3 border-white shadow-lg flex items-center justify-center ${
-                driverLocation.status === 'approaching' ? 'bg-green-500 animate-bounce' :
-                driverLocation.status === 'arrived' ? 'bg-blue-500' :
-                driverLocation.status === 'en_route' ? 'bg-orange-500' : 'bg-gray-500'
-              }`}>
-                <Navigation size={16} className="text-white" />
-              </div>
-              {driverLocation.status === 'approaching' && (
-                <div className="absolute -inset-1 border-2 border-green-400 rounded-full animate-ping"></div>
-              )}
-              <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-white border border-gray-200 px-2 py-1 rounded-md shadow-md">
-                <div className="text-xs font-medium text-gray-900">Driver</div>
-                {estimatedArrival && (
-                  <div className="text-xs text-green-600 font-medium">{estimatedArrival} min</div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Destination */}
-        {destination && (
-          <div className="absolute top-[20%] right-[10%] transform -translate-x-1/2 -translate-y-1/2">
-            <div className="relative">
-              <div className="w-6 h-6 bg-red-500 rounded-full border-3 border-white shadow-lg"></div>
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded-md font-medium whitespace-nowrap">
-                Destination
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Route Path */}
-        {showRoute && userLocation && driverLocation && (
-          <svg className="absolute inset-0 w-full h-full pointer-events-none">
-            <defs>
-              <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#10b981" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#ef4444" stopOpacity="0.8" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M 33% 50% Q 60% 30% 80% 20%"
-              stroke="url(#routeGradient)"
-              strokeWidth="4"
-              fill="none"
-              strokeDasharray="8,4"
-              className="animate-pulse"
-            />
-          </svg>
-        )}
-
-        {/* Map Controls */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2">
-          <button className="w-10 h-10 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors">
-            +
-          </button>
-          <button className="w-10 h-10 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors">
-            -
-          </button>
-          <button 
-            onClick={isTracking ? stopLocationTracking : startLocationTracking}
-            className={`w-10 h-10 rounded-lg border shadow-md flex items-center justify-center transition-colors ${
-              isTracking ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <MapPin size={16} />
-          </button>
-        </div>
       </div>
+
+      {/* Map Controls */}
+      <div className="absolute top-4 right-4 flex flex-col gap-2">
+        <button 
+          onClick={() => map?.setZoom((map.getZoom() || 13) + 1)}
+          className="w-10 h-10 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors"
+        >
+          +
+        </button>
+        <button 
+          onClick={() => map?.setZoom((map.getZoom() || 13) - 1)}
+          className="w-10 h-10 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors"
+        >
+          -
+        </button>
+        <button 
+          onClick={isTracking ? stopLocationTracking : startLocationTracking}
+          className={`w-10 h-10 rounded-lg border shadow-md flex items-center justify-center transition-colors ${
+            isTracking ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+          }`}
+        >
+          <MapPin size={16} />
+        </button>
+      </div>
+
 
       {/* Real-time Info Panel */}
       <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg border shadow-lg p-4">
