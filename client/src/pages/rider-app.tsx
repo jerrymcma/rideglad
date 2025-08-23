@@ -1160,16 +1160,30 @@ export default function RiderApp() {
       <Card>
         <CardContent className="px-4 pt-2 pb-4">
           <h3 className="text-base font-bold mb-1 text-blue-600 text-center">Real-time Map</h3>
-          <div className="w-full h-64 bg-gray-100 rounded-lg border overflow-hidden relative">
-            <div className="w-full h-full relative bg-gray-50">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading Real-Time Google Maps...</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <RealTimeMap 
+            userLocation={{ latitude: 31.3271, longitude: -89.2903, accuracy: 5, timestamp: Date.now() }}
+            driverLocation={{ 
+              latitude: 31.3350, 
+              longitude: -89.2950, 
+              accuracy: 3, 
+              timestamp: Date.now(),
+              driverId: 'john-driver',
+              status: 'approaching' as const,
+              speed: 25
+            }}
+            destination={{ latitude: 31.3371, longitude: -89.2803, accuracy: 5, timestamp: Date.now() }}
+            showTraffic={true}
+            showRoute={true}
+            mapStyle="streets"
+            className="w-full h-64"
+            onDriverContact={(type) => {
+              if (type === 'call') {
+                toast({ title: "Calling driver...", description: "Connecting you to John" });
+              } else {
+                toast({ title: "Message sent", description: "Your message was sent to the driver" });
+              }
+            }}
+          />
         </CardContent>
       </Card>
 
