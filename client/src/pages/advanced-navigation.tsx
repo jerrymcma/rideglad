@@ -31,7 +31,7 @@ export default function AdvancedNavigation() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Map size={28} className="text-green-600" />
-              <span className="text-[#276de5] text-[24px] font-bold">Real-Time Map (Demo)</span>
+              <span className="text-[#276de5] text-[24px] font-bold">Real-Time Map</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
