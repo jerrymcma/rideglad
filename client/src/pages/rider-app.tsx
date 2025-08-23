@@ -1543,7 +1543,7 @@ export default function RiderApp() {
   const renderInProgressStep = () => (
     <div className="space-y-6 -mt-4">
       <div className="text-center space-y-2">
-        <h2 className="font-bold text-brand-green text-[26px]">On Your Way</h2>
+        <h2 className="font-bold text-brand-green text-[26px]">On Your Way!</h2>
         <p className="text-gray-600">Enjoy your ride!</p>
       </div>
 
