@@ -98,6 +98,8 @@ export default function DriverDashboard() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/auth/user'] });
       queryClient.invalidateQueries({ queryKey: ['/api/drivers/available-rides'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/drivers/active-trip'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/trips/active'] });
       toast({
         title: "Status Updated",
         description: `Driver mode ${isOnline ? 'activated' : 'deactivated'}`,

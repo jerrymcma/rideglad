@@ -63,6 +63,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const userId = req.user.claims.sub;
       const { isActive } = req.body;
       
+      // If driver is going offline, handle any active trips
+      if (!isActive) {
+        const activeTrip = await storage.getActiveDriverTrip(userId);
+        if (activeTrip) {
+          // Cancel the trip when driver goes offline
+          await storage.updateTripStatus(activeTrip.id, 'cancelled', {
+            cancelReason: 'driver_offline',
+            completedAt: new Date()
+          });
+          
+          // Notify the rider that their trip was cancelled
+          const connectedRiders = req.app.get('connectedRiders');
+          if (connectedRiders) {
+            const riderWs = connectedRiders.get(activeTrip.riderId);
+            if (riderWs && riderWs.readyState === 1) {
+              riderWs.send(JSON.stringify({
+                type: 'trip_cancelled',
+                tripId: activeTrip.id,
+                reason: 'driver_offline'
+              }));
+            }
+          }
+        }
+      }
+      
       const updatedUser = await storage.toggleDriverStatus(userId, isActive);
       
       // Notify all riders about driver availability changes
