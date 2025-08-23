@@ -1629,7 +1629,7 @@ export default function RiderApp() {
       {showLiveTripMap && (
         <Card className="mx-5 -mt-2">
         <CardContent className="p-4">
-          <h3 className="text-base font-semibold mb-3 text-gray-800 text-center">Live Trip Map</h3>
+          <h3 className="text-base font-semibold mb-1 text-brand-green text-center">Live Trip Map</h3>
           <div className="w-full h-44 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
             {/* Map Background with Streets */}
             <div className="w-full h-full relative bg-gradient-to-br from-gray-100 to-gray-200">
