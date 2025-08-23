@@ -1131,10 +1131,10 @@ export default function RiderApp() {
                 <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-sm text-gray-600 mr-2">ETA:</span>
+                <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
                 <div className="flex items-center gap-1">
                   <Clock size={14} />
-                  <span className="text-sm font-medium">{matchedDriver.estimatedArrival} min</span>
+                  <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
                 </div>
               </div>
               
@@ -1142,12 +1142,12 @@ export default function RiderApp() {
               
               <div className="flex items-center gap-2">
                 <MapPin size={16} className="text-blue-600" />
-                <span className="text-sm text-gray-600 mr-2">Pickup:</span>
+                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
                 <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Navigation size={16} className="text-brand-green" />
-                <span className="text-sm text-gray-600 mr-2">Destination:</span>
+                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
                 <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
               </div>
             </div>
