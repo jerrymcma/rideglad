@@ -134,8 +134,8 @@ export default function RealTimeMap({
 
   // Load Google Maps script
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) {
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyCtQiF11rteGvvqOXbqorZhsi8W3z2DGHs';
+    if (!apiKey || apiKey === 'undefined') {
       console.warn('Google Maps API key not found');
       return;
     }

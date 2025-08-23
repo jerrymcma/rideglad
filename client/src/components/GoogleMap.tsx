@@ -94,7 +94,8 @@ export default function GoogleMap({
     }
   }, [map, center]);
 
-  if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyCtQiF11rteGvvqOXbqorZhsi8W3z2DGHs';
+  if (!apiKey || apiKey === 'undefined') {
     return (
       <div className={`${className} bg-gray-100 flex items-center justify-center border rounded-lg`}>
         <div className="text-center text-gray-600">
