@@ -184,14 +184,12 @@ export default function PricingManagement() {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Back Button */}
         <Button 
-          variant="outline" 
-          size="sm"
+          variant="ghost"
           onClick={() => setLocation('/')}
-          className="flex items-center gap-1 text-sm"
+          className="p-3 hover:bg-gray-100 rounded-full"
           data-testid="button-back-home"
         >
-          <ArrowLeft className="w-3 h-3" />
-          Back
+          <ArrowLeft size={24} className="text-gray-600" />
         </Button>
 
         {/* Pricing Calculator */}

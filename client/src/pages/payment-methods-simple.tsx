@@ -20,12 +20,11 @@ export default function PaymentMethodsSimple() {
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"
-              size="sm"
               onClick={() => setLocation('/')}
-              className="p-2 hover:bg-gray-100"
+              className="p-3 hover:bg-gray-100 rounded-full"
               data-testid="button-back"
             >
-              <ArrowLeft size={20} className="text-gray-700" />
+              <ArrowLeft size={24} className="text-gray-600" />
             </Button>
             <h1 className="font-semibold text-[25px] text-center text-[#18a15d]">                Wallet</h1>
           </div>

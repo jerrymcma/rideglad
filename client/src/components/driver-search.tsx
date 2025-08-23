@@ -69,11 +69,10 @@ export default function DriverSearch({ trip, onCancel, onDriverMatched }: Driver
             <Button 
               onClick={onCancel}
               variant="ghost"
-              size="icon"
-              className="rounded-full"
+              className="p-3 hover:bg-gray-100 rounded-full"
               data-testid="button-back"
             >
-              <ArrowLeft className="h-5 w-5" />
+              <ArrowLeft size={24} className="text-gray-600" />
             </Button>
             <h2 className="text-lg font-semibold">Finding your driver</h2>
             <Button 

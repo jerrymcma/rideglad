@@ -123,12 +123,11 @@ export default function Checkout({ trip, onPaymentSuccess }: CheckoutProps) {
         <div className="flex items-center gap-3 mb-6">
           <Button
             variant="ghost"
-            size="sm"
             onClick={() => setLocation('/ride')}
-            className="p-2"
+            className="p-3 hover:bg-gray-100 rounded-full"
             data-testid="button-back"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={24} className="text-gray-600" />
           </Button>
           <h1 className="text-2xl font-bold">Checkout</h1>
         </div>

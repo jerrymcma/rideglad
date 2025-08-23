@@ -83,12 +83,11 @@ export default function AddPaymentMethod() {
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"
-              size="sm"
               onClick={() => setLocation('/payment-methods')}
-              className="p-2 hover:bg-gray-100"
+              className="p-3 hover:bg-gray-100 rounded-full"
               data-testid="button-back"
             >
-              <ArrowLeft size={20} className="text-gray-700" />
+              <ArrowLeft size={24} className="text-gray-600" />
             </Button>
             <h1 className="text-xl font-semibold text-gray-900">Add Card</h1>
           </div>

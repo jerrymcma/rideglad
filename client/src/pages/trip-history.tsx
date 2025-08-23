@@ -71,11 +71,10 @@ export default function TripHistory() {
         <Button
           onClick={() => setLocation('/')}
           variant="ghost"
-          size="icon"
-          className="rounded-full"
+          className="p-3 hover:bg-gray-100 rounded-full"
           data-testid="button-back"
         >
-          <ArrowLeft className="h-5 w-5" />
+          <ArrowLeft size={24} className="text-gray-600" />
         </Button>
         <h1 className="text-xl font-semibold">Trip History</h1>
         <div className="w-10"></div>

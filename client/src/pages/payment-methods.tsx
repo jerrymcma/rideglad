@@ -208,12 +208,11 @@ export default function PaymentMethods() {
         <div className="flex items-center gap-3 mb-6">
           <Button
             variant="ghost"
-            size="sm"
             onClick={() => setLocation('/')}
-            className="p-2"
+            className="p-3 hover:bg-gray-100 rounded-full"
             data-testid="button-back"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={24} className="text-gray-600" />
           </Button>
           <h1 className="text-2xl font-bold">Payment Methods</h1>
         </div>
