@@ -1565,14 +1565,14 @@ export default function RiderApp() {
             <div className="flex items-center gap-2">
               <Navigation size={16} className="text-brand-green" />
               <span className="text-sm font-bold">Heading to:</span>
-              <span className="text-sm text-gray-600">{bookingForm.destinationAddress}</span>
+              <span className="text-sm text-gray-800">{bookingForm.destinationAddress}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-gray-600 ml-6">Estimated arrival:</span>
+              <span className="text-sm text-gray-800 ml-6">Estimated arrival:</span>
               <span className="text-sm font-bold mr-4">15 min</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-gray-600 ml-6">Distance remaining:</span>
+              <span className="text-sm text-gray-800 ml-6">Distance remaining:</span>
               <span className="text-sm font-bold mr-4">2.0 mi</span>
             </div>
           </div>
