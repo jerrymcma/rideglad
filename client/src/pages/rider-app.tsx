@@ -1628,7 +1628,7 @@ export default function RiderApp() {
       {/* Real-time Map - Only show after clicking In Progress */}
       {showLiveTripMap && (
         <Card className="mx-5 -mt-4">
-        <CardContent className="p-2">
+        <CardContent className="px-2 pt-1 pb-2">
           <h3 className="text-base font-semibold mb-1 text-blue-600 text-center">Live Trip Map</h3>
           <div className="w-full h-44 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
             {/* Map Background with Streets */}
