@@ -1917,6 +1917,16 @@ export default function RiderApp() {
         {currentStep === 'inprogress' && renderInProgressStep()}
         {currentStep === 'rating' && renderRatingStep()}
       </div>
+      
+      {/* Fixed Back Button - Bottom Left */}
+      <Button
+        onClick={() => setLocation('/')}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }
