@@ -174,7 +174,7 @@ export default function RiderApp() {
   });
 
   // Get active drivers for ride selection
-  const { data: activeDrivers } = useQuery({
+  const { data: activeDrivers } = useQuery<UserType[]>({
     queryKey: ['/api/drivers/active'],
     refetchInterval: 10000, // Refresh every 10 seconds to show current active drivers
   });
@@ -944,7 +944,7 @@ export default function RiderApp() {
               </div>
               
               {/* Driver Locations Overlay */}
-              {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.slice(0, 3).map((driver, index) => {
+              {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.slice(0, 3).map((driver: UserType, index: number) => {
                 const positions = [
                   { top: '50%', left: '35%', transform: 'translate(-50%, -50%)' },
                   { top: '25%', right: '25%', transform: 'translate(50%, -50%)' },
@@ -977,9 +977,9 @@ export default function RiderApp() {
             <div className="space-y-2">
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2 py-2">
                 <User size={20} />
-                Choose your ride {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.length > 0 && (
+                Choose your ride {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.length > 0 ? (
                   <Badge variant="secondary" className="ml-2">{activeDrivers.length} online</Badge>
-                )}
+                ) : null}
               </Label>
               
               {/* Show active drivers */}
@@ -1003,9 +1003,9 @@ export default function RiderApp() {
                           <div>
                             <div className="flex items-center gap-1">
                               <p className="font-medium text-sm">{driver.firstName}</p>
-                              {driver.id === user?.id && (
+                              {user && driver.id === user.id ? (
                                 <Badge variant="secondary" className="text-xs">You</Badge>
-                              )}
+                              ) : null}
                             </div>
                             <p className="text-xs text-gray-600">Available Driver</p>
                             <div className="flex items-center mt-1">
@@ -1459,7 +1459,7 @@ export default function RiderApp() {
           onClick={() => {
             if (currentTrip) {
               // Cancel the trip and go back to booking
-              cancelRideMutation.mutate(currentTrip.id);
+              cancelRideMutation.mutate();
             } else {
               setLocation('/');
             }
