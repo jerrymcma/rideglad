@@ -1782,22 +1782,24 @@ export default function RiderApp() {
       </div>
 
       {currentTrip && (
-        <Card>
-          <CardContent className="p-4 space-y-2">
-            <div className="flex justify-between">
-              <span className="text-sm text-gray-600">Trip fare:</span>
-              <span className="text-sm font-bold text-brand-green">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm text-gray-600">Distance:</span>
-              <span className="text-sm">{currentTrip.distance ? (parseFloat(currentTrip.distance.toString()) * 0.621371).toFixed(1) : '2.0'} mi</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm text-gray-600">Duration:</span>
-              <span className="text-sm">{currentTrip.duration || '18'} minutes</span>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="flex justify-center">
+          <Card className="max-w-xs">
+            <CardContent className="p-4 space-y-2">
+              <div className="flex justify-between">
+                <span className="text-sm text-gray-600">Trip fare:</span>
+                <span className="text-sm font-bold text-brand-green">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-gray-600">Distance:</span>
+                <span className="text-sm">{currentTrip.distance ? (parseFloat(currentTrip.distance.toString()) * 0.621371).toFixed(1) : '2.0'} mi</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-gray-600">Duration:</span>
+                <span className="text-sm">{currentTrip.duration || '18'} minutes</span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       <div className="space-y-4">
