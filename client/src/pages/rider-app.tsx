@@ -1158,6 +1158,7 @@ export default function RiderApp() {
       {/* Driver Location Map */}
       <Card>
         <CardContent className="p-4">
+          <h3 className="text-base font-semibold mb-3 text-blue-600 text-center">Real-time Map</h3>
           <div className="w-full h-64 bg-gray-100 rounded-lg border overflow-hidden relative">
             {/* Realistic Map Background */}
             <div className="w-full h-full relative bg-gray-50">
