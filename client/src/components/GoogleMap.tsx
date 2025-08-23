@@ -8,7 +8,7 @@ interface GoogleMapProps {
     title?: string;
     icon?: string;
   }>;
-  onMapLoad?: (map: google.maps.Map) => void;
+  onMapLoad?: (map: any) => void;
   className?: string;
 }
 
@@ -20,7 +20,7 @@ export default function GoogleMap({
   className = "w-full h-64"
 }: GoogleMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [map, setMap] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load Google Maps script
@@ -54,7 +54,7 @@ export default function GoogleMap({
   useEffect(() => {
     if (!isLoaded || !mapRef.current || map) return;
 
-    const newMap = new google.maps.Map(mapRef.current, {
+    const newMap = new (window as any).google.maps.Map(mapRef.current, {
       center,
       zoom,
       styles: [
@@ -78,7 +78,7 @@ export default function GoogleMap({
     // Note: In production, you'd want to manage markers more efficiently
     
     markers.forEach(markerData => {
-      new google.maps.Marker({
+      new (window as any).google.maps.Marker({
         position: markerData.position,
         map,
         title: markerData.title,
@@ -114,9 +114,9 @@ export default function GoogleMap({
   );
 }
 
-// Type declarations for Google Maps
+// Global type declarations
 declare global {
   interface Window {
-    google: typeof google;
+    google: any;
   }
 }
