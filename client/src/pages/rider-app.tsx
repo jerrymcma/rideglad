@@ -1564,7 +1564,7 @@ export default function RiderApp() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Navigation size={16} className="text-brand-green" />
-              <span className="text-sm font-bold">Heading to:</span>
+              <span className="text-sm font-bold">Address:</span>
               <span className="text-sm text-gray-800">{bookingForm.destinationAddress}</span>
             </div>
             <div className="flex justify-between">
