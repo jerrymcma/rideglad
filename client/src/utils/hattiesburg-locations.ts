@@ -244,6 +244,67 @@ export const TENNESSEE_LOCATIONS = [
     coordinates: { lat: 35.1383, lng: -90.0505 },
     type: "stadium"
   },
+  // Germantown Area (Memphis Suburb)
+  {
+    name: "Downtown Germantown",
+    address: "1930 S Germantown Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0868, lng: -89.8101 },
+    type: "downtown"
+  },
+  {
+    name: "Germantown Municipal Center",
+    address: "1930 S Germantown Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0868, lng: -89.8101 },
+    type: "government"
+  },
+  {
+    name: "Saddle Creek Shopping Center",
+    address: "7525 Winchester Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0681, lng: -89.8267 },
+    type: "shopping"
+  },
+  {
+    name: "Germantown Performing Arts Centre",
+    address: "1801 Exeter Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0889, lng: -89.7964 },
+    type: "entertainment"
+  },
+  {
+    name: "Forest Hill Cemetery",
+    address: "1661 Elvis Presley Blvd, Memphis, TN 38116",
+    coordinates: { lat: 35.0603, lng: -90.0248 },
+    type: "landmark"
+  },
+  {
+    name: "Germantown Country Club",
+    address: "2917 S Germantown Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0625, lng: -89.8178 },
+    type: "recreation"
+  },
+  {
+    name: "Thornwood Shopping Center",
+    address: "2841 S Germantown Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0647, lng: -89.8167 },
+    type: "shopping"
+  },
+  {
+    name: "Germantown High School",
+    address: "2821 Old Forest Rd, Germantown, TN 38138",
+    coordinates: { lat: 35.0756, lng: -89.7889 },
+    type: "school"
+  },
+  {
+    name: "Shelby Farms Park",
+    address: "6903 Great View Dr N, Memphis, TN 38134",
+    coordinates: { lat: 35.1456, lng: -89.7845 },
+    type: "park"
+  },
+  {
+    name: "Oak Court Mall",
+    address: "4465 Poplar Ave, Memphis, TN 38117",
+    coordinates: { lat: 35.1375, lng: -89.8434 },
+    type: "shopping"
+  },
   // Knoxville Area
   {
     name: "Downtown Knoxville",
