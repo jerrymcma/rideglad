@@ -1107,7 +1107,7 @@ export default function RiderApp() {
             showTraffic={true}
             showRoute={true}
             mapStyle="streets"
-            className="w-full h-80"
+            className="w-full h-96"
             onDriverContact={(type) => {
               if (type === 'call') {
                 toast({ title: "Calling driver...", description: "Connecting you to John" });
@@ -1121,7 +1121,7 @@ export default function RiderApp() {
 
       {matchedDriver && (
         <Card>
-          <CardContent className="pb-4 pt-3 space-y-3">
+          <CardContent className="pb-6 pt-4 space-y-4">
             <div>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center">
