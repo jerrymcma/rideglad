@@ -134,7 +134,7 @@ export default function RealTimeMap({
 
   // Load Google Maps script
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyCtQiF11rteGvvqOXbqorZhsi8W3z2DGHs';
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     if (!apiKey || apiKey === 'undefined') {
       console.warn('Google Maps API key not found');
       return;
@@ -146,12 +146,22 @@ export default function RealTimeMap({
       return;
     }
 
+    // Prevent duplicate script loading
+    const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+    if (existingScript) {
+      existingScript.addEventListener('load', () => setIsLoaded(true));
+      return;
+    }
+
     // Load Google Maps script
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=weekly`;
     script.async = true;
     script.defer = true;
     script.onload = () => setIsLoaded(true);
+    script.onerror = (error) => {
+      console.error('Failed to load Google Maps script:', error);
+    };
     document.head.appendChild(script);
 
     return () => {
@@ -294,6 +304,26 @@ export default function RealTimeMap({
       }
     });
   }, [map, showRoute, userLocation, destination]);
+
+  // Check for API key before rendering
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  if (!apiKey || apiKey === 'undefined') {
+    return (
+      <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="text-center text-gray-600">
+            <div className="w-8 h-8 mx-auto mb-2 bg-blue-200 rounded-full flex items-center justify-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              </svg>
+            </div>
+            <p className="text-sm font-medium">Interactive Map</p>
+            <p className="text-xs">Ready for Google Maps integration</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
