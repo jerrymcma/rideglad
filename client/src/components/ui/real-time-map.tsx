@@ -344,26 +344,26 @@ export default function RealTimeMap({
       </div>
 
       {/* Map Controls */}
-      <div className="absolute top-4 right-4 flex flex-col gap-2">
+      <div className="absolute top-0 right-0 flex flex-col gap-1">
         <button 
           onClick={() => map?.setZoom((map.getZoom() || 13) + 1)}
-          className="w-10 h-10 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors"
+          className="w-6 h-6 bg-white rounded border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors text-xs"
         >
           +
         </button>
         <button 
           onClick={() => map?.setZoom((map.getZoom() || 13) - 1)}
-          className="w-10 h-10 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors"
+          className="w-6 h-6 bg-white rounded border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors text-xs"
         >
           -
         </button>
         <button 
           onClick={isTracking ? stopLocationTracking : startLocationTracking}
-          className={`w-10 h-10 rounded-lg border shadow-md flex items-center justify-center transition-colors ${
+          className={`w-6 h-6 rounded border shadow-md flex items-center justify-center transition-colors ${
             isTracking ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
           }`}
         >
-          <MapPin size={16} />
+          <MapPin size={12} />
         </button>
       </div>
 
