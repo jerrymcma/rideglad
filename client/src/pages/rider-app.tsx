@@ -136,6 +136,56 @@ export default function RiderApp() {
     }
   };
 
+  // Function to get coordinates for pickup location based on address
+  const getPickupCoordinates = () => {
+    const pickup = bookingForm.pickupAddress.toLowerCase();
+    if (pickup.includes('germantown') || pickup.includes('memphis')) {
+      return { latitude: 35.0868, longitude: -89.8101 }; // Germantown/Memphis area
+    } else if (pickup.includes('nashville')) {
+      return { latitude: 36.1627, longitude: -86.7816 }; // Nashville area
+    } else if (pickup.includes('knoxville')) {
+      return { latitude: 35.9606, longitude: -83.9207 }; // Knoxville area
+    } else if (pickup.includes('chattanooga')) {
+      return { latitude: 35.0456, longitude: -85.3097 }; // Chattanooga area
+    } else if (pickup.includes('biloxi')) {
+      return { latitude: 30.3960, longitude: -88.8853 }; // Biloxi area
+    } else {
+      return { latitude: 31.3271, longitude: -89.2903 }; // Default to Hattiesburg
+    }
+  };
+
+  // Function to get coordinates for destination location based on address
+  const getDestinationCoordinates = () => {
+    const destination = bookingForm.destinationAddress.toLowerCase();
+    if (destination.includes('germantown') || destination.includes('memphis')) {
+      return { latitude: 35.0878, longitude: -89.8111 }; // Slightly offset from pickup
+    } else if (destination.includes('nashville')) {
+      return { latitude: 36.1637, longitude: -86.7826 }; // Nashville area
+    } else if (destination.includes('knoxville')) {
+      return { latitude: 35.9616, longitude: -83.9217 }; // Knoxville area
+    } else if (destination.includes('chattanooga')) {
+      return { latitude: 35.0466, longitude: -85.3107 }; // Chattanooga area
+    } else if (destination.includes('biloxi')) {
+      return { latitude: 30.3970, longitude: -88.8863 }; // Biloxi area
+    } else {
+      return { latitude: 31.3371, longitude: -89.2803 }; // Default to Hattiesburg
+    }
+  };
+
+  // Function to get driver location relative to pickup
+  const getDriverLocation = () => {
+    const pickup = getPickupCoordinates();
+    return {
+      latitude: pickup.latitude + 0.008,
+      longitude: pickup.longitude + 0.005,
+      accuracy: 3,
+      timestamp: Date.now(),
+      driverId: 'john-driver',
+      status: 'approaching' as const,
+      speed: 25
+    };
+  };
+
   // Function to get nearby driver positions relative to map center
   const getNearbyDriverPositions = (center: { lat: number; lng: number }) => {
     return [
@@ -1124,17 +1174,9 @@ export default function RiderApp() {
         <CardContent className="px-4 pt-1 pb-6">
           <h3 className="text-lg font-bold mb-1 text-blue-600 text-center">Live Tracking</h3>
           <RealTimeMap 
-            userLocation={{ latitude: 31.3271, longitude: -89.2903, accuracy: 5, timestamp: Date.now() }}
-            driverLocation={{ 
-              latitude: 31.3350, 
-              longitude: -89.2950, 
-              accuracy: 3, 
-              timestamp: Date.now(),
-              driverId: 'john-driver',
-              status: 'approaching' as const,
-              speed: 25
-            }}
-            destination={{ latitude: 31.3371, longitude: -89.2803, accuracy: 5, timestamp: Date.now() }}
+            userLocation={{ ...getPickupCoordinates(), accuracy: 5, timestamp: Date.now() }}
+            driverLocation={getDriverLocation()}
+            destination={{ ...getDestinationCoordinates(), accuracy: 5, timestamp: Date.now() }}
             showTraffic={true}
             showRoute={true}
             mapStyle="streets"
