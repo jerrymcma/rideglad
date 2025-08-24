@@ -1121,7 +1121,7 @@ export default function RiderApp() {
 
       {matchedDriver && (
         <Card>
-          <CardContent className="pb-6 pt-3 space-y-3">
+          <CardContent className="pb-4 pt-3 space-y-3">
             <div>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center">
