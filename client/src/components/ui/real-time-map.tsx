@@ -371,39 +371,38 @@ export default function RealTimeMap({
 
       {/* Info Panel - Below Map */}
       <div className="flex justify-start mt-2">
-          <div className="bg-white/90 backdrop-blur-sm rounded-md border shadow-md p-1.5 max-w-[120px]">
-            <div className="flex items-center gap-1 mb-1">
-              <Zap size={8} className="text-green-500" />
-              <span className="text-xs font-medium text-gray-900">Live</span>
-              <div className={`w-1 h-1 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
-              {estimatedArrival && (
-                <div className="ml-auto bg-green-100 px-1 py-0.5 rounded text-xs">
-                  <span className="font-medium text-green-700">{estimatedArrival}m</span>
-                </div>
-              )}
-            </div>
+        <div className="bg-white/90 backdrop-blur-sm rounded-md border shadow-md p-1.5 max-w-[120px]">
+          <div className="flex items-center gap-1 mb-1">
+            <Zap size={8} className="text-green-500" />
+            <span className="text-xs font-medium text-gray-900">Live</span>
+            <div className={`w-1 h-1 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
+            {estimatedArrival && (
+              <div className="ml-auto bg-green-100 px-1 py-0.5 rounded text-xs">
+                <span className="font-medium text-green-700">{estimatedArrival}m</span>
+              </div>
+            )}
+          </div>
 
-            <div className="grid grid-cols-3 gap-1 text-xs">
-              <div className="text-center">
-                <div className="text-gray-500" style={{fontSize: '9px'}}>GPS</div>
-                <div className="font-medium" style={{fontSize: '9px'}}>
-                  {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : '...'}
-                </div>
+          <div className="grid grid-cols-3 gap-1 text-xs">
+            <div className="text-center">
+              <div className="text-gray-500" style={{fontSize: '9px'}}>GPS</div>
+              <div className="font-medium" style={{fontSize: '9px'}}>
+                {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : '...'}
               </div>
-              <div className="text-center">
-                <div className="text-gray-500" style={{fontSize: '9px'}}>Traffic</div>
-                <div className={`font-medium capitalize ${
-                  trafficLevel === 'high' ? 'text-red-600' :
-                  trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
-                }`} style={{fontSize: '9px'}}>
-                  {trafficLevel}
-                </div>
+            </div>
+            <div className="text-center">
+              <div className="text-gray-500" style={{fontSize: '9px'}}>Traffic</div>
+              <div className={`font-medium capitalize ${
+                trafficLevel === 'high' ? 'text-red-600' :
+                trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
+              }`} style={{fontSize: '9px'}}>
+                {trafficLevel}
               </div>
-              <div className="text-center">
-                <div className="text-gray-500" style={{fontSize: '9px'}}>Speed</div>
-                <div className="font-medium" style={{fontSize: '9px'}}>
-                  {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)}` : '--'}
-                </div>
+            </div>
+            <div className="text-center">
+              <div className="text-gray-500" style={{fontSize: '9px'}}>Speed</div>
+              <div className="font-medium" style={{fontSize: '9px'}}>
+                {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)}` : '--'}
               </div>
             </div>
           </div>
