@@ -330,80 +330,76 @@ export default function RealTimeMap({
   }
 
   return (
-    <div className={`flex flex-col ${className}`}>
+    <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
       {/* Map Container */}
-      <div className="relative bg-gray-100 rounded-lg overflow-hidden flex-1">
-        <div ref={mapContainerRef} className="w-full h-full relative">
-          {!isLoaded && (
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 flex items-center justify-center">
-              <div className="text-center">
-                <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p className="text-gray-600">Loading Google Maps...</p>
-              </div>
+      <div ref={mapContainerRef} className="w-full h-full relative">
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-green-50 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading Google Maps...</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Map Controls */}
+      <div className="absolute top-0 right-0 flex flex-col gap-1">
+        <button 
+          onClick={() => map?.setZoom((map.getZoom() || 13) + 1)}
+          className="w-8 h-8 bg-white rounded border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors text-sm"
+        >
+          +
+        </button>
+        <button 
+          onClick={() => map?.setZoom((map.getZoom() || 13) - 1)}
+          className="w-8 h-8 bg-white rounded border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors text-sm"
+        >
+          -
+        </button>
+        <button 
+          onClick={isTracking ? stopLocationTracking : startLocationTracking}
+          className={`w-8 h-8 rounded border shadow-md flex items-center justify-center transition-colors ${
+            isTracking ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+          }`}
+        >
+          <MapPin size={14} />
+        </button>
+      </div>
+
+      {/* Info Panel - Top Left */}
+      <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-sm rounded-br-md border shadow-md p-1.5 max-w-[120px]">
+        <div className="flex items-center gap-1 mb-1">
+          <Zap size={8} className="text-green-500" />
+          <span className="text-xs font-medium text-gray-900">Live</span>
+          <div className={`w-1 h-1 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
+          {estimatedArrival && (
+            <div className="ml-auto bg-green-100 px-1 py-0.5 rounded text-xs">
+              <span className="font-medium text-green-700">{estimatedArrival}m</span>
             </div>
           )}
         </div>
 
-        {/* Map Controls */}
-        <div className="absolute top-0 right-0 flex flex-col gap-1">
-          <button 
-            onClick={() => map?.setZoom((map.getZoom() || 13) + 1)}
-            className="w-8 h-8 bg-white rounded border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors text-sm"
-          >
-            +
-          </button>
-          <button 
-            onClick={() => map?.setZoom((map.getZoom() || 13) - 1)}
-            className="w-8 h-8 bg-white rounded border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold transition-colors text-sm"
-          >
-            -
-          </button>
-          <button 
-            onClick={isTracking ? stopLocationTracking : startLocationTracking}
-            className={`w-8 h-8 rounded border shadow-md flex items-center justify-center transition-colors ${
-              isTracking ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <MapPin size={14} />
-          </button>
-        </div>
-      </div>
-
-      {/* Info Panel - Below Map */}
-      <div className="flex justify-start mt-2">
-        <div className="bg-white/90 backdrop-blur-sm rounded-md border shadow-md p-1.5 max-w-[120px]">
-          <div className="flex items-center gap-1 mb-1">
-            <Zap size={8} className="text-green-500" />
-            <span className="text-xs font-medium text-gray-900">Live</span>
-            <div className={`w-1 h-1 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
-            {estimatedArrival && (
-              <div className="ml-auto bg-green-100 px-1 py-0.5 rounded text-xs">
-                <span className="font-medium text-green-700">{estimatedArrival}m</span>
-              </div>
-            )}
+        <div className="grid grid-cols-3 gap-1 text-xs">
+          <div className="text-center">
+            <div className="text-gray-500" style={{fontSize: '9px'}}>GPS</div>
+            <div className="font-medium" style={{fontSize: '9px'}}>
+              {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : '...'}
+            </div>
           </div>
-
-          <div className="grid grid-cols-3 gap-1 text-xs">
-            <div className="text-center">
-              <div className="text-gray-500" style={{fontSize: '9px'}}>GPS</div>
-              <div className="font-medium" style={{fontSize: '9px'}}>
-                {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : '...'}
-              </div>
+          <div className="text-center">
+            <div className="text-gray-500" style={{fontSize: '9px'}}>Traffic</div>
+            <div className={`font-medium capitalize ${
+              trafficLevel === 'high' ? 'text-red-600' :
+              trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
+            }`} style={{fontSize: '9px'}}>
+              {trafficLevel}
             </div>
-            <div className="text-center">
-              <div className="text-gray-500" style={{fontSize: '9px'}}>Traffic</div>
-              <div className={`font-medium capitalize ${
-                trafficLevel === 'high' ? 'text-red-600' :
-                trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
-              }`} style={{fontSize: '9px'}}>
-                {trafficLevel}
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-gray-500" style={{fontSize: '9px'}}>Speed</div>
-              <div className="font-medium" style={{fontSize: '9px'}}>
-                {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)}` : '--'}
-              </div>
+          </div>
+          <div className="text-center">
+            <div className="text-gray-500" style={{fontSize: '9px'}}>Speed</div>
+            <div className="font-medium" style={{fontSize: '9px'}}>
+              {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)}` : '--'}
             </div>
           </div>
         </div>
