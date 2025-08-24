@@ -1486,146 +1486,34 @@ export default function RiderApp() {
         </CardContent>
       </Card>
 
-      {/* Real-time Map - Only show after clicking In Progress */}
+      {/* Real-time Google Maps - Only show after clicking In Progress */}
       {showLiveTripMap && (
         <Card className="mx-5 -mt-4">
-        <CardContent className="px-2 pt-1 pb-2">
-          <h3 className="text-base font-semibold mb-1 text-blue-600 text-center">Live Trip Map</h3>
-          <div className="w-full h-44 bg-blue-50 rounded-lg border-2 border-blue-200 overflow-hidden relative">
-            {/* Map Background with Streets */}
-            <div className="w-full h-full relative bg-gradient-to-br from-gray-100 to-gray-200">
-              {/* Realistic Street Grid - North American City Pattern */}
-              <div className="absolute inset-0">
-                {/* Main Arterial Streets (wider, darker) */}
-                <div className="absolute w-full h-1.5 bg-gray-500 top-[25%] opacity-80" />
-                <div className="absolute w-full h-1.5 bg-gray-500 top-[75%] opacity-80" />
-                <div className="absolute h-full w-1.5 bg-gray-500 left-[20%] opacity-80" />
-                <div className="absolute h-full w-1.5 bg-gray-500 left-[80%] opacity-80" />
-                
-                {/* Secondary Streets */}
-                <div className="absolute w-full h-0.5 bg-gray-400 top-[15%] opacity-70" />
-                <div className="absolute w-full h-0.5 bg-gray-400 top-[35%] opacity-70" />
-                <div className="absolute w-full h-0.5 bg-gray-400 top-[50%] opacity-70" />
-                <div className="absolute w-full h-0.5 bg-gray-400 top-[65%] opacity-70" />
-                <div className="absolute w-full h-0.5 bg-gray-400 top-[85%] opacity-70" />
-                
-                <div className="absolute h-full w-0.5 bg-gray-400 left-[10%] opacity-70" />
-                <div className="absolute h-full w-0.5 bg-gray-400 left-[30%] opacity-70" />
-                <div className="absolute h-full w-0.5 bg-gray-400 left-[50%] opacity-70" />
-                <div className="absolute h-full w-0.5 bg-gray-400 left-[70%] opacity-70" />
-                <div className="absolute h-full w-0.5 bg-gray-400 left-[90%] opacity-70" />
-                
-                {/* Local Residential Streets (thinner) */}
-                <div className="absolute w-full h-px bg-gray-350 top-[42%] opacity-50" />
-                <div className="absolute w-full h-px bg-gray-350 top-[58%] opacity-50" />
-                <div className="absolute h-full w-px bg-gray-350 left-[40%] opacity-50" />
-                <div className="absolute h-full w-px bg-gray-350 left-[60%] opacity-50" />
-                
-                {/* Diagonal Boulevard (adds realism) */}
-                <div className="absolute w-full h-1 bg-gray-450 opacity-60 origin-bottom-left transform rotate-12" style={{top: '10%', left: '-10%', width: '120%'}} />
-                
-                {/* Small Park/Green Space */}
-                <div className="absolute w-8 h-6 bg-green-200 rounded-sm top-[40%] left-[45%] opacity-80" />
-                
-                {/* Building Blocks (subtle background) */}
-                <div className="absolute w-4 h-3 bg-gray-250 top-[28%] left-[15%] opacity-30" />
-                <div className="absolute w-5 h-4 bg-gray-250 top-[52%] left-[25%] opacity-30" />
-                <div className="absolute w-3 h-5 bg-gray-250 top-[68%] left-[75%] opacity-30" />
-                <div className="absolute w-6 h-3 bg-gray-250 top-[78%] left-[55%] opacity-30" />
-              </div>
-
-              {/* Destination (Red) */}
-              <div className="absolute left-[80%] top-[30%] transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-5 h-5 bg-red-500 rounded-full border-2 border-white shadow-lg"></div>
-                <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
-                  Finish
-                </div>
-              </div>
-
-              {/* Driver Position (Moving) */}
-              {(() => {
-                const now = new Date().getTime();
-                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
-                const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 5) * 60 * 1000;
-                const progress = Math.min(elapsed / totalETA, 0.9);
-                
-                // Movement from pickup to destination
-                const startX = 20;
-                const startY = 70;
-                const endX = 80;
-                const endY = 30;
-                
-                const currentX = startX + (endX - startX) * progress;
-                const currentY = startY + (endY - startY) * progress;
-                
-                return (
-                  <div 
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ease-in-out"
-                    style={{ left: `${currentX}%`, top: `${currentY}%` }}
-                  >
-                    <div className="relative">
-                      <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-                        <Car size={16} className="text-white" />
-                      </div>
-                      <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap font-medium">
-                        You
-                      </div>
-                    </div>
-                  </div>
-                );
-              })()}
-
-              {/* Route Path */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <defs>
-                  <linearGradient id="routePath" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.7" />
-                    <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5" />
-                    <stop offset="100%" stopColor="#6b7280" stopOpacity="0.3" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 20% 70% Q 40% 45% 80% 30%"
-                  stroke="url(#routePath)"
-                  strokeWidth="4"
-                  fill="none"
-                  strokeDasharray="10,5"
-                  className="animate-pulse"
-                />
-              </svg>
-
-              {/* Live ETA Badge */}
-              {(() => {
-                const now = new Date().getTime();
-                const tripStart = currentTrip?.matchedAt ? new Date(currentTrip.matchedAt).getTime() : now;
-                const elapsed = Math.max(0, now - tripStart);
-                const totalETA = (matchedDriver?.estimatedArrival || 5) * 60 * 1000;
-                const progress = Math.min(elapsed / totalETA, 0.9);
-                const remainingTime = Math.max(1, Math.round((matchedDriver?.estimatedArrival || 5) * (1 - progress)));
-                
-                return (
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white rounded-lg px-3 py-2 border shadow-md">
-                      <div className="flex items-center gap-2">
-                        <Clock size={16} className="text-green-600" />
-                        <span className="text-sm font-bold text-green-600">
-                          {remainingTime} min
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })()}
-
-              {/* Zoom Controls */}
-              <div className="absolute top-4 right-4 flex flex-col gap-2">
-                <button className="w-9 h-9 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold">+</button>
-                <button className="w-9 h-9 bg-white rounded-lg border shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 font-bold">-</button>
-              </div>
+          <CardContent className="px-2 pt-1 pb-2">
+            <h3 className="text-base font-semibold mb-1 text-blue-600 text-center">Live Trip Map</h3>
+            <div className="w-full h-44 rounded-lg overflow-hidden relative">
+              <RealTimeMap
+                className="w-full h-full"
+                userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
+                destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
+                driverLocation={matchedDriver ? {
+                  lat: currentTrip?.pickupLat || 31.3271,
+                  lng: currentTrip?.pickupLng || -89.2903,
+                  speed: 25,
+                  heading: 90
+                } : undefined}
+                showRoute={true}
+                estimatedArrival={matchedDriver?.estimatedArrival}
+                onDriverContact={(type) => {
+                  if (type === 'call') {
+                    console.log('Calling driver...');
+                  } else if (type === 'message') {
+                    console.log('Messaging driver...');
+                  }
+                }}
+              />
             </div>
-          </div>
-        </CardContent>
+          </CardContent>
         </Card>
       )}
     </div>
