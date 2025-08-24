@@ -1408,40 +1408,12 @@ export default function RiderApp() {
         <p className="text-black font-bold text-lg">Enjoy your ride!</p>
       </div>
 
-      {/* Live Trip Map - Always show and moved to top */}
-      <Card className="mx-5">
-        <CardContent className="px-4 pt-2 pb-6">
-          <h3 className="text-lg font-bold mb-1 text-blue-600 text-center">Live Trip Map</h3>
-          <div className="w-full h-80 rounded-lg overflow-hidden relative">
-            <RealTimeMap
-              className="w-full h-full"
-              userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
-              destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
-              driverLocation={matchedDriver ? {
-                lat: currentTrip?.pickupLat || 31.3271,
-                lng: currentTrip?.pickupLng || -89.2903,
-                speed: 25,
-                heading: 90
-              } : undefined}
-              showRoute={true}
-              estimatedArrival={matchedDriver?.estimatedArrival}
-              onDriverContact={(type) => {
-                if (type === 'call') {
-                  console.log('Calling driver...');
-                } else if (type === 'message') {
-                  console.log('Messaging driver...');
-                }
-              }}
-            />
-          </div>
-        </CardContent>
-      </Card>
-
       <Card className="mx-5">
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
             <Badge 
-              className="bg-brand-green text-white text-lg py-2 px-4"
+              className="bg-brand-green text-white text-lg py-2 px-4 cursor-pointer hover:bg-green-700 transition-colors"
+              onClick={() => setShowLiveTripMap(true)}
             >
               <Navigation size={16} className="mr-2" />
               In Progress
@@ -1513,6 +1485,37 @@ export default function RiderApp() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Real-time Google Maps - Only show after clicking In Progress */}
+      {showLiveTripMap && (
+        <Card className="mx-5 -mt-4">
+          <CardContent className="px-4 pt-2 pb-6">
+            <h3 className="text-lg font-bold mb-1 text-blue-600 text-center">Live Trip Map</h3>
+            <div className="w-full h-96 rounded-lg overflow-hidden relative">
+              <RealTimeMap
+                className="w-full h-full"
+                userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
+                destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
+                driverLocation={matchedDriver ? {
+                  lat: currentTrip?.pickupLat || 31.3271,
+                  lng: currentTrip?.pickupLng || -89.2903,
+                  speed: 25,
+                  heading: 90
+                } : undefined}
+                showRoute={true}
+                estimatedArrival={matchedDriver?.estimatedArrival}
+                onDriverContact={(type) => {
+                  if (type === 'call') {
+                    console.log('Calling driver...');
+                  } else if (type === 'message') {
+                    console.log('Messaging driver...');
+                  }
+                }}
+              />
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 
