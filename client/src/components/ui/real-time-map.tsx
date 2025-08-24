@@ -305,10 +305,9 @@ export default function RealTimeMap({
     });
   }, [map, showRoute, userLocation, destination]);
 
-  // Temporarily disable Google Maps and show fallback
-  // TODO: Re-enable when Google Cloud billing/referrer issues are resolved
+  // Check for API key before rendering
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  if (!apiKey || apiKey === 'undefined' || true) { // Force fallback for now
+  if (!apiKey || apiKey === 'undefined') {
     return (
       <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
         <div className="w-full h-full flex items-center justify-center">

@@ -104,9 +104,9 @@ export default function GoogleMap({
     }
   }, [map, center]);
 
-  // Temporarily disable Google Maps and show fallback
+  // Check for API key before rendering
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  if (!apiKey || apiKey === 'undefined' || true) { // Force fallback for now
+  if (!apiKey || apiKey === 'undefined') {
     return (
       <div className={`${className} bg-gray-100 flex items-center justify-center border rounded-lg`}>
         <div className="text-center text-gray-600">
