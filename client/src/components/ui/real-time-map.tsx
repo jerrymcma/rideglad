@@ -183,7 +183,11 @@ export default function RealTimeMap({
           stylers: [{ visibility: "off" }]
         }
       ],
-      mapTypeId: mapStyle === 'satellite' ? 'satellite' : 'roadmap'
+      mapTypeId: mapStyle === 'satellite' ? 'satellite' : 'roadmap',
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+      zoomControl: false
     });
 
     // Initialize directions service and renderer
