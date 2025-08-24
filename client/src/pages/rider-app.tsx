@@ -1090,8 +1090,8 @@ export default function RiderApp() {
 
       {/* Live Tracking Map */}
       <Card>
-        <CardContent className="px-4 pt-4 pb-6">
-          <h3 className="text-lg font-bold mb-3 text-blue-600 text-center">Live Tracking</h3>
+        <CardContent className="px-4 pt-2 pb-6">
+          <h3 className="text-lg font-bold mb-1 text-blue-600 text-center">Live Tracking</h3>
           <RealTimeMap 
             userLocation={{ latitude: 31.3271, longitude: -89.2903, accuracy: 5, timestamp: Date.now() }}
             driverLocation={{ 
