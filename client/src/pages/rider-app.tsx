@@ -1408,12 +1408,40 @@ export default function RiderApp() {
         <p className="text-black font-bold text-lg">Enjoy your ride!</p>
       </div>
 
+      {/* Live Trip Map - Always show and moved to top */}
+      <Card className="mx-5">
+        <CardContent className="px-4 pt-2 pb-6">
+          <h3 className="text-lg font-bold mb-1 text-blue-600 text-center">Live Trip Map</h3>
+          <div className="w-full h-80 rounded-lg overflow-hidden relative">
+            <RealTimeMap
+              className="w-full h-full"
+              userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
+              destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
+              driverLocation={matchedDriver ? {
+                lat: currentTrip?.pickupLat || 31.3271,
+                lng: currentTrip?.pickupLng || -89.2903,
+                speed: 25,
+                heading: 90
+              } : undefined}
+              showRoute={true}
+              estimatedArrival={matchedDriver?.estimatedArrival}
+              onDriverContact={(type) => {
+                if (type === 'call') {
+                  console.log('Calling driver...');
+                } else if (type === 'message') {
+                  console.log('Messaging driver...');
+                }
+              }}
+            />
+          </div>
+        </CardContent>
+      </Card>
+
       <Card className="mx-5">
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
             <Badge 
-              className="bg-brand-green text-white text-lg py-2 px-4 cursor-pointer hover:bg-green-700 transition-colors"
-              onClick={() => setShowLiveTripMap(true)}
+              className="bg-brand-green text-white text-lg py-2 px-4"
             >
               <Navigation size={16} className="mr-2" />
               In Progress
@@ -1441,28 +1469,28 @@ export default function RiderApp() {
       </Card>
 
       <Card className="mx-5">
-        <CardContent className="pb-4 pt-4 space-y-4">
+        <CardContent className="pb-6 pt-4 space-y-4">
           <div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                <User size={24} className="text-gray-600" />
+              <div className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center">
+                <User size={28} className="text-gray-600" />
               </div>
               <div>
                 <div className="flex items-center">
-                  <h3 className="font-semibold mr-4 text-blue-600 leading-tight">{matchedDriver?.driver.firstName || 'John'} {matchedDriver?.driver.lastName || 'Driver'}</h3>
+                  <h3 className="font-semibold mr-4 text-blue-600 leading-tight text-base">{matchedDriver?.driver.firstName || 'John'} {matchedDriver?.driver.lastName || 'Driver'}</h3>
                   <div className="flex items-center gap-1">
-                    <Trophy size={14} className="text-yellow-500 fill-current" />
-                    <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
+                    <Trophy size={16} className="text-yellow-500 fill-current" />
+                    <span className="text-sm text-yellow-600 font-medium">Gold Status</span>
                   </div>
                 </div>
-                <div className="flex items-center mt-0.5">
+                <div className="flex items-center mt-1">
                   <div className="flex items-center gap-1 mr-4">
-                    <Star size={14} className="text-yellow-500 fill-current" />
-                    <span className="text-xs whitespace-nowrap" style={{fontSize: '13px'}}><span className="font-bold">{matchedDriver?.rating || '4.8'}</span> ({matchedDriver?.driver.totalRatings || '120'} rides)</span>
+                    <Star size={16} className="text-yellow-500 fill-current" />
+                    <span className="text-sm whitespace-nowrap font-semibold">{matchedDriver?.rating || '4.8'} ({matchedDriver?.driver.totalRatings || '120'} rides)</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Award size={16} className="text-blue-500 fill-current" />
-                    <span className="text-xs text-blue-600 font-medium">ride Certified</span>
+                    <span className="text-sm text-blue-600 font-medium">ride Certified</span>
                   </div>
                 </div>
               </div>
@@ -1471,51 +1499,20 @@ export default function RiderApp() {
           
           <Separator />
           
-          <div className="space-y-1 -mt-3">
+          <div className="space-y-2">
             <div className="flex items-center">
-              <span className="text-sm text-gray-800 mr-2">Vehicle:</span>
+              <span className="text-sm text-gray-800 mr-2 font-medium">Vehicle:</span>
               <span className="text-sm font-medium">
                 {matchedDriver?.vehicle.color || 'Silver'} {matchedDriver?.vehicle.make || 'Toyota'} {matchedDriver?.vehicle.model || 'Camry'}
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-sm text-gray-800 mr-2">License:</span>
+              <span className="text-sm text-gray-800 mr-2 font-medium">License:</span>
               <span className="text-sm font-medium">{matchedDriver?.vehicle.licensePlate || 'ABC123'}</span>
             </div>
           </div>
         </CardContent>
       </Card>
-
-      {/* Real-time Google Maps - Only show after clicking In Progress */}
-      {showLiveTripMap && (
-        <Card className="mx-5 -mt-4">
-          <CardContent className="px-2 pt-1 pb-2">
-            <h3 className="text-base font-semibold mb-1 text-blue-600 text-center">Live Trip Map</h3>
-            <div className="w-full h-44 rounded-lg overflow-hidden relative">
-              <RealTimeMap
-                className="w-full h-full"
-                userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
-                destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
-                driverLocation={matchedDriver ? {
-                  lat: currentTrip?.pickupLat || 31.3271,
-                  lng: currentTrip?.pickupLng || -89.2903,
-                  speed: 25,
-                  heading: 90
-                } : undefined}
-                showRoute={true}
-                estimatedArrival={matchedDriver?.estimatedArrival}
-                onDriverContact={(type) => {
-                  if (type === 'call') {
-                    console.log('Calling driver...');
-                  } else if (type === 'message') {
-                    console.log('Messaging driver...');
-                  }
-                }}
-              />
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 
