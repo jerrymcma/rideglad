@@ -1,7 +1,12 @@
-// Hattiesburg, MS specific locations and coordinates
+// Mississippi locations and coordinates for ride sharing service
 export const HATTIESBURG_CENTER = {
   lat: 31.3271,
   lng: -89.2903
+};
+
+export const BILOXI_CENTER = {
+  lat: 30.3960,
+  lng: -88.8853
 };
 
 export const HATTIESBURG_LOCATIONS = [
@@ -66,6 +71,90 @@ export const HATTIESBURG_LOCATIONS = [
     type: "hospital"
   }
 ];
+
+export const BILOXI_LOCATIONS = [
+  {
+    name: "Downtown Biloxi",
+    address: "710 Vieux Marche Mall, Biloxi, MS 39530",
+    coordinates: { lat: 30.3960, lng: -88.8853 },
+    type: "downtown"
+  },
+  {
+    name: "Gulfport-Biloxi International Airport",
+    address: "14035 Airport Rd, Gulfport, MS 39503",
+    coordinates: { lat: 30.4073, lng: -89.0701 },
+    type: "airport"
+  },
+  {
+    name: "Hard Rock Hotel & Casino Biloxi",
+    address: "777 Beach Blvd, Biloxi, MS 39530",
+    coordinates: { lat: 30.3961, lng: -88.8764 },
+    type: "casino"
+  },
+  {
+    name: "Beau Rivage Casino Resort",
+    address: "875 Beach Blvd, Biloxi, MS 39530",
+    coordinates: { lat: 30.3989, lng: -88.8722 },
+    type: "casino"
+  },
+  {
+    name: "IP Casino Resort Spa",
+    address: "850 Bayview Ave, Biloxi, MS 39530",
+    coordinates: { lat: 30.3925, lng: -88.8792 },
+    type: "casino"
+  },
+  {
+    name: "Biloxi Lighthouse",
+    address: "1050 Beach Blvd, Biloxi, MS 39530",
+    coordinates: { lat: 30.3936, lng: -88.8825 },
+    type: "landmark"
+  },
+  {
+    name: "Keesler Air Force Base",
+    address: "500 Fisher St, Biloxi, MS 39534",
+    coordinates: { lat: 30.4108, lng: -88.9244 },
+    type: "military"
+  },
+  {
+    name: "Biloxi Regional Medical Center",
+    address: "150 Reynoir St, Biloxi, MS 39530",
+    coordinates: { lat: 30.4022, lng: -88.8947 },
+    type: "hospital"
+  },
+  {
+    name: "Edgewater Mall",
+    address: "2600 Beach Blvd, Biloxi, MS 39531",
+    coordinates: { lat: 30.4175, lng: -88.9289 },
+    type: "shopping"
+  },
+  {
+    name: "Biloxi Beach",
+    address: "1000 Beach Blvd, Biloxi, MS 39530",
+    coordinates: { lat: 30.3947, lng: -88.8808 },
+    type: "beach"
+  },
+  {
+    name: "Golden Nugget Biloxi",
+    address: "151 Beach Blvd, Biloxi, MS 39530",
+    coordinates: { lat: 30.3922, lng: -88.8869 },
+    type: "casino"
+  },
+  {
+    name: "Palace Casino Resort",
+    address: "158 Howard Ave, Biloxi, MS 39530",
+    coordinates: { lat: 30.3936, lng: -88.8875 },
+    type: "casino"
+  }
+];
+
+// Combined locations for search
+export const ALL_LOCATIONS = [...HATTIESBURG_LOCATIONS, ...BILOXI_LOCATIONS];
+
+export const getLocationByName = (name: string) => {
+  return ALL_LOCATIONS.find(location => 
+    location.name.toLowerCase().includes(name.toLowerCase())
+  );
+};
 
 export const getHattiesburgLocationByName = (name: string) => {
   return HATTIESBURG_LOCATIONS.find(location => 

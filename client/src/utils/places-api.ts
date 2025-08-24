@@ -88,12 +88,12 @@ export const isGoogleMapsLoaded = (): boolean => {
   return !!(window as any).google && !!(window as any).google.maps && !!(window as any).google.maps.places;
 };
 
-// Fallback to Hattiesburg locations when Google API is not available
-import { HATTIESBURG_LOCATIONS } from './hattiesburg-locations';
+// Fallback to Mississippi locations when Google API is not available
+import { ALL_LOCATIONS } from './hattiesburg-locations';
 
 export const getFallbackSuggestions = (input: string): string[] => {
   if (!input.trim()) return [];
-  return HATTIESBURG_LOCATIONS
+  return ALL_LOCATIONS
     .filter(location => 
       location.name.toLowerCase().includes(input.toLowerCase()) ||
       location.address.toLowerCase().includes(input.toLowerCase())
