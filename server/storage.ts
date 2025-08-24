@@ -317,9 +317,9 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(users)
       .where(eq(users.userType, 'driver'))
-      .limit(3);
+      .limit(4);
 
-    if (existingDrivers.length >= 3) {
+    if (existingDrivers.length >= 4) {
       return; // Mock drivers already exist
     }
 
@@ -351,6 +351,15 @@ export class DatabaseStorage implements IStorage {
         userType: 'driver' as const,
         isDriverActive: true,
         vehicle: { make: 'BMW', model: '3 Series', year: 2024, color: 'Black', licensePlate: '309' }
+      },
+      {
+        id: 'mock-driver-4',
+        email: 'jennifer@rideshare.com',
+        firstName: 'Jennifer',
+        lastName: 'Bolling',
+        userType: 'driver' as const,
+        isDriverActive: true,
+        vehicle: { make: 'Ford', model: 'Escape', year: 2023, color: 'Silver', licensePlate: 'BIGBOOTY' }
       }
     ];
 
