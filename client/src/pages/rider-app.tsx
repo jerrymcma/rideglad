@@ -91,6 +91,7 @@ export default function RiderApp() {
   const [ratingValue, setRatingValue] = useState(5);
   const [showDriverOptions, setShowDriverOptions] = useState(false);
   const [showLiveTripMap, setShowLiveTripMap] = useState(false);
+  const [mapCenter, setMapCenter] = useState({ lat: 31.3271, lng: -89.2903 }); // Default to Hattiesburg
   const [showGPSTracker, setShowGPSTracker] = useState(false);
   const [userLocation, setUserLocation] = useState<any>(null);
   const [driverLocation, setDriverLocation] = useState<any>(null);
@@ -115,6 +116,47 @@ export default function RiderApp() {
   // Debounce timer for API calls
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Function to determine map center based on location
+  const determineMapCenter = (address: string) => {
+    const lowerAddress = address.toLowerCase();
+    
+    // Check for Tennessee locations
+    if (lowerAddress.includes('germantown') || lowerAddress.includes('memphis')) {
+      return { lat: 35.0868, lng: -89.8101 }; // Germantown/Memphis area
+    } else if (lowerAddress.includes('nashville')) {
+      return { lat: 36.1627, lng: -86.7816 }; // Nashville area
+    } else if (lowerAddress.includes('knoxville')) {
+      return { lat: 35.9606, lng: -83.9207 }; // Knoxville area
+    } else if (lowerAddress.includes('chattanooga')) {
+      return { lat: 35.0456, lng: -85.3097 }; // Chattanooga area
+    } else if (lowerAddress.includes('biloxi')) {
+      return { lat: 30.3960, lng: -88.8853 }; // Biloxi area
+    } else {
+      return { lat: 31.3271, lng: -89.2903 }; // Default to Hattiesburg
+    }
+  };
+
+  // Function to get nearby driver positions relative to map center
+  const getNearbyDriverPositions = (center: { lat: number; lng: number }) => {
+    return [
+      {
+        position: { lat: center.lat + 0.001, lng: center.lng + 0.001 },
+        title: "Available Driver - John",
+        icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
+      },
+      {
+        position: { lat: center.lat + 0.008, lng: center.lng + 0.005 },
+        title: "Available Driver - Sarah",
+        icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
+      },
+      {
+        position: { lat: center.lat - 0.007, lng: center.lng + 0.006 },
+        title: "Available Driver - Mike",
+        icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
+      }
+    ];
+  };
+
   // Enhanced address suggestion function using Google Places API
   const getAddressSuggestions = async (input: string): Promise<string[]> => {
     if (!input.trim()) return [];
@@ -135,6 +177,12 @@ export default function RiderApp() {
 
   const handlePickupChange = (value: string) => {
     setBookingForm(prev => ({ ...prev, pickupAddress: value }));
+    
+    // Update map center based on pickup location
+    if (value.length > 3) {
+      const newCenter = determineMapCenter(value);
+      setMapCenter(newCenter);
+    }
     
     // Clear previous debounce timer
     if (debounceTimerRef.current) {
@@ -915,27 +963,10 @@ export default function RiderApp() {
             {/* Real Google Maps Integration */}
             <div className="relative">
               <GoogleMap 
-                center={{ lat: 31.3271, lng: -89.2903 }}
+                center={mapCenter}
                 zoom={13}
                 className="w-full h-48"
-                markers={[
-                  // Available drivers
-                  {
-                    position: { lat: 31.3271, lng: -89.2903 },
-                    title: "Available Driver - John",
-                    icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
-                  },
-                  {
-                    position: { lat: 31.3350, lng: -89.2950 },
-                    title: "Available Driver - Sarah",
-                    icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
-                  },
-                  {
-                    position: { lat: 31.3200, lng: -89.2850 },
-                    title: "Available Driver - Mike",
-                    icon: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99z"/%3E%3C/svg%3E'
-                  }
-                ]}
+                markers={getNearbyDriverPositions(mapCenter)}
               />
               
               {/* Your Location Overlay */}
