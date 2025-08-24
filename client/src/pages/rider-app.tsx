@@ -1088,78 +1088,10 @@ export default function RiderApp() {
         <p className="text-lg font-bold text-gray-600">Your driver is on the way</p>
       </div>
 
-      {matchedDriver && (
-        <Card>
-          <CardContent className="pb-4 pt-4 space-y-4">
-            <div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                  <User size={24} className="text-gray-600" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-blue-600 leading-tight">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
-                    <div className="flex items-center gap-1">
-                      <Trophy size={14} className="text-yellow-500 fill-current" />
-                      <span className="text-xs text-yellow-600 font-medium">Gold Status</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center mt-0.5">
-                    <div className="flex items-center gap-1 mr-2">
-                      <Star size={14} className="text-yellow-500 fill-current" />
-                      <span className="text-[13px] font-semibold">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Award size={14} className="text-blue-500 fill-current" />
-                      <span className="text-xs text-blue-600 font-medium">ride Certified</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <Separator />
-            
-            <div className="space-y-1">
-              <div className="flex items-center">
-                <span className="text-sm text-gray-800 mr-2">Vehicle:</span>
-                <span className="text-sm font-medium">
-                                  {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
-                </span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-sm text-gray-800 mr-2">License:</span>
-                <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
-                <div className="flex items-center gap-1">
-                  <Clock size={14} />
-                  <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
-                </div>
-              </div>
-              
-              <Separator className="my-2" />
-              
-              <div className="flex items-center gap-2">
-                <MapPin size={16} className="text-blue-600" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
-                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Navigation size={16} className="text-brand-green" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
-                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Real-Time Google Maps */}
+      {/* Live Tracking Map */}
       <Card>
-        <CardContent className="px-4 pt-2 pb-4">
-          <h3 className="text-base font-bold mb-1 text-blue-600 text-center">Live Tracking</h3>
+        <CardContent className="px-4 pt-4 pb-6">
+          <h3 className="text-lg font-bold mb-3 text-blue-600 text-center">Live Tracking</h3>
           <RealTimeMap 
             userLocation={{ latitude: 31.3271, longitude: -89.2903, accuracy: 5, timestamp: Date.now() }}
             driverLocation={{ 
@@ -1175,7 +1107,7 @@ export default function RiderApp() {
             showTraffic={true}
             showRoute={true}
             mapStyle="streets"
-            className="w-full h-64"
+            className="w-full h-80"
             onDriverContact={(type) => {
               if (type === 'call') {
                 toast({ title: "Calling driver...", description: "Connecting you to John" });
@@ -1186,6 +1118,74 @@ export default function RiderApp() {
           />
         </CardContent>
       </Card>
+
+      {matchedDriver && (
+        <Card>
+          <CardContent className="pb-6 pt-6 space-y-5">
+            <div>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center">
+                  <User size={28} className="text-gray-600" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-semibold text-blue-600 leading-tight text-lg">{matchedDriver.driver.firstName} {matchedDriver.driver.lastName}</h3>
+                    <div className="flex items-center gap-1">
+                      <Trophy size={16} className="text-yellow-500 fill-current" />
+                      <span className="text-sm text-yellow-600 font-medium">Gold Status</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center mt-1">
+                    <div className="flex items-center gap-1 mr-3">
+                      <Star size={16} className="text-yellow-500 fill-current" />
+                      <span className="text-sm font-semibold">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Award size={16} className="text-blue-500 fill-current" />
+                      <span className="text-sm text-blue-600 font-medium">ride Certified</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <Separator />
+            
+            <div className="space-y-2">
+              <div className="flex items-center">
+                <span className="text-sm text-gray-800 mr-2 font-medium">Vehicle:</span>
+                <span className="text-sm font-medium">
+                                  {matchedDriver.vehicle.color} {matchedDriver.vehicle.make} {matchedDriver.vehicle.model}
+                </span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm text-gray-800 mr-2 font-medium">License:</span>
+                <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
+                <div className="flex items-center gap-1">
+                  <Clock size={16} />
+                  <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
+                </div>
+              </div>
+              
+              <Separator className="my-3" />
+              
+              <div className="flex items-center gap-2">
+                <MapPin size={18} className="text-blue-600" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
+                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Navigation size={18} className="text-brand-green" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
+                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
 
 
