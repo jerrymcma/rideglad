@@ -129,8 +129,8 @@ export default function TripMap({
     }
   }, [map, pickupLocation, destinationLocation, driverLocation, showRoute, directionsService, directionsRenderer]);
 
-  // Fallback UI when Google Maps API key is not available
-  if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
+  // Temporarily disable Google Maps and show fallback
+  if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY || true) { // Force fallback for now
     return (
       <div className={`${className} bg-gray-100 flex items-center justify-center border rounded-lg`}>
         <div className="text-center text-gray-600">

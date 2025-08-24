@@ -305,9 +305,10 @@ export default function RealTimeMap({
     });
   }, [map, showRoute, userLocation, destination]);
 
-  // Check for API key before rendering
+  // Temporarily disable Google Maps and show fallback
+  // TODO: Re-enable when Google Cloud billing/referrer issues are resolved
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  if (!apiKey || apiKey === 'undefined') {
+  if (!apiKey || apiKey === 'undefined' || true) { // Force fallback for now
     return (
       <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
         <div className="w-full h-full flex items-center justify-center">
@@ -384,8 +385,8 @@ export default function RealTimeMap({
           <div>
             <div className="text-gray-500 mb-1">GPS Accuracy</div>
             <div className="font-medium flex items-center gap-1">
-              {accuracy ? `${accuracy.toFixed(0)}m` : 'Searching...'}
-              {accuracy && accuracy < 10 && <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>}
+              {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : 'Searching...'}
+              {accuracy !== null && accuracy !== undefined && accuracy < 10 && <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>}
             </div>
           </div>
           <div>
@@ -400,7 +401,7 @@ export default function RealTimeMap({
           <div>
             <div className="text-gray-500 mb-1">Speed</div>
             <div className="font-medium">
-              {driverLocation?.speed ? `${Math.round(driverLocation.speed)} km/h` : '-- km/h'}
+              {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)} km/h` : '-- km/h'}
             </div>
           </div>
         </div>
@@ -409,7 +410,7 @@ export default function RealTimeMap({
         {driverLocation && onDriverContact && (
           <div className="flex gap-2 mt-3 pt-3 border-t">
             <Button
-              onClick={() => onDriverContact('call')}
+              onClick={() => onDriverContact?.('call')}
               size="sm"
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
             >
@@ -417,7 +418,7 @@ export default function RealTimeMap({
               Call
             </Button>
             <Button
-              onClick={() => onDriverContact('message')}
+              onClick={() => onDriverContact?.('message')}
               size="sm"
               variant="outline"
               className="flex-1"
