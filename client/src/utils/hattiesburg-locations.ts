@@ -9,6 +9,16 @@ export const BILOXI_CENTER = {
   lng: -88.8853
 };
 
+export const NASHVILLE_CENTER = {
+  lat: 36.1627,
+  lng: -86.7816
+};
+
+export const MEMPHIS_CENTER = {
+  lat: 35.1495,
+  lng: -90.0490
+};
+
 export const HATTIESBURG_LOCATIONS = [
   {
     name: "University of Southern Mississippi",
@@ -147,8 +157,147 @@ export const BILOXI_LOCATIONS = [
   }
 ];
 
+export const TENNESSEE_LOCATIONS = [
+  // Nashville Area
+  {
+    name: "Downtown Nashville",
+    address: "301 Broadway, Nashville, TN 37201",
+    coordinates: { lat: 36.1627, lng: -86.7816 },
+    type: "downtown"
+  },
+  {
+    name: "Nashville International Airport",
+    address: "1 Terminal Dr, Nashville, TN 37214",
+    coordinates: { lat: 36.1245, lng: -86.6782 },
+    type: "airport"
+  },
+  {
+    name: "Music Row",
+    address: "1400 16th Ave S, Nashville, TN 37212",
+    coordinates: { lat: 36.1467, lng: -86.7972 },
+    type: "entertainment"
+  },
+  {
+    name: "Vanderbilt University",
+    address: "2201 West End Ave, Nashville, TN 37235",
+    coordinates: { lat: 36.1447, lng: -86.8027 },
+    type: "university"
+  },
+  {
+    name: "Grand Ole Opry",
+    address: "2804 Opryland Dr, Nashville, TN 37214",
+    coordinates: { lat: 36.2067, lng: -86.6922 },
+    type: "entertainment"
+  },
+  {
+    name: "Country Music Hall of Fame",
+    address: "222 Rep John Lewis Way S, Nashville, TN 37203",
+    coordinates: { lat: 36.1581, lng: -86.7761 },
+    type: "landmark"
+  },
+  {
+    name: "The Gulch",
+    address: "400 11th Ave S, Nashville, TN 37203",
+    coordinates: { lat: 36.1506, lng: -86.7853 },
+    type: "downtown"
+  },
+  {
+    name: "Nissan Stadium",
+    address: "1 Titans Way, Nashville, TN 37213",
+    coordinates: { lat: 36.1665, lng: -86.7713 },
+    type: "stadium"
+  },
+  // Memphis Area
+  {
+    name: "Downtown Memphis",
+    address: "1 Beale St, Memphis, TN 38103",
+    coordinates: { lat: 35.1495, lng: -90.0490 },
+    type: "downtown"
+  },
+  {
+    name: "Memphis International Airport",
+    address: "2491 Winchester Rd, Memphis, TN 38116",
+    coordinates: { lat: 35.0424, lng: -89.9767 },
+    type: "airport"
+  },
+  {
+    name: "Beale Street",
+    address: "143 Beale St, Memphis, TN 38103",
+    coordinates: { lat: 35.1398, lng: -90.0513 },
+    type: "entertainment"
+  },
+  {
+    name: "Graceland",
+    address: "3734 Elvis Presley Blvd, Memphis, TN 38116",
+    coordinates: { lat: 35.0427, lng: -90.0260 },
+    type: "landmark"
+  },
+  {
+    name: "University of Memphis",
+    address: "3720 Alumni Ave, Memphis, TN 38152",
+    coordinates: { lat: 35.1189, lng: -89.9367 },
+    type: "university"
+  },
+  {
+    name: "FedExForum",
+    address: "191 Beale St, Memphis, TN 38103",
+    coordinates: { lat: 35.1383, lng: -90.0505 },
+    type: "stadium"
+  },
+  // Knoxville Area
+  {
+    name: "Downtown Knoxville",
+    address: "400 Main St, Knoxville, TN 37902",
+    coordinates: { lat: 35.9606, lng: -83.9207 },
+    type: "downtown"
+  },
+  {
+    name: "McGhee Tyson Airport",
+    address: "2055 Alcoa Hwy, Alcoa, TN 37701",
+    coordinates: { lat: 35.8111, lng: -83.9939 },
+    type: "airport"
+  },
+  {
+    name: "University of Tennessee",
+    address: "1331 Circle Park Dr, Knoxville, TN 37996",
+    coordinates: { lat: 35.9544, lng: -83.9295 },
+    type: "university"
+  },
+  {
+    name: "Neyland Stadium",
+    address: "1235 Phillip Fulmer Way, Knoxville, TN 37996",
+    coordinates: { lat: 35.9550, lng: -83.9225 },
+    type: "stadium"
+  },
+  // Chattanooga Area
+  {
+    name: "Downtown Chattanooga",
+    address: "101 Broad St, Chattanooga, TN 37402",
+    coordinates: { lat: 35.0456, lng: -85.3097 },
+    type: "downtown"
+  },
+  {
+    name: "Chattanooga Metropolitan Airport",
+    address: "1001 Airport Rd, Chattanooga, TN 37421",
+    coordinates: { lat: 35.0353, lng: -85.2036 },
+    type: "airport"
+  },
+  {
+    name: "Rock City",
+    address: "1400 Patten Rd, Lookout Mountain, GA 30750",
+    coordinates: { lat: 34.9722, lng: -85.3489 },
+    type: "landmark"
+  },
+  {
+    name: "Tennessee Aquarium",
+    address: "1 Broad St, Chattanooga, TN 37402",
+    coordinates: { lat: 35.0456, lng: -85.3097 },
+    type: "landmark"
+  }
+];
+
 // Combined locations for search
-export const ALL_LOCATIONS = [...HATTIESBURG_LOCATIONS, ...BILOXI_LOCATIONS];
+export const ALL_LOCATIONS = [...HATTIESBURG_LOCATIONS, ...BILOXI_LOCATIONS, ...TENNESSEE_LOCATIONS];
 
 export const getLocationByName = (name: string) => {
   return ALL_LOCATIONS.find(location => 
