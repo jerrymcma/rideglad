@@ -161,27 +161,27 @@ export default function Home() {
         </div>
 
         {/* Location Controls */}
-        <div className="absolute right-4 bottom-32 space-y-3">
+        <div className="absolute right-0 top-24 space-y-1">
           <Button
             size="icon"
-            className="w-12 h-12 bg-white rounded-full shadow-lg"
+            className="w-8 h-8 bg-white rounded-full shadow-lg"
             data-testid="button-locate"
           >
-            <Locate className="h-5 w-5 text-brand-green" />
+            <Locate className="h-4 w-4 text-brand-green" />
           </Button>
           <Button
             size="icon"
-            className="w-12 h-12 bg-white rounded-full shadow-lg"
+            className="w-8 h-8 bg-white rounded-full shadow-lg"
             data-testid="button-zoom-in"
           >
-            <Plus className="h-5 w-5 text-brand-dark" />
+            <Plus className="h-4 w-4 text-brand-dark" />
           </Button>
           <Button
             size="icon"
-            className="w-12 h-12 bg-white rounded-full shadow-lg"
+            className="w-8 h-8 bg-white rounded-full shadow-lg"
             data-testid="button-zoom-out"
           >
-            <Minus className="h-5 w-5 text-brand-dark" />
+            <Minus className="h-4 w-4 text-brand-dark" />
           </Button>
         </div>
       </div>
