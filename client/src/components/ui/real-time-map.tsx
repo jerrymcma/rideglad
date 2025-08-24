@@ -364,70 +364,64 @@ export default function RealTimeMap({
       </div>
 
 
-      {/* Compact Real-time Info Panel */}
-      <div className="absolute bottom-4 left-4 right-20 bg-white/95 backdrop-blur-sm rounded-lg border shadow-lg p-3">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <Zap size={14} className="text-green-500" />
-            <span className="text-xs font-medium text-gray-900">Live Tracking</span>
-            <div className={`w-1.5 h-1.5 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
-          </div>
+      {/* Minimal Floating Info Panel */}
+      <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md border shadow-md p-2 max-w-[160px]">
+        <div className="flex items-center gap-1 mb-1">
+          <Zap size={10} className="text-green-500" />
+          <span className="text-xs font-medium text-gray-900">Live</span>
+          <div className={`w-1 h-1 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
           {estimatedArrival && (
-            <div className="flex items-center gap-1 bg-green-100 px-1.5 py-0.5 rounded text-xs">
-              <Clock size={12} className="text-green-600" />
+            <div className="ml-auto bg-green-100 px-1 py-0.5 rounded text-xs">
               <span className="font-medium text-green-700">{estimatedArrival}m</span>
             </div>
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-2 text-xs mb-2">
+        <div className="grid grid-cols-3 gap-1 text-xs">
           <div className="text-center">
-            <div className="text-gray-500 text-xs">GPS</div>
-            <div className="font-medium flex items-center justify-center gap-1">
+            <div className="text-gray-500" style={{fontSize: '10px'}}>GPS</div>
+            <div className="font-medium" style={{fontSize: '10px'}}>
               {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : '...'}
-              {accuracy !== null && accuracy !== undefined && accuracy < 10 && <div className="w-1 h-1 bg-green-500 rounded-full"></div>}
             </div>
           </div>
           <div className="text-center">
-            <div className="text-gray-500 text-xs">Traffic</div>
-            <div className={`font-medium capitalize text-xs ${
+            <div className="text-gray-500" style={{fontSize: '10px'}}>Traffic</div>
+            <div className={`font-medium capitalize ${
               trafficLevel === 'high' ? 'text-red-600' :
               trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
-            }`}>
+            }`} style={{fontSize: '10px'}}>
               {trafficLevel}
             </div>
           </div>
           <div className="text-center">
-            <div className="text-gray-500 text-xs">Speed</div>
-            <div className="font-medium text-xs">
+            <div className="text-gray-500" style={{fontSize: '10px'}}>Speed</div>
+            <div className="font-medium" style={{fontSize: '10px'}}>
               {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)}` : '--'}
             </div>
           </div>
         </div>
-
-        {/* Compact Driver Contact Actions */}
-        {driverLocation && onDriverContact && (
-          <div className="flex gap-1.5 pt-2 border-t">
-            <Button
-              onClick={() => onDriverContact?.('call')}
-              size="sm"
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs h-7"
-            >
-              <Phone size={12} className="mr-1" />
-              Call
-            </Button>
-            <Button
-              onClick={() => onDriverContact?.('message')}
-              size="sm"
-              variant="outline"
-              className="flex-1 text-xs h-7"
-            >
-              <MessageCircle size={12} className="mr-1" />
-              Message
-            </Button>
-          </div>
-        )}
       </div>
+
+      {/* Floating Driver Contact Buttons */}
+      {driverLocation && onDriverContact && (
+        <div className="absolute bottom-2 right-2 flex gap-1">
+          <Button
+            onClick={() => onDriverContact?.('call')}
+            size="sm"
+            className="bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 p-0"
+          >
+            <Phone size={14} />
+          </Button>
+          <Button
+            onClick={() => onDriverContact?.('message')}
+            size="sm"
+            variant="outline"
+            className="w-8 h-8 p-0"
+          >
+            <MessageCircle size={14} />
+          </Button>
+        </div>
+      )}
 
     </div>
   );
