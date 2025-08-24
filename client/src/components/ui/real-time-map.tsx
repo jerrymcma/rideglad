@@ -402,26 +402,6 @@ export default function RealTimeMap({
         </div>
       </div>
 
-      {/* Floating Driver Contact Buttons */}
-      {driverLocation && onDriverContact && (
-        <div className="absolute bottom-2 right-2 flex gap-1">
-          <Button
-            onClick={() => onDriverContact?.('call')}
-            size="sm"
-            className="bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 p-0"
-          >
-            <Phone size={14} />
-          </Button>
-          <Button
-            onClick={() => onDriverContact?.('message')}
-            size="sm"
-            variant="outline"
-            className="w-8 h-8 p-0"
-          >
-            <MessageCircle size={14} />
-          </Button>
-        </div>
-      )}
 
     </div>
   );
