@@ -367,9 +367,8 @@ export default function RealTimeMap({
         </button>
       </div>
 
-
-      {/* Minimal Floating Info Panel */}
-      <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-sm rounded-br-md border shadow-md p-2 max-w-[160px]">
+      {/* Info Panel - Below Map */}
+      <div className="absolute bottom-0 left-0 transform translate-y-full bg-white/90 backdrop-blur-sm rounded-md border shadow-md p-2 max-w-[160px] mt-2">
         <div className="flex items-center gap-1 mb-1">
           <Zap size={10} className="text-green-500" />
           <span className="text-xs font-medium text-gray-900">Live</span>
