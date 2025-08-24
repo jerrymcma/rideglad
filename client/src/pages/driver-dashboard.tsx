@@ -12,6 +12,7 @@ import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { ArrowLeft, Car, DollarSign, Clock, Star, MapPin, Navigation, Phone, MessageCircle, User as UserIcon, Heart } from "lucide-react";
 import { useLocation } from "wouter";
+import RealTimeMap from "@/components/ui/real-time-map";
 import type { Trip, User } from "@shared/schema";
 
 export default function DriverDashboard() {
@@ -272,6 +273,33 @@ export default function DriverDashboard() {
                   <MessageCircle size={16} className="mr-1" />
                   Message
                 </Button>
+              </div>
+
+              {/* Driver Trip Map */}
+              <div className="pt-4">
+                <h4 className="text-sm font-medium text-green-700 mb-2">Trip Route</h4>
+                <div className="w-full h-40 rounded-lg overflow-hidden border-2 border-green-200">
+                  <RealTimeMap
+                    className="w-full h-full"
+                    userLocation={activeTrip ? { lat: activeTrip.pickupLat, lng: activeTrip.pickupLng } : undefined}
+                    destination={activeTrip ? { lat: activeTrip.destinationLat, lng: activeTrip.destinationLng } : undefined}
+                    driverLocation={{
+                      lat: activeTrip?.pickupLat || 31.3271,
+                      lng: activeTrip?.pickupLng || -89.2903,
+                      speed: 25,
+                      heading: 90
+                    }}
+                    showRoute={true}
+                    estimatedArrival={5}
+                    onDriverContact={(type) => {
+                      if (type === 'call') {
+                        console.log('Calling rider...');
+                      } else if (type === 'message') {
+                        console.log('Messaging rider...');
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
