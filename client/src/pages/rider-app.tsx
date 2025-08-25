@@ -1180,7 +1180,7 @@ export default function RiderApp() {
             showTraffic={true}
             showRoute={true}
             mapStyle="streets"
-            className="w-full h-96"
+            className="w-full h-[28rem]"
             onDriverContact={(type) => {
               if (type === 'call') {
                 toast({ title: "Calling driver...", description: "Connecting you to John" });
