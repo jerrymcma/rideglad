@@ -16,17 +16,32 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.rideshare.app"
+      "bundleIdentifier": "com.rideshare.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "ride needs location access to show your current position and provide accurate pickup services.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "ride needs location access to track your trip and provide real-time navigation."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.rideshare.app"
+      "package": "com.rideshare.app",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "rideshare-premium-app"
+      }
     }
   }
 }
