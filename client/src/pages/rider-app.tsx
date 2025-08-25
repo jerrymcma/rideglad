@@ -1616,7 +1616,7 @@ export default function RiderApp() {
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Duration:</span>
-                <span className="text-sm">{currentTrip.duration || '18'} minutes</span>
+                <span className="text-sm">{currentTrip.duration || '18'} min</span>
               </div>
             </CardContent>
           </Card>
