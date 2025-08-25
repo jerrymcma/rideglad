@@ -1593,7 +1593,7 @@ export default function RiderApp() {
   );
 
   const renderRatingStep = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <div className="text-center space-y-3">
         <h2 className="font-bold text-[26px] text-[#16c4a3]">Trip Completed!</h2>
         <div className="bg-gray-100 border border-gray-200 rounded-lg p-4 space-y-2 mx-4">
