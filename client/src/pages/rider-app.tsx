@@ -1606,17 +1606,18 @@ export default function RiderApp() {
         <div className="flex justify-center">
           <Card className="max-w-md">
             <CardContent className="p-8 space-y-4">
+              <h3 className="text-lg font-bold text-blue-600 text-center mb-2">Trip Details</h3>
               <div className="flex justify-between">
-                <span className="text-sm text-gray-600">Trip fare:</span>
-                <span className="text-sm font-bold text-brand-green">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
+                <span className="text-sm text-gray-600">Fare:</span>
+                <span className="text-sm font-bold text-brand-green ml-4">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Distance:</span>
-                <span className="text-sm">{currentTrip.distance ? (parseFloat(currentTrip.distance.toString()) * 0.621371).toFixed(1) : '2.0'} mi</span>
+                <span className="text-sm ml-4">{currentTrip.distance ? (parseFloat(currentTrip.distance.toString()) * 0.621371).toFixed(1) : '2.0'} mi</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Duration:</span>
-                <span className="text-sm">{currentTrip.duration || '18'} min</span>
+                <span className="text-sm ml-4">{currentTrip.duration || '18'} min</span>
               </div>
             </CardContent>
           </Card>
