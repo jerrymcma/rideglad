@@ -1604,8 +1604,8 @@ export default function RiderApp() {
 
       {currentTrip && (
         <div className="flex justify-center">
-          <Card className="max-w-sm">
-            <CardContent className="p-6 space-y-3">
+          <Card className="max-w-md">
+            <CardContent className="p-8 space-y-4">
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Trip fare:</span>
                 <span className="text-sm font-bold text-brand-green">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
