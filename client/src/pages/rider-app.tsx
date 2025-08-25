@@ -1605,7 +1605,7 @@ export default function RiderApp() {
       {currentTrip && (
         <div className="flex justify-center">
           <Card className="max-w-md">
-            <CardContent className="px-8 pt-4 pb-8 space-y-4">
+            <CardContent className="px-8 pt-4 pb-4 space-y-4">
               <h3 className="text-lg font-bold text-blue-600 text-center mb-2">Trip Details</h3>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Fare:</span>
