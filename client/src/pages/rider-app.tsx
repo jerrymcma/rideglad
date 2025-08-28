@@ -1130,7 +1130,6 @@ export default function RiderApp() {
               data-testid="button-request-ride"
             >
               {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
-              <Car className="w-8 h-8 ml-2" />
             </Button>
           </div>
         )}
