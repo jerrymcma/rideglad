@@ -96,6 +96,28 @@
   animation: subtle-pulse 1.5s ease-in-out infinite;
 }
 
+@keyframes car-bob {
+  0% { 
+    transform: translateY(0px);
+  }
+  25% { 
+    transform: translateY(-2px);
+  }
+  50% { 
+    transform: translateY(0px);
+  }
+  75% { 
+    transform: translateY(-1px);
+  }
+  100% { 
+    transform: translateY(0px);
+  }
+}
+
+.car-bob {
+  animation: car-bob 2s ease-in-out infinite;
+}
+
 /* Heart shape CSS */
 .heart-shape {
   position: relative;
