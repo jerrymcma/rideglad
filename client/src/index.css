@@ -193,6 +193,67 @@
   transform: rotate(-45deg);
 }
 
+/* Heart shaped button */
+.heart-button {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.heart-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 256px;
+  height: 230px;
+  background: var(--brand-green);
+  border-radius: 50px 50px 0 0;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: -1;
+}
+
+.heart-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 256px;
+  height: 230px;
+  background: var(--brand-green);
+  border-radius: 50px 50px 50px 0;
+  transform: translate(-20%, -50%) rotate(-45deg);
+  z-index: -1;
+}
+
+.heart-button:hover::before,
+.heart-button:hover::after {
+  background: rgb(22 163 74);
+}
+
+.heart-button:disabled::before,
+.heart-button:disabled::after {
+  background: rgb(156 163 175);
+}
+
+.heart-button .heart-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px;
+  height: 56px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  padding: 16px 32px;
+}
+
 .heart-shape:before,
 .heart-shape:after {
   content: '';
