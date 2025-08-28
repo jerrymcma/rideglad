@@ -925,7 +925,7 @@ export default function RiderApp() {
 
       <form onSubmit={handleRequestRide} className="space-y-4">
         <div className="space-y-2 relative">
-          <Label htmlFor="pickup" className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-600 text-base flex items-center gap-2 font-bold">
+          <Label htmlFor="pickup" className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-600 text-base flex items-center gap-2 font-medium">
             <MapPin size={16} />
             Pickup Location
           </Label>
