@@ -1129,8 +1129,8 @@ export default function RiderApp() {
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-14 px-8 w-64 bg-brand-green text-white py-4 rounded-2xl hover:bg-green-600 text-[20px] font-bold very-subtle-pulse"
               data-testid="button-request-ride"
             >
-              <Car className="w-6 h-6 mr-2" />
               {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
+              <Car className="w-8 h-8 ml-2" />
             </Button>
           </div>
         )}
