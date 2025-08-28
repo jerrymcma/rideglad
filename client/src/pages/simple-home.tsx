@@ -132,7 +132,7 @@ export default function SimpleHome() {
                 <div className="flex justify-center mb-1 text-[#02140f]">
                   <CreditCard size={32} className="text-[#1ea858]" />
                 </div>
-                <h3 className="font-semibold text-[16px] text-[#1ea858]">Wallet</h3>
+                <h3 className="font-semibold text-[16px] text-[#09754e]">Wallet</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Manage money</p>
@@ -193,7 +193,6 @@ export default function SimpleHome() {
         <div className="space-y-4 pt-4">
         </div>
       </div>
-      
       {/* Back Button - positioned at very left edge, aligned with video bottom */}
       <div className="absolute bottom-16 left-0">
         <Button
