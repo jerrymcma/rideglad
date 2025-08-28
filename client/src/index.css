@@ -96,6 +96,29 @@
   animation: subtle-pulse 1.5s ease-in-out infinite;
 }
 
+/* Gentle heartbeat animation for request ride button */
+@keyframes gentle-heartbeat {
+  0% { 
+    transform: scale(1);
+  }
+  25% { 
+    transform: scale(1.01);
+  }
+  50% { 
+    transform: scale(1);
+  }
+  75% { 
+    transform: scale(1.005);
+  }
+  100% { 
+    transform: scale(1);
+  }
+}
+
+.gentle-heartbeat {
+  animation: gentle-heartbeat 2.5s ease-in-out infinite;
+}
+
 @keyframes car-bob {
   0% { 
     transform: translateX(-50%) translateY(0px);

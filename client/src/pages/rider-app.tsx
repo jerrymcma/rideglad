@@ -1126,10 +1126,10 @@ export default function RiderApp() {
               type="button"
               onClick={handleRequestRide}
               disabled={requestRideMutation.isPending}
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-14 px-8 w-64 bg-brand-green text-white py-4 rounded-2xl hover:bg-green-600 text-[20px] font-bold subtle-pulse"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-14 px-8 w-64 bg-brand-green text-white py-4 rounded-2xl hover:bg-green-600 text-[20px] font-bold gentle-heartbeat"
               data-testid="button-request-ride"
             >
-              <Heart className="w-5 h-5 mr-2 fill-current" />
+              <Heart className="w-5 h-5 mr-2 text-white fill-white" />
               {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
             </Button>
           </div>
