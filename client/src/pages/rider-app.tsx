@@ -1023,7 +1023,7 @@ export default function RiderApp() {
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
                 <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-                  <Badge className="text-xs bg-white border-2 border-green-500 text-green-600 px-2 py-1">{(user as any)?.firstName || 'You'}</Badge>
+                  <Badge className="text-xs bg-white border-2 border-green-500 text-green-600 px-2 py-1">You</Badge>
                 </div>
               </div>
               
