@@ -1100,7 +1100,7 @@ export default function RiderApp() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-lg text-brand-green">$16.80</p>
+                          <p className="font-bold text-sm text-brand-green">$16.80</p>
                         </div>
                       </div>
                     </CardContent>
