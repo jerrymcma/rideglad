@@ -1143,7 +1143,7 @@ export default function RiderApp() {
                       className="text-green-500 fill-green-500 hover:text-green-600 hover:fill-green-600 transition-colors duration-500 drop-shadow-md"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Car size={44} className="text-white transform -translate-y-1" />
+                      <Car size={40} className="text-white transform -translate-y-1" />
                     </div>
                   </div>
                 )}
