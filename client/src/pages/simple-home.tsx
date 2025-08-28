@@ -140,7 +140,7 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#87ceeb] rounded-lg h-full bg-white"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#7bb8f0] rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -151,9 +151,9 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <Satellite size={36} className="text-[#87ceeb]" />
+                  <Satellite size={36} className="text-[#7bb8f0]" />
                 </div>
-                <h3 className="text-[#87ceeb] text-[15px] font-semibold">Advanced GPS</h3>
+                <h3 className="text-[#7bb8f0] text-[15px] font-semibold">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Live Satellites </p>
