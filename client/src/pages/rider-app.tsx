@@ -988,13 +988,14 @@ export default function RiderApp() {
           )}
         </div>
 
-        {/* Enter button to show driver options when both addresses are filled */}
-        {bookingForm.pickupAddress && bookingForm.destinationAddress && !showDriverOptions && (
+        {/* Enter button to show driver options */}
+        {!showDriverOptions && (
           <div className="flex justify-center pt-4">
             <Button
               type="button"
               onClick={() => setShowDriverOptions(true)}
-              className="bg-blue-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-blue-700 text-[18px] min-w-[160px]"
+              disabled={!bookingForm.pickupAddress || !bookingForm.destinationAddress}
+              className="bg-blue-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-[18px] min-w-[160px]"
               data-testid="button-enter-addresses"
             >
               Enter
