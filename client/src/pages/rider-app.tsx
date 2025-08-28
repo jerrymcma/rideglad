@@ -998,7 +998,7 @@ export default function RiderApp() {
               className="bg-blue-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-[18px] min-w-[160px]"
               data-testid="button-enter-addresses"
             >
-              Enter
+              Next
             </Button>
           </div>
         )}
