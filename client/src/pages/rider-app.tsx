@@ -917,7 +917,7 @@ export default function RiderApp() {
   };
 
   const renderBookingStep = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="text-center space-y-1">
         <h1 className="text-[#285aeb] font-black text-[30px]">Book a ride</h1>
         <p className="text-gray-600 mt-[1px] mb-[1px]">Where would you like to go?</p>
@@ -1699,7 +1699,7 @@ export default function RiderApp() {
       <div className="p-6 space-y-6">
         {/* Header */}
         {currentStep === 'booking' && (
-          <div className="space-y-4">
+          <div className="space-y-2">
             {/* Back button */}
             <div className="flex items-center">
               <Button
