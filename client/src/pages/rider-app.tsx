@@ -1022,7 +1022,9 @@ export default function RiderApp() {
               {/* Your Location Overlay */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
-                <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-600">You</span>
+                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+                  <Badge className="text-xs bg-white border-2 border-green-500 text-green-600 px-2 py-1">{(user as any)?.firstName || 'You'}</Badge>
+                </div>
               </div>
               
               {/* Driver Locations Overlay */}
@@ -1060,7 +1062,7 @@ export default function RiderApp() {
               <Label className="text-blue-600 font-medium text-base flex items-center gap-2 py-2">
                 <User size={20} />
                 Choose your ride {activeDrivers && Array.isArray(activeDrivers) && activeDrivers.length > 0 ? (
-                  <Badge variant="secondary" className="ml-2">{activeDrivers.length} online</Badge>
+                  <Badge className="ml-2 bg-white border-2 border-green-500 text-green-600 hover:bg-green-50">{activeDrivers.length} online</Badge>
                 ) : null}
               </Label>
               
