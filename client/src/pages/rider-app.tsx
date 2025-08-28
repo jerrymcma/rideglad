@@ -1716,7 +1716,7 @@ export default function RiderApp() {
             
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-[19px] font-bold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
+                <h1 className="text-[19px] font-semibold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
                 <p className="text-gray-600 text-[15px] mt-[2px] mb-[2px]">Ready for your next trip</p>
               </div>
             </div>
@@ -1744,7 +1744,6 @@ export default function RiderApp() {
         {currentStep === 'inprogress' && renderInProgressStep()}
         {currentStep === 'rating' && renderRatingStep()}
       </div>
-      
       {/* Fixed Back Button - Bottom Left */}
       <Button
         onClick={() => setLocation('/')}
