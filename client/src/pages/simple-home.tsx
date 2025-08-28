@@ -100,7 +100,7 @@ export default function SimpleHome() {
                 </div>
                 <h3 className="text-blue-600 text-[16px] font-semibold">Drive + Earn</h3>
               </div>
-              <div className="text-center py-1 px-6 pt-[2px] pb-[2px]">
+              <div className="text-center py-1 px-6 pt-[3px] pb-[3px]">
                 <p className="text-gray-700 text-[14px]">Make money</p>
               </div>
             </div>
