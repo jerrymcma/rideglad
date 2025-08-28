@@ -115,7 +115,7 @@
 }
 
 .car-bob {
-  animation: car-bob 2s ease-in-out infinite;
+  animation: car-bob 1.2s ease-in-out infinite;
 }
 
 /* Heart shape CSS */
