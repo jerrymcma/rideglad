@@ -994,7 +994,7 @@ export default function RiderApp() {
             <Button
               type="button"
               onClick={() => setShowDriverOptions(true)}
-              className="bg-blue-600 text-white px-8 py-2 rounded-lg font-semibold hover:bg-blue-700"
+              className="bg-blue-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-blue-700 text-[18px] min-w-[160px]"
               data-testid="button-enter-addresses"
             >
               Enter
