@@ -1148,7 +1148,7 @@ export default function RiderApp() {
                   </div>
                 )}
               </button>
-              <p className="text-sm font-medium text-green-500">
+              <p className="font-medium text-green-500 text-[15px]">
                 {requestRideMutation.isPending ? 'REQUESTING...' : 'REQUEST RIDE'}
               </p>
             </div>
