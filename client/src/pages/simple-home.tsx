@@ -94,7 +94,7 @@ export default function SimpleHome() {
               }}
               data-testid="card-driver-dashboard"
             >
-              <div className="text-center px-6 pt-[4px] pb-[4px]">
+              <div className="text-center px-6 pt-[5px] pb-[5px]">
                 <div className="flex justify-center mb-1">
                   <Car size={40} className="text-blue-600" />
                 </div>
