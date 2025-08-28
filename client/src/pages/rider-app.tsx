@@ -957,7 +957,7 @@ export default function RiderApp() {
         </div>
 
         <div className="space-y-2 relative">
-          <Label htmlFor="destination" className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-600 text-base flex items-center gap-2 font-bold">
+          <Label htmlFor="destination" className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-600 text-base flex items-center gap-2 font-medium">
             <Navigation size={16} />
             Destination
           </Label>
