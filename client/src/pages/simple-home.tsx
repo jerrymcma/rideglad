@@ -109,7 +109,7 @@ export default function SimpleHome() {
           {/* Bottom Row */}
           <div className="grid grid-cols-2 gap-3">
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#09754e] rounded-lg h-full bg-white"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#16a34a] rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -129,10 +129,10 @@ export default function SimpleHome() {
               data-testid="card-payment-methods"
             >
               <div className="text-center pb-0 pt-3 px-6">
-                <div className="flex justify-center mb-1 text-[#09754e]">
-                  <CreditCard size={32} className="text-[#09754e]" />
+                <div className="flex justify-center mb-1 text-[#16a34a]">
+                  <CreditCard size={32} className="text-[#16a34a]" />
                 </div>
-                <h3 className="font-semibold text-[16px] text-[#09754e]">Wallet</h3>
+                <h3 className="font-semibold text-[16px] text-[#16a34a]">Wallet</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Manage money</p>
