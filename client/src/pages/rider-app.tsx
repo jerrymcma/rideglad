@@ -1122,17 +1122,36 @@ export default function RiderApp() {
         {/* Show request button only when driver options are shown */}
         {showDriverOptions && (
           <div className="flex justify-center">
-            <button
-              type="button"
-              onClick={handleRequestRide}
-              disabled={requestRideMutation.isPending}
-              className="heart-button very-subtle-pulse focus:outline-none"
-              data-testid="button-request-ride"
-            >
-              <div className="heart-content">
-                {requestRideMutation.isPending ? 'Requesting...' : 'Request ride'}
-              </div>
-            </button>
+            <div className="flex flex-col items-center gap-2">
+              <button
+                type="button"
+                onClick={handleRequestRide}
+                disabled={requestRideMutation.isPending}
+                className={`relative flex items-center justify-center cursor-pointer transition-all duration-500 focus:outline-none ${
+                  !requestRideMutation.isPending ? 'very-subtle-pulse' : ''
+                }`}
+                data-testid="button-request-ride"
+              >
+                {requestRideMutation.isPending ? (
+                  <div className="w-16 h-16 flex items-center justify-center">
+                    <div className="w-6 h-6 border-3 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <div className="relative flex items-center justify-center">
+                    <Heart 
+                      size={64} 
+                      className="text-green-500 fill-green-500 hover:text-green-600 hover:fill-green-600 transition-colors duration-500 drop-shadow-md"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Car size={28} className="text-white transform -translate-y-1" />
+                    </div>
+                  </div>
+                )}
+              </button>
+              <p className="text-sm font-medium text-green-700">
+                {requestRideMutation.isPending ? 'REQUESTING...' : 'REQUEST RIDE'}
+              </p>
+            </div>
           </div>
         )}
       </form>
