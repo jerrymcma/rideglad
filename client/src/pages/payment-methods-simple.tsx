@@ -17,7 +17,7 @@ export default function PaymentMethodsSimple() {
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="border-b bg-white">
-          <div className="text-center py-6">
+          <div className="text-center pt-4 pb-4">
             <h1 className="font-semibold text-[25px] text-[#18a15d]">Wallet</h1>
           </div>
         </div>
