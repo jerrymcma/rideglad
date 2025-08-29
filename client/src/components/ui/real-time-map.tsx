@@ -229,7 +229,7 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: userLocation.latitude, lng: userLocation.longitude },
       map,
-      title: 'Your Location',
+      title: 'You',
       icon: {
         path: (window as any).google.maps.SymbolPath.CIRCLE,
         scale: 8,
@@ -255,7 +255,7 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: driverLocation.latitude, lng: driverLocation.longitude },
       map,
-      title: 'Driver Location',
+      title: 'John',
       icon: {
         url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M13,20L11,20V18L13,18M19,10V12A2,2 0 0,1 17,14H15V22H9V14H7A2,2 0 0,1 5,12V10A2,2 0 0,1 7,8H17A2,2 0 0,1 19,10Z"/%3E%3C/svg%3E',
         scaledSize: new (window as any).google.maps.Size(32, 32)
