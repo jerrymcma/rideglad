@@ -4,6 +4,11 @@ import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertTripSchema, insertVehicleSchema, insertRatingSchema, insertPaymentMethodSchema } from "@shared/schema";
 import { z } from "zod";
+import {
+  ObjectStorageService,
+  ObjectNotFoundError,
+} from "./objectStorage";
+import { ObjectPermission } from "./objectAcl";
 
 // Stripe setup - will be initialized when keys are provided
 let stripe: any = null;
@@ -83,6 +88,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating user profile:", error);
       res.status(500).json({ message: "Failed to update profile" });
+    }
+  });
+
+  // Profile picture upload endpoints
+  app.post('/api/profile/upload-url', isAuthenticated, async (req, res) => {
+    try {
+      const objectStorageService = new ObjectStorageService();
+      const uploadURL = await objectStorageService.getObjectEntityUploadURL();
+      res.json({ uploadURL });
+    } catch (error) {
+      console.error("Error getting profile picture upload URL:", error);
+      res.status(500).json({ error: "Failed to get upload URL" });
+    }
+  });
+
+  app.patch('/api/profile/picture', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { profilePictureURL } = req.body;
+
+      if (!profilePictureURL) {
+        return res.status(400).json({ error: "profilePictureURL is required" });
+      }
+
+      const objectStorageService = new ObjectStorageService();
+      
+      // Set ACL policy for the profile picture (public visibility)
+      const objectPath = await objectStorageService.trySetObjectEntityAclPolicy(
+        profilePictureURL,
+        {
+          owner: userId,
+          visibility: "public", // Profile pictures are public
+        }
+      );
+
+      // Update user's profile picture URL in database
+      const currentUser = await storage.getUser(userId);
+      if (!currentUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const updatedUser = await storage.upsertUser({
+        ...currentUser,
+        profileImageUrl: objectPath,
+      });
+
+      res.json({ user: updatedUser, objectPath });
+    } catch (error) {
+      console.error("Error updating profile picture:", error);
+      res.status(500).json({ error: "Failed to update profile picture" });
+    }
+  });
+
+  // Serve profile pictures
+  app.get("/objects/:objectPath(*)", async (req, res) => {
+    const objectStorageService = new ObjectStorageService();
+    try {
+      const objectFile = await objectStorageService.getObjectEntityFile(
+        req.path,
+      );
+      const canAccess = await objectStorageService.canAccessObjectEntity({
+        objectFile,
+        requestedPermission: ObjectPermission.READ,
+      });
+      if (!canAccess) {
+        return res.sendStatus(404); // Don't reveal existence
+      }
+      objectStorageService.downloadObject(objectFile, res);
+    } catch (error) {
+      console.error("Error serving profile picture:", error);
+      if (error instanceof ObjectNotFoundError) {
+        return res.sendStatus(404);
+      }
+      return res.sendStatus(500);
     }
   });
 

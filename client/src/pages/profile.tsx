@@ -14,6 +14,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { ArrowLeft, User, Camera, Save, Edit3 } from "lucide-react";
 import { useLocation } from "wouter";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { ObjectUploader } from "@/components/ui/object-uploader";
+import type { UploadResult } from "@uppy/core";
 
 const profileUpdateSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -64,19 +66,47 @@ export default function Profile() {
     },
   });
 
-  const handleProfileImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setProfileImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
+  const profilePictureUploadMutation = useMutation({
+    mutationFn: async (profilePictureURL: string) => {
+      return await apiRequest('PATCH', '/api/profile/picture', { profilePictureURL });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/auth/user'] });
       toast({
-        title: "Profile Picture",
-        description: "Profile picture upload feature coming soon!",
+        title: "Profile Picture Updated",
+        description: "Your profile picture has been successfully updated.",
       });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update profile picture. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleGetUploadParameters = async () => {
+    const response = await apiRequest('POST', '/api/profile/upload-url');
+    return {
+      method: 'PUT' as const,
+      url: response.uploadURL,
+    };
+  };
+
+  const handleProfilePictureComplete = (result: UploadResult<Record<string, unknown>, Record<string, unknown>>) => {
+    if (result.successful && result.successful.length > 0) {
+      const uploadedFile = result.successful[0];
+      profilePictureUploadMutation.mutate(uploadedFile.uploadURL);
     }
+  };
+
+  // Get the profile picture URL for display
+  const getProfilePictureUrl = () => {
+    if (user?.profileImageUrl && user.profileImageUrl.startsWith('/objects/')) {
+      return user.profileImageUrl;
+    }
+    return user?.profileImageUrl || null;
   };
 
   const onSubmit = (data: ProfileUpdateData) => {
@@ -117,9 +147,9 @@ export default function Profile() {
             <div className="text-center space-y-4">
               <div className="relative">
                 <div className="w-24 h-24 mx-auto rounded-full bg-[#6b46c1] flex items-center justify-center overflow-hidden">
-                  {profileImage ? (
+                  {getProfilePictureUrl() ? (
                     <img 
-                      src={profileImage} 
+                      src={getProfilePictureUrl() || ''} 
                       alt="Profile" 
                       className="w-full h-full object-cover"
                     />
@@ -128,15 +158,17 @@ export default function Profile() {
                   )}
                 </div>
                 {isEditing && (
-                  <label className="absolute bottom-0 right-0 bg-white rounded-full p-2 border-2 border-[#6b46c1] cursor-pointer hover:bg-gray-50 transition-colors">
-                    <Camera size={16} className="text-[#6b46c1]" />
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleProfileImageUpload}
-                      className="hidden"
-                    />
-                  </label>
+                  <div className="absolute bottom-0 right-0">
+                    <ObjectUploader
+                      maxNumberOfFiles={1}
+                      maxFileSize={5242880} // 5MB limit for profile pictures
+                      onGetUploadParameters={handleGetUploadParameters}
+                      onComplete={handleProfilePictureComplete}
+                      buttonClassName="bg-white rounded-full p-2 border-2 border-[#6b46c1] hover:bg-gray-50 transition-colors"
+                    >
+                      <Camera size={16} className="text-[#6b46c1]" />
+                    </ObjectUploader>
+                  </div>
                 )}
               </div>
               <div>

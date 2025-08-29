@@ -151,7 +151,17 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <UserCog size={32} className="text-[#6b46c1]" />
+                  <div className="w-8 h-8 rounded-full bg-[#6b46c1] flex items-center justify-center overflow-hidden">
+                    {(user as any)?.profileImageUrl ? (
+                      <img 
+                        src={(user as any).profileImageUrl} 
+                        alt="Profile" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <UserCog size={20} className="text-white" />
+                    )}
+                  </div>
                 </div>
                 <h3 className="font-semibold text-[16px] text-[#6b46c1]">Account</h3>
               </div>

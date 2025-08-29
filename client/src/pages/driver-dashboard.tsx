@@ -338,7 +338,9 @@ export default function DriverDashboard() {
                         <div className="flex justify-between items-start">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            <UserIcon size={16} className="text-green-600" />
+                            <div className="w-4 h-4 rounded-full bg-green-600 flex items-center justify-center overflow-hidden">
+                              <UserIcon size={10} className="text-white" />
+                            </div>
                             <span className="font-medium">New Ride Request!</span>
                           </div>
                           <Badge variant="outline" className="text-green-600 border-green-600">
@@ -385,7 +387,9 @@ export default function DriverDashboard() {
                       <CardContent className="p-4 space-y-3">
                         <div className="flex justify-between items-start">
                           <div className="flex items-center gap-2">
-                            <UserIcon size={16} className="text-blue-600" />
+                            <div className="w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center overflow-hidden">
+                              <UserIcon size={10} className="text-white" />
+                            </div>
                             <span className="font-medium">Ride Request</span>
                           </div>
                           <Badge variant="outline" className="text-green-600 border-green-600">
@@ -503,7 +507,17 @@ export default function DriverDashboard() {
             className="w-full font-bold"
             data-testid="button-driver-profile"
           >
-            <UserIcon size={16} className="mr-2" />
+            <div className="w-4 h-4 mr-2 rounded-full bg-[#6b46c1] flex items-center justify-center overflow-hidden">
+              {user?.profileImageUrl ? (
+                <img 
+                  src={user.profileImageUrl} 
+                  alt="Profile" 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <UserIcon size={10} className="text-white" />
+              )}
+            </div>
             Driver Profile
           </Button>
           <Button variant="outline" className="w-full font-bold" data-testid="button-vehicle-settings">
