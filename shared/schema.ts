@@ -34,6 +34,7 @@ export const users = pgTable("users", {
   lastName: varchar("last_name"),
   profileImageUrl: varchar("profile_image_url"),
   phone: varchar("phone"),
+  bio: text("bio"), // User biography/description
   userType: varchar("user_type").notNull().default("rider"), // 'rider' or 'driver'
   rating: real("rating").default(0),
   totalRatings: integer("total_ratings").default(0),

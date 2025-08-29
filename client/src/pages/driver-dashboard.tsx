@@ -496,6 +496,15 @@ export default function DriverDashboard() {
           <Button variant="outline" className="w-full font-bold" data-testid="button-earnings">
             Earnings Details
           </Button>
+          <Button 
+            onClick={() => setLocation('/profile')} 
+            variant="outline" 
+            className="w-full font-bold"
+            data-testid="button-driver-profile"
+          >
+            <UserIcon size={16} className="mr-2" />
+            Driver Profile
+          </Button>
           <Button variant="outline" className="w-full font-bold" data-testid="button-vehicle-settings">
             Vehicle Settings
           </Button>

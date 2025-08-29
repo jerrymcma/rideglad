@@ -57,6 +57,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Comprehensive profile update endpoint
+  app.patch('/api/auth/profile', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { firstName, lastName, email, phone, bio } = req.body;
+      
+      // Get current user data
+      const currentUser = await storage.getUser(userId);
+      if (!currentUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      
+      // Update user with new data, preserving existing fields
+      const updatedUser = await storage.upsertUser({
+        ...currentUser,
+        firstName: firstName || currentUser.firstName,
+        lastName: lastName || currentUser.lastName,
+        email: email || currentUser.email,
+        phone: phone || currentUser.phone,
+        bio: bio !== undefined ? bio : currentUser.bio,
+      });
+      
+      res.json(updatedUser);
+    } catch (error) {
+      console.error("Error updating user profile:", error);
+      res.status(500).json({ message: "Failed to update profile" });
+    }
+  });
+
   // Driver status toggle
   app.patch('/api/drivers/status', isAuthenticated, async (req: any, res) => {
     try {

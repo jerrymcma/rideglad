@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard, Satellite, ArrowLeft } from "lucide-react";
+import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, Settings, CreditCard, Satellite, ArrowLeft, UserCog } from "lucide-react";
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
@@ -157,6 +157,30 @@ export default function SimpleHome() {
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Live Satellites </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Account Management Row */}
+          <div className="flex justify-center pt-3">
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#6b46c1] rounded-lg bg-white w-1/2"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Account Management clicked, navigating to /profile');
+                setLocation('/profile');
+              }}
+              data-testid="card-account-management"
+            >
+              <div className="text-center pb-0 pt-3 px-6">
+                <div className="flex justify-center mb-1">
+                  <UserCog size={32} className="text-[#6b46c1]" />
+                </div>
+                <h3 className="font-semibold text-[16px] text-[#6b46c1]">Account</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-gray-700 text-[14px]">Manage profile</p>
               </div>
             </div>
           </div>
