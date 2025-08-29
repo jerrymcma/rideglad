@@ -1599,6 +1599,12 @@ export default function RiderApp() {
                   speed: 25,
                   heading: 90
                 } : undefined}
+                currentRideLocation={currentTrip ? {
+                  latitude: currentTrip.pickupLat + 0.002,
+                  longitude: currentTrip.pickupLng + 0.001,
+                  accuracy: 5,
+                  timestamp: Date.now()
+                } : undefined}
                 showRoute={true}
                 estimatedArrival={matchedDriver?.estimatedArrival}
                 onDriverContact={(type) => {

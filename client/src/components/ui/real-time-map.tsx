@@ -24,6 +24,7 @@ interface RealTimeMapProps {
   userLocation?: LocationData;
   driverLocation?: DriverLocation;
   destination?: LocationData;
+  currentRideLocation?: LocationData;
   mapStyle?: 'streets' | 'satellite' | 'dark' | 'light';
   showTraffic?: boolean;
   showRoute?: boolean;
@@ -36,6 +37,7 @@ export default function RealTimeMap({
   userLocation,
   driverLocation,
   destination,
+  currentRideLocation,
   mapStyle = 'streets',
   showTraffic = true,
   showRoute = true,
@@ -54,6 +56,7 @@ export default function RealTimeMap({
   const userMarkerRef = useRef<any>(null);
   const driverMarkerRef = useRef<any>(null);
   const destinationMarkerRef = useRef<any>(null);
+  const rideLocationMarkerRef = useRef<any>(null);
   const directionsServiceRef = useRef<any>(null);
   const directionsRendererRef = useRef<any>(null);
 
@@ -289,6 +292,27 @@ export default function RealTimeMap({
 
     destinationMarkerRef.current = marker;
   }, [map, destination]);
+
+  // Update current ride location marker
+  useEffect(() => {
+    if (!map || !currentRideLocation) return;
+
+    if (rideLocationMarkerRef.current) {
+      rideLocationMarkerRef.current.setMap(null);
+    }
+
+    const marker = new (window as any).google.maps.Marker({
+      position: { lat: currentRideLocation.latitude, lng: currentRideLocation.longitude },
+      map,
+      title: 'Your Ride',
+      icon: {
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%23F59E0B"%3E%3Cpath d="M13,20L11,20V18L13,18M19,10V12A2,2 0 0,1 17,14H15V22H9V14H7A2,2 0 0,1 5,12V10A2,2 0 0,1 7,8H17A2,2 0 0,1 19,10Z"/%3E%3C/svg%3E',
+        scaledSize: new (window as any).google.maps.Size(32, 32)
+      }
+    });
+
+    rideLocationMarkerRef.current = marker;
+  }, [map, currentRideLocation]);
 
   // Update route when locations change
   useEffect(() => {
