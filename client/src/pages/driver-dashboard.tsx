@@ -494,6 +494,7 @@ export default function DriverDashboard() {
         {/* Quick Actions */}
         <div className="space-y-3">
           <Button variant="outline" className="w-full font-bold" data-testid="button-earnings">
+            <DollarSign size={16} className="mr-2" />
             Earnings Details
           </Button>
           <Button 
