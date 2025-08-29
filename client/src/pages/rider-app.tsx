@@ -1148,7 +1148,11 @@ export default function RiderApp() {
                   </div>
                 )}
               </button>
-              <p className="font-medium text-green-500 text-[15px]">
+              <p 
+                className="font-medium text-green-500 text-[15px] cursor-pointer hover:text-green-600 transition-colors"
+                onClick={requestRide}
+                data-testid="text-request-ride"
+              >
                 {requestRideMutation.isPending ? 'REQUESTING...' : 'REQUEST RIDE'}
               </p>
             </div>
