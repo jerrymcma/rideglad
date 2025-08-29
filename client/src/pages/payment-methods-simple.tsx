@@ -16,8 +16,8 @@ export default function PaymentMethodsSimple() {
     <div className="min-h-screen bg-white">
       <div className="max-w-md mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b bg-white">
-          <div className="flex items-center gap-3">
+        <div className="border-b bg-white">
+          <div className="flex items-center justify-start p-4">
             <Button
               variant="ghost"
               onClick={() => setLocation('/')}
@@ -26,7 +26,9 @@ export default function PaymentMethodsSimple() {
             >
               <ArrowLeft size={24} className="text-gray-600" />
             </Button>
-            <h1 className="font-semibold text-[25px] text-center text-[#18a15d]">                Wallet</h1>
+          </div>
+          <div className="text-center pb-4">
+            <h1 className="font-semibold text-[25px] text-[#18a15d]">Wallet</h1>
           </div>
         </div>
 
