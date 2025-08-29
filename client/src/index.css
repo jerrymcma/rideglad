@@ -179,7 +179,7 @@
 }
 
 .gentle-glow {
-  animation: gentle-glow 2s ease-in-out infinite;
+  animation: gentle-glow 1.5s ease-in-out infinite;
 }
 
 @keyframes car-bob {
