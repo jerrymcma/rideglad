@@ -84,8 +84,26 @@ export async function setupAuth(app: Express) {
     verified(null, user);
   };
 
-  for (const domain of process.env
-    .REPLIT_DOMAINS!.split(",")) {
+  // Clean and filter domains to handle malformed input
+  const domains = process.env.REPLIT_DOMAINS!
+    .split(",")
+    .map(domain => domain.trim())
+    .filter(domain => domain && domain.length > 0 && !domain.includes(" "))
+    .map(domain => {
+      // Remove www. prefix and fix duplicate domains
+      let cleanDomain = domain.replace(/^www\./, "");
+      // Fix duplicated domains like "domain.comDomain.com"
+      const parts = cleanDomain.split(".replit.app");
+      if (parts.length > 2) {
+        cleanDomain = parts[parts.length - 2] + ".replit.app";
+      }
+      return cleanDomain;
+    })
+    .filter(domain => domain !== "ride-glad.com"); // Remove non-replit domains
+
+  console.log("Cleaned domains:", domains);
+
+  for (const domain of domains) {
     const strategy = new Strategy(
       {
         name: `replitauth:${domain}`,
