@@ -507,6 +507,7 @@ export default function DriverDashboard() {
             Driver Profile
           </Button>
           <Button variant="outline" className="w-full font-bold" data-testid="button-vehicle-settings">
+            <Car size={16} className="mr-2" />
             Vehicle Settings
           </Button>
           <Button 
@@ -515,6 +516,7 @@ export default function DriverDashboard() {
             className="w-full font-bold"
             data-testid="button-trip-history"
           >
+            <Car size={16} className="mr-2" />
             View Past Rides
           </Button>
 
