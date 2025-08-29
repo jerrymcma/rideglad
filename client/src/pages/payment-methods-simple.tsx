@@ -17,17 +17,7 @@ export default function PaymentMethodsSimple() {
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="border-b bg-white">
-          <div className="flex items-center justify-start p-4">
-            <Button
-              variant="ghost"
-              onClick={() => setLocation('/')}
-              className="p-3 hover:bg-gray-100 rounded-full"
-              data-testid="button-back"
-            >
-              <ArrowLeft size={24} className="text-gray-600" />
-            </Button>
-          </div>
-          <div className="text-center pb-4">
+          <div className="text-center py-6">
             <h1 className="font-semibold text-[25px] text-[#18a15d]">Wallet</h1>
           </div>
         </div>
@@ -139,6 +129,18 @@ export default function PaymentMethodsSimple() {
             </div>
             <ArrowLeft size={16} className="text-gray-400 rotate-180" />
           </div>
+        </div>
+        
+        {/* Bottom Back Button */}
+        <div className="fixed bottom-6 left-6">
+          <Button
+            variant="ghost"
+            onClick={() => setLocation('/')}
+            className="p-3 hover:bg-gray-100 rounded-full shadow-lg bg-white border"
+            data-testid="button-back"
+          >
+            <ArrowLeft size={24} className="text-gray-600" />
+          </Button>
         </div>
       </div>
     </div>

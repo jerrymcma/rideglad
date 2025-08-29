@@ -59,17 +59,7 @@ export default function PaymentHistory() {
     return (
       <div className="max-w-sm mx-auto bg-white min-h-screen">
         <div className="border-b bg-white">
-          <div className="flex items-center justify-start p-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation('/payment-methods')}
-              data-testid="button-back"
-            >
-              <ArrowLeft size={20} />
-            </Button>
-          </div>
-          <div className="text-center pb-4">
+          <div className="text-center py-6">
             <h1 className="text-xl font-semibold">Payment History</h1>
           </div>
         </div>
@@ -93,17 +83,7 @@ export default function PaymentHistory() {
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="border-b bg-white">
-        <div className="flex items-center justify-start p-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setLocation('/payment-methods')}
-            data-testid="button-back"
-          >
-            <ArrowLeft size={20} />
-          </Button>
-        </div>
-        <div className="text-center pb-4">
+        <div className="text-center py-6">
           <div className="flex items-center justify-center gap-2">
             <Receipt size={20} className="text-blue-600" />
             <h1 className="text-xl font-semibold">Payment History</h1>
@@ -215,6 +195,19 @@ export default function PaymentHistory() {
               </Card>
             ))
           )}
+        </div>
+        
+        {/* Bottom Back Button */}
+        <div className="fixed bottom-6 left-6">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setLocation('/payment-methods')}
+            className="p-3 hover:bg-gray-100 rounded-full shadow-lg bg-white border"
+            data-testid="button-back"
+          >
+            <ArrowLeft size={20} className="text-gray-600" />
+          </Button>
         </div>
       </div>
     </div>
