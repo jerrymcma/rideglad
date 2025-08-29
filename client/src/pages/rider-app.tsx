@@ -1623,7 +1623,7 @@ export default function RiderApp() {
   );
 
   const renderRatingStep = () => (
-    <div className="space-y-2 -mt-6">
+    <div className="space-y-2 -mt-2">
       <div className="text-center space-y-3">
         <h2 className="font-bold text-[26px] text-[#16c4a3]">Trip Completed!</h2>
         <div className="bg-gray-100 border border-gray-200 rounded-lg p-4 space-y-2 mx-4">
@@ -1639,7 +1639,7 @@ export default function RiderApp() {
               <h3 className="text-lg font-bold text-blue-600 text-center mb-2">Trip Details</h3>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Fare:</span>
-                <span className="text-sm font-bold text-brand-green ml-4">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
+                <span className="text-sm text-brand-green ml-4">${currentTrip.finalPrice || currentTrip.estimatedPrice}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Distance:</span>
