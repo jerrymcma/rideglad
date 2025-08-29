@@ -90,14 +90,16 @@ export default function Profile() {
     const response = await apiRequest('POST', '/api/profile/upload-url');
     return {
       method: 'PUT' as const,
-      url: response.uploadURL,
+      url: (response as any).uploadURL,
     };
   };
 
   const handleProfilePictureComplete = (result: UploadResult<Record<string, unknown>, Record<string, unknown>>) => {
     if (result.successful && result.successful.length > 0) {
       const uploadedFile = result.successful[0];
-      profilePictureUploadMutation.mutate(uploadedFile.uploadURL);
+      if (uploadedFile.uploadURL) {
+        profilePictureUploadMutation.mutate(uploadedFile.uploadURL as string);
+      }
     }
   };
 
@@ -113,7 +115,13 @@ export default function Profile() {
     updateProfileMutation.mutate(data);
   };
 
-  if (!user) return null;
+  if (!user) {
+    return (
+      <div className="max-w-sm mx-auto bg-white min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#6b46c1] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
