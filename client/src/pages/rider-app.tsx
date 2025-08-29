@@ -1598,10 +1598,14 @@ export default function RiderApp() {
                 userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
                 destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
                 driverLocation={matchedDriver ? {
-                  lat: currentTrip?.pickupLat || 31.3271,
-                  lng: currentTrip?.pickupLng || -89.2903,
+                  latitude: currentTrip?.pickupLat + 0.001 || 31.3281,
+                  longitude: currentTrip?.pickupLng + 0.0005 || -89.2898,
+                  driverId: matchedDriver.driver.id || 'mock-driver-1',
+                  status: 'en_route' as const,
                   speed: 25,
-                  heading: 90
+                  heading: 90,
+                  accuracy: 5,
+                  timestamp: Date.now()
                 } : undefined}
                 currentRideLocation={currentTrip ? {
                   latitude: currentTrip.pickupLat + 0.002,
