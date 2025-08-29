@@ -58,8 +58,8 @@ export default function PaymentHistory() {
   if (isLoading) {
     return (
       <div className="max-w-sm mx-auto bg-white min-h-screen">
-        <div className="p-6">
-          <div className="flex items-center gap-4 mb-6">
+        <div className="border-b bg-white">
+          <div className="flex items-center justify-start p-4">
             <Button
               variant="ghost"
               size="icon"
@@ -68,8 +68,12 @@ export default function PaymentHistory() {
             >
               <ArrowLeft size={20} />
             </Button>
+          </div>
+          <div className="text-center pb-4">
             <h1 className="text-xl font-semibold">Payment History</h1>
           </div>
+        </div>
+        <div className="p-6">
           
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
@@ -88,9 +92,8 @@ export default function PaymentHistory() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center gap-4">
+      <div className="border-b bg-white">
+        <div className="flex items-center justify-start p-4">
           <Button
             variant="ghost"
             size="icon"
@@ -99,11 +102,15 @@ export default function PaymentHistory() {
           >
             <ArrowLeft size={20} />
           </Button>
-          <div className="flex items-center gap-2">
+        </div>
+        <div className="text-center pb-4">
+          <div className="flex items-center justify-center gap-2">
             <Receipt size={20} className="text-blue-600" />
             <h1 className="text-xl font-semibold">Payment History</h1>
           </div>
         </div>
+      </div>
+      <div className="p-6 space-y-6">
 
         {/* Summary Stats */}
         <div className="grid grid-cols-2 gap-4">
