@@ -97,21 +97,6 @@ export default function PaymentMethodsSimple() {
             </div>
           </div>
 
-          {/* Security Notice */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mt-6">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-gray-600 text-sm font-medium">🔒</span>
-              </div>
-              <div>
-                <h3 className="font-medium text-gray-900 mb-1">Secure Payments</h3>
-                <p className="text-sm text-gray-600">
-                  Your payment information is encrypted and secure. We never store your full card details.
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Payment History Link */}
           <div 
             className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
@@ -128,6 +113,21 @@ export default function PaymentMethodsSimple() {
               </div>
             </div>
             <ArrowLeft size={16} className="text-gray-400 rotate-180" />
+          </div>
+
+          {/* Security Notice */}
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mt-6">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-gray-600 text-sm font-medium">🔒</span>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900 mb-1">Secure Payments</h3>
+                <p className="text-sm text-gray-600">
+                  Your payment information is encrypted and secure. We never store your full card details.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         
