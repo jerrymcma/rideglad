@@ -196,7 +196,7 @@ export default function RealTimeMap({
     // Initialize directions service and renderer
     const directionsService = new (window as any).google.maps.DirectionsService();
     const directionsRenderer = new (window as any).google.maps.DirectionsRenderer({
-      suppressMarkers: false,
+      suppressMarkers: true,
       polylineOptions: {
         strokeColor: '#3B82F6',
         strokeWeight: 4
