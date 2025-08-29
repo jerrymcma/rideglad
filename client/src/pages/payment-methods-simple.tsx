@@ -33,23 +33,6 @@ export default function PaymentMethodsSimple() {
         </div>
 
         <div className="p-4 space-y-4">
-          {/* Add Payment Method Button */}
-          <div 
-            className="flex items-center justify-between p-4 bg-blue-50 border-2 border-dashed border-blue-200 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
-            onClick={() => setLocation('/add-payment-method')}
-            data-testid="button-add-payment"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                <Plus size={20} className="text-white" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-blue-900">Add Card</h3>
-                <p className="text-sm text-blue-700">Credit or debit card</p>
-              </div>
-            </div>
-          </div>
-
           {/* Existing Payment Methods */}
           <div className="space-y-3">
             <h2 className="text-lg font-semibold text-gray-900 mb-3">Your Cards</h2>
@@ -105,6 +88,23 @@ export default function PaymentMethodsSimple() {
                 </div>
               ))
             )}
+          </div>
+
+          {/* Add Payment Method Button */}
+          <div 
+            className="flex items-center justify-between p-4 bg-blue-50 border-2 border-dashed border-blue-200 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
+            onClick={() => setLocation('/add-payment-method')}
+            data-testid="button-add-payment"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <Plus size={20} className="text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-blue-900">Add Card</h3>
+                <p className="text-sm text-blue-700">Credit or debit card</p>
+              </div>
+            </div>
           </div>
 
           {/* Security Notice */}
