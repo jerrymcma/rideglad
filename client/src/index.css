@@ -163,6 +163,25 @@
   animation: very-subtle-pulse 1.5s ease-in-out infinite;
 }
 
+@keyframes gentle-glow {
+  0% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gentle-glow {
+  animation: gentle-glow 3s ease-in-out infinite;
+}
+
 @keyframes car-bob {
   0% { 
     transform: translateX(-50%) translateY(0px);

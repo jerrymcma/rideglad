@@ -1509,7 +1509,7 @@ export default function RiderApp() {
         <CardContent className="p-4 space-y-4">
           <div className="text-center">
             <Badge 
-              className="bg-brand-green text-white text-lg py-2 px-4 cursor-pointer hover:bg-green-700 transition-colors very-subtle-pulse"
+              className="bg-brand-green text-white text-lg py-2 px-4 cursor-pointer hover:bg-green-700 transition-colors gentle-glow"
               onClick={() => setShowLiveTripMap(true)}
             >
               <Navigation size={16} className="mr-2" />
