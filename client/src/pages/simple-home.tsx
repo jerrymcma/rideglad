@@ -140,31 +140,7 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg h-full bg-white"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Advanced GPS clicked, navigating to /advanced-navigation');
-                setLocation('/advanced-navigation');
-              }}
-              data-testid="card-advanced-gps"
-            >
-              <div className="text-center pb-0 pt-3 px-6">
-                <div className="flex justify-center mb-1">
-                  <Satellite size={36} className="text-[#4da6ff]" />
-                </div>
-                <h3 className="text-[#4da6ff] text-[15px] font-semibold">Advanced GPS</h3>
-              </div>
-              <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Live Satellites </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Account Management Row */}
-          <div className="flex justify-center pt-3">
-            <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#6b46c1] rounded-lg bg-white w-1/2"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#6b46c1] rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -181,6 +157,30 @@ export default function SimpleHome() {
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Manage profile</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Advanced GPS Row */}
+          <div className="flex justify-center pt-3">
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white w-1/2"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Advanced GPS clicked, navigating to /advanced-navigation');
+                setLocation('/advanced-navigation');
+              }}
+              data-testid="card-advanced-gps"
+            >
+              <div className="text-center pb-0 pt-3 px-6">
+                <div className="flex justify-center mb-1">
+                  <Satellite size={36} className="text-[#4da6ff]" />
+                </div>
+                <h3 className="text-[#4da6ff] text-[15px] font-semibold">Advanced GPS</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-gray-700 text-[14px]">Live Satellites </p>
               </div>
             </div>
           </div>
