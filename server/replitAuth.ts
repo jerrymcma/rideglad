@@ -99,27 +99,47 @@ export async function setupAuth(app: Express) {
       }
       return cleanDomain;
     })
-    .filter(domain => domain !== "ride-glad.com"); // Remove non-replit domains
+    .filter(domain => {
+      // Accept replit.app, replit.dev, or any other valid domains
+      return domain.includes(".replit.") || domain === "ride-glad.com";
+    });
 
   console.log("Cleaned domains:", domains);
 
+  // Create a dynamic strategy creation function
+  const createStrategyForDomain = (domain: string) => {
+    const strategyName = `replitauth:${domain}`;
+    try {
+      // Check if strategy already exists by trying to get it
+      (passport as any)._strategy(strategyName);
+    } catch (error) {
+      // Strategy doesn't exist, create it
+      const strategy = new Strategy(
+        {
+          name: strategyName,
+          config,
+          scope: "openid email profile offline_access",
+          callbackURL: `https://${domain}/api/callback`,
+        },
+        verify,
+      );
+      passport.use(strategy);
+      console.log(`Created strategy for domain: ${domain}`);
+    }
+  };
+
+  // Create strategies for configured domains
   for (const domain of domains) {
-    const strategy = new Strategy(
-      {
-        name: `replitauth:${domain}`,
-        config,
-        scope: "openid email profile offline_access",
-        callbackURL: `https://${domain}/api/callback`,
-      },
-      verify,
-    );
-    passport.use(strategy);
+    createStrategyForDomain(domain);
   }
 
   passport.serializeUser((user: Express.User, cb) => cb(null, user));
   passport.deserializeUser((user: Express.User, cb) => cb(null, user));
 
   app.get("/api/login", (req, res, next) => {
+    // Ensure strategy exists for current hostname
+    createStrategyForDomain(req.hostname);
+    
     passport.authenticate(`replitauth:${req.hostname}`, {
       prompt: "login consent",
       scope: ["openid", "email", "profile", "offline_access"],
@@ -127,6 +147,9 @@ export async function setupAuth(app: Express) {
   });
 
   app.get("/api/callback", (req, res, next) => {
+    // Ensure strategy exists for current hostname
+    createStrategyForDomain(req.hostname);
+    
     passport.authenticate(`replitauth:${req.hostname}`, {
       successReturnToOrRedirect: "/",
       failureRedirect: "/api/login",
