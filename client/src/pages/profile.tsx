@@ -28,7 +28,9 @@ const profileUpdateSchema = z.object({
 type ProfileUpdateData = z.infer<typeof profileUpdateSchema>;
 
 export default function Profile() {
+  console.log('Profile component rendering');
   const { user } = useAuth();
+  console.log('Profile user:', user);
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [isEditing, setIsEditing] = useState(false);
