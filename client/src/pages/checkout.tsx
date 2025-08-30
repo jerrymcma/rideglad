@@ -120,16 +120,8 @@ export default function Checkout({ trip, onPaymentSuccess }: CheckoutProps) {
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-md mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <Button
-            variant="ghost"
-            onClick={() => setLocation('/ride')}
-            className="p-3 hover:bg-gray-100 rounded-full"
-            data-testid="button-back"
-          >
-            <ArrowLeft size={24} className="text-gray-600" />
-          </Button>
-          <h1 className="text-2xl font-bold">Checkout</h1>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-center">Checkout</h1>
         </div>
 
         {/* Trip Summary */}
@@ -290,6 +282,16 @@ export default function Checkout({ trip, onPaymentSuccess }: CheckoutProps) {
           </p>
         </div>
       </div>
+      
+      {/* Fixed Back Button - Bottom Left */}
+      <Button
+        onClick={() => setLocation('/ride')}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }

@@ -130,14 +130,6 @@ export default function Profile() {
       {/* Header */}
       <div className="px-6 pt-6 pb-2 border-b border-gray-100">
         <div className="flex items-center justify-between">
-          <Button
-            onClick={() => setLocation('/')}
-            variant="ghost"
-            size="sm"
-            className="p-2"
-          >
-            <ArrowLeft size={20} className="text-gray-600" />
-          </Button>
           <h1 className="font-extrabold text-blue-600 text-[22px]">Account Profile</h1>
           <Button
             onClick={() => setIsEditing(!isEditing)}
@@ -372,6 +364,16 @@ export default function Profile() {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Fixed Back Button - Bottom Left */}
+      <Button
+        onClick={() => setLocation('/')}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }

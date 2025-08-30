@@ -17,10 +17,7 @@ export default function AdvancedNavigation() {
     <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
       <div className="mb-6">
-        <div className="flex items-center justify-center mb-2">
-          <Button variant="ghost" size="sm" onClick={() => window.history.back()} className="absolute left-0">
-            <ArrowLeft size={20} />
-          </Button>
+        <div className="text-center mb-2">
           <h1 className="font-bold text-blue-600 text-[25px]">Advanced GPS Navigation</h1>
         </div>
         <p className="text-[#272d33] text-center">     Real-time GPS tracking - 10m accuracy - innovative rideshare technology</p>
@@ -134,6 +131,16 @@ export default function AdvancedNavigation() {
           </div>
         </CardContent>
       </Card>
+      
+      {/* Fixed Back Button - Bottom Left */}
+      <Button
+        onClick={() => window.history.back()}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }
