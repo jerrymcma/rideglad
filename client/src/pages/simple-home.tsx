@@ -166,7 +166,7 @@ export default function SimpleHome() {
                 <h3 className="font-semibold text-[16px] text-gray-400">Account</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Console</p>
+                <p className="text-gray-700 text-[14px]">VIP Console</p>
               </div>
             </div>
           </div>
