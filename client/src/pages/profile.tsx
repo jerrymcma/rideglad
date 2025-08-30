@@ -120,7 +120,7 @@ export default function Profile() {
   if (!user) {
     return (
       <div className="max-w-sm mx-auto bg-white min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-[#6b46c1] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -138,25 +138,25 @@ export default function Profile() {
           >
             <ArrowLeft size={20} className="text-gray-600" />
           </Button>
-          <h1 className="font-extrabold text-[#6b46c1] text-[22px]">Account Profile</h1>
+          <h1 className="font-extrabold text-blue-600 text-[22px]">Account Profile</h1>
           <Button
             onClick={() => setIsEditing(!isEditing)}
             variant="ghost"
             size="sm"
             className="p-2"
           >
-            <Edit3 size={20} className="text-[#6b46c1]" />
+            <Edit3 size={20} className="text-blue-600" />
           </Button>
         </div>
       </div>
 
       <div className="p-6 space-y-6">
         {/* Profile Picture Section */}
-        <Card className="border-[#6b46c1] border-2">
+        <Card className="border-blue-600 border-2">
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
               <div className="relative">
-                <div className="w-24 h-24 mx-auto rounded-full bg-[#6b46c1] flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-24 mx-auto rounded-full bg-blue-600 flex items-center justify-center overflow-hidden">
                   {getProfilePictureUrl() ? (
                     <img 
                       src={getProfilePictureUrl() || ''} 
@@ -174,15 +174,15 @@ export default function Profile() {
                       maxFileSize={5242880} // 5MB limit for profile pictures
                       onGetUploadParameters={handleGetUploadParameters}
                       onComplete={handleProfilePictureComplete}
-                      buttonClassName="bg-white rounded-full p-2 border-2 border-[#6b46c1] hover:bg-gray-50 transition-colors"
+                      buttonClassName="bg-white rounded-full p-2 border-2 border-blue-600 hover:bg-gray-50 transition-colors"
                     >
-                      <Camera size={16} className="text-[#6b46c1]" />
+                      <Camera size={16} className="text-blue-600" />
                     </ObjectUploader>
                   </div>
                 )}
               </div>
               <div>
-                <h2 className="font-bold text-[#6b46c1] text-lg">
+                <h2 className="font-bold text-blue-600 text-lg">
                   {user.firstName} {user.lastName}
                 </h2>
                 <p className="text-gray-600 text-sm">{user.email}</p>
@@ -281,7 +281,7 @@ export default function Profile() {
                   <div className="flex gap-2 pt-4">
                     <Button
                       type="submit"
-                      className="flex-1 bg-[#6b46c1] hover:bg-[#5b21b6]"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700"
                       disabled={updateProfileMutation.isPending}
                     >
                       {updateProfileMutation.isPending ? (
@@ -337,7 +337,7 @@ export default function Profile() {
 
                 <Button
                   onClick={() => setIsEditing(true)}
-                  className="w-full bg-[#6b46c1] hover:bg-[#5b21b6] mt-4"
+                  className="w-full bg-blue-600 hover:bg-blue-700 mt-4"
                 >
                   <Edit3 size={16} className="mr-2" />
                   Edit Profile
