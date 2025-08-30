@@ -42,22 +42,11 @@ export default function SimpleHome() {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-no-repeat bg-center"
-        style={{ 
-          backgroundImage: `url(${skyBackgroundImage})`,
-          backgroundSize: 'contain'
-        }}
-      />
-      
-      {/* Content Overlay */}
-      <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
-        <div className="p-6 text-[15px] pb-20">
+    <div className="max-w-sm mx-auto bg-white min-h-screen relative">
+      <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
-          <h1 className="text-center font-extrabold text-[30px] text-[#2d91ed]">Welcome to ride!</h1>
+          <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
           <p className="font-bold text-[#464f6b] text-[22px]">Hello, {(user as any)?.firstName || 'User'}</p>
         </div>
 
@@ -237,7 +226,6 @@ export default function SimpleHome() {
 
         {/* Profile Section */}
         <div className="space-y-4 pt-4">
-        </div>
         </div>
       </div>
       
