@@ -44,7 +44,7 @@ export default function SimpleHome() {
     <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden">
       {/* Background Video */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover object-top z-0"
         autoPlay
         loop
         muted
