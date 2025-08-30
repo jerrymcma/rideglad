@@ -1733,7 +1733,10 @@ export default function RiderApp() {
   );
 
   return (
-    <div className="max-w-sm mx-auto bg-white min-h-screen">
+    <div className="max-w-sm mx-auto min-h-screen"
+         style={{
+           background: 'linear-gradient(to bottom, #87ceeb 0%, #b8e0ff 50%, #e6f3ff 100%)'
+         }}>
       <div className="p-6 space-y-6">
         {/* Header */}
         {currentStep === 'booking' && (
