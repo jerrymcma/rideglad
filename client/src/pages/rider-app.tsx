@@ -1753,11 +1753,11 @@ export default function RiderApp() {
         {/* Progress Indicator */}
         {currentStep !== 'booking' && (
           <div className="flex items-center justify-center gap-2 py-2">
-            <div className={`w-2 h-2 rounded-full ${currentStep === 'searching' ? 'bg-brand-green' : 'bg-gray-300'}`}></div>
-            <div className={`w-2 h-2 rounded-full ${currentStep === 'matched' ? 'bg-brand-green' : 'bg-gray-300'}`}></div>
-            <div className={`w-2 h-2 rounded-full ${currentStep === 'pickup' ? 'bg-brand-green' : 'bg-gray-300'}`}></div>
-            <div className={`w-2 h-2 rounded-full ${currentStep === 'inprogress' ? 'bg-brand-green' : 'bg-gray-300'}`}></div>
-            <div className={`w-2 h-2 rounded-full ${currentStep === 'rating' ? 'bg-brand-green' : 'bg-gray-300'}`}></div>
+            <div className={`w-2 h-2 rounded-full ${currentStep === 'searching' ? 'bg-green-700' : 'bg-gray-300'}`}></div>
+            <div className={`w-2 h-2 rounded-full ${currentStep === 'matched' ? 'bg-green-700' : 'bg-gray-300'}`}></div>
+            <div className={`w-2 h-2 rounded-full ${currentStep === 'pickup' ? 'bg-green-700' : 'bg-gray-300'}`}></div>
+            <div className={`w-2 h-2 rounded-full ${currentStep === 'inprogress' ? 'bg-green-700' : 'bg-gray-300'}`}></div>
+            <div className={`w-2 h-2 rounded-full ${currentStep === 'rating' ? 'bg-green-700' : 'bg-gray-300'}`}></div>
           </div>
         )}
 
