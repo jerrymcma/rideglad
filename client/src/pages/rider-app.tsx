@@ -1738,18 +1738,6 @@ export default function RiderApp() {
         {/* Header */}
         {currentStep === 'booking' && (
           <div className="space-y-2">
-            {/* Back button */}
-            <div className="flex items-center">
-              <Button
-                onClick={() => setLocation('/')}
-                variant="ghost"
-                className="p-3 hover:bg-gray-100 rounded-full"
-                data-testid="button-back"
-              >
-                <ArrowLeft size={24} className="text-gray-600" />
-              </Button>
-            </div>
-            
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-[19px] font-semibold">Hello, {(user as any)?.firstName || 'Rider'}!</h1>
