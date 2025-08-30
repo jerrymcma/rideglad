@@ -164,7 +164,7 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center overflow-hidden">
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
                     {(user as any)?.profileImageUrl ? (
                       <img 
                         src={(user as any).profileImageUrl} 
@@ -172,7 +172,7 @@ export default function SimpleHome() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <UserCog size={20} className="text-white" />
+                      <UserCog size={20} className="text-gray-400" />
                     )}
                   </div>
                 </div>
