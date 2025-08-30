@@ -197,7 +197,7 @@ export default function SimpleHome() {
         </div>
 
         {/* Extra spacing after main actions */}
-        <div className="pb-8"></div>
+        <div className="pb-3"></div>
 
         {/* Video Section */}
         <div className="flex justify-center">
