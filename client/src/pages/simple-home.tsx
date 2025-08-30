@@ -45,8 +45,11 @@ export default function SimpleHome() {
     <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${skyBackgroundImage})` }}
+        className="absolute inset-0 w-full h-full bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${skyBackgroundImage})`,
+          backgroundSize: '100% 100%'
+        }}
       />
       
       {/* Content Overlay */}
