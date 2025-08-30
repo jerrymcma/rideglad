@@ -50,7 +50,7 @@ export default function SimpleHome() {
       />
       
       {/* Content Overlay */}
-      <div className="relative z-10 bg-white/85 backdrop-blur-sm min-h-screen">
+      <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
         <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
