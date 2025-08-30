@@ -1735,7 +1735,7 @@ export default function RiderApp() {
   return (
     <div className="max-w-sm mx-auto min-h-screen"
          style={{
-           background: 'linear-gradient(to bottom, #87ceeb 0%, #b8e0ff 50%, #e6f3ff 100%)'
+           background: 'linear-gradient(to bottom, #b8e0ff 0%, #d0f0ff 50%, #f0f8ff 100%)'
          }}>
       <div className="p-6 space-y-6">
         {/* Header */}
@@ -1743,7 +1743,7 @@ export default function RiderApp() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-[19px] font-semibold">What's up {(user as any)?.firstName || 'Rider'}!</h1>
+                <h1 className="text-[17px] font-semibold">What's up {(user as any)?.firstName || 'Rider'}!</h1>
                 <p className="text-gray-600 text-[15px] mt-[2px] mb-[2px]">Ready for your next trip...</p>
               </div>
             </div>

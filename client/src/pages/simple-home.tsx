@@ -44,7 +44,7 @@ export default function SimpleHome() {
   return (
     <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden"
          style={{
-           background: 'linear-gradient(to bottom, #87ceeb 0%, #b8e0ff 50%, #e6f3ff 100%)'
+           background: 'linear-gradient(to bottom, #b8e0ff 0%, #d0f0ff 50%, #f0f8ff 100%)'
          }}>
       
       {/* Content Overlay */}
@@ -53,7 +53,7 @@ export default function SimpleHome() {
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
-          <p className="font-bold text-[#464f6b] text-[22px]">What's up {(user as any)?.firstName || 'User'}!</p>
+          <p className="font-bold text-[#464f6b] text-[20px]">What's up {(user as any)?.firstName || 'User'}!</p>
         </div>
 
         {/* Main Actions */}
