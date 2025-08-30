@@ -237,7 +237,7 @@ export default function SimpleHome() {
       </div>
       
       {/* Back Button - positioned at very left edge, aligned with video bottom */}
-      <div className="absolute bottom-16 left-0">
+      <div className="absolute bottom-16 left-0 z-20">
         <Button
           onClick={() => {
             console.log('Back button clicked - logging out');
