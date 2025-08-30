@@ -42,15 +42,13 @@ export default function SimpleHome() {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${skyBackgroundImage})` }}
-      />
+    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden"
+         style={{
+           background: 'linear-gradient(to bottom, #87ceeb 0%, #b8e0ff 50%, #e6f3ff 100%)'
+         }}>
       
       {/* Content Overlay */}
-      <div className="relative z-10 bg-white/70 backdrop-blur-sm min-h-screen">
+      <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
         <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
