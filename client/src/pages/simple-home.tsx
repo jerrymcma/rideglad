@@ -41,8 +41,21 @@ export default function SimpleHome() {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto bg-white min-h-screen relative">
-      <div className="p-6 text-[15px] pb-20">
+    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden">
+      {/* Background Video */}
+      <video 
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={carVideo} type="video/mp4" />
+      </video>
+      
+      {/* Content Overlay */}
+      <div className="relative z-10 bg-white/90 backdrop-blur-sm min-h-screen">
+        <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
@@ -197,36 +210,15 @@ export default function SimpleHome() {
         </div>
 
 
-        {/* Video Section */}
-        <div className="flex justify-center">
-          <div className="relative w-2/5">
-            <video 
-              className="w-full rounded-lg shadow-md"
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src={carVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            {/* Side Logo Overlay */}
-            <div className="absolute left-1/2 bottom-4 car-bob">
-              <img 
-                src={rideSideLogoImage} 
-                alt="ride"
-                className="h-3 w-auto opacity-80"
-              />
-            </div>
-          </div>
-        </div>
 
         {/* Profile Section */}
         <div className="space-y-4 pt-4">
         </div>
+        </div>
       </div>
+      
       {/* Back Button - positioned at very left edge, aligned with video bottom */}
-      <div className="absolute bottom-16 left-0">
+      <div className="absolute bottom-16 left-0 z-20">
         <Button
           onClick={() => {
             console.log('Back button clicked - logging out');
