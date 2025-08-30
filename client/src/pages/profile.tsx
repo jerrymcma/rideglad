@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { ArrowLeft, User, Camera, Save, Edit3 } from "lucide-react";
+import { ArrowLeft, User, Camera, Save, Edit3, Trophy, Award } from "lucide-react";
 import { useLocation } from "wouter";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { ObjectUploader } from "@/components/ui/object-uploader";
@@ -181,6 +181,23 @@ export default function Profile() {
                   {user.firstName} {user.lastName}
                 </h2>
                 <p className="text-gray-600 text-sm">{user.email}</p>
+                
+                {/* Premium Status Badges */}
+                <div className="flex flex-col items-center gap-2 mt-3">
+                  <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                    <Trophy size={14} className="text-white" />
+                    <span>GOLD STATUS</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                      <Award size={12} className="text-white" />
+                      <span>RIDE CERTIFIED</span>
+                    </div>
+                    <div className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                      <span>BLUE RIBBON</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
