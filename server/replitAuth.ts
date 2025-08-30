@@ -106,14 +106,14 @@ export async function setupAuth(app: Express) {
 
   console.log("Cleaned domains:", domains);
 
+  // Track created strategies to avoid duplicates
+  const createdStrategies = new Set<string>();
+  
   // Create a dynamic strategy creation function
   const createStrategyForDomain = (domain: string) => {
     const strategyName = `replitauth:${domain}`;
-    try {
-      // Check if strategy already exists by trying to get it
-      (passport as any)._strategy(strategyName);
-    } catch (error) {
-      // Strategy doesn't exist, create it
+    
+    if (!createdStrategies.has(strategyName)) {
       const strategy = new Strategy(
         {
           name: strategyName,
@@ -124,6 +124,7 @@ export async function setupAuth(app: Express) {
         verify,
       );
       passport.use(strategy);
+      createdStrategies.add(strategyName);
       console.log(`Created strategy for domain: ${domain}`);
     }
   };
@@ -134,7 +135,22 @@ export async function setupAuth(app: Express) {
   }
 
   passport.serializeUser((user: Express.User, cb) => cb(null, user));
-  passport.deserializeUser((user: Express.User, cb) => cb(null, user));
+  passport.deserializeUser((user: Express.User, cb) => {
+    try {
+      cb(null, user);
+    } catch (error) {
+      console.log('Session deserialization error:', error);
+      cb(null, false); // Clear invalid session
+    }
+  });
+
+  // Middleware to ensure strategy exists for any request
+  app.use((req, res, next) => {
+    if (req.hostname && (req.hostname.includes('.replit.') || req.hostname.includes('ride-glad'))) {
+      createStrategyForDomain(req.hostname);
+    }
+    next();
+  });
 
   app.get("/api/login", (req, res, next) => {
     // Ensure strategy exists for current hostname
