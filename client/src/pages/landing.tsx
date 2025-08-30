@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import logoImage from "@assets/Screenshot_20250818_223935_Canva_1755580803663.jpg";
+import logoImage from "@assets/Screenshot_20250830_042326_Canva_1756545831166.jpg";
 
 export default function Landing() {
   const [email, setEmail] = useState("");
