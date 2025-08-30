@@ -193,9 +193,6 @@ export default function Profile() {
                       <Award size={12} className="text-white" />
                       <span>RIDE CERTIFIED</span>
                     </div>
-                    <div className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                      <span>BLUE RIBBON</span>
-                    </div>
                   </div>
                 </div>
               </div>
