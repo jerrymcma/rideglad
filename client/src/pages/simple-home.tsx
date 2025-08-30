@@ -159,7 +159,7 @@ export default function SimpleHome() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <UserCog size={20} className="text-gray-400" />
+                      <User size={28} className="text-gray-400" />
                     )}
                   </div>
                 </div>
