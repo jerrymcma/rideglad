@@ -140,7 +140,7 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-gray-400 rounded-lg h-full bg-white"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-gray-300 rounded-lg h-full bg-white"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -151,7 +151,7 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center overflow-hidden">
+                  <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
                     {(user as any)?.profileImageUrl ? (
                       <img 
                         src={(user as any).profileImageUrl} 
@@ -163,7 +163,7 @@ export default function SimpleHome() {
                     )}
                   </div>
                 </div>
-                <h3 className="font-semibold text-[16px] text-gray-400">Account</h3>
+                <h3 className="font-semibold text-[16px] text-gray-300">Account</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Console</p>
