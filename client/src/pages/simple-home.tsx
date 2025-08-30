@@ -196,8 +196,6 @@ export default function SimpleHome() {
           </div>
         </div>
 
-        {/* Separation Line */}
-        <div className="pt-4 border-t"></div>
 
         {/* Video Section */}
         <div className="flex justify-center">
