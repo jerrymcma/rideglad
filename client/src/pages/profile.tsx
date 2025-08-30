@@ -128,7 +128,7 @@ export default function Profile() {
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       {/* Header */}
-      <div className="px-6 pt-6 pb-1 border-b border-gray-100">
+      <div className="px-6 pt-6 pb-1">
         <div className="flex items-center justify-between">
           <div className="flex-1"></div>
           <h1 className="font-extrabold text-blue-600 text-[22px] text-center">Account Profile</h1>
