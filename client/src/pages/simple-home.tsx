@@ -236,10 +236,10 @@ export default function SimpleHome() {
             window.location.href = '/api/logout';
           }}
           variant="ghost"
-          className="p-8 hover:bg-gray-100 rounded-full min-w-[80px] min-h-[80px] flex items-center justify-center"
+          className="p-10 hover:bg-gray-100 rounded-full min-w-[100px] min-h-[100px] flex items-center justify-center"
           data-testid="button-back"
         >
-          <ArrowLeft size={40} className="text-gray-600" />
+          <ArrowLeft size={48} className="text-gray-600" />
         </Button>
       </div>
     </div>
