@@ -10,6 +10,7 @@ import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jp
 import rideLogoImage from "@assets/Screenshot_20250818_223935_Canva_1755574798589.jpg";
 import rideSideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755414233355.jpg";
 import driveIconImage from "@assets/Screenshot_20250818_213338_Canva_1755570832658.jpg";
+import skyBackgroundImage from "@assets/Screenshot_20250830_032712_Chrome_1756542442797.jpg";
 
 export default function SimpleHome() {
   console.log('SimpleHome component is rendering');
@@ -41,8 +42,16 @@ export default function SimpleHome() {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto bg-white min-h-screen relative">
-      <div className="p-6 text-[15px] pb-20">
+    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${skyBackgroundImage})` }}
+      />
+      
+      {/* Content Overlay */}
+      <div className="relative z-10 bg-white/85 backdrop-blur-sm min-h-screen">
+        <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[30px]">Welcome to ride!</h1>
@@ -225,6 +234,7 @@ export default function SimpleHome() {
 
         {/* Profile Section */}
         <div className="space-y-4 pt-4">
+        </div>
         </div>
       </div>
       
