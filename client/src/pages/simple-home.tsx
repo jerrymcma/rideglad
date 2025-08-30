@@ -215,7 +215,7 @@ export default function SimpleHome() {
             {/* Side Logo Overlay */}
             <div className="absolute left-1/2 bottom-4 car-bob">
               <img 
-                src={logoImage} 
+                src={rideLogoImage} 
                 alt="ride"
                 className="h-3 w-auto opacity-80"
               />
