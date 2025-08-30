@@ -53,7 +53,7 @@ export default function SimpleHome() {
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
           <h1 className="text-center font-extrabold text-[#2a5aeb] text-[28px]">Welcome to ride!</h1>
-          <p className="text-[#464f6b] text-[18px]">Good to see you {(user as any)?.firstName || 'User'}!</p>
+          <p className="text-[#464f6b] text-[18px]">Glad to see you {(user as any)?.firstName || 'User'}!</p>
         </div>
 
         {/* Main Actions */}
