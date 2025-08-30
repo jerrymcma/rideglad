@@ -19,18 +19,18 @@ export function useSessionRestore() {
     }
   }, [isAuthenticated, isLoading, location]);
 
-  // Restore last route when user logs back in
+  // Restore last route when user logs back in (only on first authentication)
   useEffect(() => {
-    if (isAuthenticated && !isLoading) {
+    if (isAuthenticated && !isLoading && location === '/') {
       const lastRoute = sessionStorage.getItem(SESSION_STORAGE_KEY);
-      if (lastRoute && lastRoute !== location) {
+      if (lastRoute && lastRoute !== '/' && lastRoute !== location) {
         // Small delay to ensure auth state is fully loaded
         setTimeout(() => {
           setLocation(lastRoute);
         }, 100);
       }
     }
-  }, [isAuthenticated, isLoading, setLocation, location]);
+  }, [isAuthenticated, isLoading]);
 
   // Clear stored route when user logs out
   useEffect(() => {
