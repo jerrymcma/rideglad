@@ -128,17 +128,20 @@ export default function Profile() {
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       {/* Header */}
-      <div className="px-6 pt-6 pb-2 border-b border-gray-100">
+      <div className="px-6 pt-6 pb-1 border-b border-gray-100">
         <div className="flex items-center justify-between">
-          <h1 className="font-extrabold text-blue-600 text-[22px]">Account Profile</h1>
-          <Button
-            onClick={() => setIsEditing(!isEditing)}
-            variant="ghost"
-            size="sm"
-            className="p-2"
-          >
-            <Edit3 size={20} className="text-blue-600" />
-          </Button>
+          <div className="flex-1"></div>
+          <h1 className="font-extrabold text-blue-600 text-[22px] text-center">Account Profile</h1>
+          <div className="flex-1 flex justify-end">
+            <Button
+              onClick={() => setIsEditing(!isEditing)}
+              variant="ghost"
+              size="sm"
+              className="p-2"
+            >
+              <Edit3 size={20} className="text-blue-600" />
+            </Button>
+          </div>
         </div>
       </div>
 
