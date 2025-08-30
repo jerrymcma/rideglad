@@ -12,7 +12,7 @@ export function useSessionRestore() {
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
       // Only save routes that are part of the authenticated flow
-      const authenticatedRoutes = ['/', '/ride', '/driver', '/trips', '/pricing', '/payment-methods', '/add-payment-method', '/checkout', '/payment-history', '/advanced-navigation'];
+      const authenticatedRoutes = ['/', '/ride', '/driver', '/trips', '/pricing', '/payment-methods', '/add-payment-method', '/checkout', '/payment-history', '/advanced-navigation', '/profile'];
       if (authenticatedRoutes.includes(location)) {
         sessionStorage.setItem(SESSION_STORAGE_KEY, location);
       }
