@@ -185,7 +185,7 @@ export default function SimpleHome() {
           </div>
 
           {/* Advanced GPS Row */}
-          <div className="flex justify-center pt-3 pb-8">
+          <div className="flex justify-center pt-1 pb-8">
             <div 
               className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white w-1/2"
               onClick={(e) => {
