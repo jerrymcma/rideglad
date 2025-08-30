@@ -372,6 +372,10 @@ export default function Profile() {
                 {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
               </span>
             </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium text-gray-600">Number of Rides</span>
+              <span className="text-sm text-gray-900">{user.totalRides || "0"}</span>
+            </div>
             {user.userType === 'driver' && (
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium text-gray-600">Driver Rating</span>
