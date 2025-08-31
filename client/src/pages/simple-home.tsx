@@ -202,11 +202,7 @@ export default function SimpleHome() {
 
             {/* Car Animation Bubble */}
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-gray-300 rounded-lg bg-white h-full"
-              onClick={() => {
-                console.log('Car animation clicked, navigating to /ride');
-                setLocation('/ride');
-              }}
+              className="border-2 border-gray-300 rounded-lg bg-white h-full"
               data-testid="card-car-animation"
             >
               <div className="text-center px-6 pl-[24px] pr-[24px] pt-[6px] pb-[6px]">
