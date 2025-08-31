@@ -225,10 +225,10 @@ export default function SimpleHome() {
                     </video>
                   </div>
                 </div>
-                <h3 className="text-purple-500 text-[15px] font-semibold">Live Cars</h3>
+                <h3 className="text-purple-500 text-[15px] font-semibold">Book a ride</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Watch & Book</p>
+                <p className="text-gray-700 text-[14px]">Get there.™</p>
               </div>
             </div>
           </div>
