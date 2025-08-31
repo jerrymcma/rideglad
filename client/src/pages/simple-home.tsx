@@ -46,7 +46,6 @@ export default function SimpleHome() {
          style={{
            background: 'linear-gradient(to bottom, #b8e0ff 0%, #d0f0ff 50%, #f0f8ff 100%)'
          }}>
-      
       {/* Content Overlay */}
       <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
         <div className="p-6 text-[15px] pb-20">
@@ -190,7 +189,7 @@ export default function SimpleHome() {
               }}
               data-testid="card-advanced-gps"
             >
-              <div className="text-center pb-0 pt-3 px-6">
+              <div className="text-center px-6 pl-[12px] pr-[12px] pt-[12px] pb-[12px]">
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-[#4da6ff]" />
                 </div>
@@ -213,8 +212,6 @@ export default function SimpleHome() {
         </div>
         </div>
       </div>
-      
-      
     </div>
   );
 }
