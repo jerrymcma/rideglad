@@ -233,9 +233,10 @@ export default function SimpleHome() {
                     </div>
                   </div>
                 </div>
+                <h3 className="text-transparent text-[15px] font-semibold">Placeholder</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <div className="h-6"></div>
+                <p className="text-transparent text-[14px]">Placeholder text</p>
               </div>
             </div>
           </div>
