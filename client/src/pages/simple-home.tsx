@@ -177,8 +177,8 @@ export default function SimpleHome() {
             </div>
           </div>
 
-          {/* Advanced GPS & Car Animation Row */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* Advanced GPS Row */}
+          <div className="grid grid-cols-1 gap-3">
             <div 
               className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white h-full"
               onClick={(e) => {
@@ -189,44 +189,38 @@ export default function SimpleHome() {
               }}
               data-testid="card-advanced-gps"
             >
-              <div className="text-center pb-0 pt-3 px-6">
+              <div className="text-center px-6 pl-[24px] pr-[24px] pt-[6px] pb-[6px]">
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-[#4da6ff]" />
                 </div>
-                <h3 className="text-[#4da6ff] text-[16px] font-semibold">Advanced GPS</h3>
+                <h3 className="text-[#4da6ff] text-[15px] font-semibold">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Live Satellites</p>
+                <p className="text-gray-700 text-[14px]">Live Satellites </p>
               </div>
             </div>
+          </div>
 
-            {/* Car Animation Bubble */}
-            <div className="border-2 border-gray-300 rounded-lg bg-white h-full">
-              <div className="text-center pb-0 pt-3 px-6">
-                <div className="flex justify-center mb-1">
-                  <div className="relative w-8 h-8">
-                    <video 
-                      className="w-full h-full rounded object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source src={carVideo} type="video/mp4" />
-                    </video>
-                    <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2">
-                      <img 
-                        src={rideSideLogoImage} 
-                        alt="ride"
-                        className="h-2 w-auto opacity-80"
-                      />
-                    </div>
-                  </div>
+          {/* Car Animation Display */}
+          <div className="mt-6">
+            <div className="text-center">
+              <div className="relative w-24 h-24 mx-auto">
+                <video 
+                  className="w-full h-full rounded object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={carVideo} type="video/mp4" />
+                </video>
+                <div className="absolute left-1/2 bottom-1 transform -translate-x-1/2">
+                  <img 
+                    src={rideSideLogoImage} 
+                    alt="ride"
+                    className="h-3 w-auto opacity-80"
+                  />
                 </div>
-                <h3 className="text-gray-700 text-[16px] font-semibold">Car Animation</h3>
-              </div>
-              <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Live Preview</p>
               </div>
             </div>
           </div>
