@@ -202,7 +202,7 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-purple-500 rounded-lg bg-white h-full"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-gray-300 rounded-lg bg-white h-full flex items-center justify-center"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -211,24 +211,16 @@ export default function SimpleHome() {
               }}
               data-testid="card-car-animation"
             >
-              <div className="text-center pb-0 pt-3 px-6">
-                <div className="flex justify-center mb-1">
-                  <div className="relative w-8 h-8">
-                    <video 
-                      className="w-8 h-8 rounded object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source src={carVideo} type="video/mp4" />
-                    </video>
-                  </div>
-                </div>
-                <h3 className="text-purple-500 text-[15px] font-semibold">Book a ride</h3>
-              </div>
-              <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Get there.™</p>
+              <div className="relative w-16 h-16">
+                <video 
+                  className="w-full h-full rounded object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={carVideo} type="video/mp4" />
+                </video>
               </div>
             </div>
           </div>
