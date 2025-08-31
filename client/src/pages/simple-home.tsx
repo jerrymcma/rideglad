@@ -189,7 +189,7 @@ export default function SimpleHome() {
               }}
               data-testid="card-advanced-gps"
             >
-              <div className="text-center px-6 pl-[12px] pr-[12px] pt-[12px] pb-[12px]">
+              <div className="text-center px-6 pl-[24px] pr-[24px] pt-[6px] pb-[6px]">
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-[#4da6ff]" />
                 </div>
