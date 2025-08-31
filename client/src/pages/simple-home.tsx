@@ -227,7 +227,6 @@ export default function SimpleHome() {
                 <h3 className="text-[#4da6ff] text-[15px] font-semibold">Screen Recording</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Live Demo</p>
               </div>
             </div>
           </div>
