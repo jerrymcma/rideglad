@@ -214,20 +214,7 @@ export default function SimpleHome() {
         </div>
       </div>
       
-      {/* Back Button - positioned at very left edge, aligned with video bottom */}
-      <div className="absolute bottom-16 left-0 z-20">
-        <Button
-          onClick={() => {
-            console.log('Back button clicked - logging out');
-            window.location.href = '/api/logout';
-          }}
-          variant="ghost"
-          className="p-10 hover:bg-gray-100 rounded-full min-w-[100px] min-h-[100px] flex items-center justify-center"
-          data-testid="button-back"
-        >
-          <ArrowLeft size={48} className="text-gray-600" />
-        </Button>
-      </div>
+      
     </div>
   );
 }
