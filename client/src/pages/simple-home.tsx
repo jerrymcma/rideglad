@@ -219,7 +219,7 @@ export default function SimpleHome() {
                       muted
                       playsInline
                     >
-                      <source src="@assets/car-animation.mp4" type="video/mp4" />
+                      <source src={carVideo} type="video/mp4" />
                     </video>
                     {/* Side Logo Overlay */}
                     <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2">
