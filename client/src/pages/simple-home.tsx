@@ -189,14 +189,14 @@ export default function SimpleHome() {
               }}
               data-testid="card-advanced-gps"
             >
-              <div className="text-center px-6 pl-[24px] pr-[24px] pt-[6px] pb-[6px]">
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-[#4da6ff]" />
                 </div>
-                <h3 className="text-[#4da6ff] text-[15px] font-semibold">Advanced GPS</h3>
+                <h3 className="text-[#4da6ff] text-[16px] font-semibold">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px] pl-[24px] pr-[24px] pt-[8px] pb-[8px]">Live Satellites </p>
+                <p className="text-gray-700 text-[14px]">Live Satellites</p>
               </div>
             </div>
           </div>
