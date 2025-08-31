@@ -178,10 +178,10 @@ export default function SimpleHome() {
             </div>
           </div>
 
-          {/* Advanced GPS Row */}
-          <div className="flex justify-center">
+          {/* Advanced GPS & Car Animation Row */}
+          <div className="grid grid-cols-2 gap-3">
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white w-1/2"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white h-full"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -192,7 +192,7 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <Satellite size={36} className="text-[#4da6ff]" />
+                  <Satellite size={32} className="text-[#4da6ff]" />
                 </div>
                 <h3 className="text-[#4da6ff] text-[15px] font-semibold">Advanced GPS</h3>
               </div>
@@ -200,35 +200,42 @@ export default function SimpleHome() {
                 <p className="text-gray-700 text-[14px]">Live Satellites </p>
               </div>
             </div>
+
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green rounded-lg bg-white h-full"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Car animation clicked, navigating to /ride');
+                setLocation('/ride');
+              }}
+              data-testid="card-car-animation"
+            >
+              <div className="text-center pb-0 pt-3 px-6">
+                <div className="flex justify-center mb-1">
+                  <div className="relative w-8 h-8">
+                    <video 
+                      className="w-8 h-8 rounded object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source src={carVideo} type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <h3 className="text-brand-green text-[15px] font-semibold">Book a ride</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-gray-700 text-[14px]">Get there.™</p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Extra spacing after main actions */}
         <div className="pb-3"></div>
-
-        {/* Video Section */}
-        <div className="flex justify-center">
-          <div className="relative w-2/5">
-            <video 
-              className="w-full rounded-lg shadow-md"
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src={carVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            {/* Side Logo Overlay */}
-            <div className="absolute left-1/2 bottom-4 car-bob">
-              <img 
-                src={rideSideLogoImage} 
-                alt="ride"
-                className="h-3 w-auto opacity-80"
-              />
-            </div>
-          </div>
-        </div>
 
         {/* Profile Section */}
         <div className="space-y-4 pt-4">
