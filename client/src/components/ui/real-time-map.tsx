@@ -25,6 +25,7 @@ interface RealTimeMapProps {
   driverLocation?: DriverLocation;
   destination?: LocationData;
   currentRideLocation?: LocationData;
+  driverName?: string;
   mapStyle?: 'streets' | 'satellite' | 'dark' | 'light';
   showTraffic?: boolean;
   showRoute?: boolean;
@@ -38,6 +39,7 @@ export default function RealTimeMap({
   driverLocation,
   destination,
   currentRideLocation,
+  driverName,
   mapStyle = 'streets',
   showTraffic = true,
   showRoute = true,
@@ -258,7 +260,7 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: driverLocation.latitude, lng: driverLocation.longitude },
       map,
-      title: 'John',
+      title: driverName || 'Driver',
       icon: {
         url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M13,20L11,20V18L13,18M19,10V12A2,2 0 0,1 17,14H15V22H9V14H7A2,2 0 0,1 5,12V10A2,2 0 0,1 7,8H17A2,2 0 0,1 19,10Z"/%3E%3C/svg%3E',
         scaledSize: new (window as any).google.maps.Size(32, 32)
@@ -266,7 +268,7 @@ export default function RealTimeMap({
     });
 
     driverMarkerRef.current = marker;
-  }, [map, driverLocation]);
+  }, [map, driverLocation, driverName]);
 
   // Update destination marker
   useEffect(() => {

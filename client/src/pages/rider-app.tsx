@@ -1205,13 +1205,14 @@ export default function RiderApp() {
             userLocation={{ ...getPickupCoordinates(), accuracy: 5, timestamp: Date.now() }}
             driverLocation={getDriverLocation()}
             destination={{ ...getDestinationCoordinates(), accuracy: 5, timestamp: Date.now() }}
+            driverName={matchedDriver ? `${matchedDriver.driver.firstName} ${matchedDriver.driver.lastName}` : undefined}
             showTraffic={true}
             showRoute={true}
             mapStyle="streets"
             className="w-full h-[28rem]"
             onDriverContact={(type) => {
               if (type === 'call') {
-                toast({ title: "Calling driver...", description: "Connecting you to John" });
+                toast({ title: "Calling driver...", description: `Connecting you to ${matchedDriver?.driver.firstName}` });
               } else {
                 toast({ title: "Message sent", description: "Your message was sent to the driver" });
               }
