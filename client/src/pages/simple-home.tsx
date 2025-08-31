@@ -224,7 +224,7 @@ export default function SimpleHome() {
                     {/* Side Logo Overlay */}
                     <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2">
                       <img 
-                        src="@assets/ride-side-logo.png" 
+                        src={rideSideLogoImage} 
                         alt="ride"
                         className="h-2 w-auto opacity-80"
                       />
