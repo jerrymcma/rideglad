@@ -178,7 +178,7 @@ export default function SimpleHome() {
           </div>
 
           {/* Advanced GPS Row */}
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <div 
               className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white h-full"
               onClick={(e) => {
