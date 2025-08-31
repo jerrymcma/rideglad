@@ -534,19 +534,18 @@ export default function DriverDashboard() {
             View Past Rides
           </Button>
 
-          {/* Back Button - positioned below vehicle settings */}
-          <div className="pt-4">
-            <Button
-              onClick={() => setLocation('/')}
-              variant="ghost"
-              className="p-3 hover:bg-gray-100 rounded-full"
-              data-testid="button-back"
-            >
-              <ArrowLeft size={24} className="text-gray-600" />
-            </Button>
-          </div>
         </div>
       </div>
+      
+      {/* Fixed Back Button - Bottom Left */}
+      <Button
+        onClick={() => setLocation('/')}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }

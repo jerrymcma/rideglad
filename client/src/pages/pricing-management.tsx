@@ -182,15 +182,6 @@ export default function PricingManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-7xl mx-auto space-y-6">
-        {/* Back Button */}
-        <Button 
-          variant="ghost"
-          onClick={() => setLocation('/')}
-          className="p-3 hover:bg-gray-100 rounded-full"
-          data-testid="button-back-home"
-        >
-          <ArrowLeft size={24} className="text-gray-600" />
-        </Button>
 
         {/* Pricing Calculator */}
         <Card className="max-w-4xl mx-auto">
@@ -404,6 +395,16 @@ export default function PricingManagement() {
           </Card>
         </div>
       </div>
+      
+      {/* Fixed Back Button - Bottom Left */}
+      <Button
+        onClick={() => setLocation('/')}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }

@@ -1415,24 +1415,6 @@ export default function RiderApp() {
 
   const renderPickupStep = () => (
     <div className="space-y-6">
-      {/* Back button */}
-      <div className="flex items-center">
-        <Button
-          onClick={() => {
-            if (currentTrip) {
-              // Cancel the trip and go back to booking
-              cancelRideMutation.mutate();
-            } else {
-              setLocation('/');
-            }
-          }}
-          variant="ghost"
-          className="p-3 hover:bg-gray-100 rounded-full"
-          data-testid="button-back-pickup"
-        >
-          <ArrowLeft size={24} className="text-gray-600" />
-        </Button>
-      </div>
       
       <div className="text-center space-y-2">
         <h2 className="text-2xl font-bold text-blue-600">Driver Arriving</h2>
@@ -1774,7 +1756,14 @@ export default function RiderApp() {
       </div>
       {/* Fixed Back Button - Bottom Left */}
       <Button
-        onClick={() => setLocation('/')}
+        onClick={() => {
+          if (currentStep === 'pickup' && currentTrip) {
+            // Cancel the trip and go back to booking
+            cancelRideMutation.mutate();
+          } else {
+            setLocation('/');
+          }
+        }}
         variant="outline"
         className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
         data-testid="button-back-fixed"
