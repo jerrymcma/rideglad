@@ -202,7 +202,7 @@ export default function SimpleHome() {
             </div>
 
             <div 
-              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green rounded-lg bg-white h-full"
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-purple-500 rounded-lg bg-white h-full"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -225,10 +225,10 @@ export default function SimpleHome() {
                     </video>
                   </div>
                 </div>
-                <h3 className="text-brand-green text-[15px] font-semibold">Book a ride</h3>
+                <h3 className="text-purple-500 text-[15px] font-semibold">Live Cars</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Get there.™</p>
+                <p className="text-gray-700 text-[14px]">Watch & Book</p>
               </div>
             </div>
           </div>
