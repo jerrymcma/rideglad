@@ -196,7 +196,7 @@ export default function SimpleHome() {
                 <h3 className="text-[#4da6ff] text-[15px] font-semibold">Advanced GPS</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">Live Satellites </p>
+                <p className="text-gray-700 text-[14px] pl-[24px] pr-[24px] pt-[8px] pb-[8px]">Live Satellites </p>
               </div>
             </div>
           </div>
