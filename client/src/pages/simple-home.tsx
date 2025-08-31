@@ -200,7 +200,36 @@ export default function SimpleHome() {
               </div>
             </div>
 
-            
+            {/* New Video Bubble */}
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white h-full"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('New video clicked');
+              }}
+              data-testid="card-new-video"
+            >
+              <div className="text-center px-6 pl-[24px] pr-[24px] pt-[6px] pb-[6px]">
+                <div className="flex justify-center mb-1">
+                  <div className="w-8 h-8">
+                    <video 
+                      className="w-full h-full rounded object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source src="@assets/Screen_Recording_20250816_142532_Chrome_1756682436463.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <h3 className="text-[#4da6ff] text-[15px] font-semibold">Screen Recording</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-gray-700 text-[14px]">Live Demo</p>
+              </div>
+            </div>
           </div>
         </div>
 
