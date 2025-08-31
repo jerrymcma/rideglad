@@ -213,9 +213,9 @@ export default function SimpleHome() {
             >
               <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
-                  <div className="relative w-8 h-8">
+                  <div className="relative" style={{width: '32px', height: '32px'}}>
                     <video 
-                      className="w-8 h-8 rounded object-cover"
+                      className="w-full h-full rounded object-cover"
                       autoPlay
                       loop
                       muted
@@ -233,10 +233,10 @@ export default function SimpleHome() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-transparent text-[15px] font-semibold">Placeholder</h3>
+                <h3 className="font-semibold text-[16px]" style={{color: 'transparent'}}>Car Animation</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-transparent text-[14px]">Placeholder text</p>
+                <p className="text-[14px]" style={{color: 'transparent'}}>Watch cars move</p>
               </div>
             </div>
           </div>
