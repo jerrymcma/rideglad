@@ -46,6 +46,7 @@ export default function SimpleHome() {
          style={{
            background: 'linear-gradient(to bottom, #b8e0ff 0%, #d0f0ff 50%, #f0f8ff 100%)'
          }}>
+      
       {/* Content Overlay */}
       <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
         <div className="p-6 text-[15px] pb-20">
@@ -177,8 +178,8 @@ export default function SimpleHome() {
             </div>
           </div>
 
-          {/* Advanced GPS Row */}
-          <div className="grid grid-cols-1 gap-3">
+          {/* Advanced GPS & Car Animation Row */}
+          <div className="grid grid-cols-2 gap-3">
             <div 
               className="cursor-pointer hover:shadow-md transition-shadow border-2 border-[#4da6ff] rounded-lg bg-white h-full"
               onClick={(e) => {
@@ -189,7 +190,7 @@ export default function SimpleHome() {
               }}
               data-testid="card-advanced-gps"
             >
-              <div className="text-center px-6 pl-[24px] pr-[24px] pt-[6px] pb-[6px]">
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
                   <Satellite size={32} className="text-[#4da6ff]" />
                 </div>
@@ -199,28 +200,35 @@ export default function SimpleHome() {
                 <p className="text-gray-700 text-[14px]">Live Satellites </p>
               </div>
             </div>
-          </div>
 
-          {/* Car Animation Display */}
-          <div className="mt-6">
-            <div className="text-center">
-              <div className="relative w-24 h-24 mx-auto">
-                <video 
-                  className="w-full h-full rounded object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                >
-                  <source src={carVideo} type="video/mp4" />
-                </video>
-                <div className="absolute left-1/2 bottom-1 transform -translate-x-1/2">
-                  <img 
-                    src={rideSideLogoImage} 
-                    alt="ride"
-                    className="h-3 w-auto opacity-80"
-                  />
+            <div 
+              className="cursor-pointer hover:shadow-md transition-shadow border-2 border-brand-green rounded-lg bg-white h-full"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Car animation clicked, navigating to /ride');
+                setLocation('/ride');
+              }}
+              data-testid="card-car-animation"
+            >
+              <div className="text-center pb-0 pt-3 px-6">
+                <div className="flex justify-center mb-1">
+                  <div className="relative w-8 h-8">
+                    <video 
+                      className="w-8 h-8 rounded object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source src={carVideo} type="video/mp4" />
+                    </video>
+                  </div>
                 </div>
+                <h3 className="text-brand-green text-[15px] font-semibold">Book a ride</h3>
+              </div>
+              <div className="text-center py-1 pb-3 px-6">
+                <p className="text-gray-700 text-[14px]">Get there.™</p>
               </div>
             </div>
           </div>
@@ -233,6 +241,21 @@ export default function SimpleHome() {
         <div className="space-y-4 pt-4">
         </div>
         </div>
+      </div>
+      
+      {/* Back Button - positioned at very left edge, aligned with video bottom */}
+      <div className="absolute bottom-16 left-0 z-20">
+        <Button
+          onClick={() => {
+            console.log('Back button clicked - logging out');
+            window.location.href = '/api/logout';
+          }}
+          variant="ghost"
+          className="p-10 hover:bg-gray-100 rounded-full min-w-[100px] min-h-[100px] flex items-center justify-center"
+          data-testid="button-back"
+        >
+          <ArrowLeft size={48} className="text-gray-600" />
+        </Button>
       </div>
     </div>
   );
