@@ -99,6 +99,19 @@ export default function Landing() {
               </Button>
             </div>
 
+            {/* Help Link */}
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={() => {
+                  // Simple alert for now - could be enhanced with actual password reset
+                  alert('For password help, please contact support at help@rideshare.com or try logging in with Google/Apple.');
+                }}
+                className="font-medium text-[#3c71e8] hover:underline cursor-pointer"
+                data-testid="link-help"
+              >
+                Help
+              </button>
+            </div>
 
           </div>
         </div>
