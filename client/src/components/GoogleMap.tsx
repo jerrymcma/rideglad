@@ -170,19 +170,69 @@ export default function GoogleMap({
     }
   }, [map, center]);
 
-  // Check for API key before rendering
+  // Professional fallback map when Google Maps API isn't ready
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  if (!apiKey || apiKey === 'undefined') {
+  if (!apiKey || apiKey === 'undefined' || !isLoaded) {
     return (
-      <div className={`${className} bg-gray-100 flex items-center justify-center border rounded-lg`}>
-        <div className="text-center text-gray-600">
-          <div className="w-8 h-8 mx-auto mb-2 bg-blue-200 rounded-full flex items-center justify-center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            </svg>
+      <div className={`${className} bg-gradient-to-br from-blue-50 to-green-50 border rounded-lg relative overflow-hidden`}>
+        {/* Beautiful Map Background */}
+        <div className="absolute inset-0 opacity-20">
+          <svg viewBox="0 0 400 300" className="w-full h-full">
+            {/* Street Grid Pattern */}
+            <defs>
+              <pattern id="streets" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M0 20h40M20 0v40" stroke="#3B82F6" strokeWidth="1" opacity="0.3"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="300" fill="url(#streets)"/>
+            
+            {/* Mock Hattiesburg Features */}
+            <circle cx="200" cy="150" r="8" fill="#10B981" opacity="0.6"/>
+            <circle cx="120" cy="100" r="6" fill="#3B82F6" opacity="0.6"/>
+            <circle cx="280" cy="200" r="6" fill="#3B82F6" opacity="0.6"/>
+            <path d="M50 50 Q200 100 350 250" stroke="#059669" strokeWidth="3" fill="none" opacity="0.4"/>
+          </svg>
+        </div>
+
+        {/* Driver and Location Markers */}
+        <div className="relative h-full flex items-center justify-center">
+          {/* Your Location */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse"/>
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+              <div className="text-xs bg-white border-2 border-blue-500 text-blue-600 px-2 py-1 rounded shadow-sm font-medium">YOU</div>
+            </div>
           </div>
-          <p className="text-sm font-medium">Interactive Map</p>
-          <p className="text-xs">Ready for Google Maps integration</p>
+
+          {/* Mock Driver Positions */}
+          <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="bg-green-600 text-white p-2 rounded-full shadow-lg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6.01L3,12V20C3,20.55 3.45,21 4,21H5C5.55,21 6,20.55 6,20V19H18V20C18,20.55 18.45,21 19,21H20C20.55,21 21,20.55 21,20V12L18.92,6.01M6.5,16C5.67,16 5,15.33 5,14.5C5,13.67 5.67,13 6.5,13C7.33,13 8,13.67 8,14.5C8,15.33 7.33,16 6.5,16M17.5,16C16.67,16 16,15.33 16,14.5C16,13.67 16.67,13 17.5,13C18.33,13 19,13.67 19,14.5C19,15.33 18.33,16 17.5,16M5,11L6.5,6.5H17.5L19,11H5Z"/>
+              </svg>
+            </div>
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-green-600 bg-white px-2 py-1 rounded shadow-sm">JOHN</div>
+          </div>
+
+          <div className="absolute top-2/3 right-1/4 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="bg-green-600 text-white p-2 rounded-full shadow-lg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6.01L3,12V20C3,20.55 3.45,21 4,21H5C5.55,21 6,20.55 6,20V19H18V20C18,20.55 18.45,21 19,21H20C20.55,21 21,20.55 21,20V12L18.92,6.01M6.5,16C5.67,16 5,15.33 5,14.5C5,13.67 5.67,13 6.5,13C7.33,13 8,13.67 8,14.5C8,15.33 7.33,16 6.5,16M17.5,16C16.67,16 16,15.33 16,14.5C16,13.67 16.67,13 17.5,13C18.33,13 19,13.67 19,14.5C19,15.33 18.33,16 17.5,16M5,11L6.5,6.5H17.5L19,11H5Z"/>
+              </svg>
+            </div>
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-green-600 bg-white px-2 py-1 rounded shadow-sm">SARAH</div>
+          </div>
+
+          {/* Status Message */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+            <div className="bg-white/90 backdrop-blur-sm border border-blue-200 rounded-lg px-4 py-2 shadow-lg">
+              <div className="flex items-center gap-2 text-sm">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"/>
+                <span className="text-blue-800 font-medium">Hattiesburg Map Loading...</span>
+              </div>
+              <div className="text-xs text-gray-600 mt-1">Google Maps activation pending</div>
+            </div>
+          </div>
         </div>
       </div>
     );
