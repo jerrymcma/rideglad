@@ -6,7 +6,7 @@ import { Car, User, LogOut, MapPin, Youtube, Facebook, Music, BadgeDollarSign, S
 import { SiTiktok, SiInstagram, SiGoogle } from "react-icons/si";
 import { useAuth } from "@/hooks/useAuth";
 import carVideo from "@assets/Screen_Recording_20250816_142532_Chrome_1755372514460.mp4";
-import logoImage from "@assets/Screenshot_20250817_013158_Canva_1755412353486.jpg";
+import logoImage from "@assets/Screenshot_20250901_174911_Canva_1756768099042.jpg";
 import rideLogoImage from "@assets/Screenshot_20250818_223935_Canva_1755574798589.jpg";
 import rideSideLogoImage from "@assets/Screenshot_20250817_014843_Canva_1755414233355.jpg";
 import driveIconImage from "@assets/Screenshot_20250818_213338_Canva_1755570832658.jpg";
@@ -52,7 +52,13 @@ export default function SimpleHome() {
         <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
         <div className="text-center space-y-1 mb-6 pt-2">
-          <h1 className="text-center font-extrabold text-[#2a5aeb] text-[28px]">Welcome to ride!</h1>
+          <div className="flex justify-center mb-4">
+            <img 
+              src={logoImage} 
+              alt="ride - Get there.™"
+              className="w-48 h-auto"
+            />
+          </div>
           <p className="text-[#464f6b] text-[18px]">Glad to see you {(user as any)?.firstName || 'User'}!</p>
         </div>
 

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import logoImage from "@assets/Screenshot_20250830_042858_Canva_1756546165398.jpg";
+import logoImage from "@assets/Screenshot_20250901_174911_Canva_1756768099042.jpg";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 
@@ -114,7 +114,7 @@ export default function Landing() {
           <div className="flex justify-center">
             <img 
               src={logoImage} 
-              alt="ride© - Get there™"
+              alt="ride - Get there.™"
               className="w-64 h-auto"
               data-testid="logo-image"
             />
