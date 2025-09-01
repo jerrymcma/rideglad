@@ -234,15 +234,29 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: userLocation.latitude, lng: userLocation.longitude },
       map,
-      title: 'You',
+      title: 'You (Rider)',
       icon: {
         path: (window as any).google.maps.SymbolPath.CIRCLE,
-        scale: 8,
+        scale: 12,
         fillColor: '#3B82F6',
         fillOpacity: 1,
-        strokeWeight: 3,
+        strokeWeight: 4,
         strokeColor: '#FFFFFF'
+      },
+      label: {
+        text: 'YOU',
+        color: '#FFFFFF',
+        fontSize: '12px',
+        fontWeight: 'bold'
       }
+    });
+
+    // Add info window for user location
+    const userInfoWindow = new (window as any).google.maps.InfoWindow({
+      content: '<div style="padding: 8px; font-family: system-ui;"><strong>📍 Rider Location</strong><br/>Pickup Point</div>'
+    });
+    marker.addListener('click', () => {
+      userInfoWindow.open(map, marker);
     });
 
     userMarkerRef.current = marker;
@@ -260,11 +274,39 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: driverLocation.latitude, lng: driverLocation.longitude },
       map,
-      title: driverName || 'Driver',
+      title: `${driverName || 'John Driver'} - Available Driver`,
       icon: {
-        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M13,20L11,20V18L13,18M19,10V12A2,2 0 0,1 17,14H15V22H9V14H7A2,2 0 0,1 5,12V10A2,2 0 0,1 7,8H17A2,2 0 0,1 19,10Z"/%3E%3C/svg%3E',
-        scaledSize: new (window as any).google.maps.Size(32, 32)
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6.01L3,12V20C3,20.55 3.45,21 4,21H5C5.55,21 6,20.55 6,20V19H18V20C18,20.55 18.45,21 19,21H20C20.55,21 21,20.55 21,20V12L18.92,6.01M6.5,16C5.67,16 5,15.33 5,14.5C5,13.67 5.67,13 6.5,13C7.33,13 8,13.67 8,14.5C8,15.33 7.33,16 6.5,16M17.5,16C16.67,16 16,15.33 16,14.5C16,13.67 16.67,13 17.5,13C18.33,13 19,13.67 19,14.5C19,15.33 18.33,16 17.5,16M5,11L6.5,6.5H17.5L19,11H5Z"/%3E%3C/svg%3E',
+        scaledSize: new (window as any).google.maps.Size(40, 40),
+        anchor: new (window as any).google.maps.Point(20, 20)
+      },
+      label: {
+        text: (driverName || 'JOHN').split(' ')[0].toUpperCase(),
+        color: '#FFFFFF',
+        fontSize: '10px',
+        fontWeight: 'bold'
       }
+    });
+
+    // Add info window for driver
+    const driverInfoWindow = new (window as any).google.maps.InfoWindow({
+      content: `<div style="padding: 12px; font-family: system-ui; min-width: 200px;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+          <div style="font-size: 24px; margin-right: 8px;">🚗</div>
+          <div>
+            <strong>${driverName || 'John Driver'}</strong><br/>
+            <span style="color: #10B981; font-weight: bold;">⭐ 4.9 (127 rides)</span>
+          </div>
+        </div>
+        <div style="font-size: 12px; color: #666;">
+          🚙 Silver Toyota Camry<br/>
+          📱 Available for pickup<br/>
+          💰 $0.40 per mile + $2 base
+        </div>
+      </div>`
+    });
+    marker.addListener('click', () => {
+      driverInfoWindow.open(map, marker);
     });
 
     driverMarkerRef.current = marker;
@@ -281,15 +323,29 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: destination.latitude, lng: destination.longitude },
       map,
-      title: 'Destination',
+      title: 'Destination - Drop-off Point',
       icon: {
         path: (window as any).google.maps.SymbolPath.CIRCLE,
-        scale: 8,
+        scale: 12,
         fillColor: '#EF4444',
         fillOpacity: 1,
-        strokeWeight: 3,
+        strokeWeight: 4,
         strokeColor: '#FFFFFF'
+      },
+      label: {
+        text: 'END',
+        color: '#FFFFFF',
+        fontSize: '10px',
+        fontWeight: 'bold'
       }
+    });
+
+    // Add info window for destination
+    const destInfoWindow = new (window as any).google.maps.InfoWindow({
+      content: '<div style="padding: 8px; font-family: system-ui;"><strong>🏁 Destination</strong><br/>Drop-off Point</div>'
+    });
+    marker.addListener('click', () => {
+      destInfoWindow.open(map, marker);
     });
 
     destinationMarkerRef.current = marker;
