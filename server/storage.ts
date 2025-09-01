@@ -36,6 +36,7 @@ import { eq, and, desc, sql } from "drizzle-orm";
 export interface IStorage {
   // User operations - mandatory for Replit Auth
   getUser(id: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
   
   // Vehicle operations
@@ -126,6 +127,11 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
   async upsertUser(userData: UpsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
@@ -162,10 +168,6 @@ export class DatabaseStorage implements IStorage {
 
   async deleteVehicle(id: string): Promise<void> {
     await db.delete(vehicles).where(eq(vehicles.id, id));
-  }
-
-  async getVehiclesByDriver(driverId: string): Promise<VehicleData[]> {
-    return db.select().from(vehicles).where(eq(vehicles.driverId, driverId));
   }
 
   // Trip operations

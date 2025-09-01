@@ -2,8 +2,9 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
-import { insertTripSchema, insertVehicleSchema, insertRatingSchema, insertPaymentMethodSchema } from "@shared/schema";
+import { insertTripSchema, insertVehicleSchema, insertRatingSchema, insertPaymentMethodSchema, registerUserSchema, loginUserSchema } from "@shared/schema";
 import { z } from "zod";
+import bcrypt from "bcrypt";
 import {
   ObjectStorageService,
   ObjectNotFoundError,
@@ -27,7 +28,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   await setupAuth(app);
 
-  // Auth routes
+  // Password Authentication Routes
+  app.post('/api/auth/register', async (req, res) => {
+    try {
+      const validatedData = registerUserSchema.parse(req.body);
+      
+      // Check if user already exists
+      const existingUser = await storage.getUserByEmail(validatedData.email);
+      if (existingUser) {
+        return res.status(400).json({ message: "User already exists with this email" });
+      }
+      
+      // Hash password
+      const hashedPassword = await bcrypt.hash(validatedData.password, 10);
+      
+      // Create user
+      const newUser = await storage.upsertUser({
+        email: validatedData.email,
+        password: hashedPassword,
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        userType: 'rider',
+      });
+      
+      // Set up session (simplified)
+      (req.session as any).userId = newUser.id;
+      (req.session as any).isPasswordAuth = true;
+      
+      res.status(201).json({ 
+        message: "Registration successful",
+        user: { ...newUser, password: undefined } // Don't send password back
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      console.error("Registration error:", error);
+      res.status(500).json({ message: "Registration failed" });
+    }
+  });
+
+  app.post('/api/auth/login', async (req, res) => {
+    try {
+      const validatedData = loginUserSchema.parse(req.body);
+      
+      // Find user by email
+      const user = await storage.getUserByEmail(validatedData.email);
+      if (!user || !user.password) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+      
+      // Check password
+      const isValidPassword = await bcrypt.compare(validatedData.password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+      
+      // Set up session
+      (req.session as any).userId = user.id;
+      (req.session as any).isPasswordAuth = true;
+      
+      res.json({ 
+        message: "Login successful",
+        user: { ...user, password: undefined } // Don't send password back
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      console.error("Login error:", error);
+      res.status(500).json({ message: "Login failed" });
+    }
+  });
+
+  // Auth routes (existing OAuth)
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;

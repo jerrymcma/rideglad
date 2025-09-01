@@ -3,10 +3,108 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import logoImage from "@assets/Screenshot_20250830_042858_Canva_1756546165398.jpg";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
 
 export default function Landing() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      toast({
+        title: "Missing Information",
+        description: "Please enter both email and password",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Login Successful",
+          description: "Welcome back!",
+        });
+        setLocation('/');
+      } else {
+        toast({
+          title: "Login Failed",
+          description: data.message || "Invalid email or password",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Login Error",
+        description: "Unable to connect to server",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignup = async () => {
+    if (!email || !password) {
+      toast({
+        title: "Missing Information", 
+        description: "Please enter both email and password",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email, 
+          password,
+          firstName: 'User', // Simple default
+          lastName: 'Account'  // Simple default
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Registration Successful",
+          description: "Account created! You are now logged in.",
+        });
+        setLocation('/');
+      } else {
+        toast({
+          title: "Registration Failed",
+          description: data.message || "Unable to create account",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Registration Error",
+        description: "Unable to connect to server",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
@@ -54,22 +152,24 @@ export default function Landing() {
 
             <div className="flex justify-center mt-6">
               <Button
-                onClick={() => window.location.href = '/api/login'}
+                onClick={handleLogin}
+                disabled={isLoading}
                 className="w-40 h-12 bg-brand-green text-white rounded font-semibold hover:bg-green-600 text-xl"
                 data-testid="button-login"
               >
-                Log in
+                {isLoading ? "Logging in..." : "Log in"}
               </Button>
             </div>
 
             <div className="flex justify-center mt-3">
               <Button
-                onClick={() => window.location.href = '/api/login'}
+                onClick={handleSignup}
+                disabled={isLoading}
                 variant="outline"
                 className="w-36 h-10 border border-blue-600 rounded hover:bg-blue-50 text-base font-semibold text-[#3965ed]"
                 data-testid="button-signup"
               >
-                Sign up
+                {isLoading ? "Creating..." : "Sign up"}
               </Button>
             </div>
 

@@ -30,6 +30,7 @@ export const sessions = pgTable(
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   email: varchar("email").unique(),
+  password: varchar("password"), // Optional password for email/password auth
   firstName: varchar("first_name"),
   lastName: varchar("last_name"),
   profileImageUrl: varchar("profile_image_url"),
@@ -303,6 +304,26 @@ export const insertUserSchema = createInsertSchema(users).omit({
 export const insertVehicleSchema = createInsertSchema(vehicles).omit({
   id: true,
   createdAt: true,
+});
+
+// Password validation schema - easy 6 alphanumeric characters
+export const passwordSchema = z.string()
+  .min(6, "Password must be at least 6 characters")
+  .max(20, "Password must be at most 20 characters")
+  .regex(/^[a-zA-Z0-9]+$/, "Password can only contain letters and numbers");
+
+// Registration schema for email/password signup
+export const registerUserSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: passwordSchema,
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+});
+
+// Login schema for email/password login
+export const loginUserSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(1, "Password is required"),
 });
 
 export const insertTripSchema = createInsertSchema(trips).omit({
