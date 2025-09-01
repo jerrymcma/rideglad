@@ -66,40 +66,104 @@ export default function TripMap({
 
     // Add pickup marker
     if (pickupLocation) {
-      new (window as any).google.maps.Marker({
+      const pickupMarker = new (window as any).google.maps.Marker({
         position: pickupLocation,
         map,
-        title: 'Pickup Location',
+        title: 'YOU - Pickup Location',
         icon: {
-          url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/%3E%3C/svg%3E',
-          scaledSize: new (window as any).google.maps.Size(32, 32)
+          path: (window as any).google.maps.SymbolPath.CIRCLE,
+          scale: 12,
+          fillColor: '#3B82F6',
+          fillOpacity: 1,
+          strokeWeight: 4,
+          strokeColor: '#FFFFFF'
+        },
+        label: {
+          text: 'YOU',
+          color: '#FFFFFF',
+          fontSize: '12px',
+          fontWeight: 'bold'
         }
+      });
+
+      // Add info window for pickup
+      const pickupInfoWindow = new (window as any).google.maps.InfoWindow({
+        content: '<div style="padding: 8px; font-family: system-ui;"><strong>📍 Pickup Location</strong><br/>Rider waiting here</div>'
+      });
+      pickupMarker.addListener('click', () => {
+        pickupInfoWindow.open(map, pickupMarker);
       });
     }
 
     // Add destination marker
     if (destinationLocation) {
-      new (window as any).google.maps.Marker({
+      const destMarker = new (window as any).google.maps.Marker({
         position: destinationLocation,
         map,
-        title: 'Destination',
+        title: 'Destination - Drop-off Point',
         icon: {
-          url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%23EF4444"%3E%3Cpath d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/%3E%3C/svg%3E',
-          scaledSize: new (window as any).google.maps.Size(32, 32)
+          path: (window as any).google.maps.SymbolPath.CIRCLE,
+          scale: 12,
+          fillColor: '#EF4444',
+          fillOpacity: 1,
+          strokeWeight: 4,
+          strokeColor: '#FFFFFF'
+        },
+        label: {
+          text: 'END',
+          color: '#FFFFFF',
+          fontSize: '10px',
+          fontWeight: 'bold'
         }
+      });
+
+      // Add info window for destination
+      const destInfoWindow = new (window as any).google.maps.InfoWindow({
+        content: '<div style="padding: 8px; font-family: system-ui;"><strong>🏁 Destination</strong><br/>Drop-off point</div>'
+      });
+      destMarker.addListener('click', () => {
+        destInfoWindow.open(map, destMarker);
       });
     }
 
     // Add driver marker
     if (driverLocation) {
-      new (window as any).google.maps.Marker({
+      const driverMarker = new (window as any).google.maps.Marker({
         position: driverLocation,
         map,
-        title: 'Driver Location',
+        title: 'John Driver - Available Driver',
         icon: {
-          url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="32" height="32" viewBox="0 0 24 24" fill="%233B82F6"%3E%3Cpath d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-1.92-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/%3E%3C/svg%3E',
-          scaledSize: new (window as any).google.maps.Size(32, 32)
+          url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6.01L3,12V20C3,20.55 3.45,21 4,21H5C5.55,21 6,20.55 6,20V19H18V20C18,20.55 18.45,21 19,21H20C20.55,21 21,20.55 21,20V12L18.92,6.01M6.5,16C5.67,16 5,15.33 5,14.5C5,13.67 5.67,13 6.5,13C7.33,13 8,13.67 8,14.5C8,15.33 7.33,16 6.5,16M17.5,16C16.67,16 16,15.33 16,14.5C16,13.67 16.67,13 17.5,13C18.33,13 19,13.67 19,14.5C19,15.33 18.33,16 17.5,16M5,11L6.5,6.5H17.5L19,11H5Z"/%3E%3C/svg%3E',
+          scaledSize: new (window as any).google.maps.Size(40, 40),
+          anchor: new (window as any).google.maps.Point(20, 20)
+        },
+        label: {
+          text: 'JOHN',
+          color: '#FFFFFF',
+          fontSize: '10px',
+          fontWeight: 'bold'
         }
+      });
+
+      // Add info window for driver
+      const driverInfoWindow = new (window as any).google.maps.InfoWindow({
+        content: `<div style="padding: 12px; font-family: system-ui; min-width: 200px;">
+          <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <div style="font-size: 24px; margin-right: 8px;">🚗</div>
+            <div>
+              <strong>John Driver</strong><br/>
+              <span style="color: #10B981; font-weight: bold;">⭐ 4.9 (127 rides)</span>
+            </div>
+          </div>
+          <div style="font-size: 12px; color: #666;">
+            🚙 Silver Toyota Camry<br/>
+            📱 Available for pickup<br/>
+            💰 $0.40 per mile + $2 base
+          </div>
+        </div>`
+      });
+      driverMarker.addListener('click', () => {
+        driverInfoWindow.open(map, driverMarker);
       });
     }
 
