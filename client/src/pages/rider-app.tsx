@@ -1578,11 +1578,11 @@ export default function RiderApp() {
             <div className="w-full h-96 rounded-lg overflow-hidden relative">
               <RealTimeMap
                 className="w-full h-full"
-                userLocation={currentTrip ? { lat: currentTrip.pickupLat, lng: currentTrip.pickupLng } : undefined}
-                destination={currentTrip ? { lat: currentTrip.destinationLat, lng: currentTrip.destinationLng } : undefined}
-                driverLocation={matchedDriver ? {
-                  latitude: currentTrip?.pickupLat + 0.001 || 31.3281,
-                  longitude: currentTrip?.pickupLng + 0.0005 || -89.2898,
+                userLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? { latitude: currentTrip.pickupLat, longitude: currentTrip.pickupLng, accuracy: 5, timestamp: Date.now() } : undefined}
+                destination={currentTrip && typeof currentTrip.destinationLat === 'number' && typeof currentTrip.destinationLng === 'number' ? { latitude: currentTrip.destinationLat, longitude: currentTrip.destinationLng, accuracy: 5, timestamp: Date.now() } : undefined}
+                driverLocation={matchedDriver && currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
+                  latitude: currentTrip.pickupLat + 0.001,
+                  longitude: currentTrip.pickupLng + 0.0005,
                   driverId: matchedDriver.driver.id || 'mock-driver-1',
                   status: 'en_route' as const,
                   speed: 25,
@@ -1590,7 +1590,7 @@ export default function RiderApp() {
                   accuracy: 5,
                   timestamp: Date.now()
                 } : undefined}
-                currentRideLocation={currentTrip ? {
+                currentRideLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
                   latitude: currentTrip.pickupLat + 0.002,
                   longitude: currentTrip.pickupLng + 0.001,
                   accuracy: 5,

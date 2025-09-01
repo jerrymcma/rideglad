@@ -281,14 +281,18 @@ export default function DriverDashboard() {
                 <div className="w-full h-40 rounded-lg overflow-hidden border-2 border-green-200">
                   <RealTimeMap
                     className="w-full h-full"
-                    userLocation={activeTrip ? { lat: activeTrip.pickupLat, lng: activeTrip.pickupLng } : undefined}
-                    destination={activeTrip ? { lat: activeTrip.destinationLat, lng: activeTrip.destinationLng } : undefined}
-                    driverLocation={{
-                      lat: activeTrip?.pickupLat || 31.3271,
-                      lng: activeTrip?.pickupLng || -89.2903,
+                    userLocation={activeTrip && typeof activeTrip.pickupLat === 'number' && typeof activeTrip.pickupLng === 'number' ? { latitude: activeTrip.pickupLat, longitude: activeTrip.pickupLng, accuracy: 5, timestamp: Date.now() } : undefined}
+                    destination={activeTrip && typeof activeTrip.destinationLat === 'number' && typeof activeTrip.destinationLng === 'number' ? { latitude: activeTrip.destinationLat, longitude: activeTrip.destinationLng, accuracy: 5, timestamp: Date.now() } : undefined}
+                    driverLocation={activeTrip && typeof activeTrip.pickupLat === 'number' && typeof activeTrip.pickupLng === 'number' ? {
+                      latitude: activeTrip.pickupLat,
+                      longitude: activeTrip.pickupLng,
+                      driverId: 'driver-1',
+                      status: 'en_route' as const,
                       speed: 25,
-                      heading: 90
-                    }}
+                      heading: 90,
+                      accuracy: 5,
+                      timestamp: Date.now()
+                    } : undefined}
                     showRoute={true}
                     estimatedArrival={5}
                     onDriverContact={(type) => {
