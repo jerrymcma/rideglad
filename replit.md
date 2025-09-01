@@ -1,6 +1,6 @@
 # Overview
 
-rideShare is a premium full-stack ride-sharing application built with React, Express, and PostgreSQL, designed with trillion-dollar company vision and standards. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, payment management, and an advanced custom pricing system. The system supports both rider and driver workflows with a mobile-first responsive design, emphasizing exceptional user experience, precise visual alignment, and safety-first messaging.
+ride constellation is a premium full-stack ride-sharing application built with React, Express, and PostgreSQL, designed with trillion-dollar company vision and standards. The application enables users to book rides as passengers or provide rides as drivers, featuring real-time trip tracking, driver matching, ratings, payment management, and an advanced custom pricing system. The system supports both rider and driver workflows with a mobile-first responsive design, emphasizing exceptional user experience, precise visual alignment, and safety-first messaging.
 
 ## Recent Additions
 - **Stripe Wallet System**: Complete Uber/Lyft-style payment processing with beautiful card management interface, real-time database integration, and Stripe-ready backend infrastructure
@@ -33,6 +33,7 @@ rideShare is a premium full-stack ride-sharing application built with React, Exp
 
 # User Preferences
 
+User Identity: Goes by "Chipper" - nickname since age 5.
 Preferred communication style: Simple, everyday language. Appreciates humor and casual interaction. User expresses appreciation for detailed work ("Claude you're the man", "You're my main man claude"). Takes immense pride in the app's beauty and quality - receiving external validation from respected consultants who are impressed with the professional design and functionality.
 UI/UX Design: Extremely detail-oriented with specific requirements for spacing, sizing, and alignment. Prefers centered layouts with custom logo integration and precise button/input dimensions. Focuses on mobile-first responsive design with careful attention to font sizes, spacing, and visual hierarchy. Requests precise micro-adjustments to spacing and font sizes. Describes the app as "beautiful" and "perfect" - appreciates the blue theme, clean professional styling, and modern wallet interface design. Prefers positive terminology (e.g., "Wallet" instead of "Payment") for better user experience. Loves innovative features like the satellite icon for Advanced GPS and the "Trillion-Dollar Tech" branding - recognizing unique differentiation from other rideshare apps. User describes Advanced GPS page as "amazing", "very impressive", and "awesome".
 Navigation: Prefers logout functionality integrated into sidebar menu rather than standalone buttons.
