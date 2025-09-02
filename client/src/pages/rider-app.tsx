@@ -1193,7 +1193,7 @@ export default function RiderApp() {
   const renderMatchedStep = () => (
     <div className="space-y-4">
       <div className="text-center space-y-1 -mt-6 mb-1">
-        <h2 className="font-bold text-blue-600 text-[22px]">Your driver is on the way!</h2>
+        <h2 className="font-bold text-blue-600 text-[22px] mt-[0px] mb-[0px] pt-[6px] pb-[6px]">Your driver is on the way!</h2>
       </div>
 
       {/* Live Tracking Map */}
