@@ -1489,7 +1489,14 @@ export default function RiderApp() {
     <div className="space-y-4 -mt-16">
       <div className="text-center space-y-2 mb-2">
         <h2 className="font-bold text-blue-600 text-[26px]">On Your Way!</h2>
-        <p className="text-black font-bold text-lg">Enjoy your ride!</p>
+        <p className="font-bold text-lg" style={{
+          background: 'linear-gradient(135deg, #c0c0c0 0%, #ffffff 25%, #a8a8a8 50%, #ffffff 75%, #c0c0c0 100%)',
+          WebkitBackgroundClip: 'text',
+          backgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          textShadow: '0 1px 3px rgba(0,0,0,0.3)',
+          filter: 'brightness(1.1)'
+        }}>Enjoy your ride!</p>
       </div>
 
       <Card className="mx-5">
