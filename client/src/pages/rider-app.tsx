@@ -1259,7 +1259,7 @@ export default function RiderApp() {
                   <div className="flex items-center mt-1">
                     <div className="flex items-center gap-1 mr-3">
                       <Star size={16} className="text-yellow-500 fill-current" />
-                      <span className="text-sm font-semibold">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
+                      <span className="font-semibold text-[13px]">{matchedDriver.rating} ({matchedDriver.driver.totalRatings} rides)</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Award size={16} className="text-blue-500 fill-current" />
