@@ -110,7 +110,15 @@ export default function Landing() {
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="flex flex-col min-h-screen justify-center px-8 py-8">
         <div className="text-center space-y-10">
-          
+          {/* Logo */}
+          <div className="text-center">
+            <img 
+              src={logoImage} 
+              alt="ride - Get there.™"
+              className="w-64 h-auto mx-auto block"
+              data-testid="logo-image"
+            />
+          </div>
 
           {/* Login Form */}
           <div className="space-y-4">
