@@ -56,6 +56,7 @@ export default function SimpleHome() {
             />
           </div>
           <p className="text-[18px] text-[#343e54] font-medium mt-[0px] mb-[0px] pt-[4px] pb-[4px] pl-[0px] pr-[0px]">Glad to see you {(user as any)?.firstName || 'User'}!</p>
+          <p className="text-[16px] text-gray-600 italic mt-1">It's our pleasure to assist you...</p>
         </div>
 
         {/* Main Actions */}
