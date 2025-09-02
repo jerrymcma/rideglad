@@ -42,10 +42,7 @@ export default function SimpleHome() {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden"
-         style={{
-           background: 'linear-gradient(to bottom, #b8e0ff 0%, #d0f0ff 50%, #f0f8ff 100%)'
-         }}>
+    <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden bg-white">
       
       {/* Content Overlay */}
       <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
