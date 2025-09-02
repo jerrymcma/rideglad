@@ -111,11 +111,11 @@ export default function Landing() {
       <div className="flex flex-col min-h-screen justify-center px-8 py-8">
         <div className="text-center space-y-10">
           {/* Logo */}
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center w-full">
             <img 
               src={logoImage} 
               alt="ride - Get there.™"
-              className="w-64 h-auto mx-auto"
+              className="w-64 h-auto"
               data-testid="logo-image"
             />
           </div>
