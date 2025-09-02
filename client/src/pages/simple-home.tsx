@@ -52,7 +52,7 @@ export default function SimpleHome() {
             <img 
               src={logoImage} 
               alt="ride - Get there.™"
-              className="w-80 h-auto mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[0px] pr-[0px]"
+              className="w-64 h-auto mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[0px] pr-[0px]"
             />
           </div>
           
