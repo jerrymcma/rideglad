@@ -1222,7 +1222,7 @@ export default function RiderApp() {
 
       {matchedDriver && (
         <Card>
-          <CardContent className="pb-6 pt-4 space-y-4">
+          <CardContent className="p-6 space-y-4 pt-[12px] pb-[12px]">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-blue-600" />
