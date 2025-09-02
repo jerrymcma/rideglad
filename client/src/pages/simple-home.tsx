@@ -52,7 +52,7 @@ export default function SimpleHome() {
             <img 
               src={logoImage} 
               alt="ride - Get there.™"
-              className="w-48 h-auto"
+              className="w-48 h-auto mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[18px] pr-[18px]"
             />
           </div>
           <p className="text-[18px] text-[#343e54] font-medium">Glad to see you {(user as any)?.firstName || 'User'}!</p>
