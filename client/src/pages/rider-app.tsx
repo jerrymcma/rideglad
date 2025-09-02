@@ -1223,6 +1223,26 @@ export default function RiderApp() {
       {matchedDriver && (
         <Card>
           <CardContent className="pb-6 pt-4 space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <MapPin size={18} className="text-blue-600" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
+                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Navigation size={18} className="text-brand-green" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
+                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={16} className="text-gray-600" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
+                <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
+              </div>
+            </div>
+            
+            <Separator className="my-3" />
+            
             <div>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center">
@@ -1249,28 +1269,10 @@ export default function RiderApp() {
                 </div>
               </div>
             </div>
-            
-            <Separator className="my-2" />
-            
+              
+            <Separator className="my-3" />
+              
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <MapPin size={18} className="text-blue-600" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
-                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Navigation size={18} className="text-brand-green" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
-                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock size={16} className="text-gray-600" />
-                <span className="text-sm text-gray-600 mr-2 font-bold"> ETA:</span>
-                <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
-              </div>
-              
-              <Separator className="my-3" />
-              
               <div className="flex items-center">
                 <span className="text-sm text-gray-800 mr-2 font-medium">Vehicle:</span>
                 <span className="text-sm font-medium">
