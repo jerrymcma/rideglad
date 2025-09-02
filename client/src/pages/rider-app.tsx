@@ -1253,6 +1253,19 @@ export default function RiderApp() {
             <Separator className="my-2" />
             
             <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <MapPin size={18} className="text-blue-600" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
+                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Navigation size={18} className="text-brand-green" />
+                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
+                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
+              </div>
+              
+              <Separator className="my-3" />
+              
               <div className="flex items-center">
                 <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
                 <div className="flex items-center gap-1">
@@ -1269,19 +1282,6 @@ export default function RiderApp() {
               <div className="flex items-center">
                 <span className="text-sm text-gray-800 mr-2 font-medium">License:</span>
                 <span className="text-sm font-medium">{matchedDriver.vehicle.licensePlate}</span>
-              </div>
-              
-              <Separator className="my-3" />
-              
-              <div className="flex items-center gap-2">
-                <MapPin size={18} className="text-blue-600" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">Pickup:</span>
-                <span className="text-sm font-medium">{bookingForm.pickupAddress}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Navigation size={18} className="text-brand-green" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
-                <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
               </div>
             </div>
           </CardContent>
