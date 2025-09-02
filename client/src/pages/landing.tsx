@@ -115,7 +115,7 @@ export default function Landing() {
             <img 
               src={logoImage} 
               alt="ride - Get there.™"
-              className="w-64 h-auto"
+              className="w-64 h-auto ml-[0px] mr-[0px] mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[32px] pr-[32px]"
               data-testid="logo-image"
             />
           </div>
