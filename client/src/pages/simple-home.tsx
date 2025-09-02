@@ -55,7 +55,7 @@ export default function SimpleHome() {
               className="w-48 h-auto mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[18px] pr-[18px]"
             />
           </div>
-          <p className="text-[18px] text-[#343e54] font-medium mt-[0px] mb-[0px] pt-[4px] pb-[4px] pl-[0px] pr-[0px]">Glad to see you {(user as any)?.firstName || 'User'}!</p>
+          
           <p className="text-[16px] text-gray-600 italic mt-1" style={{fontFamily: 'Cambria, serif'}}>It's our pleasure to assist you...</p>
         </div>
 
