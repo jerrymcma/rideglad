@@ -1263,12 +1263,10 @@ export default function RiderApp() {
                 <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
                 <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center gap-2">
+                <Clock size={16} className="text-gray-600" />
                 <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
-                <div className="flex items-center gap-1">
-                  <Clock size={16} />
-                  <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
-                </div>
+                <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
               </div>
               
               <Separator className="my-3" />
