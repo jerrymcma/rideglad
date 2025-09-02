@@ -1263,9 +1263,6 @@ export default function RiderApp() {
                 <span className="text-sm text-gray-600 mr-2 font-bold">Destination:</span>
                 <span className="text-sm font-medium">{bookingForm.destinationAddress}</span>
               </div>
-              
-              <Separator className="my-3" />
-              
               <div className="flex items-center">
                 <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
                 <div className="flex items-center gap-1">
@@ -1273,6 +1270,9 @@ export default function RiderApp() {
                   <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
                 </div>
               </div>
+              
+              <Separator className="my-3" />
+              
               <div className="flex items-center">
                 <span className="text-sm text-gray-800 mr-2 font-medium">Vehicle:</span>
                 <span className="text-sm font-medium">
