@@ -211,9 +211,7 @@ export default function Landing() {
                 }}
                 className="font-medium text-[#3c71e8] hover:underline cursor-pointer text-base"
                 data-testid="link-help"
-              >
-                Help
-              </button>
+              >Support</button>
             </div>
 
           </div>
