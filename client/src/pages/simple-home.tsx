@@ -47,8 +47,8 @@ export default function SimpleHome() {
       <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
         <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
-        <div className="text-center space-y-1 pt-[0px] pb-[0px] mt-[10px] mb-[10px]">
-          <div className="flex justify-center mb-4">
+        <div className="text-center space-y-1 pt-[0px] pb-[0px] mt-[2px] mb-[2px]">
+          <div className="flex justify-center mb-1">
             <img 
               src={logoImage} 
               alt="ride - Get there.™"
