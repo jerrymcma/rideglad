@@ -200,7 +200,7 @@ export default function Landing() {
             </div>
 
             {/* Help Link */}
-            <div className="flex justify-center mt-[4px] mb-[4px]">
+            <div className="flex justify-center mt-[6px] mb-[6px]">
               <button
                 onClick={() => {
                   toast({
