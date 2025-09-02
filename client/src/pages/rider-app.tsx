@@ -1194,7 +1194,6 @@ export default function RiderApp() {
     <div className="space-y-4">
       <div className="text-center space-y-1 -mt-6 mb-1">
         <h2 className="font-bold text-blue-600 text-[22px]">Your driver is on the way!</h2>
-        <p className="text-lg font-bold text-gray-600">Your driver is on the way!</p>
       </div>
 
       {/* Live Tracking Map */}
