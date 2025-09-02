@@ -56,7 +56,7 @@ export default function SimpleHome() {
               className="w-48 h-auto"
             />
           </div>
-          <p className="text-[#464f6b] text-[18px]">Glad to see you {(user as any)?.firstName || 'User'}!</p>
+          <p className="text-[18px] text-[#343e54]">Glad to see you {(user as any)?.firstName || 'User'}!</p>
         </div>
 
         {/* Main Actions */}
