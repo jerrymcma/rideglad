@@ -43,12 +43,11 @@ export default function SimpleHome() {
 
   return (
     <div className="max-w-sm mx-auto min-h-screen relative overflow-hidden bg-white">
-      
       {/* Content Overlay */}
       <div className="relative z-10 bg-white/60 backdrop-blur-sm min-h-screen">
         <div className="p-6 text-[15px] pb-20">
         {/* Header - positioned at very top */}
-        <div className="text-center space-y-1 mb-6 pt-2">
+        <div className="text-center space-y-1 pt-[0px] pb-[0px] mt-[10px] mb-[10px]">
           <div className="flex justify-center mb-4">
             <img 
               src={logoImage} 
@@ -238,7 +237,6 @@ export default function SimpleHome() {
         </div>
         </div>
       </div>
-      
       {/* Back Button - positioned at very left edge, aligned with video bottom */}
       <div className="absolute bottom-16 left-0 z-20">
         <Button
