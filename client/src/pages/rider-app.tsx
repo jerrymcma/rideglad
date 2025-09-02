@@ -1265,7 +1265,7 @@ export default function RiderApp() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={16} className="text-gray-600" />
-                <span className="text-sm text-gray-600 mr-2 font-bold">ETA:</span>
+                <span className="text-sm text-gray-600 mr-2 font-bold"> ETA:</span>
                 <span className="text-sm font-bold">{matchedDriver.estimatedArrival} minutes</span>
               </div>
               
