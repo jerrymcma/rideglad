@@ -1681,7 +1681,7 @@ export default function RiderApp() {
           <button
             type="button"
             onClick={() => console.log('Navigate to comment page')}
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1 transition-colors"
+            className="hover:text-blue-800 text-sm font-medium flex items-center gap-1 transition-colors text-[#141617]"
             data-testid="button-add-comment"
           >
             + Add a comment about your trip
