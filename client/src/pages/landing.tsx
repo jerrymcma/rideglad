@@ -123,7 +123,7 @@ export default function Landing() {
           {/* Login Form */}
           <div className="space-y-4">
             <div className="text-center space-y-1">
-              <Label htmlFor="email" className="block font-medium text-[#3c71e8]">
+              <Label htmlFor="email" className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block font-medium text-[#3c71e8] text-[15px]">
                 Email address
               </Label>
               <Input
