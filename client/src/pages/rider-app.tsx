@@ -1050,9 +1050,9 @@ export default function RiderApp() {
                   >
                     <span className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs text-brand-green font-bold bg-white px-1 py-0.5 rounded shadow">$16.80</span>
                     <div className="bg-white rounded-full p-1 border border-white shadow-md">
-                      <Car size={16} className="text-blue-600" />
+                      <Car size={24} className="text-blue-600" />
                     </div>
-                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 font-medium">{driver.firstName}</span>
+                    <span className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-sm text-blue-600 font-bold">{driver.firstName}</span>
                   </div>
                 );
               })}
@@ -1079,15 +1079,15 @@ export default function RiderApp() {
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                             index % 3 === 0 ? 'bg-blue-600' : 
                             index % 3 === 1 ? 'bg-purple-600' : 'bg-gray-800'
                           }`}>
-                            <User size={20} className="text-white" />
+                            <User size={28} className="text-white" />
                           </div>
                           <div>
                             <div className="flex items-center gap-1">
-                              <p className="font-medium text-sm">{driver.firstName}</p>
+                              <p className="font-bold text-base">{driver.firstName}</p>
                               {user && driver.id === user.id ? (
                                 <Badge variant="secondary" className="text-xs">You</Badge>
                               ) : null}
