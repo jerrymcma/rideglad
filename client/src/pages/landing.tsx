@@ -137,7 +137,7 @@ export default function Landing() {
             </div>
 
             <div className="text-center space-y-1">
-              <Label htmlFor="password" className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block font-medium text-[#3c71e8]">
+              <Label htmlFor="password" className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block font-medium text-[#3c71e8] text-[15px]">
                 Password
               </Label>
               <Input
