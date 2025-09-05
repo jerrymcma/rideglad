@@ -450,7 +450,7 @@ export default function RealTimeMap({
       </div>
 
       {/* Info Panel - Top Left */}
-      <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-sm rounded-br-md border shadow-md p-3 max-w-[160px]">
+      <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-sm rounded-br-md border shadow-md p-2 max-w-[160px]">
         <div className="flex items-center gap-1 mb-1">
           <Zap size={8} className="text-green-500" />
           <span className="text-sm font-bold text-gray-900">ETA</span>
