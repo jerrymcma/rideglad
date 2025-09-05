@@ -1677,7 +1677,7 @@ export default function RiderApp() {
         </div>
 
         {/* Add Comment Button */}
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-[10px] mb-[10px]">
           <button
             type="button"
             onClick={() => console.log('Navigate to comment page')}
