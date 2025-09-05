@@ -72,7 +72,7 @@ export default function TripMap({
         title: 'YOU - Pickup Location',
         icon: {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 18,
+          scale: 30,
           fillColor: '#3B82F6',
           fillOpacity: 1,
           strokeWeight: 4,
@@ -103,7 +103,7 @@ export default function TripMap({
         title: 'Destination - Drop-off Point',
         icon: {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 18,
+          scale: 30,
           fillColor: '#EF4444',
           fillOpacity: 1,
           strokeWeight: 4,
