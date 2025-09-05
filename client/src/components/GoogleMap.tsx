@@ -102,14 +102,14 @@ export default function GoogleMap({
           anchor: new (window as any).google.maps.Point(20, 20)
         } : (isDestination ? {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 12,
+          scale: 18,
           fillColor: '#EF4444',
           fillOpacity: 1,
           strokeWeight: 4,
           strokeColor: '#FFFFFF'
         } : {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 12,
+          scale: 18,
           fillColor: '#3B82F6',
           fillOpacity: 1,
           strokeWeight: 4,
