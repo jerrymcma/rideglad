@@ -209,7 +209,7 @@ export default function Landing() {
                     duration: 8000,
                   });
                 }}
-                className="font-medium text-[#3c71e8] hover:underline cursor-pointer text-base"
+                className="font-medium text-[#3c71e8] hover:underline cursor-pointer text-base mt-[4px] mb-[4px]"
                 data-testid="link-help"
               >Support</button>
             </div>
