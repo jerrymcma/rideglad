@@ -1297,18 +1297,18 @@ export default function RiderApp() {
       <div className="flex gap-2 -mt-8">
         <Button
           variant="outline"
-          className="flex-1 flex items-center gap-2 text-sm text-blue-600 border-blue-200 hover:bg-blue-50 h-10"
+          className="flex-1 flex items-center gap-1 text-xs text-blue-600 border-blue-200 hover:bg-blue-50"
           data-testid="button-message-driver"
         >
-          <MessageCircle size={18} />
+          <MessageCircle size={14} />
           Message
         </Button>
         <Button
           variant="outline"
-          className="flex-1 flex items-center gap-2 text-sm text-blue-600 border-blue-200 hover:bg-blue-50 h-10"
+          className="flex-1 flex items-center gap-1 text-xs text-blue-600 border-blue-200 hover:bg-blue-50"
           data-testid="button-call-driver"
         >
-          <Phone size={18} />
+          <Phone size={14} />
           Call
         </Button>
         <Button
@@ -1475,10 +1475,10 @@ export default function RiderApp() {
 
       <Button
         variant="outline"
-        className="w-3/4 mx-auto flex items-center gap-3 border-gray-400 h-12 text-base"
+        className="w-3/4 mx-auto flex items-center gap-2 border-gray-400"
         data-testid="button-message-driver-pickup"
       >
-        <MessageCircle size={20} />
+        <MessageCircle size={16} />
         Send Message
       </Button>
     </div>
