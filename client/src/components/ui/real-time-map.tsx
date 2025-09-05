@@ -456,7 +456,7 @@ export default function RealTimeMap({
           <span className="text-sm font-bold text-gray-900">ETA</span>
           <div className={`w-1 h-1 rounded-full ${isTracking ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
           {estimatedArrival && (
-            <div className="ml-auto bg-green-100 px-0.5 py-0 rounded text-sm">
+            <div className="ml-auto bg-green-100 px-0 py-0 rounded text-sm">
               <span className="font-bold text-green-700">{estimatedArrival}m</span>
             </div>
           )}
