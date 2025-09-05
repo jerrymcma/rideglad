@@ -424,7 +424,6 @@ export default function RealTimeMap({
           </div>
         )}
       </div>
-
       {/* Map Controls */}
       <div className="absolute top-0 right-0 flex flex-col gap-1">
         <button 
@@ -448,9 +447,8 @@ export default function RealTimeMap({
           <MapPin size={14} />
         </button>
       </div>
-
       {/* Info Panel - Top Left */}
-      <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-sm rounded-br-md border shadow-md p-2 max-w-[160px]">
+      <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-sm rounded-br-md border shadow-md p-2 max-w-[160px] pt-[0px] pb-[0px]">
         <div className="flex items-center gap-1 mb-1">
           <Zap size={8} className="text-green-500" />
           <span className="text-sm font-bold text-gray-900">ETA</span>
