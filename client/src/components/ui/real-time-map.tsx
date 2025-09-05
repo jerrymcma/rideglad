@@ -462,27 +462,13 @@ export default function RealTimeMap({
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-1 text-xs">
-          <div className="text-center">
-            <div className="text-gray-500" style={{fontSize: '9px'}}>GPS</div>
-            <div className="font-medium" style={{fontSize: '9px'}}>
-              {accuracy !== null && accuracy !== undefined ? `${accuracy.toFixed(0)}m` : '...'}
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="text-gray-500" style={{fontSize: '9px'}}>Traffic</div>
-            <div className={`font-medium capitalize ${
-              trafficLevel === 'high' ? 'text-red-600' :
-              trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
-            }`} style={{fontSize: '9px'}}>
-              {trafficLevel}
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="text-gray-500" style={{fontSize: '9px'}}>Speed</div>
-            <div className="font-medium" style={{fontSize: '9px'}}>
-              {driverLocation && driverLocation.speed !== undefined ? `${Math.round(driverLocation.speed)}` : '--'}
-            </div>
+        <div className="text-center">
+          <div className="text-gray-500" style={{fontSize: '9px'}}>Traffic</div>
+          <div className={`font-medium capitalize ${
+            trafficLevel === 'high' ? 'text-red-600' :
+            trafficLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
+          }`} style={{fontSize: '9px'}}>
+            {trafficLevel}
           </div>
         </div>
       </div>
