@@ -1203,7 +1203,6 @@ export default function RiderApp() {
           <RealTimeMap 
             userLocation={{ ...getPickupCoordinates(), accuracy: 5, timestamp: Date.now() }}
             driverLocation={getDriverLocation()}
-            destination={{ ...getDestinationCoordinates(), accuracy: 5, timestamp: Date.now() }}
             driverName={matchedDriver ? `${matchedDriver.driver.firstName} ${matchedDriver.driver.lastName}` : undefined}
             showTraffic={true}
             showRoute={true}
@@ -1578,24 +1577,13 @@ export default function RiderApp() {
             <div className="w-full h-96 rounded-lg overflow-hidden relative">
               <RealTimeMap
                 className="w-full h-full"
-                userLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? { latitude: currentTrip.pickupLat, longitude: currentTrip.pickupLng, accuracy: 5, timestamp: Date.now() } : undefined}
-                destination={currentTrip && typeof currentTrip.destinationLat === 'number' && typeof currentTrip.destinationLng === 'number' ? { latitude: currentTrip.destinationLat, longitude: currentTrip.destinationLng, accuracy: 5, timestamp: Date.now() } : undefined}
-                driverLocation={matchedDriver && currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
-                  latitude: currentTrip.pickupLat + 0.001,
-                  longitude: currentTrip.pickupLng + 0.0005,
-                  driverId: matchedDriver.driver.id || 'mock-driver-1',
-                  status: 'en_route' as const,
-                  speed: 25,
-                  heading: 90,
-                  accuracy: 5,
-                  timestamp: Date.now()
-                } : undefined}
                 currentRideLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
                   latitude: currentTrip.pickupLat + 0.002,
                   longitude: currentTrip.pickupLng + 0.001,
                   accuracy: 5,
                   timestamp: Date.now()
                 } : undefined}
+                destination={currentTrip && typeof currentTrip.destinationLat === 'number' && typeof currentTrip.destinationLng === 'number' ? { latitude: currentTrip.destinationLat, longitude: currentTrip.destinationLng, accuracy: 5, timestamp: Date.now() } : undefined}
                 showRoute={true}
                 estimatedArrival={matchedDriver?.estimatedArrival}
                 onDriverContact={(type) => {
