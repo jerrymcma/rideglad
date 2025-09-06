@@ -177,7 +177,7 @@ export default function Landing() {
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-16 h-14 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 flex items-center justify-center px-2"
+                className="w-20 h-18 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 flex items-center justify-center px-2"
                 data-testid="button-google-login"
               >
                 <svg className="w-[60px] h-[60px]" viewBox="0 0 24 24">
@@ -190,7 +190,7 @@ export default function Landing() {
               <Button
                 onClick={() => window.location.href = '/api/login'}
                 variant="outline"
-                className="w-16 h-14 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 flex items-center justify-center px-2"
+                className="w-20 h-16 border border-gray-300 text-gray-700 rounded font-medium hover:bg-gray-50 flex items-center justify-center px-2"
                 data-testid="button-apple-login"
               >
                 <svg className="w-[50px] h-[50px]" viewBox="0 0 24 24">
