@@ -73,7 +73,7 @@ export default function TripMap({
         icon: {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
           scale: 30,
-          fillColor: '#3B82F6',
+          fillColor: '#10B981',
           fillOpacity: 1,
           strokeWeight: 4,
           strokeColor: '#FFFFFF'
@@ -131,16 +131,19 @@ export default function TripMap({
       const driverMarker = new (window as any).google.maps.Marker({
         position: driverLocation,
         map,
-        title: 'John Driver - Available Driver',
+        title: 'The Driver - On the way',
         icon: {
-          url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6.01L3,12V20C3,20.55 3.45,21 4,21H5C5.55,21 6,20.55 6,20V19H18V20C18,20.55 18.45,21 19,21H20C20.55,21 21,20.55 21,20V12L18.92,6.01M6.5,16C5.67,16 5,15.33 5,14.5C5,13.67 5.67,13 6.5,13C7.33,13 8,13.67 8,14.5C8,15.33 7.33,16 6.5,16M17.5,16C16.67,16 16,15.33 16,14.5C16,13.67 16.67,13 17.5,13C18.33,13 19,13.67 19,14.5C19,15.33 18.33,16 17.5,16M5,11L6.5,6.5H17.5L19,11H5Z"/%3E%3C/svg%3E',
-          scaledSize: new (window as any).google.maps.Size(40, 40),
-          anchor: new (window as any).google.maps.Point(20, 20)
+          path: (window as any).google.maps.SymbolPath.CIRCLE,
+          scale: 30,
+          fillColor: '#3B82F6',
+          fillOpacity: 1,
+          strokeWeight: 4,
+          strokeColor: '#FFFFFF'
         },
         label: {
-          text: 'JOHN',
-          color: '#FFFFFF',
-          fontSize: '10px',
+          text: 'The Driver',
+          color: '#3B82F6',
+          fontSize: '8px',
           fontWeight: 'bold'
         }
       });
