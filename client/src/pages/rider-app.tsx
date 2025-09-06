@@ -1825,7 +1825,7 @@ export default function RiderApp() {
 
         {/* Progress Indicator */}
         {currentStep !== 'booking' && (
-          <div className="flex items-center justify-center gap-2 py-2 pt-[12px] pb-[12px]">
+          <div className="flex items-center justify-center gap-2 py-2 pt-[0px] pb-[0px]">
             <div className={`w-2 h-2 rounded-full ${currentStep === 'searching' ? 'bg-blue-600' : 'bg-white/60'}`}></div>
             <div className={`w-2 h-2 rounded-full ${currentStep === 'matched' ? 'bg-blue-600' : 'bg-white/60'}`}></div>
             <div className={`w-2 h-2 rounded-full ${currentStep === 'pickup' ? 'bg-blue-600' : 'bg-white/60'}`}></div>
