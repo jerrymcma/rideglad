@@ -96,6 +96,8 @@ export default function RiderApp() {
   const [userLocation, setUserLocation] = useState<any>(null);
   const [driverLocation, setDriverLocation] = useState<any>(null);
   const [currentSpeed, setCurrentSpeed] = useState(25);
+  const [driverMovementProgress, setDriverMovementProgress] = useState(0);
+  const driverMovementIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const [navigationSteps, setNavigationSteps] = useState<any[]>([]);
   const [showPickupSuggestions, setShowPickupSuggestions] = useState(false);
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
@@ -307,6 +309,103 @@ export default function RiderApp() {
     queryKey: ['/api/drivers/active'],
     refetchInterval: 10000, // Refresh every 10 seconds to show current active drivers
   });
+
+  // Real-time driver location tracking
+  useEffect(() => {
+    if ((currentStep === 'matched' || currentStep === 'pickup' || currentStep === 'inprogress') && currentTrip && matchedDriver) {
+      // Clear any existing interval
+      if (driverMovementIntervalRef.current) {
+        clearInterval(driverMovementIntervalRef.current);
+      }
+
+      // Get pickup coordinates
+      const pickupCoords = {
+        latitude: currentTrip.pickupLat || 31.3271,
+        longitude: currentTrip.pickupLng || -89.2903
+      };
+
+      // Starting position for driver (further away from pickup)
+      const startingLat = pickupCoords.latitude + 0.008;
+      const startingLng = pickupCoords.longitude + 0.005;
+
+      // Reset movement progress
+      setDriverMovementProgress(0);
+
+      // Set initial driver location
+      setDriverLocation({
+        latitude: startingLat,
+        longitude: startingLng,
+        driverId: matchedDriver.driver.id || 'mock-driver-1',
+        status: 'en_route' as const,
+        speed: 25 + Math.random() * 10, // Varying speed 25-35 mph
+        heading: 90,
+        accuracy: 5,
+        timestamp: Date.now()
+      });
+
+      // Start movement simulation
+      driverMovementIntervalRef.current = setInterval(() => {
+        setDriverMovementProgress(prev => {
+          const newProgress = prev + 0.02; // Move 2% closer every second
+          
+          if (newProgress >= 1.0) {
+            // Driver has reached pickup location
+            setDriverLocation({
+              latitude: pickupCoords.latitude,
+              longitude: pickupCoords.longitude,
+              driverId: matchedDriver.driver.id || 'mock-driver-1',
+              status: 'arrived' as const,
+              speed: 0,
+              heading: 90,
+              accuracy: 5,
+              timestamp: Date.now()
+            });
+            
+            // Clear the interval when arrived
+            if (driverMovementIntervalRef.current) {
+              clearInterval(driverMovementIntervalRef.current);
+              driverMovementIntervalRef.current = null;
+            }
+            return 1.0;
+          }
+
+          // Calculate interpolated position
+          const currentLat = startingLat + (pickupCoords.latitude - startingLat) * newProgress;
+          const currentLng = startingLng + (pickupCoords.longitude - startingLng) * newProgress;
+
+          // Update driver location with smooth movement
+          setDriverLocation({
+            latitude: currentLat,
+            longitude: currentLng,
+            driverId: matchedDriver.driver.id || 'mock-driver-1',
+            status: newProgress > 0.9 ? 'approaching' as const : 'en_route' as const,
+            speed: 25 + Math.random() * 10 + (newProgress * 5), // Speed varies and increases as approaching
+            heading: 90,
+            accuracy: 5,
+            timestamp: Date.now()
+          });
+
+          return newProgress;
+        });
+      }, 1000); // Update every second
+
+    } else {
+      // Clear interval when not in tracking mode
+      if (driverMovementIntervalRef.current) {
+        clearInterval(driverMovementIntervalRef.current);
+        driverMovementIntervalRef.current = null;
+      }
+      setDriverLocation(null);
+    }
+
+    // Cleanup on unmount
+    return () => {
+      if (driverMovementIntervalRef.current) {
+        clearInterval(driverMovementIntervalRef.current);
+        driverMovementIntervalRef.current = null;
+      }
+    };
+  }, [currentStep, currentTrip, matchedDriver]);
 
   // Update default rideType when active drivers load
   useEffect(() => {
@@ -1580,16 +1679,7 @@ export default function RiderApp() {
                 className="w-full h-full"
                 userLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? { latitude: currentTrip.pickupLat, longitude: currentTrip.pickupLng, accuracy: 5, timestamp: Date.now() } : undefined}
                 destination={currentTrip && typeof currentTrip.destinationLat === 'number' && typeof currentTrip.destinationLng === 'number' ? { latitude: currentTrip.destinationLat, longitude: currentTrip.destinationLng, accuracy: 5, timestamp: Date.now() } : undefined}
-                driverLocation={matchedDriver && currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
-                  latitude: currentTrip.pickupLat + 0.001,
-                  longitude: currentTrip.pickupLng + 0.0005,
-                  driverId: matchedDriver.driver.id || 'mock-driver-1',
-                  status: 'en_route' as const,
-                  speed: 25,
-                  heading: 90,
-                  accuracy: 5,
-                  timestamp: Date.now()
-                } : undefined}
+                driverLocation={driverLocation}
                 currentRideLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
                   latitude: currentTrip.pickupLat + 0.002,
                   longitude: currentTrip.pickupLng + 0.001,
