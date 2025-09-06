@@ -234,20 +234,11 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: userLocation.latitude, lng: userLocation.longitude },
       map,
-      title: 'You (Rider)',
+      title: 'You (Rider) - Pickup Location',
       icon: {
-        path: (window as any).google.maps.SymbolPath.CIRCLE,
-        scale: 18,
-        fillColor: '#3B82F6',
-        fillOpacity: 1,
-        strokeWeight: 4,
-        strokeColor: '#FFFFFF'
-      },
-      label: {
-        text: 'YOU',
-        color: '#FFFFFF',
-        fontSize: '12px',
-        fontWeight: 'bold'
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="20" cy="20" r="18" fill="%233B82F6" stroke="%23FFFFFF" stroke-width="3"/%3E%3Cpath d="M20 10c-3.5 0-6.5 3-6.5 6.5 0 4.5 6.5 13.5 6.5 13.5s6.5-9 6.5-13.5c0-3.5-3-6.5-6.5-6.5zm0 9c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z" fill="%23FFFFFF"/%3E%3C/svg%3E',
+        scaledSize: new (window as any).google.maps.Size(40, 40),
+        anchor: new (window as any).google.maps.Point(20, 20)
       }
     });
 
@@ -274,17 +265,11 @@ export default function RealTimeMap({
     const marker = new (window as any).google.maps.Marker({
       position: { lat: driverLocation.latitude, lng: driverLocation.longitude },
       map,
-      title: `${driverName || 'John Driver'} - Available Driver`,
+      title: `${driverName || 'John Driver'} - Driver Location`,
       icon: {
-        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 24 24" fill="%2310B981"%3E%3Cpath d="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6.01L3,12V20C3,20.55 3.45,21 4,21H5C5.55,21 6,20.55 6,20V19H18V20C18,20.55 18.45,21 19,21H20C20.55,21 21,20.55 21,20V12L18.92,6.01M6.5,16C5.67,16 5,15.33 5,14.5C5,13.67 5.67,13 6.5,13C7.33,13 8,13.67 8,14.5C8,15.33 7.33,16 6.5,16M17.5,16C16.67,16 16,15.33 16,14.5C16,13.67 16.67,13 17.5,13C18.33,13 19,13.67 19,14.5C19,15.33 18.33,16 17.5,16M5,11L6.5,6.5H17.5L19,11H5Z"/%3E%3C/svg%3E',
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="20" cy="20" r="18" fill="%2310B981" stroke="%23FFFFFF" stroke-width="3"/%3E%3Cpath d="M28 14.5c0-.8-.4-1.5-1-1.9L25 11H15l-2 1.6c-.6.4-1 1.1-1 1.9v7c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-.5h8v.5c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-7zm-13 4c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm10 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm-12-3l1-2h8l1 2h-10z" fill="%23FFFFFF"/%3E%3C/svg%3E',
         scaledSize: new (window as any).google.maps.Size(40, 40),
         anchor: new (window as any).google.maps.Point(20, 20)
-      },
-      label: {
-        text: (driverName || 'JOHN').split(' ')[0].toUpperCase(),
-        color: '#FFFFFF',
-        fontSize: '10px',
-        fontWeight: 'bold'
       }
     });
 
@@ -325,18 +310,9 @@ export default function RealTimeMap({
       map,
       title: 'Destination - Drop-off Point',
       icon: {
-        path: (window as any).google.maps.SymbolPath.CIRCLE,
-        scale: 18,
-        fillColor: '#EF4444',
-        fillOpacity: 1,
-        strokeWeight: 4,
-        strokeColor: '#FFFFFF'
-      },
-      label: {
-        text: 'END',
-        color: '#FFFFFF',
-        fontSize: '10px',
-        fontWeight: 'bold'
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="20" cy="20" r="18" fill="%23EF4444" stroke="%23FFFFFF" stroke-width="3"/%3E%3Cpath d="M12 16v-2c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v2l2 6v6c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2v-1H16v1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2v-6l2-6zm12-3H16v2h8v-2zm-8 9v2h8v-2H16z" fill="%23FFFFFF"/%3E%3C/svg%3E',
+        scaledSize: new (window as any).google.maps.Size(40, 40),
+        anchor: new (window as any).google.maps.Point(20, 20)
       }
     });
 
