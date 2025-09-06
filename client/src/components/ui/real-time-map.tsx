@@ -34,7 +34,7 @@ interface RealTimeMapProps {
   className?: string;
 }
 
-export default function RealTimeMap({
+const RealTimeMap = React.memo(function RealTimeMap({
   userLocation,
   driverLocation,
   destination,
@@ -254,12 +254,22 @@ export default function RealTimeMap({
     map.setCenter({ lat: userLocation.latitude, lng: userLocation.longitude });
   }, [map, userLocation]);
 
-  // Update driver location marker
+  // Create or update driver location marker
   useEffect(() => {
-    if (!map || !driverLocation) return;
+    if (!map) return;
 
+    if (!driverLocation) {
+      if (driverMarkerRef.current) {
+        driverMarkerRef.current.setMap(null);
+        driverMarkerRef.current = null;
+      }
+      return;
+    }
+
+    // If marker exists, just update its position
     if (driverMarkerRef.current) {
-      driverMarkerRef.current.setMap(null);
+      driverMarkerRef.current.setPosition({ lat: driverLocation.latitude, lng: driverLocation.longitude });
+      return;
     }
 
     const marker = new (window as any).google.maps.Marker({
@@ -439,4 +449,6 @@ export default function RealTimeMap({
       </div>
     </div>
   );
-}
+});
+
+export default RealTimeMap;
