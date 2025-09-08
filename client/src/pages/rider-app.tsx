@@ -98,6 +98,8 @@ export default function RiderApp() {
   const [currentSpeed, setCurrentSpeed] = useState(25);
   const [driverMovementProgress, setDriverMovementProgress] = useState(0);
   const driverMovementIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const driverLocationRef = useRef<any>(null);
+  const mapComponentRef = useRef<any>(null);
   const [navigationSteps, setNavigationSteps] = useState<any[]>([]);
   const [showPickupSuggestions, setShowPickupSuggestions] = useState(false);
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
@@ -332,7 +334,7 @@ export default function RiderApp() {
       setDriverMovementProgress(0);
 
       // Set initial driver location
-      setDriverLocation({
+      const initialLocation = {
         latitude: startingLat,
         longitude: startingLng,
         driverId: matchedDriver.driver.id || 'mock-driver-1',
@@ -341,16 +343,18 @@ export default function RiderApp() {
         heading: 90,
         accuracy: 5,
         timestamp: Date.now()
-      });
+      };
+      driverLocationRef.current = initialLocation;
+      setDriverLocation(initialLocation);
 
       // Start movement simulation
       driverMovementIntervalRef.current = setInterval(() => {
         setDriverMovementProgress(prev => {
-          const newProgress = prev + 0.02; // Move 2% closer every second
+          const newProgress = prev + 0.06; // Move 6% closer every 3 seconds (same total time)
           
           if (newProgress >= 1.0) {
             // Driver has reached pickup location
-            setDriverLocation({
+            const arrivedLocation = {
               latitude: pickupCoords.latitude,
               longitude: pickupCoords.longitude,
               driverId: matchedDriver.driver.id || 'mock-driver-1',
@@ -359,7 +363,13 @@ export default function RiderApp() {
               heading: 90,
               accuracy: 5,
               timestamp: Date.now()
-            });
+            };
+            driverLocationRef.current = arrivedLocation;
+            
+            // Update map directly without causing re-render
+            if (mapComponentRef.current?.updateDriverLocation) {
+              mapComponentRef.current.updateDriverLocation(arrivedLocation);
+            }
             
             // Clear the interval when arrived
             if (driverMovementIntervalRef.current) {
@@ -374,7 +384,7 @@ export default function RiderApp() {
           const currentLng = startingLng + (pickupCoords.longitude - startingLng) * newProgress;
 
           // Update driver location with smooth movement
-          setDriverLocation({
+          const updatedLocation = {
             latitude: currentLat,
             longitude: currentLng,
             driverId: matchedDriver.driver.id || 'mock-driver-1',
@@ -383,11 +393,17 @@ export default function RiderApp() {
             heading: 90,
             accuracy: 5,
             timestamp: Date.now()
-          });
+          };
+          driverLocationRef.current = updatedLocation;
+          
+          // Update map directly without causing re-render
+          if (mapComponentRef.current?.updateDriverLocation) {
+            mapComponentRef.current.updateDriverLocation(updatedLocation);
+          }
 
           return newProgress;
         });
-      }, 1000); // Update every second
+      }, 3000); // Update every 3 seconds to reduce glitching
 
     } else {
       // Clear interval when not in tracking mode
@@ -395,6 +411,7 @@ export default function RiderApp() {
         clearInterval(driverMovementIntervalRef.current);
         driverMovementIntervalRef.current = null;
       }
+      driverLocationRef.current = null;
       setDriverLocation(null);
     }
 
@@ -1679,6 +1696,7 @@ export default function RiderApp() {
                 className="w-full h-full"
                 userLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? { latitude: currentTrip.pickupLat, longitude: currentTrip.pickupLng, accuracy: 5, timestamp: Date.now() } : undefined}
                 destination={currentTrip && typeof currentTrip.destinationLat === 'number' && typeof currentTrip.destinationLng === 'number' ? { latitude: currentTrip.destinationLat, longitude: currentTrip.destinationLng, accuracy: 5, timestamp: Date.now() } : undefined}
+                ref={mapComponentRef}
                 driverLocation={driverLocation}
                 currentRideLocation={currentTrip && typeof currentTrip.pickupLat === 'number' && typeof currentTrip.pickupLng === 'number' ? {
                   latitude: currentTrip.pickupLat + 0.002,
@@ -1687,7 +1705,6 @@ export default function RiderApp() {
                   timestamp: Date.now()
                 } : undefined}
                 showRoute={true}
-                estimatedArrival={matchedDriver?.estimatedArrival}
                 onDriverContact={(type) => {
                   if (type === 'call') {
                     console.log('Calling driver...');

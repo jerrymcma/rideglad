@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { Button } from './button';
 import { MapPin, Navigation, Clock, Zap, AlertTriangle, Phone, MessageCircle } from 'lucide-react';
 import { HATTIESBURG_CENTER } from '@/utils/hattiesburg-locations';
@@ -34,7 +34,7 @@ interface RealTimeMapProps {
   className?: string;
 }
 
-const RealTimeMap = React.memo(function RealTimeMap({
+const RealTimeMap = React.memo(forwardRef<any, RealTimeMapProps>(function RealTimeMap({
   userLocation,
   driverLocation,
   destination,
@@ -46,7 +46,7 @@ const RealTimeMap = React.memo(function RealTimeMap({
   onLocationUpdate,
   onDriverContact,
   className = ''
-}: RealTimeMapProps) {
+}: RealTimeMapProps, ref) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [isTracking, setIsTracking] = useState(false);
   const [accuracy, setAccuracy] = useState<number | null>(null);
@@ -57,6 +57,15 @@ const RealTimeMap = React.memo(function RealTimeMap({
   const [isLoaded, setIsLoaded] = useState(false);
   const userMarkerRef = useRef<any>(null);
   const driverMarkerRef = useRef<any>(null);
+
+  // Expose methods to parent component
+  useImperativeHandle(ref, () => ({
+    updateDriverLocation: (location: DriverLocation) => {
+      if (driverMarkerRef.current && location) {
+        driverMarkerRef.current.setPosition({ lat: location.latitude, lng: location.longitude });
+      }
+    }
+  }), []);
   const destinationMarkerRef = useRef<any>(null);
   const rideLocationMarkerRef = useRef<any>(null);
   const directionsServiceRef = useRef<any>(null);
@@ -449,6 +458,6 @@ const RealTimeMap = React.memo(function RealTimeMap({
       </div>
     </div>
   );
-});
+}));
 
 export default RealTimeMap;
