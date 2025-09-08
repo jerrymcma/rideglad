@@ -119,7 +119,7 @@ export default function GoogleMap({
           strokeColor: '#FFFFFF'
         }),
         label: isDriver ? {
-          text: 'START',
+          text: 'DRIVER',
           color: '#FFFFFF',
           fontSize: '8px',
           fontWeight: 'bold'
@@ -129,7 +129,7 @@ export default function GoogleMap({
           fontSize: '8px',
           fontWeight: 'bold'
         } : {
-          text: 'YOU',
+          text: 'START',
           color: '#FFFFFF',
           fontSize: '8px',
           fontWeight: 'bold'
