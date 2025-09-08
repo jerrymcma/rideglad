@@ -98,24 +98,24 @@ export default function GoogleMap({
         title: markerData.title || 'Marker',
         icon: isDriver ? {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 30,
+          scale: 12,
           fillColor: '#3B82F6',
           fillOpacity: 1,
-          strokeWeight: 4,
+          strokeWeight: 3,
           strokeColor: '#FFFFFF'
         } : (isDestination ? {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 30,
+          scale: 12,
           fillColor: '#EF4444',
           fillOpacity: 1,
-          strokeWeight: 4,
+          strokeWeight: 3,
           strokeColor: '#FFFFFF'
         } : {
           path: (window as any).google.maps.SymbolPath.CIRCLE,
-          scale: 30,
+          scale: 12,
           fillColor: '#10B981',
           fillOpacity: 1,
-          strokeWeight: 4,
+          strokeWeight: 3,
           strokeColor: '#FFFFFF'
         }),
         label: isDriver ? {
