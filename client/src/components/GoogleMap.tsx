@@ -119,19 +119,19 @@ export default function GoogleMap({
           strokeColor: '#FFFFFF'
         }),
         label: isDriver ? {
-          text: 'The Driver',
-          color: '#3B82F6',
+          text: 'START',
+          color: '#FFFFFF',
           fontSize: '8px',
           fontWeight: 'bold'
         } : (isDestination ? {
           text: 'END',
           color: '#FFFFFF',
-          fontSize: '10px',
+          fontSize: '8px',
           fontWeight: 'bold'
         } : {
           text: 'YOU',
           color: '#FFFFFF',
-          fontSize: '12px',
+          fontSize: '8px',
           fontWeight: 'bold'
         })
       });
