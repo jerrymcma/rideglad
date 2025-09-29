@@ -20,6 +20,7 @@ import Checkout from "@/pages/checkout";
 import PaymentHistory from "@/pages/payment-history";
 import AdvancedNavigation from "@/pages/advanced-navigation";
 import Profile from "@/pages/profile";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -33,6 +34,11 @@ function Router() {
   }, [location]);
   
   console.log('Router rendering, location:', location, 'isAuthenticated:', isAuthenticated, 'isLoading:', isLoading);
+
+  // Privacy policy should be accessible without authentication for Google Play
+  if (location === '/privacy-policy') {
+    return <PrivacyPolicy />;
+  }
 
   if (isLoading) {
     return (
