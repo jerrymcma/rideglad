@@ -138,13 +138,13 @@ export default function SimpleHome() {
               }}
               data-testid="card-payment-methods"
             >
-              <div className="text-center px-6 pt-[5px] pb-[5px]">
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1 text-[#128a43]">
                   <CreditCard size={32} className="text-[#128a43]" />
                 </div>
                 <h3 className="font-semibold text-[16px] text-[#128a43]">Wallet</h3>
               </div>
-              <div className="text-center py-1 px-6 pt-[0px] pb-[0px]">
+              <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px]">Manage money</p>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function SimpleHome() {
               }}
               data-testid="card-account-management"
             >
-              <div className="text-center px-6 pt-[5px] pb-[5px]">
+              <div className="text-center pb-0 pt-3 px-6">
                 <div className="flex justify-center mb-1">
                   <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
                     {(user as any)?.profileImageUrl ? (
@@ -175,7 +175,7 @@ export default function SimpleHome() {
                 </div>
                 <h3 className="font-semibold text-[16px] text-gray-400">Dashboard</h3>
               </div>
-              <div className="text-center py-1 px-6 pt-[0px] pb-[0px]">
+              <div className="text-center py-1 pb-3 px-6">
                 <p className="text-gray-700 text-[14px] whitespace-nowrap">Account Console</p>
               </div>
             </div>
