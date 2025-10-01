@@ -286,7 +286,7 @@ const RealTimeMap = React.memo(forwardRef<any, RealTimeMapProps>(function RealTi
       map,
       title: `${driverName || 'John Driver'} - Driver Location`,
       icon: {
-        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="20" cy="20" r="18" fill="%2310B981" stroke="%23FFFFFF" stroke-width="3"/%3E%3Cpath d="M28 14.5c0-.8-.4-1.5-1-1.9L25 11H15l-2 1.6c-.6.4-1 1.1-1 1.9v7c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-.5h8v.5c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-7zm-13 4c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm10 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm-12-3l1-2h8l1 2h-10z" fill="%23FFFFFF"/%3E%3C/svg%3E',
+        url: 'data:image/svg+xml;charset=UTF-8,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="20" cy="20" r="18" fill="%233B82F6" stroke="%23FFFFFF" stroke-width="3"/%3E%3Cpath d="M28 14.5c0-.8-.4-1.5-1-1.9L25 11H15l-2 1.6c-.6.4-1 1.1-1 1.9v7c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-.5h8v.5c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-7zm-13 4c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm10 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm-12-3l1-2h8l1 2h-10z" fill="%23FFFFFF"/%3E%3C/svg%3E',
         scaledSize: new (window as any).google.maps.Size(40, 40),
         anchor: new (window as any).google.maps.Point(20, 20)
       }
