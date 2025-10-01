@@ -173,10 +173,10 @@ export default function SimpleHome() {
                     )}
                   </div>
                 </div>
-                <h3 className="font-semibold text-[16px] text-gray-400">Account</h3>
+                <h3 className="font-semibold text-[16px] text-gray-400">Dashboard</h3>
               </div>
               <div className="text-center py-1 pb-3 px-6">
-                <p className="text-gray-700 text-[14px]">VIP Console</p>
+                <p className="text-gray-700 text-[14px]">Account Console</p>
               </div>
             </div>
           </div>
