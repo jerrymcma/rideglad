@@ -100,6 +100,7 @@ export default function RiderApp() {
   const driverMovementIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const driverLocationRef = useRef<any>(null);
   const mapComponentRef = useRef<any>(null);
+  const animationInitializedRef = useRef<string | null>(null);
   const [navigationSteps, setNavigationSteps] = useState<any[]>([]);
   const [showPickupSuggestions, setShowPickupSuggestions] = useState(false);
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
@@ -315,10 +316,20 @@ export default function RiderApp() {
   // Real-time driver location tracking
   useEffect(() => {
     if ((currentStep === 'matched' || currentStep === 'pickup' || currentStep === 'inprogress') && currentTrip && matchedDriver) {
+      // Only initialize animation if it hasn't been started for this trip yet
+      const tripKey = `${currentTrip.id}-${currentStep}`;
+      if (animationInitializedRef.current === tripKey && driverMovementIntervalRef.current) {
+        // Animation already running for this trip/step, don't restart
+        return;
+      }
+
       // Clear any existing interval
       if (driverMovementIntervalRef.current) {
         clearInterval(driverMovementIntervalRef.current);
       }
+
+      // Mark this trip/step as initialized
+      animationInitializedRef.current = tripKey;
 
       // Get pickup coordinates
       const pickupCoords = {
@@ -411,6 +422,7 @@ export default function RiderApp() {
         clearInterval(driverMovementIntervalRef.current);
         driverMovementIntervalRef.current = null;
       }
+      animationInitializedRef.current = null;
       driverLocationRef.current = null;
       setDriverLocation(null);
     }
@@ -421,6 +433,7 @@ export default function RiderApp() {
         clearInterval(driverMovementIntervalRef.current);
         driverMovementIntervalRef.current = null;
       }
+      animationInitializedRef.current = null;
     };
   }, [currentStep, currentTrip, matchedDriver]);
 
