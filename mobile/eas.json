@@ -15,7 +15,7 @@
         "bundleIdentifier": "com.rideshare.app"
       },
       "android": {
-        "buildType": "apk"
+        "buildType": "app-bundle"
       }
     }
   },
