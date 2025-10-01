@@ -29,12 +29,19 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.rideshare.app",
-      "versionCode": 1,
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"
       ]
     },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow ride to use your location for accurate pickup and trip tracking."
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     },
