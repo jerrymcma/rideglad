@@ -20,7 +20,8 @@
       "buildNumber": "1",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "ride needs location access to show your current position and provide accurate pickup services.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "ride needs location access to track your trip and provide real-time navigation."
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "ride needs location access to track your trip and provide real-time navigation.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -31,7 +32,9 @@
       "package": "com.rideshare.app",
       "permissions": [
         "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
       ]
     },
     "plugins": [
