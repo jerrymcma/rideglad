@@ -1,0 +1,13 @@
+build:
+  name: Build Android app from mobile subdirectory
+  steps:
+    - eas/checkout
+    - run:
+        name: Install dependencies in mobile directory
+        working_directory: mobile
+        command: npm install --legacy-peer-deps
+    - run:
+        name: Run Expo prebuild
+        working_directory: mobile
+        command: npx expo prebuild --platform android --clean
+    - eas/build_android
