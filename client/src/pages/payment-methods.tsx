@@ -206,14 +206,6 @@ export default function PaymentMethods() {
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <Button
-            variant="ghost"
-            onClick={() => setLocation('/')}
-            className="p-3 hover:bg-gray-100 rounded-full"
-            data-testid="button-back"
-          >
-            <ArrowLeft size={24} className="text-gray-600" />
-          </Button>
           <h1 className="text-2xl font-bold">Payment Methods</h1>
         </div>
 
@@ -480,6 +472,16 @@ export default function PaymentMethods() {
           </p>
         </div>
       </div>
+
+      {/* Fixed Back Button */}
+      <Button
+        onClick={() => setLocation('/')}
+        variant="outline"
+        className="fixed bottom-6 left-6 p-3 rounded-full bg-white border-2 border-gray-300 hover:bg-gray-50 shadow-lg"
+        data-testid="button-back-fixed"
+      >
+        <ArrowLeft size={20} className="text-gray-600" />
+      </Button>
     </div>
   );
 }
