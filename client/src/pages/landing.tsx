@@ -205,7 +205,7 @@ export default function Landing() {
                 onClick={() => {
                   toast({
                     title: "Password Help",
-                    description: "Use simple passwords (6+ letters/numbers). Or try Google/Apple login above. Contact: help@rideshare.com",
+                    description: "Use simple passwords (6+ letters/numbers). Or try Google/Apple login above. Contact: service@ride-glad.com",
                     duration: 8000,
                   });
                 }}
