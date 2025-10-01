@@ -1621,7 +1621,7 @@ export default function RiderApp() {
 
       <Card className="mx-5">
         <CardContent className="p-4 space-y-4">
-          <div className="text-center">
+          <div className="text-center space-y-1">
             <Badge 
               className="bg-brand-green text-white text-lg py-2 px-4 cursor-pointer hover:bg-green-700 transition-colors gentle-glow"
               onClick={() => setShowLiveTripMap(true)}
@@ -1629,9 +1629,8 @@ export default function RiderApp() {
               <Navigation size={16} className="mr-2" />
               In Progress
             </Badge>
+            <p className="text-sm text-brand-green font-medium">Click to View</p>
           </div>
-
-          <Separator />
 
           <div className="space-y-2">
             <div className="flex items-center gap-2">
