@@ -45,6 +45,16 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow ride to use your location for accurate pickup and trip tracking."
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0"
+          }
+        }
       ]
     ],
     "web": {
