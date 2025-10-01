@@ -132,7 +132,7 @@ export default function PrivacyPolicy() {
             </p>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p><strong>Ride Constellation</strong></p>
-              <p>Email: privacy@rideconstellation.com</p>
+              <p>Email: jerrymcma@gmail.com</p>
               <p>For data deletion requests or privacy concerns</p>
             </div>
           </section>
