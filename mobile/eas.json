@@ -10,10 +10,12 @@
     "preview": {
       "distribution": "internal"
     },
+    "production-android": {
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
     "production": {
-      "ios": {
-        "bundleIdentifier": "com.rideshare.app"
-      },
       "android": {
         "buildType": "app-bundle"
       }
