@@ -81,6 +81,8 @@ react {
 
     if (rnVersion >= versionToNumber(0, 75, 0)) {
         /* Autolinking */
+        // Explicitly set project root for autolinking in monorepo
+        System.setProperty("REACT_NATIVE_APP_ROOT", projectRoot)
         autolinkLibrariesWithApp()
     }
 }
