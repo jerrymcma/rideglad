@@ -47,7 +47,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow ride to use your location for accurate pickup and trip tracking."
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "web": {
       "favicon": "./assets/favicon.png"
