@@ -1629,7 +1629,7 @@ export default function RiderApp() {
               <Navigation size={16} className="mr-2" />
               In Progress
             </Badge>
-            <p className="text-sm text-brand-green font-medium">Click to View</p>
+            <p className="text-sm font-medium text-[#29a38a]">Click to View</p>
           </div>
 
           <div className="space-y-2">
