@@ -21,7 +21,6 @@
       "android": {
         "buildType": "app-bundle"
       },
-      "config": "production.yml",
       "resourceClass": "default",
       "node": "20.19.3"
     }

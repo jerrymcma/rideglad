@@ -6,7 +6,9 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "eas-build-pre-install": "echo 'Installing mobile app dependencies...'",
+    "eas-build-post-install": "echo 'Build dependencies installed successfully'"
   },
   "dependencies": {
     "expo": "~52.0.0",
