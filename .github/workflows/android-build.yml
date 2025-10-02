@@ -35,7 +35,7 @@ jobs:
     - name: Build Debug APK
       working-directory: ./mobile/android
       env:
-        REACT_NATIVE_PROJECT_ROOT: ../
+        REACT_NATIVE_APP_ROOT: ${{ github.workspace }}/mobile
       run: ./gradlew assembleDebug --stacktrace
     
     - name: Upload Debug APK
