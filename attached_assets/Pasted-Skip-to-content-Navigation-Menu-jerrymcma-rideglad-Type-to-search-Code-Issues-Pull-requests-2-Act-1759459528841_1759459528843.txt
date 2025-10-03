@@ -1,0 +1,82 @@
+Skip to content
+Navigation Menu
+jerrymcma
+rideglad
+
+Type / to search
+Code
+Issues
+Pull requests
+2
+Actions
+Projects
+Wiki
+Security
+1
+Insights
+Settings
+Build Android App
+Update project configuration for native mobile app development #9
+Jobs
+Run details
+Annotations
+1 error
+build
+failed 6 minutes ago in 15s
+Search logs
+1s
+4s
+0s
+3s
+4s
+Run npm ci
+npm error code EUSAGE
+npm error
+npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+npm error
+npm error Missing: @react-native-community/cli@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-clean@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-config@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-debugger-ui@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-doctor@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-server-api@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-tools@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-types@15.1.3 from lock file
+npm error Missing: commander@9.5.0 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: semver@7.7.2 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: cosmiconfig@9.0.0 from lock file
+npm error Missing: joi@17.13.3 from lock file
+npm error Missing: @react-native-community/cli-platform-android@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-platform-apple@15.1.3 from lock file
+npm error Missing: @react-native-community/cli-platform-ios@15.1.3 from lock file
+npm error Missing: command-exists@1.2.9 from lock file
+npm error Missing: envinfo@7.15.0 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: node-stream-zip@1.15.0 from lock file
+npm error Missing: ora@5.4.1 from lock file
+npm error Missing: semver@7.7.2 from lock file
+npm error Missing: strip-ansi@5.2.0 from lock file
+npm error Missing: yaml@2.8.1 from lock file
+npm error Missing: @react-native-community/cli-config-android@15.1.3 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: logkitty@0.7.1 from lock file
+npm error Missing: fast-xml-parser@4.5.3 from lock file
+npm error Missing: @react-native-community/cli-config-apple@15.1.3 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: errorhandler@1.5.1 from lock file
+npm error Missing: nocache@3.0.4 from lock file
+npm error Missing: pretty-format@26.6.2 from lock file
+npm error Missing: ws@6.2.3 from lock file
+npm error Missing: appdirsjs@1.2.7 from lock file
+npm error Missing: execa@5.1.1 from lock file
+npm error Missing: mime@2.6.0 from lock file
+0s
+0s
+0s
+0s
+1s
+0s
+0s
