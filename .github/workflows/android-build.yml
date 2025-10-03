@@ -32,7 +32,20 @@ jobs:
       working-directory: ./mobile/android
       run: chmod +x gradlew
     
-    - name: Build Debug APK
+    - name: Build Release AAB
+      working-directory: ./mobile
+      env:
+        ANDROID_HOME: /usr/local/lib/android/sdk
+      run: cd android && ./gradlew bundleRelease --stacktrace
+    
+    - name: Upload Release AAB
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release-aab
+        path: mobile/android/app/build/outputs/bundle/release/app-release.aab
+        retention-days: 30
+    
+    - name: Build Debug APK (for testing)
       working-directory: ./mobile
       env:
         ANDROID_HOME: /usr/local/lib/android/sdk
@@ -41,6 +54,6 @@ jobs:
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
+        name: app-debug-apk
         path: mobile/android/app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
