@@ -112,6 +112,10 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace 'com.rideglad.app'
+    
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.ext.kotlinCompilerExtensionVersion
+    }
     defaultConfig {
         applicationId 'com.rideglad.app'
         minSdkVersion rootProject.ext.minSdkVersion
