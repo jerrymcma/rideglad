@@ -28,13 +28,13 @@ jobs:
     - name: Build Android AAB with EAS
       working-directory: ./mobile
       env:
-        EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        EXPO_TOKEN: ${{ secrets.EXPO_KEY }}
       run: eas build --platform android --profile production --non-interactive
     
     - name: Download built AAB
       working-directory: ./mobile
       env:
-        EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        EXPO_TOKEN: ${{ secrets.EXPO_KEY }}
       run: |
         BUILD_ID=$(eas build:list --platform android --limit 1 --json --non-interactive | jq -r '.[0].id')
         eas build:download --id $BUILD_ID --output ./app-release.aab
